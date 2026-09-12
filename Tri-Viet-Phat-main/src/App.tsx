@@ -36,9 +36,7 @@ export default function App() {
 
   const handleSelectTab = (tab: PageTab, cat?: string) => {
     setCurrentTab(tab);
-    if (cat) {
-      setCategoryFilter(cat);
-    }
+    setCategoryFilter(cat || 'all');
   };
 
   const handleOpenConsultation = (prefilledProd?: string) => {

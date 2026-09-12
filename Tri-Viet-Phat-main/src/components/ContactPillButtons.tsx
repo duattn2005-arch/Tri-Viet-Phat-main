@@ -25,12 +25,12 @@ export const ContactPillButtons: React.FC<ContactPillButtonsProps> = ({
   };
 
   return (
-    <div className={`flex flex-nowrap items-center gap-2 sm:gap-3 w-full max-w-full overflow-x-auto no-scrollbar py-1 ${className}`}>
-      {/* 1. BUTTON HOTLINE (RED PILL) */}
+    <div className={`grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:items-center sm:gap-3 w-full max-w-full py-1 ${className}`}>
+      {/* 1. BUTTON HOTLINE (RED PILL) - primary CTA, full width on mobile */}
       <a
         href={`tel:${hotlineDigits}`}
         aria-label={`Hotline ${COMPANY_INFO.hotline}`}
-        className="group inline-flex items-center h-[48px] sm:h-[50px] px-3.5 sm:px-4.5 rounded-full bg-gradient-to-r from-[#e11d2a] via-[#e52d27] to-[#cc0f1c] hover:brightness-105 active:scale-98 transition-all duration-200 shadow-[0_6px_18px_-4px_rgba(225,29,42,0.4)] hover:shadow-[0_8px_22px_-3px_rgba(225,29,42,0.5)] cursor-pointer text-white select-none shrink-0 whitespace-nowrap"
+        className="group col-span-2 sm:col-span-auto inline-flex items-center justify-center sm:justify-start w-full sm:w-auto h-[48px] sm:h-[50px] px-3.5 sm:px-4.5 rounded-full bg-gradient-to-r from-[#e11d2a] via-[#e52d27] to-[#cc0f1c] hover:brightness-105 active:scale-98 transition-all duration-200 shadow-[0_6px_18px_-4px_rgba(225,29,42,0.4)] hover:shadow-[0_8px_22px_-3px_rgba(225,29,42,0.5)] cursor-pointer text-white select-none whitespace-nowrap"
       >
         {/* Left circular translucent icon */}
         <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/20 backdrop-blur-xs flex items-center justify-center text-white shadow-inner group-hover:scale-105 transition-transform shrink-0">
@@ -62,11 +62,11 @@ export const ContactPillButtons: React.FC<ContactPillButtonsProps> = ({
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat Zalo cùng chuyên viên tư vấn"
-        className="group inline-flex items-center h-[48px] sm:h-[50px] px-3.5 sm:px-4.5 rounded-full bg-gradient-to-r from-[#0068ff] to-[#0052d9] hover:brightness-105 active:scale-98 transition-all duration-200 shadow-[0_6px_18px_-4px_rgba(0,104,255,0.4)] hover:shadow-[0_8px_22px_-3px_rgba(0,104,255,0.5)] cursor-pointer text-white select-none shrink-0 whitespace-nowrap"
+        className="group inline-flex items-center justify-center sm:justify-start w-full sm:w-auto h-[46px] sm:h-[50px] px-2.5 sm:px-4.5 rounded-full bg-gradient-to-r from-[#0068ff] to-[#0052d9] hover:brightness-105 active:scale-98 transition-all duration-200 shadow-[0_6px_18px_-4px_rgba(0,104,255,0.4)] hover:shadow-[0_8px_22px_-3px_rgba(0,104,255,0.5)] cursor-pointer text-white select-none whitespace-nowrap"
       >
         {/* Zalo official bubble speech mark */}
-        <div className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-          <svg viewBox="0 0 36 36" className="w-8 h-8 drop-shadow-xs" fill="none">
+        <div className="w-7 h-7 sm:w-9 sm:h-9 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+          <svg viewBox="0 0 36 36" className="w-7 h-7 sm:w-8 sm:h-8 drop-shadow-xs" fill="none">
             {/* Speech bubble */}
             <path
               d="M18 4.5C10.544 4.5 4.5 10.096 4.5 17C4.5 20.883 6.337 24.346 9.245 26.615L8.11 30.71C7.947 31.296 8.544 31.796 9.083 31.517L14.013 28.956C15.294 29.313 16.623 29.5 18 29.5C25.456 29.5 31.5 23.904 31.5 17C31.5 10.096 25.456 4.5 18 4.5Z"
@@ -81,15 +81,15 @@ export const ContactPillButtons: React.FC<ContactPillButtonsProps> = ({
         </div>
 
         {/* Vertical subtle divider */}
-        <div className="h-5 w-[1.5px] bg-white/30 mx-2.5 shrink-0"></div>
+        <div className="h-5 w-[1.5px] bg-white/30 mx-1.5 sm:mx-2.5 shrink-0"></div>
 
         {/* Text right */}
-        <span className="text-[14.5px] sm:text-[16px] font-bold text-white tracking-wide pr-0.5 font-sans">
+        <span className="text-[13px] sm:text-[16px] font-bold text-white tracking-wide pr-0.5 font-sans">
           Chat Zalo
         </span>
 
         {/* Chevron arrow */}
-        <span className="material-symbols-outlined text-[18px] text-white/80 group-hover:translate-x-0.5 transition-transform ml-1 sm:ml-1.5">
+        <span className="material-symbols-outlined text-[16px] sm:text-[18px] text-white/80 group-hover:translate-x-0.5 transition-transform ml-0.5 sm:ml-1.5">
           chevron_right
         </span>
       </a>
@@ -98,13 +98,13 @@ export const ContactPillButtons: React.FC<ContactPillButtonsProps> = ({
       <button
         onClick={handleBaoGiaClick}
         aria-label="Yêu cầu báo giá thiết bị y tế"
-        className="group inline-flex items-center h-[48px] sm:h-[50px] px-3.5 sm:px-4.5 rounded-full bg-white hover:bg-[#f0f7ff] active:scale-98 transition-all duration-200 border-2 border-[#0068ff] shadow-[0_5px_15px_-4px_rgba(0,104,255,0.2)] hover:shadow-[0_8px_20px_-3px_rgba(0,104,255,0.3)] cursor-pointer text-[#0068ff] select-none shrink-0 whitespace-nowrap"
+        className="group inline-flex items-center justify-center sm:justify-start w-full sm:w-auto h-[46px] sm:h-[50px] px-2.5 sm:px-4.5 rounded-full bg-white hover:bg-[#f0f7ff] active:scale-98 transition-all duration-200 border-2 border-[#0068ff] shadow-[0_5px_15px_-4px_rgba(0,104,255,0.2)] hover:shadow-[0_8px_20px_-3px_rgba(0,104,255,0.3)] cursor-pointer text-[#0068ff] select-none whitespace-nowrap"
       >
         {/* Document with folded corner and currency symbol */}
-        <div className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+        <div className="w-7 h-7 sm:w-9 sm:h-9 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
           <svg
             viewBox="0 0 32 32"
-            className="w-6 h-6 sm:w-6.5 sm:h-6.5 text-[#0068ff]"
+            className="w-5.5 h-5.5 sm:w-6.5 sm:h-6.5 text-[#0068ff]"
             fill="none"
             stroke="currentColor"
           >
@@ -135,15 +135,15 @@ export const ContactPillButtons: React.FC<ContactPillButtonsProps> = ({
         </div>
 
         {/* Vertical subtle divider */}
-        <div className="h-5 w-[1.5px] bg-[#dbeafe] mx-2.5 shrink-0"></div>
+        <div className="h-5 w-[1.5px] bg-[#dbeafe] mx-1.5 sm:mx-2.5 shrink-0"></div>
 
         {/* Text right */}
-        <span className="text-[14.5px] sm:text-[16px] font-bold text-[#0068ff] tracking-wide pr-0.5 font-sans">
+        <span className="text-[13px] sm:text-[16px] font-bold text-[#0068ff] tracking-wide pr-0.5 font-sans">
           Báo giá
         </span>
 
         {/* Chevron arrow */}
-        <span className="material-symbols-outlined text-[18px] text-[#0068ff]/80 group-hover:translate-x-0.5 transition-transform ml-1 sm:ml-1.5">
+        <span className="material-symbols-outlined text-[16px] sm:text-[18px] text-[#0068ff]/80 group-hover:translate-x-0.5 transition-transform ml-0.5 sm:ml-1.5">
           chevron_right
         </span>
       </button>

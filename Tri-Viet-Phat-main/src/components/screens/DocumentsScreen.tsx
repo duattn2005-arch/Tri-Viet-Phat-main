@@ -279,8 +279,32 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
               {/* Toolbar: Category Tabs & Search Bar */}
               <div className="bg-white rounded-2xl border border-[#e2e8f0] p-4 sm:p-5 shadow-xs">
                 <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
-                  {/* Category Filter Pills */}
-                  <div className="flex flex-wrap items-center gap-2">
+                  {/* Category Filter - dropdown select on mobile, pills from sm+ */}
+                  <div className="relative sm:hidden">
+                    <select
+                      value={selectedCategory}
+                      onChange={(e) => handleCategoryChange(e.target.value)}
+                      aria-label="Chọn danh mục tài liệu"
+                      className="w-full appearance-none pl-3.5 pr-10 py-3 rounded-xl border border-[#cbd5e1] bg-[#f8fafc] text-[13.5px] font-bold text-[#0f172a] focus:outline-none focus:ring-2 focus:ring-[#006194] focus:bg-white cursor-pointer"
+                    >
+                      {DOCUMENT_CATEGORIES.map((cat) => {
+                        const count =
+                          cat.key === 'all'
+                            ? REAL_DOCUMENTS.length
+                            : 1;
+                        return (
+                          <option key={cat.key} value={cat.key}>
+                            {cat.label} ({count})
+                          </option>
+                        );
+                      })}
+                    </select>
+                    <span className="material-symbols-outlined pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[20px] text-[#006194]">
+                      expand_more
+                    </span>
+                  </div>
+
+                  <div className="hidden sm:flex flex-wrap items-center gap-2">
                     {DOCUMENT_CATEGORIES.map((cat) => {
                       const isActive = selectedCategory === cat.key;
                       const count =

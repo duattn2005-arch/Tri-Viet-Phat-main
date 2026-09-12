@@ -79,9 +79,33 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({
             </div>
           </div>
 
-          {/* Category Filter Grid - Symmetrical & Balanced */}
+          {/* Category Filter - Horizontal scroll chips on mobile, grid from sm+ */}
           <div className="pt-3 border-t border-[#f1f5f9]">
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
+            <div className="relative sm:hidden">
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                aria-label="Chọn danh mục sản phẩm"
+                className="w-full appearance-none pl-3.5 pr-10 py-3 rounded-xl border border-[#e2e8f0] bg-[#f8fafc] text-[13.5px] font-bold text-[#0f172a] focus:outline-none focus:ring-2 focus:ring-[#006194] focus:bg-white cursor-pointer"
+              >
+                {CATEGORIES.map((cat) => {
+                  const count =
+                    cat.key === 'all'
+                      ? PRODUCTS.length
+                      : PRODUCTS.filter((p) => p.category === cat.key).length;
+                  return (
+                    <option key={cat.key} value={cat.key}>
+                      {cat.label} ({count})
+                    </option>
+                  );
+                })}
+              </select>
+              <span className="material-symbols-outlined pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[20px] text-[#006194]">
+                expand_more
+              </span>
+            </div>
+
+            <div className="hidden sm:grid sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
               {CATEGORIES.map((cat) => {
                 const count =
                   cat.key === 'all'

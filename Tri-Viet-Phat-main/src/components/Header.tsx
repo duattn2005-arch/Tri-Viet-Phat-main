@@ -435,7 +435,7 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Mobile Drawer Menu with 3D Tactile Items & Icons */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white/95 backdrop-blur-md border-b border-[#cbd5e1] px-4 py-4 space-y-2 shadow-[0_16px_35px_rgba(0,0,0,0.1)] animate-in slide-in-from-top-2">
+        <div className="lg:hidden bg-white/95 backdrop-blur-md border-b border-[#cbd5e1] px-4 py-4 space-y-2 shadow-[0_16px_35px_rgba(0,0,0,0.1)] animate-in slide-in-from-top-2 max-h-[calc(100vh-96px)] overflow-y-auto overscroll-contain">
           <button
             onClick={() => handleNavClick('trang-chu')}
             className={`w-full text-left px-3.5 py-2.5 rounded-xl text-[14px] font-bold flex items-center gap-2.5 transition-all ${
