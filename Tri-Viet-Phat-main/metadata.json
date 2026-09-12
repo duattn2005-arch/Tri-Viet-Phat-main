@@ -1,0 +1,7 @@
+{
+  "name": "Thiết Bị Y Tế Trí Việt Phát",
+  "description": "Cổng thông tin và phân phối máy móc, hóa chất xét nghiệm y khoa chính hãng Trí Việt Phát",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
