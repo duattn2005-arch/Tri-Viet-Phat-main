@@ -6,7 +6,7 @@ export const REAL_PRODUCTS: Product[] = [
     "name": "Máy xét nghiệm sinh hóa tự động CS-T180",
     "category": "may-xet-nghiem-sinh-hoa",
     "categoryLabel": "Máy xét nghiệm sinh hóa",
-    "image": "https://thietbiytegroup.com/wp-content/uploads/2024/06/may-xet-nghiem-sinh-hoa-CS-T180.png",
+    "image": "/cs-t180.png",
     "alt": "Máy xét nghiệm sinh hóa tự động CS-T180",
     "shortDesc": "Thiết bị y tế chính hãng Máy xét nghiệm sinh hóa tự động CS-T180 từ DIRUI INDUSTRIAL CO., LTD (Trung Quốc), đáp ứng hoàn hảo các yêu cầu xét nghiệm y khoa với độ chính xác cao, chuẩn CE & ISO 13485.",
     "fullDesc": "Máy xét nghiệm sinh hóa tự động CS-T180 được cung cấp và phân phối độc quyền bởi Công ty TNHH Thiết bị Y tế Trí Việt Phát. Sản phẩm sở hữu công nghệ tân tiến từ DIRUI INDUSTRIAL CO., LTD, mang lại giải pháp xét nghiệm toàn diện, vận hành tự động thông minh và tiết kiệm chi phí tối ưu cho phòng Lab và bệnh viện.",
