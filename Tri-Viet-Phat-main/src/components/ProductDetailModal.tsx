@@ -71,7 +71,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         <div className="p-5 sm:p-8 bg-white border-b border-[#e2e8f0]">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             {/* Left: Product Image */}
-            <div className="lg:col-span-4 flex items-center justify-center bg-white rounded-xl p-3 border border-[#e2e8f0] shadow-xs aspect-[4/3]">
+            <div className="lg:col-span-4 flex items-center justify-center bg-white rounded-xl p-3 border border-[#e2e8f0] shadow-xs aspect-[4/3] min-h-0 min-w-0 overflow-hidden">
               <img
                 src={product.image}
                 alt={product.alt}
