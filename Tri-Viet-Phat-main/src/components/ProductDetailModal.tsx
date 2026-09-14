@@ -71,11 +71,11 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         <div className="p-5 sm:p-8 bg-white border-b border-[#e2e8f0]">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             {/* Left: Product Image */}
-            <div className="lg:col-span-4 flex items-center justify-center bg-white rounded-xl p-4 border border-[#e2e8f0] shadow-xs">
+            <div className="lg:col-span-4 flex items-center justify-center bg-white rounded-xl p-3 border border-[#e2e8f0] shadow-xs aspect-[4/3]">
               <img
                 src={product.image}
                 alt={product.alt}
-                className="max-h-64 sm:max-h-72 w-full object-contain"
+                className="w-full h-full object-contain"
               />
             </div>
 

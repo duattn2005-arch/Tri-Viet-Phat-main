@@ -459,10 +459,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 key={prod.id}
                 className="flex flex-col h-full card-3d rounded-2xl overflow-hidden group"
               >
-                <div className="relative bg-linear-to-b from-[#f8fafc] to-[#f1f5f9] p-6 flex items-center justify-center h-56 shrink-0 border-b border-[#e2e8f0]/80">
+                <div className="relative bg-linear-to-b from-[#f8fafc] to-[#f1f5f9] p-4 flex items-center justify-center aspect-[4/3] shrink-0 border-b border-[#e2e8f0]/80">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,97,148,0.04),transparent_70%)] pointer-events-none"></div>
                   <img
-                    className="max-h-44 w-auto object-contain group-hover:scale-105 transition-transform duration-300 drop-shadow-md"
+                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 drop-shadow-md"
                     alt={prod.alt}
                     src={prod.image}
                   />
