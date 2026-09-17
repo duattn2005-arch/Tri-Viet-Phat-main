@@ -17,47 +17,24 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
     <footer className="w-full bg-white text-[#334155] border-t border-[#e2e8f0]">
       <div className="max-w-[1720px] mx-auto px-4 sm:px-8 xl:px-14 pt-8 pb-7">
 
-        {/* TOP TRUST & QUALITY STRIP */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 pb-8 mb-8 border-b border-[#e2e8f0]">
-          <div className="flex items-center gap-3 p-3 rounded-xl bg-[#f8fafc] border border-[#e2e8f0]">
-            <div className="w-10 h-10 rounded-xl bg-[#e0f2fe] text-[#006194] flex items-center justify-center shrink-0">
-              <span className="material-symbols-outlined text-[20px]">verified</span>
-            </div>
-            <div>
-              <div className="text-[13.5px] font-bold text-[#0f172a] leading-tight">100% Chính Hãng</div>
-              <div className="text-[11.5px] text-[#64748b]">CO/CQ, CFS đầy đủ từ hãng</div>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3 p-3 rounded-xl bg-[#f8fafc] border border-[#e2e8f0]">
-            <div className="w-10 h-10 rounded-xl bg-[#e0f2fe] text-[#006194] flex items-center justify-center shrink-0">
-              <span className="material-symbols-outlined text-[20px]">workspace_premium</span>
-            </div>
-            <div>
-              <div className="text-[13.5px] font-bold text-[#0f172a] leading-tight">Bảo Hành 12 - 24 Tháng</div>
-              <div className="text-[11.5px] text-[#64748b]">Bảo trì định kỳ chuẩn quốc tế</div>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3 p-3 rounded-xl bg-[#f8fafc] border border-[#e2e8f0]">
-            <div className="w-10 h-10 rounded-xl bg-[#e0f2fe] text-[#006194] flex items-center justify-center shrink-0">
-              <span className="material-symbols-outlined text-[20px]">engineering</span>
-            </div>
-            <div>
-              <div className="text-[13.5px] font-bold text-[#0f172a] leading-tight">Chuyển Giao Tận Nơi</div>
-              <div className="text-[11.5px] text-[#64748b]">Kỹ sư y sinh đào tạo vận hành</div>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3 p-3 rounded-xl bg-[#fef2f2] border border-[#fecaca]">
-            <div className="w-10 h-10 rounded-xl bg-[#fee2e2] text-[#bb0112] flex items-center justify-center shrink-0">
-              <span className="material-symbols-outlined text-[20px]">support_agent</span>
-            </div>
-            <div>
-              <div className="text-[13.5px] font-bold text-[#0f172a] leading-tight">Hotline Hỗ Trợ 24/7</div>
-              <div className="text-[11.5px] text-[#bb0112] font-semibold">0904.698.699 - 0392.123.688</div>
-            </div>
-          </div>
+        {/* TOP TRUST & QUALITY STRIP - single simple line, no boxes */}
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 pb-6 mb-8 border-b border-[#e2e8f0] text-[12.5px] text-[#475569]">
+          <span className="inline-flex items-center gap-1.5">
+            <span className="material-symbols-outlined text-[16px] text-[#006194]">verified</span>
+            <span>100% Chính Hãng (CO/CQ, CFS đầy đủ)</span>
+          </span>
+          <span className="inline-flex items-center gap-1.5">
+            <span className="material-symbols-outlined text-[16px] text-[#006194]">workspace_premium</span>
+            <span>Bảo Hành 12 - 24 Tháng</span>
+          </span>
+          <span className="inline-flex items-center gap-1.5">
+            <span className="material-symbols-outlined text-[16px] text-[#006194]">engineering</span>
+            <span>Chuyển Giao Tận Nơi</span>
+          </span>
+          <span className="inline-flex items-center gap-1.5 font-semibold text-[#bb0112]">
+            <span className="material-symbols-outlined text-[16px]">support_agent</span>
+            <span>Hotline Hỗ Trợ 24/7: 0904.698.699 - 0392.123.688</span>
+          </span>
         </div>
 
         {/* 4 COLUMNS */}
