@@ -3,9 +3,10 @@ import { PageBanner } from '../PageBanner';
 
 interface ContactScreenProps {
   onOpenConsultation?: () => void;
+  onOpenRepairService?: () => void;
 }
 
-export const ContactScreen: React.FC<ContactScreenProps> = () => {
+export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairService }) => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -40,6 +41,33 @@ export const ContactScreen: React.FC<ContactScreenProps> = () => {
             "Trí Việt Phát luôn tiên phong nghiên cứu, phát triển và cung cấp cho thị trường các loại thiết bị, sản phẩm với chất lượng tốt nhất."
           </p>
         </div>
+
+        {/* Repair Service CTA Banner */}
+        {onOpenRepairService && (
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-5 sm:p-6 rounded-2xl bg-linear-to-r from-[#003865] to-[#006194] text-white shadow-md">
+            <div className="flex items-center gap-3.5 text-center sm:text-left">
+              <div className="w-12 h-12 rounded-xl bg-white/15 flex items-center justify-center shrink-0">
+                <span className="material-symbols-outlined text-[26px]">build</span>
+              </div>
+              <div>
+                <h3 className="text-[16px] sm:text-[17px] font-bold">
+                  Thiết bị gặp sự cố cần sửa chữa?
+                </h3>
+                <p className="text-[13px] text-[#cce5ff] [text-wrap:balance]">
+                  Đăng ký dịch vụ sửa chữa để kỹ sư kỹ thuật liên hệ và xử lý nhanh nhất.
+                </p>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={onOpenRepairService}
+              className="shrink-0 px-6 py-3 rounded-xl bg-white hover:bg-[#f0f7ff] text-[#006194] font-bold text-[13.5px] uppercase tracking-wide shadow-sm hover:shadow-md transition-all cursor-pointer inline-flex items-center gap-2"
+            >
+              <span className="material-symbols-outlined text-[18px]">send</span>
+              <span>Đăng ký sửa chữa</span>
+            </button>
+          </div>
+        )}
 
         {/* 2-Column Section */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">

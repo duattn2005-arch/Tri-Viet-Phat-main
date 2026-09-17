@@ -12,6 +12,7 @@ import { AiChatBubble } from './components/AiChatBubble';
 import { ProductDetailModal } from './components/ProductDetailModal';
 import { ArticleDetailModal } from './components/ArticleDetailModal';
 import { ConsultationModal } from './components/ConsultationModal';
+import { RepairServiceModal } from './components/RepairServiceModal';
 import { SearchModal } from './components/SearchModal';
 
 import { HomeScreen } from './components/screens/HomeScreen';
@@ -31,6 +32,7 @@ export default function App() {
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
   const [consultationProduct, setConsultationProduct] = useState<string>('');
+  const [isRepairServiceOpen, setIsRepairServiceOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isAiChatOpen, setIsAiChatOpen] = useState(false);
 
@@ -42,6 +44,10 @@ export default function App() {
   const handleOpenConsultation = (prefilledProd?: string) => {
     setConsultationProduct(prefilledProd || '');
     setIsConsultationOpen(true);
+  };
+
+  const handleOpenRepairService = () => {
+    setIsRepairServiceOpen(true);
   };
 
   return (
@@ -62,6 +68,7 @@ export default function App() {
             onSelectArticle={(a) => setSelectedArticle(a)}
             onNavigateTab={handleSelectTab}
             onOpenConsultation={handleOpenConsultation}
+            onOpenRepairService={handleOpenRepairService}
           />
         )}
 
@@ -97,7 +104,10 @@ export default function App() {
         {currentTab === 'tuyen-dung' && <CareersScreen />}
 
         {currentTab === 'lien-he' && (
-          <ContactScreen onOpenConsultation={() => handleOpenConsultation()} />
+          <ContactScreen
+            onOpenConsultation={() => handleOpenConsultation()}
+            onOpenRepairService={handleOpenRepairService}
+          />
         )}
       </main>
 
@@ -138,6 +148,11 @@ export default function App() {
         isOpen={isConsultationOpen}
         onClose={() => setIsConsultationOpen(false)}
         prefilledProduct={consultationProduct}
+      />
+
+      <RepairServiceModal
+        isOpen={isRepairServiceOpen}
+        onClose={() => setIsRepairServiceOpen(false)}
       />
 
       <SearchModal

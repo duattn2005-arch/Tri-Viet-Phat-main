@@ -17,6 +17,7 @@ interface HomeScreenProps {
   onSelectArticle: (article: Article) => void;
   onNavigateTab: (tab: PageTab, categoryFilter?: string) => void;
   onOpenConsultation: (prefilledProduct?: string) => void;
+  onOpenRepairService: () => void;
 }
 
 const HERO_SLIDES = [
@@ -135,6 +136,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   onSelectArticle,
   onNavigateTab,
   onOpenConsultation,
+  onOpenRepairService,
 }) => {
   const [activeSlide, setActiveSlide] = useState(0);
   const [featuredCategory, setFeaturedCategory] = useState('all');
@@ -617,7 +619,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   </p>
                 </div>
 
-                <div className="p-4 rounded-2xl card-3d-subtle bg-white border border-[#e2e8f0]">
+                <button
+                  type="button"
+                  onClick={onOpenRepairService}
+                  className="p-4 rounded-2xl card-3d-subtle bg-white border border-[#e2e8f0] text-left cursor-pointer hover:border-[#059669]/50 transition-colors group"
+                >
                   <div className="w-10 h-10 rounded-xl bg-[#d1fae5] text-[#059669] flex items-center justify-center mb-2.5">
                     <span className="material-symbols-outlined text-[22px]">support_agent</span>
                   </div>
@@ -627,7 +633,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   <p className="text-[12.5px] text-[#475569] leading-relaxed">
                     Sẵn sàng linh kiện thay thế và hóa chất dự phòng, đảm bảo phòng xét nghiệm không bị gián đoạn.
                   </p>
-                </div>
+                  <span className="inline-flex items-center gap-1 text-[12px] font-bold text-[#059669] mt-2 group-hover:translate-x-0.5 transition-transform">
+                    <span>Đăng ký sửa chữa ngay</span>
+                    <span className="material-symbols-outlined text-[15px]">arrow_forward</span>
+                  </span>
+                </button>
               </div>
 
               <div className="pt-2">

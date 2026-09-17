@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import dotenv from 'dotenv';
 import { GoogleGenAI } from '@google/genai';
+import nodemailer, { type Transporter } from 'nodemailer';
 import { createServer as createViteServer } from 'vite';
 
 dotenv.config();
@@ -10,6 +11,40 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.json());
+
+const REPAIR_NOTIFICATION_EMAIL = process.env.REPAIR_NOTIFICATION_EMAIL || 'infothietbiyte168@gmail.com';
+
+// Lazy-initialized SMTP transporter for sending repair-request notifications
+let mailTransporter: Transporter | null = null;
+function getMailTransporter(): Transporter | null {
+  const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS } = process.env;
+  if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS) {
+    return null;
+  }
+  if (!mailTransporter) {
+    mailTransporter = nodemailer.createTransport({
+      host: SMTP_HOST,
+      port: Number(SMTP_PORT) || 587,
+      secure: process.env.SMTP_SECURE === 'true',
+      auth: { user: SMTP_USER, pass: SMTP_PASS },
+    });
+  }
+  return mailTransporter;
+}
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+// Strips CR/LF to prevent header injection when a field is used in email headers (subject, from, replyTo)
+function sanitizeHeaderValue(value: string): string {
+  return value.replace(/[\r\n]+/g, ' ').trim();
+}
 
 // Lazy-initialized Gemini AI client
 let aiClient: GoogleGenAI | null = null;
@@ -187,6 +222,60 @@ function getDomainFallbackReply(message: string): string {
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
+// Repair Service Registration Endpoint - notifies company email on new request
+app.post('/api/repair-request', async (req, res) => {
+  try {
+    const { fullName, phone, email, deviceName, brand, issueDescription, address, urgency } = req.body;
+
+    if (
+      typeof fullName !== 'string' || !fullName.trim() ||
+      typeof phone !== 'string' || !phone.trim() ||
+      typeof deviceName !== 'string' || !deviceName.trim() ||
+      typeof issueDescription !== 'string' || !issueDescription.trim()
+    ) {
+      return res.status(400).json({ error: 'Vui lòng điền đầy đủ họ tên, số điện thoại, tên thiết bị và mô tả sự cố.' });
+    }
+
+    const transporter = getMailTransporter();
+    if (!transporter) {
+      console.warn('[repair-request] SMTP chưa được cấu hình (SMTP_HOST/SMTP_USER/SMTP_PASS) - không thể gửi email thông báo.');
+      return res.status(503).json({ error: 'Hệ thống gửi email chưa được cấu hình. Vui lòng liên hệ hotline để được hỗ trợ trực tiếp.' });
+    }
+
+    const isEmergency = urgency === 'Khẩn cấp';
+    const customerEmail = typeof email === 'string' && email.trim() ? email.trim() : '';
+    const submittedAt = new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
+
+    const htmlBody = `
+      <h2>Yêu cầu đăng ký dịch vụ sửa chữa mới</h2>
+      <p><strong>Thời gian gửi:</strong> ${escapeHtml(submittedAt)}</p>
+      <table cellpadding="6" cellspacing="0" border="1" style="border-collapse:collapse;font-family:sans-serif;font-size:14px;">
+        <tr><td><strong>Họ tên / Đơn vị</strong></td><td>${escapeHtml(fullName)}</td></tr>
+        <tr><td><strong>Số điện thoại</strong></td><td>${escapeHtml(phone)}</td></tr>
+        <tr><td><strong>Email khách hàng</strong></td><td>${customerEmail ? escapeHtml(customerEmail) : '(không có)'}</td></tr>
+        <tr><td><strong>Thiết bị / Model</strong></td><td>${escapeHtml(deviceName)}</td></tr>
+        <tr><td><strong>Hãng sản xuất</strong></td><td>${typeof brand === 'string' && brand.trim() ? escapeHtml(brand) : '(không có)'}</td></tr>
+        <tr><td><strong>Địa chỉ lắp đặt</strong></td><td>${typeof address === 'string' && address.trim() ? escapeHtml(address) : '(không có)'}</td></tr>
+        <tr><td><strong>Mức độ khẩn cấp</strong></td><td>${isEmergency ? 'Khẩn cấp' : 'Bình thường'}</td></tr>
+        <tr><td><strong>Mô tả sự cố</strong></td><td>${escapeHtml(issueDescription)}</td></tr>
+      </table>
+    `;
+
+    await transporter.sendMail({
+      from: `"Website Trí Việt Phát" <${process.env.SMTP_USER}>`,
+      to: REPAIR_NOTIFICATION_EMAIL,
+      replyTo: customerEmail || undefined,
+      subject: `[Sửa chữa${isEmergency ? ' - KHẨN CẤP' : ''}] ${sanitizeHeaderValue(deviceName)} - ${sanitizeHeaderValue(fullName)}`,
+      html: htmlBody,
+    });
+
+    return res.json({ success: true });
+  } catch (error) {
+    console.error('[repair-request] Gửi email thất bại:', error);
+    return res.status(500).json({ error: 'Gửi yêu cầu thất bại. Vui lòng thử lại hoặc gọi hotline để được hỗ trợ ngay.' });
+  }
 });
 
 // AI Chat Endpoint with multi-model failover & graceful fallback
