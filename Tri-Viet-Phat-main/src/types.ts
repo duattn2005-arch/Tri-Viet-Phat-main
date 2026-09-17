@@ -68,6 +68,17 @@ export interface DocumentItem {
   description: string;
 }
 
+export interface Testimonial {
+  id: string;
+  name: string;
+  role: string;
+  facility: string;
+  avatarInitials: string;
+  quote: string;
+  rating: number;
+  resultHighlight?: string;
+}
+
 export interface JobOpening {
   id: string;
   title: string;

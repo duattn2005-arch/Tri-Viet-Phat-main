@@ -1,4 +1,4 @@
-import { Product, Article, Partner, DocumentItem, JobOpening } from '../types';
+import { Product, Article, Partner, DocumentItem, JobOpening, Testimonial } from '../types';
 import { REAL_PRODUCTS } from './thietbiyteProducts';
 
 export const COMPANY_INFO = {
@@ -86,6 +86,60 @@ export const PARTNERS: Partner[] = [
   { name: 'AUDICOM', textColor: 'text-medical-blue-deep' },
   { name: 'Convergent', subName: 'Technologies', textColor: 'text-[#0b1c30]' },
   { name: 'dewei 德威', textColor: 'text-primary' },
+];
+
+// PLACEHOLDER — thay bằng testimonial thực từ khách hàng sau khi thu thập (tên, đơn vị, đánh giá, ảnh đại diện).
+export const TESTIMONIALS: Testimonial[] = [
+  {
+    id: 'kh-01',
+    name: 'BS. Nguyễn Văn A',
+    role: 'Trưởng khoa Xét nghiệm',
+    facility: 'Bệnh viện Đa khoa (đang cập nhật)',
+    avatarInitials: 'NA',
+    quote: 'Đang thu thập nhận xét thực tế từ khách hàng. Nội dung sẽ được cập nhật sau khi hoàn tất khảo sát.',
+    rating: 5,
+    resultHighlight: 'Đang cập nhật kết quả sử dụng',
+  },
+  {
+    id: 'kh-02',
+    name: 'CN. Trần Thị B',
+    role: 'Kỹ thuật viên trưởng',
+    facility: 'Trung tâm Y tế (đang cập nhật)',
+    avatarInitials: 'TB',
+    quote: 'Đang thu thập nhận xét thực tế từ khách hàng. Nội dung sẽ được cập nhật sau khi hoàn tất khảo sát.',
+    rating: 5,
+    resultHighlight: 'Đang cập nhật kết quả sử dụng',
+  },
+  {
+    id: 'kh-03',
+    name: 'BS. Lê Văn C',
+    role: 'Giám đốc phòng khám',
+    facility: 'Phòng khám Đa khoa (đang cập nhật)',
+    avatarInitials: 'LC',
+    quote: 'Đang thu thập nhận xét thực tế từ khách hàng. Nội dung sẽ được cập nhật sau khi hoàn tất khảo sát.',
+    rating: 5,
+    resultHighlight: 'Đang cập nhật kết quả sử dụng',
+  },
+  {
+    id: 'kh-04',
+    name: 'CN. Phạm Thị D',
+    role: 'Quản lý phòng Lab',
+    facility: 'Bệnh viện (đang cập nhật)',
+    avatarInitials: 'PD',
+    quote: 'Đang thu thập nhận xét thực tế từ khách hàng. Nội dung sẽ được cập nhật sau khi hoàn tất khảo sát.',
+    rating: 5,
+    resultHighlight: 'Đang cập nhật kết quả sử dụng',
+  },
+  {
+    id: 'kh-05',
+    name: 'BS. Hoàng Văn E',
+    role: 'Trưởng phòng Xét nghiệm',
+    facility: 'Trung tâm Y tế Dự phòng (đang cập nhật)',
+    avatarInitials: 'HE',
+    quote: 'Đang thu thập nhận xét thực tế từ khách hàng. Nội dung sẽ được cập nhật sau khi hoàn tất khảo sát.',
+    rating: 5,
+    resultHighlight: 'Đang cập nhật kết quả sử dụng',
+  },
 ];
 
 export const ARTICLES: Article[] = [

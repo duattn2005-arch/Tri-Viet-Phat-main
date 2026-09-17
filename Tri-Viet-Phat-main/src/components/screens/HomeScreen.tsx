@@ -6,6 +6,7 @@ import {
   PRODUCTS,
   PARTNERS,
   ARTICLES,
+  TESTIMONIALS,
 } from '../../data/mockData';
 import { Product, Article, PageTab } from '../../types';
 import { ContactPillButtons } from '../ContactPillButtons';
@@ -712,7 +713,77 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       </section>
 
       {/* ========================================================================= */}
-      {/* 7. CONSULTATION FORM SECTION (ĐĂNG KÝ TƯ VẤN & BÁO GIÁ DỰ THẦU) */}
+      {/* 7. TESTIMONIALS (KHÁCH HÀNG NÓI GÌ VỀ CHÚNG TÔI) */}
+      {/* ========================================================================= */}
+      <section className="w-full py-8 sm:py-10 bg-white border-b border-[#e2e8f0]">
+        <div className="max-w-[1720px] mx-auto px-4 sm:px-8 xl:px-12">
+          <div className="flex flex-col items-center mb-6 sm:mb-8 text-center">
+            <span className="text-[12px] font-bold uppercase tracking-wider text-[#006194] bg-[#e0f2fe] px-3 py-1 rounded-full mb-2">
+              Khách Hàng Tin Tưởng
+            </span>
+            <h2 className="text-[24px] sm:text-[28px] font-extrabold text-[#0f172a] tracking-tight uppercase [text-wrap:balance]">
+              KHÁCH HÀNG NÓI GÌ VỀ TRÍ VIỆT PHÁT
+            </h2>
+            <div className="w-14 h-1 bg-[#bb0112] rounded-full mt-2"></div>
+            <p className="text-[13.5px] text-[#475569] max-w-2xl mt-2 [text-wrap:balance]">
+              Chia sẻ từ các bệnh viện, trung tâm y tế và phòng khám đã sử dụng thiết bị và dịch vụ của chúng tôi.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+            {TESTIMONIALS.map((t) => (
+              <div
+                key={t.id}
+                className="flex flex-col h-full card-3d rounded-2xl p-5 bg-white"
+              >
+                <span className="material-symbols-outlined text-[32px] text-[#bae6fd] mb-2">
+                  format_quote
+                </span>
+
+                <div className="flex items-center gap-0.5 mb-3">
+                  {Array.from({ length: 5 }).map((_, idx) => (
+                    <span
+                      key={idx}
+                      className={`material-symbols-outlined text-[16px] ${
+                        idx < t.rating ? 'text-[#f59e0b]' : 'text-[#e2e8f0]'
+                      }`}
+                      style={idx < t.rating ? { fontVariationSettings: "'FILL' 1" } : undefined}
+                    >
+                      star
+                    </span>
+                  ))}
+                </div>
+
+                <p className="text-[13.5px] text-[#334155] leading-relaxed italic flex-1 [text-wrap:balance]">
+                  “{t.quote}”
+                </p>
+
+                {t.resultHighlight && (
+                  <div className="mt-3 inline-flex items-center gap-1.5 self-start px-2.5 py-1 rounded-lg bg-[#f0fdf4] border border-[#bbf7d0] text-[#15803d] text-[11.5px] font-bold">
+                    <span className="material-symbols-outlined text-[14px]">trending_up</span>
+                    <span>{t.resultHighlight}</span>
+                  </div>
+                )}
+
+                <div className="flex items-center gap-3 mt-4 pt-4 border-t border-[#f1f5f9]">
+                  <div className="w-10 h-10 rounded-full bg-linear-to-br from-[#006194] to-[#003d66] text-white flex items-center justify-center font-bold text-[13px] shrink-0 shadow-xs">
+                    {t.avatarInitials}
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-[13.5px] font-bold text-[#0f172a] truncate">{t.name}</div>
+                    <div className="text-[11.5px] text-[#64748b] truncate">
+                      {t.role} — {t.facility}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 8. CONSULTATION FORM SECTION (ĐĂNG KÝ TƯ VẤN & BÁO GIÁ DỰ THẦU) */}
       {/* ========================================================================= */}
       <section className="w-full relative overflow-hidden" id="tu-van-form">
         <div
@@ -902,7 +973,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       </section>
 
       {/* ========================================================================= */}
-      {/* 8. NEWS & EVENTS SECTION (TIN TỨC SỰ KIỆN Y TẾ) */}
+      {/* 9. NEWS & EVENTS SECTION (TIN TỨC SỰ KIỆN Y TẾ) */}
       {/* ========================================================================= */}
       <section className="w-full py-8 sm:py-10 bg-[#f8fafc] border-b border-[#e2e8f0]">
         <div className="max-w-[1720px] mx-auto px-4 sm:px-8 xl:px-12">
@@ -973,7 +1044,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       </section>
 
       {/* ========================================================================= */}
-      {/* 9. FAST BOTTOM CONTACT STRIP WITH 3D BEVEL */}
+      {/* 10. FAST BOTTOM CONTACT STRIP WITH 3D BEVEL */}
       {/* ========================================================================= */}
       <section className="w-full bg-linear-to-r from-[#003d66] via-[#00517d] to-[#003865] text-white py-5 sm:py-6 border-t border-[#006194]/40 shadow-[0_-4px_20px_rgba(0,0,0,0.15)]">
         <div className="max-w-[1720px] mx-auto px-4 sm:px-8 xl:px-12 flex flex-col sm:flex-row items-center justify-between gap-4">
