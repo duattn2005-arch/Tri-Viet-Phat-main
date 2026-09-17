@@ -6,6 +6,7 @@ interface HeaderProps {
   currentTab: PageTab;
   onSelectTab: (tab: PageTab, categoryFilter?: string) => void;
   onOpenConsultation: (prefilledProduct?: string) => void;
+  onOpenRepairService: () => void;
   onOpenSearch: () => void;
 }
 
@@ -13,6 +14,7 @@ export const Header: React.FC<HeaderProps> = ({
   currentTab,
   onSelectTab,
   onOpenConsultation,
+  onOpenRepairService,
   onOpenSearch,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -413,6 +415,14 @@ export const Header: React.FC<HeaderProps> = ({
           </button>
 
           <button
+            onClick={onOpenRepairService}
+            className="hidden xl:inline-flex items-center gap-2 bg-white hover:bg-[#f0f7ff] text-[#006194] border-2 border-[#006194] px-4 py-2.5 rounded-2xl text-[14px] font-bold cursor-pointer transition-colors"
+          >
+            <span className="material-symbols-outlined text-[19px]">build</span>
+            <span>Đăng ký sửa chữa</span>
+          </button>
+
+          <button
             onClick={() => onOpenConsultation()}
             className="hidden sm:inline-flex items-center gap-2 btn-3d-red px-5 py-2.5 rounded-2xl text-[14px] font-bold cursor-pointer"
           >
@@ -569,7 +579,7 @@ export const Header: React.FC<HeaderProps> = ({
             <span className="material-symbols-outlined text-[18px] text-[#006194]">contact_support</span>
             <span>Liên hệ & Báo giá</span>
           </button>
-          <div className="pt-2 border-t border-[#f1f5f9]">
+          <div className="pt-2 border-t border-[#f1f5f9] space-y-2">
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
@@ -579,6 +589,16 @@ export const Header: React.FC<HeaderProps> = ({
             >
               <span className="material-symbols-outlined text-[18px]">headset_mic</span>
               <span>Tư vấn ngay</span>
+            </button>
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenRepairService();
+              }}
+              className="w-full py-2.5 rounded-xl bg-white border-2 border-[#006194] text-[#006194] text-[14px] font-bold text-center flex items-center justify-center gap-2"
+            >
+              <span className="material-symbols-outlined text-[18px]">build</span>
+              <span>Đăng ký sửa chữa</span>
             </button>
           </div>
         </div>

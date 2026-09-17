@@ -57,6 +57,7 @@ export default function App() {
         currentTab={currentTab}
         onSelectTab={handleSelectTab}
         onOpenConsultation={handleOpenConsultation}
+        onOpenRepairService={handleOpenRepairService}
         onOpenSearch={() => setIsSearchOpen(true)}
       />
 
