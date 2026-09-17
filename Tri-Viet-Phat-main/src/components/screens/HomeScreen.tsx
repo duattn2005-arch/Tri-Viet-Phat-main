@@ -9,9 +9,10 @@ import {
   TESTIMONIALS,
 } from '../../data/mockData';
 import { Product, Article, PageTab } from '../../types';
-import { ContactPillButtons } from '../ContactPillButtons';
 import { ProvinceSelect } from '../ProvinceSelect';
 import { TestimonialsCarousel } from '../TestimonialsCarousel';
+import { HeroSection } from '../HeroSection';
+import { ProductCardsSection } from '../ProductCardsSection';
 
 interface HomeScreenProps {
   onSelectProduct: (product: Product) => void;
@@ -20,99 +21,6 @@ interface HomeScreenProps {
   onOpenConsultation: (prefilledProduct?: string) => void;
   onOpenRepairService: () => void;
 }
-
-const HERO_SLIDES = [
-  {
-    image: COMPANY_INFO.heroImage,
-    title: 'Phòng Xét Nghiệm Công Nghệ Cao Trí Việt Phát',
-    subTitle: 'Đạt chuẩn ISO 13485 & CE IVD Quốc Tế',
-    tag: 'Tiêu chuẩn quốc tế',
-    badgeIcon: 'verified_user',
-  },
-  {
-    image: COMPANY_INFO.aboutImage,
-    title: 'Đội Ngũ Kỹ Sư Y Sinh Chuyên Môn Cao',
-    subTitle: 'Đào tạo chính hãng từ nước ngoài, hỗ trợ kỹ thuật 24/7',
-    tag: 'Chuyển giao công nghệ',
-    badgeIcon: 'engineering',
-  },
-  {
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCKxO6Rz5N9Z0m_Gj0PzZ_gY7Qp8HwS5tWw4N3P1yO7Z4Kx7S9vF_gQ5K3jT7qR_xY4oZ1W_qH6vA0c4mB8dG2xS9vL3aY5kU8c_d4wR_l9yX1eP3zM4vL5nQ6aB1m_Vw9tC2eE3gG4hI5jK6lM7oP8qR',
-    title: 'Hệ Thống Phân Tích Huyết Học & Sinh Hóa Tự Động',
-    subTitle: 'Tốc độ cao, vận hành bền bỉ, kết quả chính xác tuyệt đối',
-    tag: 'Thiết bị chính hãng',
-    badgeIcon: 'biotech',
-  },
-];
-
-const CORE_CATEGORIES = [
-  {
-    key: 'may-xet-nghiem-huyet-hoc',
-    title: 'Máy Xét Nghiệm Huyết Học',
-    desc: 'Hệ thống huyết học tự động 3-part & 5-part laser',
-    models: 'Dirui BF-6800, BCC-3000B, Rayto RT-7600...',
-    icon: 'bloodtype',
-    count: '12+ Thiết bị',
-    iconColor: 'text-[#bb0112]',
-    iconBg: 'bg-[#fee2e2]',
-    borderColor: 'hover:border-[#bb0112]/40',
-  },
-  {
-    key: 'may-xet-nghiem-sinh-hoa',
-    title: 'Máy Xét Nghiệm Sinh Hóa',
-    desc: 'Hệ thống sinh hóa tự động tốc độ cao & bán tự động',
-    models: 'Dirui CS-T240, CS-600B, CS-1200, RT-1904C...',
-    icon: 'biotech',
-    count: '10+ Thiết bị',
-    iconColor: 'text-[#006194]',
-    iconBg: 'bg-[#e0f2fe]',
-    borderColor: 'hover:border-[#006194]/40',
-  },
-  {
-    key: 'may-xet-nghiem-nuoc-tieu',
-    title: 'Máy Phân Tích Nước Tiểu',
-    desc: 'Máy đọc que 10-14 thông số và hệ thống soi cặn tự động',
-    models: 'Dirui H-100, H-500, FUS-2000, Que thử 10/11/14P...',
-    icon: 'water_drop',
-    count: '8+ Dòng máy & Que',
-    iconColor: 'text-[#0284c7]',
-    iconBg: 'bg-[#e0f2fe]',
-    borderColor: 'hover:border-[#0284c7]/40',
-  },
-  {
-    key: 'may-xet-nghiem-dien-giai',
-    title: 'Máy Xét Nghiệm Điện Giải',
-    desc: 'Đo điện giải đồ trực tiếp ISE (Na+, K+, Cl-, Ca++, pH)',
-    models: 'Convergent ISE, Audicom AC9800, Rayto RT-7200...',
-    icon: 'bolt',
-    count: '6+ Thiết bị',
-    iconColor: 'text-[#7c3aed]',
-    iconBg: 'bg-[#ede9fe]',
-    borderColor: 'hover:border-[#7c3aed]/40',
-  },
-  {
-    key: 'may-xet-nghiem-mien-dich',
-    title: 'Miễn Dịch & Đông Máu',
-    desc: 'Máy miễn dịch huỳnh quang và phân tích đông máu tự động',
-    models: 'Wondfo Finecare, EKF Quo-Test, Rayto RAC-050...',
-    icon: 'vaccines',
-    count: '8+ Dòng máy',
-    iconColor: 'text-[#e11d48]',
-    iconBg: 'bg-[#ffe4e6]',
-    borderColor: 'hover:border-[#e11d48]/40',
-  },
-  {
-    key: 'hoa-chat-xet-nghiem',
-    title: 'Hóa Chất & Tiêu Hao IVD',
-    desc: 'Thuốc thử sinh hóa, hóa chất huyết học, vật tư phòng Lab',
-    models: 'Dewei, Dirui, Chema Diagnostica, Cuvette, Kim lấy mẫu...',
-    icon: 'science',
-    count: '30+ Hóa chất',
-    iconColor: 'text-[#059669]',
-    iconBg: 'bg-[#d1fae5]',
-    borderColor: 'hover:border-[#059669]/40',
-  },
-];
 
 const CATEGORY_FILTERS = [
   { key: 'all', label: 'Tất cả' },
@@ -139,7 +47,6 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   onOpenConsultation,
   onOpenRepairService,
 }) => {
-  const [activeSlide, setActiveSlide] = useState(0);
   const [featuredCategory, setFeaturedCategory] = useState('all');
 
   // Home Consultation Form State
@@ -182,151 +89,12 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
     return filtered.length > 0 ? filtered.slice(0, 8) : PRODUCTS.slice(0, 8);
   }, [featuredCategory]);
 
-  const currentHeroSlide = HERO_SLIDES[activeSlide] || HERO_SLIDES[0];
-
-  const handleNextSlide = () => {
-    setActiveSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-  };
-
-  const handlePrevSlide = () => {
-    setActiveSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
-  };
-
   return (
     <div className="flex flex-col w-full">
       {/* ========================================================================= */}
       {/* 1. HERO SLIDER & BANNER SHOWCASE WITH 3D DEPTH SCENE */}
       {/* ========================================================================= */}
-      <section className="relative w-full overflow-hidden bg-hero-3d-scene border-b border-[#e2e8f0]">
-        {/* Subtle 3D background grid & ambient optical glow */}
-        <div className="absolute inset-0 bg-medical-grid-3d opacity-30 pointer-events-none"></div>
-        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-[#006194]/10 blur-3xl pointer-events-none animate-pulse-slow"></div>
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-[#bb0112]/5 blur-3xl pointer-events-none animate-pulse-slow"></div>
-
-        <div className="max-w-[1720px] mx-auto px-4 sm:px-8 xl:px-12 w-full py-6 sm:py-8 lg:py-10 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
-            {/* Left Column: Heading, Trust Badges, Slogan & CTAs */}
-            <div className="lg:col-span-7 flex flex-col items-start space-y-3 sm:space-y-4">
-              {/* Trust Badge Pill */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white text-[#075985] text-[12px] font-bold tracking-wide shadow-xs border border-[#bae6fd]">
-                <span className="w-2 h-2 rounded-full bg-[#16a34a] animate-ping"></span>
-                <span className="material-symbols-outlined text-[16px] text-[#006194]">verified</span>
-                <span>Đại diện phân phối chính thức tại Việt Nam</span>
-              </div>
-
-              {/* Company Title */}
-              <h1 className="text-[26px] sm:text-[34px] lg:text-[38px] xl:text-[42px] font-black text-[#006194] tracking-tight leading-tight uppercase font-sans drop-shadow-xs">
-                <span className="inline-block">
-                  <span className="whitespace-nowrap">CÔNG TY TNHH</span>{' '}
-                  <span className="whitespace-nowrap">THIẾT BỊ Y TẾ</span>
-                </span>{' '}
-                <br className="hidden sm:inline" />
-                <span className="inline-block whitespace-nowrap text-[#0f172a]">TRÍ VIỆT PHÁT</span>
-              </h1>
-
-              {/* Slogan with 3D Left Accent Bar */}
-              <div className="relative pl-4 py-1">
-                <div className="absolute left-0 top-0 bottom-0 w-1.5 rounded-full bg-gradient-to-b from-[#e11d48] to-[#bb0112] shadow-sm"></div>
-                <p className="text-[17px] sm:text-[20px] text-[#bb0112] font-bold italic [text-wrap:balance]">
-                  {COMPANY_INFO.slogan}
-                </p>
-              </div>
-
-              {/* Executive Summary */}
-              <p className="text-[14px] sm:text-[15.5px] text-[#334155] max-w-3xl leading-relaxed">
-                {COMPANY_INFO.summary}
-              </p>
-
-              {/* Contact Pill Action Buttons (Hotline, Zalo, Báo giá) */}
-              <ContactPillButtons
-                onOpenConsultation={() => onOpenConsultation()}
-                className="pt-1"
-              />
-
-              {/* 3D Glass Metric Pedestals (High Legibility & Tactile Depth) */}
-              <div className="pt-2 grid grid-cols-3 gap-2.5 sm:gap-4 w-full max-w-xl">
-                {/* Metric 1 */}
-                <div className="card-3d-subtle p-3 rounded-2xl flex flex-col items-center sm:items-start text-center sm:text-left bg-linear-to-b from-white to-[#f0f7fc] border border-[#bae6fd]/70 shadow-xs">
-                  <div className="flex items-center gap-1.5 text-[#006194] mb-0.5">
-                    <span className="material-symbols-outlined text-[20px]">workspace_premium</span>
-                    <span className="text-[20px] sm:text-[24px] font-black">{COMPANY_INFO.yearsOfExperience}</span>
-                  </div>
-                  <span className="text-[11.5px] font-bold text-[#334155] leading-tight">
-                    Năm kinh nghiệm y tế
-                  </span>
-                </div>
-
-                {/* Metric 2 */}
-                <div className="card-3d-subtle p-3 rounded-2xl flex flex-col items-center sm:items-start text-center sm:text-left bg-linear-to-b from-white to-[#f0fdf4] border border-[#bbf7d0]/70 shadow-xs">
-                  <div className="flex items-center gap-1.5 text-[#15803d] mb-0.5">
-                    <span className="material-symbols-outlined text-[20px]">verified</span>
-                    <span className="text-[20px] sm:text-[24px] font-black">{COMPANY_INFO.genuineReagents}</span>
-                  </div>
-                  <span className="text-[11.5px] font-bold text-[#334155] leading-tight">
-                    Hóa chất chính hãng
-                  </span>
-                </div>
-
-                {/* Metric 3 */}
-                <div className="card-3d-subtle p-3 rounded-2xl flex flex-col items-center sm:items-start text-center sm:text-left bg-linear-to-b from-white to-[#fef2f2] border border-[#fecaca]/70 shadow-xs">
-                  <div className="flex items-center gap-1.5 text-[#bb0112] mb-0.5">
-                    <span className="material-symbols-outlined text-[20px]">public</span>
-                    <span className="text-[20px] sm:text-[24px] font-black">{COMPANY_INFO.provincesCovered}</span>
-                  </div>
-                  <span className="text-[11.5px] font-bold text-[#334155] leading-tight">
-                    Tỉnh thành phục vụ
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Column: 3D Interactive Hero Visual Showcase */}
-            <div className="lg:col-span-5 relative mt-4 lg:mt-0">
-              <div className="relative w-full rounded-3xl overflow-hidden card-3d p-2.5 bg-white border border-[#cbd5e1]/80 shadow-[0_20px_50px_rgba(0,97,148,0.18)]">
-                <div className="relative w-full h-64 sm:h-72 lg:h-[350px] xl:h-[380px] rounded-2xl overflow-hidden group">
-                  <img
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-103"
-                    alt={currentHeroSlide.title}
-                    src={currentHeroSlide.image}
-                  />
-
-                  {/* Slider Prev / Next Overlay Buttons */}
-                  <button
-                    onClick={handlePrevSlide}
-                    aria-label="Slide trước"
-                    className="absolute left-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white text-[#0f172a] flex items-center justify-center backdrop-blur-xs shadow-md transition-all cursor-pointer opacity-0 group-hover:opacity-100"
-                  >
-                    <span className="material-symbols-outlined text-[20px]">chevron_left</span>
-                  </button>
-                  <button
-                    onClick={handleNextSlide}
-                    aria-label="Slide tiếp theo"
-                    className="absolute right-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white text-[#0f172a] flex items-center justify-center backdrop-blur-xs shadow-md transition-all cursor-pointer opacity-0 group-hover:opacity-100"
-                  >
-                    <span className="material-symbols-outlined text-[20px]">chevron_right</span>
-                  </button>
-                </div>
-              </div>
-
-              {/* Slide indicator dots */}
-              <div className="flex justify-center items-center gap-2 mt-3">
-                {HERO_SLIDES.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setActiveSlide(idx)}
-                    aria-label={`Slide ${idx + 1}`}
-                    className={`h-2 rounded-full transition-all cursor-pointer ${
-                      activeSlide === idx
-                        ? 'w-6 bg-[#bb0112]'
-                        : 'w-2 bg-[#cbd5e1] hover:bg-[#94a3b8]'
-                    }`}
-                  ></button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroSection onOpenConsultation={onOpenConsultation} />
 
       {/* ========================================================================= */}
       {/* 2. CORE VALUES BLOCK (3 COLUMNS 3D DEEP MEDICAL BLUE) */}
@@ -358,64 +126,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       {/* ========================================================================= */}
       {/* 3. LOGICAL CATEGORY QUICK EXPLORER (DANH MỤC THIẾT BỊ & HÓA CHẤT TRỌNG TÂM) */}
       {/* ========================================================================= */}
-      <section className="w-full py-8 sm:py-10 bg-[#f8fafc] border-b border-[#e2e8f0]">
-        <div className="max-w-[1720px] mx-auto px-4 sm:px-8 xl:px-12">
-          {/* Section Header */}
-          <div className="flex flex-col items-center mb-6 sm:mb-8 text-center">
-            <span className="text-[12px] font-bold uppercase tracking-wider text-[#006194] bg-[#e0f2fe] px-3 py-1 rounded-full mb-2">
-              Hệ Thống Thiết Bị Toàn Diện
-            </span>
-            <h2 className="text-[24px] sm:text-[28px] font-extrabold text-[#0f172a] tracking-tight uppercase [text-wrap:balance]">
-              DANH MỤC THIẾT BỊ & HÓA CHẤT TRỌNG TÂM
-            </h2>
-            <div className="w-14 h-1 bg-[#bb0112] rounded-full mt-2"></div>
-            <p className="text-[13.5px] text-[#475569] max-w-2xl mt-2 [text-wrap:balance]">
-              Giải pháp khép kín cho phòng xét nghiệm: Từ máy phân tích tự động chuẩn mực đến hóa chất, chất chuẩn và vật tư tiêu hao chính hãng.
-            </p>
-          </div>
-
-          {/* 6 Bento 3D Category Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {CORE_CATEGORIES.map((cat) => (
-              <div
-                key={cat.key}
-                onClick={() => onNavigateTab('san-pham', cat.key)}
-                className={`card-3d rounded-2xl p-5 cursor-pointer flex flex-col justify-between group transition-all duration-300 border ${cat.borderColor}`}
-              >
-                <div>
-                  <div className="flex items-center justify-between gap-3 mb-3">
-                    <div className={`w-12 h-12 rounded-xl ${cat.iconBg} ${cat.iconColor} flex items-center justify-center shadow-xs group-hover:scale-110 transition-transform`}>
-                      <span className="material-symbols-outlined text-[28px]">{cat.icon}</span>
-                    </div>
-                    <span className="text-[11.5px] font-bold text-[#475569] bg-[#f1f5f9] px-2.5 py-1 rounded-lg border border-[#e2e8f0]">
-                      {cat.count}
-                    </span>
-                  </div>
-
-                  <h3 className="text-[17px] font-bold text-[#0f172a] group-hover:text-[#006194] transition-colors mb-1.5">
-                    {cat.title}
-                  </h3>
-
-                  <p className="text-[13px] text-[#475569] leading-relaxed mb-3">
-                    {cat.desc}
-                  </p>
-
-                  <div className="p-2.5 rounded-xl bg-[#f8fafc] border border-[#e2e8f0]/80 text-[11.5px] text-[#64748b]">
-                    <strong className="text-[#334155]">Tiêu biểu:</strong> {cat.models}
-                  </div>
-                </div>
-
-                <div className="pt-4 mt-4 border-t border-[#f1f5f9] flex items-center justify-between text-[#006194] text-[13px] font-bold group-hover:text-[#bb0112] transition-colors">
-                  <span>Xem chi tiết danh mục</span>
-                  <span className="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">
-                    arrow_forward
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ProductCardsSection onNavigateTab={onNavigateTab} />
 
       {/* ========================================================================= */}
       {/* 4. FEATURED PRODUCTS (SẢN PHẨM TIÊU BIỂU WITH IN-PLACE FILTER) */}
