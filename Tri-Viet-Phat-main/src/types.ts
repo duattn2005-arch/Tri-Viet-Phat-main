@@ -70,13 +70,27 @@ export interface DocumentItem {
 
 export interface Testimonial {
   id: string;
+  /** Academic/professional prefix, e.g. "TS. BS.", "ThS.", "CN." */
+  title?: string;
   name: string;
+  /** Position/department, e.g. "Trưởng khoa Xét nghiệm" */
   role: string;
   facility: string;
+  /** City/province, e.g. "Hà Nội", "TP.HCM" */
+  location: string;
+  avatarUrl?: string;
   avatarInitials: string;
   quote: string;
+  /** 1-5 */
   rating: number;
-  resultHighlight?: string;
+  kpi?: {
+    label: string;
+    trend: 'up' | 'down';
+  };
+  /** Display date, e.g. "15/08/2025" */
+  datePosted: string;
+  /** true = seed/demo content, not a real customer review */
+  isPlaceholder?: boolean;
 }
 
 export interface JobOpening {
