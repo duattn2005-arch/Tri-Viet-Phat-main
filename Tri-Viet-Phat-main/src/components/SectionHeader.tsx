@@ -1,5 +1,5 @@
 import React from 'react';
-import { Reveal } from './motion/Reveal';
+import { MaskText, Reveal } from './motion/Reveal';
 
 interface SectionHeaderProps {
   title: string;
@@ -20,7 +20,9 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
 }) => (
   <Reveal className="flex items-end justify-between gap-4 mb-6 sm:mb-8">
     <div className="max-w-2xl">
-      <h2 className="text-[20px] sm:text-[26px] font-bold text-[#111111] uppercase leading-tight">{title}</h2>
+      <h2 className="text-[20px] sm:text-[26px] font-bold text-[#111111] uppercase leading-tight">
+        <MaskText text={title} />
+      </h2>
       {description && <p className="mt-2 text-[14px] sm:text-[15px] text-[#555555] leading-relaxed">{description}</p>}
     </div>
     {actionLabel && onAction && (

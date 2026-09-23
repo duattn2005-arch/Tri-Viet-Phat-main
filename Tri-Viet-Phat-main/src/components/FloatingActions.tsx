@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { AnimatePresence, motion, useScroll } from 'motion/react';
 import { COMPANY_INFO } from '../data/mockData';
 
 interface FloatingActionsProps {
@@ -38,6 +39,7 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({ onToggleAiChat
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const widgetRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll();
 
   useEffect(() => {
     const handleScroll = () => setShowScrollTop(window.scrollY > 200);
@@ -66,16 +68,33 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({ onToggleAiChat
       ref={widgetRef}
       className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-2.5"
     >
-      {showScrollTop && (
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          aria-label="Lên đầu trang"
-          title="Lên đầu trang"
-          className={secondaryButton}
-        >
-          <span className="material-symbols-outlined text-[20px]">keyboard_arrow_up</span>
-        </button>
-      )}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.6 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.6 }}
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            aria-label="Lên đầu trang"
+            title="Lên đầu trang"
+            className={`relative ${secondaryButton}`}
+          >
+            {/* Ring fills as the page is read */}
+            <svg className="absolute inset-0 -rotate-90" viewBox="0 0 40 40" aria-hidden="true">
+              <motion.circle
+                cx="20"
+                cy="20"
+                r="18.5"
+                fill="none"
+                stroke="#e11d2a"
+                strokeWidth="2"
+                style={{ pathLength: scrollYProgress }}
+              />
+            </svg>
+            <span className="material-symbols-outlined text-[20px]">keyboard_arrow_up</span>
+          </motion.button>
+        )}
+      </AnimatePresence>
 
       <button
         type="button"

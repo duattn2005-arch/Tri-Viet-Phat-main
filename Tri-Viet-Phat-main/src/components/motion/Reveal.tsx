@@ -99,33 +99,65 @@ export const WipeImage: React.FC<React.ImgHTMLAttributes<HTMLImageElement> & { w
 };
 
 /**
- * Counts the leading number of `value` up from 0 when it enters the viewport,
- * keeping any suffix ("16+" → 0…16 then "+", "100%" → 0…100 then "%").
- * Values without a leading number (e.g. "2–4 giờ") render as-is.
+ * Counts from 0 up to `to` when it enters the viewport. `prefix`/`suffix`
+ * stay static; the suffix can be styled separately (e.g. an accent "+").
  */
-export const CountUp: React.FC<{ value: string; className?: string }> = ({ value, className }) => {
-  const match = value.match(/^(\d+)(.*)$/);
+export const CountUp: React.FC<{
+  to: number;
+  prefix?: string;
+  suffix?: string;
+  className?: string;
+  suffixClassName?: string;
+}> = ({ to, prefix = '', suffix = '', className, suffixClassName }) => {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.6 });
   const reduce = useReducedMotion();
-  const hasNumber = match !== null;
-  const target = hasNumber ? parseInt(match[1], 10) : 0;
-  const suffix = hasNumber ? match[2] : '';
-  const [current, setCurrent] = useState(hasNumber && !reduce ? 0 : target);
+  const [current, setCurrent] = useState(reduce ? to : 0);
 
   useEffect(() => {
-    if (!hasNumber || !inView || reduce) return;
-    const controls = animate(0, target, {
-      duration: 1.6,
+    if (!inView || reduce) return;
+    const controls = animate(0, to, {
+      duration: 1.8,
       ease: EASE,
       onUpdate: (v) => setCurrent(Math.round(v)),
     });
     return () => controls.stop();
-  }, [hasNumber, inView, reduce, target]);
+  }, [inView, reduce, to]);
 
   return (
     <span ref={ref} className={className}>
-      {hasNumber ? `${current}${suffix}` : value}
+      {prefix}
+      {current}
+      {suffix && <span className={suffixClassName}>{suffix}</span>}
+    </span>
+  );
+};
+
+/**
+ * Heading text whose words rise out of a mask one after another when scrolled
+ * into view. Real spaces are kept between words for screen readers and SEO.
+ */
+export const MaskText: React.FC<{ text: string; delay?: number }> = ({ text, delay = 0 }) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.5 });
+  const words = text.split(' ');
+  return (
+    <span ref={ref}>
+      {words.map((word, i) => (
+        <React.Fragment key={i}>
+          <span className="inline-block overflow-hidden align-bottom pb-[0.1em] -mb-[0.1em]">
+            <motion.span
+              className="inline-block"
+              initial={{ y: '110%' }}
+              animate={inView ? { y: 0 } : undefined}
+              transition={{ duration: 0.8, ease: EASE, delay: delay + i * 0.05 }}
+            >
+              {word}
+            </motion.span>
+          </span>
+          {i < words.length - 1 && ' '}
+        </React.Fragment>
+      ))}
     </span>
   );
 };

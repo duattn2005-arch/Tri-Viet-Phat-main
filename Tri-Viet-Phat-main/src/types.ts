@@ -51,6 +51,8 @@ export interface Article {
 
 export interface Partner {
   name: string;
+  /** Logo file in /public/partners, taken from thietbiytegroup.com */
+  logo?: string;
   subName?: string;
   highlight?: boolean;
   textColor?: string;

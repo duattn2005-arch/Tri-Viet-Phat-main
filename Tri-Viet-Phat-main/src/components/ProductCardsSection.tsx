@@ -43,14 +43,14 @@ export const ProductCardsSection: React.FC<ProductCardsSectionProps> = ({ onNavi
               <button
                 type="button"
                 onClick={() => onNavigateTab('san-pham', tile.key)}
-                className="group relative w-full aspect-[3/4] overflow-hidden bg-[#f2f2f2] text-left cursor-pointer"
+                className="group relative w-full aspect-[3/4] overflow-hidden bg-[#f2f2f2] hover:bg-[#e9e9e9] transition-colors duration-500 text-left cursor-pointer"
               >
                 {tile.image && (
                   <img
                     src={tile.image}
                     alt={`Máy xét nghiệm ${tile.title.toLowerCase()}`}
                     loading="lazy"
-                    className="absolute inset-0 w-full h-full object-contain p-6 pb-16 mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
+                    className="absolute inset-0 w-full h-full object-contain p-6 pb-16 mix-blend-multiply transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110 group-hover:-translate-y-2"
                   />
                 )}
                 <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4 flex items-center justify-between gap-2">
@@ -61,7 +61,7 @@ export const ProductCardsSection: React.FC<ProductCardsSectionProps> = ({ onNavi
                     )}
                   </span>
                   <span className="shrink-0 w-9 h-9 rounded-full bg-white text-[#111111] flex items-center justify-center group-hover:bg-[#111111] group-hover:text-white transition-colors">
-                    <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
+                    <span className="material-symbols-outlined text-[20px] transition-transform duration-500 group-hover:-rotate-45">arrow_forward</span>
                   </span>
                 </div>
               </button>

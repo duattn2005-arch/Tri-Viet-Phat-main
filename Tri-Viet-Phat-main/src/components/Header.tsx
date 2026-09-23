@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { motion, useScroll, useSpring } from 'motion/react';
 import { PageTab } from '../types';
 import { COMPANY_INFO } from '../data/mockData';
 
@@ -71,6 +72,28 @@ export const Header: React.FC<HeaderProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<DropdownKey | null>(null);
   const navRef = useRef<HTMLElement>(null);
+  const [hidden, setHidden] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Reading-progress bar along the bottom edge of the header.
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 200, damping: 30, restDelta: 0.001 });
+
+  // Slide the header away while scrolling down, bring it back on any scroll up.
+  useEffect(() => {
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 8);
+      if (y > 300 && y > lastY + 4) setHidden(true);
+      else if (y < lastY - 4 || y <= 300) setHidden(false);
+      lastY = y;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const headerHidden = hidden && !mobileMenuOpen && openDropdown === null;
 
   // Close dropdowns when clicking outside
   useEffect(() => {
@@ -100,7 +123,16 @@ export const Header: React.FC<HeaderProps> = ({
   const hotlineHref = (phone: string) => `tel:${phone.replace(/\./g, '')}`;
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-white border-b border-[#e5e5e5]">
+    <header
+      className={`fixed top-0 left-0 w-full z-50 bg-white border-b border-[#e5e5e5] transition-[translate,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        headerHidden ? '-translate-y-full' : 'translate-y-0'
+      } ${scrolled ? 'shadow-[0_6px_24px_rgba(0,0,0,0.06)]' : ''}`}
+    >
+      <motion.div
+        className="absolute left-0 right-0 -bottom-px h-[2px] bg-[#e11d2a] origin-left z-10"
+        style={{ scaleX: progress }}
+        aria-hidden="true"
+      />
       {/* Top utility bar */}
       <div className="bg-[#111111] text-white/70 text-[12px]">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 flex items-center justify-between h-8 sm:h-9">
@@ -167,11 +199,16 @@ export const Header: React.FC<HeaderProps> = ({
         <nav ref={navRef} className="hidden lg:flex flex-1 justify-center items-center gap-2 text-[15px] tracking-[0.03em]">
           {NAV_ITEMS.map((item) => {
             const isActive = currentTab === item.tab;
-            const baseClass = `relative px-3 py-2 font-semibold transition-colors cursor-pointer inline-flex items-center gap-0.5 ${
-              isActive ? 'text-[#111111]' : 'text-[#111111] hover:opacity-70'
-            }`;
-            const activeBar = isActive && (
-              <span className="absolute left-3 right-3 -bottom-[21px] h-0.5 bg-[#111111]" aria-hidden="true" />
+            const baseClass =
+              'group relative px-3 py-2 font-semibold text-[#111111] cursor-pointer inline-flex items-center gap-0.5';
+            // Underline that slides in from the left on hover and stays for the active page
+            const activeBar = (
+              <span
+                className={`absolute left-3 right-3 -bottom-[21px] h-0.5 bg-[#111111] origin-left transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                }`}
+                aria-hidden="true"
+              />
             );
 
             if (!item.children) {
@@ -210,7 +247,7 @@ export const Header: React.FC<HeaderProps> = ({
                 </button>
 
                 {isOpen && (
-                  <div className="absolute left-0 top-full mt-2 w-72 bg-white border border-[#e5e5e5] shadow-[0_12px_32px_rgba(15,23,42,0.10)] py-2 z-50">
+                  <div className="dropdown-in absolute left-0 top-full mt-2 w-72 bg-white border border-[#e5e5e5] shadow-[0_12px_32px_rgba(15,23,42,0.10)] py-2 z-50">
                     {item.children.map((child, idx) => (
                       <button
                         key={child.cat}
@@ -261,7 +298,7 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Mobile drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white border-t border-[#e5e5e5] px-4 sm:px-8 py-3 max-h-[calc(100vh-96px)] overflow-y-auto overscroll-contain shadow-[0_12px_24px_rgba(15,23,42,0.08)]">
+        <div className="dropdown-in lg:hidden bg-white border-t border-[#e5e5e5] px-4 sm:px-8 py-3 max-h-[calc(100vh-96px)] overflow-y-auto overscroll-contain shadow-[0_12px_24px_rgba(15,23,42,0.08)]">
           <nav className="divide-y divide-[#f2f2f2]">
             {NAV_ITEMS.map((item) => {
               const isActive = currentTab === item.tab;

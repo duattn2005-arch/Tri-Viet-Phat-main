@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { motion } from 'motion/react';
 import { COMPANY_INFO, PRODUCTS, PARTNERS, ARTICLES, TESTIMONIALS } from '../../data/mockData';
 import { Product, Article, PageTab } from '../../types';
 import { ProvinceSelect } from '../ProvinceSelect';
@@ -36,11 +37,13 @@ const CONSULTATION_QUICK_CHIPS = [
 ];
 
 const FACTS = [
-  { value: COMPANY_INFO.yearsOfExperience, label: 'năm trong ngành thiết bị y tế' },
-  { value: COMPANY_INFO.provincesCovered, label: 'tỉnh thành có khách hàng' },
-  { value: COMPANY_INFO.genuineReagents, label: 'hàng chính hãng, đủ CO/CQ' },
-  { value: '2–4 giờ', label: 'có mặt kỹ thuật tại Hà Nội' },
+  { to: parseInt(COMPANY_INFO.yearsOfExperience, 10), suffix: '+', label: 'Năm kinh nghiệm', note: 'trong ngành thiết bị y tế' },
+  { to: parseInt(COMPANY_INFO.provincesCovered, 10), suffix: '', label: 'Tỉnh thành', note: 'có bệnh viện, phòng khám sử dụng' },
+  { to: parseInt(COMPANY_INFO.genuineReagents, 10), suffix: '%', label: 'Chính hãng', note: 'đủ CO/CQ, giấy phép lưu hành' },
+  { to: 4, prefix: '2–', suffix: 'h', label: 'Có mặt kỹ thuật', note: 'tại Hà Nội và tỉnh lân cận' },
 ];
+
+const MARQUEE_WORDS = ['Huyết học', 'Sinh hóa', 'Nước tiểu', 'Điện giải', 'Miễn dịch', 'Đông máu', 'Hóa chất IVD'];
 
 const CAPABILITIES = [
   {
@@ -126,22 +129,32 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       {/* 1. Hero */}
       <HeroSection onOpenConsultation={onOpenConsultation} />
 
-      {/* 2. Key facts — plain figures, no cards or icons */}
-      <section className="w-full bg-white border-b border-[#e5e5e5]">
-        <dl className="max-w-[1320px] mx-auto px-4 sm:px-8 grid grid-cols-2 lg:grid-cols-4">
+      {/* 2. Key facts — dark band, counters with an accent line that draws in */}
+      <section className="w-full bg-[#111111] text-white">
+        <dl className="max-w-[1320px] mx-auto px-4 sm:px-8 py-12 sm:py-16 grid grid-cols-2 lg:grid-cols-4 gap-x-6 sm:gap-x-10 gap-y-12">
           {FACTS.map((fact, idx) => (
-            <div
-              key={fact.label}
-              className={`py-6 sm:py-8 ${idx % 2 === 1 ? 'pl-5 sm:pl-8 border-l border-[#e5e5e5]' : ''} ${
-                idx >= 2 ? 'border-t lg:border-t-0 border-[#e5e5e5]' : ''
-              } ${idx === 2 ? 'lg:pl-8 lg:border-l' : ''}`}
-            >
-              <dt className="sr-only">{fact.label}</dt>
-              <dd className="text-[26px] sm:text-[32px] font-bold text-[#111111] leading-none tabular-nums">
-                <CountUp value={fact.value} />
+            <Reveal key={fact.label} delay={idx * 0.12} className="relative pt-6">
+              {/* Top rule: faint base with an accent segment that grows in */}
+              <span className="absolute top-0 inset-x-0 h-px bg-white/15" aria-hidden="true" />
+              <motion.span
+                className="absolute top-0 left-0 h-[2px] w-16 bg-[#e11d2a] origin-left"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.9, delay: 0.3 + idx * 0.12, ease: [0.22, 1, 0.36, 1] }}
+                aria-hidden="true"
+              />
+              <dd className="text-[44px] sm:text-[56px] lg:text-[64px] font-bold leading-none tracking-tight tabular-nums">
+                <CountUp
+                  to={fact.to}
+                  prefix={fact.prefix}
+                  suffix={fact.suffix}
+                  suffixClassName="text-[#e11d2a] text-[0.6em] align-top ml-1"
+                />
               </dd>
-              <dd className="mt-2 text-[13px] sm:text-[14px] text-[#555555]">{fact.label}</dd>
-            </div>
+              <dt className="mt-4 text-[13px] font-semibold uppercase tracking-[0.14em] text-white">{fact.label}</dt>
+              <dd className="mt-2 text-[13px] sm:text-[14px] text-white/55 leading-snug">{fact.note}</dd>
+            </Reveal>
           ))}
         </dl>
       </section>
@@ -189,6 +202,24 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           </RevealGroup>
 
           <ViewAllButton label="Xem tất cả sản phẩm" onClick={() => onNavigateTab('san-pham')} />
+        </div>
+      </section>
+
+      {/* Big scrolling word band — alternating dark and light type */}
+      <section className="w-full overflow-hidden py-10 sm:py-14 bg-white" aria-hidden="true">
+        <div className="marquee-track marquee-slow flex w-max items-center">
+          {[...MARQUEE_WORDS, ...MARQUEE_WORDS].map((word, idx) => (
+            <span key={idx} className="flex items-center shrink-0">
+              <span
+                className={`px-6 sm:px-10 text-[48px] sm:text-[80px] lg:text-[104px] font-bold uppercase leading-none tracking-tight whitespace-nowrap ${
+                  idx % 2 ? 'text-[#d4d4d4]' : 'text-[#111111]'
+                }`}
+              >
+                {word}
+              </span>
+              <span className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-[#e11d2a] shrink-0" />
+            </span>
+          ))}
         </div>
       </section>
 
@@ -249,22 +280,26 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       <section className="w-full py-12 sm:py-16 bg-white border-t border-[#e5e5e5]">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8">
           <Reveal>
-            <p className="text-[14px] text-[#777777] mb-6">Phân phối chính thức sản phẩm của các hãng chẩn đoán IVD</p>
+            <SectionHeader title="Đối tác của chúng tôi" description="Nhà phân phối chính thức sản phẩm của các hãng chẩn đoán IVD hàng đầu." />
           </Reveal>
           {/* Infinite marquee: the list is rendered twice and slid by -50% */}
-          <div className="marquee group relative overflow-hidden border-y border-[#e5e5e5] [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+          <div className="marquee group relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
             <ul className="marquee-track flex w-max group-hover:[animation-play-state:paused]">
               {[...PARTNERS, ...PARTNERS].map((partner, idx) => (
                 <li
                   key={`${partner.name}-${idx}`}
                   aria-hidden={idx >= PARTNERS.length}
-                  className="h-24 w-[180px] sm:w-[220px] shrink-0 flex flex-col items-center justify-center text-center px-4"
+                  className="h-28 w-[190px] sm:w-[240px] shrink-0 flex items-center justify-center px-6"
                 >
-                  <span className="text-[18px] font-semibold text-[#999999] hover:text-[#111111] transition-colors tracking-wide leading-tight">
-                    {partner.name}
-                  </span>
-                  {partner.subName && (
-                    <span className="text-[10px] text-[#999999] tracking-wider uppercase mt-0.5">{partner.subName}</span>
+                  {partner.logo ? (
+                    <img
+                      src={partner.logo}
+                      alt={idx < PARTNERS.length ? partner.name : ''}
+                      loading="lazy"
+                      className="max-h-12 sm:max-h-14 max-w-full object-contain hover:scale-110 transition-transform duration-500"
+                    />
+                  ) : (
+                    <span className="text-[18px] font-semibold text-[#999999]">{partner.name}</span>
                   )}
                 </li>
               ))}

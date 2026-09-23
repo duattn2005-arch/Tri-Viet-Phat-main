@@ -4,7 +4,7 @@
  */
 
 import { useState } from 'react';
-import { MotionConfig } from 'motion/react';
+import { AnimatePresence, MotionConfig, motion } from 'motion/react';
 import { PageTab, Product, Article } from './types';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
@@ -65,53 +65,64 @@ export default function App() {
 
         {/* Main Content Body (with padding top for fixed header h-20 + topbar h-9 = 116px) */}
         <main className="flex-1 pt-[116px] w-full max-w-full overflow-x-hidden">
-          {currentTab === 'trang-chu' && (
-            <HomeScreen
-              onSelectProduct={(p) => setSelectedProduct(p)}
-              onSelectArticle={(a) => setSelectedArticle(a)}
-              onNavigateTab={handleSelectTab}
-              onOpenConsultation={handleOpenConsultation}
-              onOpenRepairService={handleOpenRepairService}
-            />
-          )}
+          {/* Page transition: the incoming screen fades up after the outgoing one fades out */}
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={currentTab}
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {currentTab === 'trang-chu' && (
+                <HomeScreen
+                  onSelectProduct={(p) => setSelectedProduct(p)}
+                  onSelectArticle={(a) => setSelectedArticle(a)}
+                  onNavigateTab={handleSelectTab}
+                  onOpenConsultation={handleOpenConsultation}
+                  onOpenRepairService={handleOpenRepairService}
+                />
+              )}
 
-          {currentTab === 'gioi-thieu' && (
-            <AboutScreen onOpenConsultation={() => handleOpenConsultation()} />
-          )}
+              {currentTab === 'gioi-thieu' && (
+                <AboutScreen onOpenConsultation={() => handleOpenConsultation()} />
+              )}
 
-          {currentTab === 'san-pham' && (
-            <ProductsScreen
-              initialCategory={categoryFilter}
-              onSelectProduct={(p) => setSelectedProduct(p)}
-              onOpenConsultation={handleOpenConsultation}
-            />
-          )}
+              {currentTab === 'san-pham' && (
+                <ProductsScreen
+                  initialCategory={categoryFilter}
+                  onSelectProduct={(p) => setSelectedProduct(p)}
+                  onOpenConsultation={handleOpenConsultation}
+                />
+              )}
 
-          {currentTab === 'tai-lieu' && (
-            <DocumentsScreen
-              initialCategory={categoryFilter}
-              onNavigateCategory={(cat) => handleSelectTab('tai-lieu', cat)}
-              onNavigateTab={handleSelectTab}
-            />
-          )}
+              {currentTab === 'tai-lieu' && (
+                <DocumentsScreen
+                  initialCategory={categoryFilter}
+                  onNavigateCategory={(cat) => handleSelectTab('tai-lieu', cat)}
+                  onNavigateTab={handleSelectTab}
+                />
+              )}
 
-          {currentTab === 'tin-tuc' && (
-            <NewsScreen
-              initialCategory={categoryFilter}
-              onNavigateCategory={(cat) => handleSelectTab('tin-tuc', cat)}
-              onNavigateTab={handleSelectTab}
-              onSelectArticle={(a) => setSelectedArticle(a)}
-            />
-          )}
+              {currentTab === 'tin-tuc' && (
+                <NewsScreen
+                  initialCategory={categoryFilter}
+                  onNavigateCategory={(cat) => handleSelectTab('tin-tuc', cat)}
+                  onNavigateTab={handleSelectTab}
+                  onSelectArticle={(a) => setSelectedArticle(a)}
+                />
+              )}
 
-          {currentTab === 'tuyen-dung' && <CareersScreen />}
+              {currentTab === 'tuyen-dung' && <CareersScreen />}
 
-          {currentTab === 'lien-he' && (
-            <ContactScreen
-              onOpenConsultation={() => handleOpenConsultation()}
-              onOpenRepairService={handleOpenRepairService}
-            />
-          )}
+              {currentTab === 'lien-he' && (
+                <ContactScreen
+                  onOpenConsultation={() => handleOpenConsultation()}
+                  onOpenRepairService={handleOpenRepairService}
+                />
+              )}
+            </motion.div>
+          </AnimatePresence>
         </main>
 
         {/* Global Footer */}

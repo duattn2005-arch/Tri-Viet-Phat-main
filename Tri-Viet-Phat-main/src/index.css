@@ -110,16 +110,17 @@ body {
 .btn-primary,
 .btn-3d-red,
 .btn-3d-blue {
-  background-color: #111111;
+  /* Accent fill sweeps in from the left on hover */
+  background: linear-gradient(#e11d2a, #e11d2a) no-repeat left center / 0% 100%, #111111;
   color: #ffffff;
   box-shadow: none;
-  transition: background-color 0.15s ease;
+  transition: background-size 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .btn-primary:hover,
 .btn-3d-red:hover,
 .btn-3d-blue:hover {
-  background-color: #000000;
+  background-size: 100% 100%, auto;
 }
 
 .btn-primary:focus-visible,
@@ -169,8 +170,25 @@ body {
   animation: marquee 40s linear infinite;
 }
 
+.marquee-slow {
+  animation-duration: 60s;
+}
+
+/* Header dropdowns and mobile drawer */
+@keyframes dropdownIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-in {
+  animation: dropdownIn 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track {
+  .marquee-track,
+  .dropdown-in {
     animation: none;
   }
   html,

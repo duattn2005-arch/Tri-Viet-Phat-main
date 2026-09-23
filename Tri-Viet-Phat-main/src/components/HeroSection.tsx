@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
 import { COMPANY_INFO } from '../data/mockData';
 
 interface HeroSectionProps {
@@ -58,51 +58,61 @@ const RevealTitle: React.FC<{ text: string }> = ({ text }) => (
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenConsultation }) => {
   const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
   const reduce = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Parallax: as the hero scrolls away the photo drifts slower than the page and the copy lifts and fades.
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end start'] });
+  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', reduce ? '0%' : '18%']);
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -80]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
   const hotlineDigits = COMPANY_INFO.hotline.replace(/\./g, '');
   const slide = SLIDES[active];
 
   const go = useCallback((idx: number) => setActive((idx + SLIDES.length) % SLIDES.length), []);
 
+  // Always auto-advances; the timer restarts whenever the slide changes (including manual clicks).
   useEffect(() => {
-    if (paused || reduce) return;
     const id = setTimeout(() => go(active + 1), SLIDE_MS);
     return () => clearTimeout(id);
-  }, [active, paused, reduce, go]);
+  }, [active, go]);
 
   return (
     <section
+      ref={sectionRef}
       className="relative w-full h-[560px] sm:h-[600px] lg:h-[calc(100vh-116px)] lg:min-h-[600px] lg:max-h-[780px] overflow-hidden bg-[#111111]"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
       aria-roledescription="carousel"
       aria-label="Giới thiệu Trí Việt Phát"
     >
       {/* Images: all mounted so they are preloaded; the active one fades in and slowly zooms out */}
-      {SLIDES.map((s, i) => (
-        <motion.img
-          key={s.image}
-          src={s.image}
-          alt={i === active ? s.alt : ''}
-          aria-hidden={i !== active}
-          className="absolute inset-0 w-full h-full object-cover"
-          initial={false}
-          animate={{
-            opacity: i === active ? 1 : 0,
-            scale: i === active && !reduce ? 1 : 1.08,
-          }}
-          transition={{
-            opacity: { duration: 1.2, ease: 'easeInOut' },
-            scale: i === active ? { duration: SLIDE_MS / 1000 + 1.2, ease: 'linear' } : { duration: 1.2 },
-          }}
-          fetchPriority={i === 0 ? 'high' : 'low'}
-        />
-      ))}
+      <motion.div className="absolute inset-0" style={{ y: imageY }}>
+        {SLIDES.map((s, i) => (
+          <motion.img
+            key={s.image}
+            src={s.image}
+            alt={i === active ? s.alt : ''}
+            aria-hidden={i !== active}
+            className="absolute inset-0 w-full h-full object-cover"
+            initial={false}
+            animate={{
+              opacity: i === active ? 1 : 0,
+              scale: i === active && !reduce ? 1 : 1.08,
+            }}
+            transition={{
+              opacity: { duration: 1.2, ease: 'easeInOut' },
+              scale: i === active ? { duration: SLIDE_MS / 1000 + 1.2, ease: 'linear' } : { duration: 1.2 },
+            }}
+            fetchPriority={i === 0 ? 'high' : 'low'}
+          />
+        ))}
+      </motion.div>
       <div className="absolute inset-0 bg-linear-to-r from-black/75 via-black/40 to-black/5" />
       <div className="absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-black/40 to-transparent" />
 
-      <div className="relative h-full max-w-[1320px] mx-auto px-4 sm:px-8 flex items-center">
+      <motion.div
+        className="relative h-full max-w-[1320px] mx-auto px-4 sm:px-8 flex items-center"
+        style={{ y: contentY, opacity: contentOpacity }}
+      >
         <div className="max-w-2xl text-white" aria-live="polite">
           <AnimatePresence mode="wait">
             <motion.div key={active} exit={{ opacity: 0, transition: { duration: 0.35 } }}>
@@ -148,7 +158,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenConsultation }) 
             </a>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Slide controls: progress bars + arrows */}
       <div className="absolute inset-x-0 bottom-8 sm:bottom-10">
@@ -166,11 +176,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenConsultation }) 
                 <span className="block relative w-10 sm:w-16 h-[2px] bg-white/30 overflow-hidden">
                   {i === active && (
                     <motion.span
-                      key={`${active}-${paused}`}
+                      key={active}
                       className="absolute inset-y-0 left-0 bg-white"
-                      initial={{ width: reduce ? '100%' : '0%' }}
-                      animate={{ width: paused && !reduce ? '0%' : '100%' }}
-                      transition={{ duration: paused || reduce ? 0 : SLIDE_MS / 1000, ease: 'linear' }}
+                      initial={{ width: '0%' }}
+                      animate={{ width: '100%' }}
+                      transition={{ duration: SLIDE_MS / 1000, ease: 'linear' }}
                     />
                   )}
                   {i < active && <span className="absolute inset-0 bg-white/70" />}
