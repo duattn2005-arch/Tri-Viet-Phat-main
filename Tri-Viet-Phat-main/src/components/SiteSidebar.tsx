@@ -27,24 +27,9 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
     <aside className={`w-full space-y-6 ${className}`}>
       {/* Widget 1: Hỗ trợ mua hàng */}
       <div className="bg-white  border border-[#e5e5e5] overflow-hidden ">
-        <div className="border-b-2 border-[#e11d2a] bg-white">
-          <span className="inline-block bg-[#111111] text-white text-[14px] font-bold px-4 py-2  tracking-wide">
-            Hỗ trợ mua hàng
-          </span>
-        </div>
+        <h3 className="px-4 py-3 border-b border-[#e5e5e5] text-[16px] font-bold text-[#111111]">Hỗ trợ mua hàng</h3>
         <div className="p-4 space-y-3.5">
-          <div className=" overflow-hidden border border-[#e5e5e5] bg-[#f7f7f7]">
-            <img
-              src="https://thietbiytegroup.com/wp-content/uploads/2024/09/hotlinetvp.jpg"
-              alt="Hỗ trợ mua hàng Trí Việt Phát"
-              className="w-full h-auto object-cover"
-              loading="lazy"
-              onError={(e) => {
-                e.currentTarget.src = FALLBACK_THUMB;
-              }}
-            />
-          </div>
-          <div className="space-y-2 pt-1 text-[13px]">
+          <div className="space-y-2 text-[13px]">
             <div className="flex items-center gap-2.5">
               <span className="material-symbols-outlined text-[#777777] text-[19px]">
                 call
@@ -87,11 +72,7 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
 
       {/* Widget 2: Các bài viết mới nhất */}
       <div className="bg-white  border border-[#e5e5e5] overflow-hidden ">
-        <div className="border-b-2 border-[#e11d2a] bg-white">
-          <span className="inline-block bg-[#111111] text-white text-[14px] font-bold px-4 py-2  tracking-wide">
-            Các bài viết mới nhất
-          </span>
-        </div>
+        <h3 className="px-4 py-3 border-b border-[#e5e5e5] text-[16px] font-bold text-[#111111]">Các bài viết mới nhất</h3>
         <div className="p-3.5 space-y-3.5">
           {latestArticles.map((art) => (
             <article
@@ -129,11 +110,7 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
       {/* Widget 3: Danh mục */}
       {!hideCategories && (
         <div className="bg-white  border border-[#e5e5e5] overflow-hidden ">
-          <div className="border-b-2 border-[#e11d2a] bg-white">
-            <span className="inline-block bg-[#111111] text-white text-[14px] font-bold px-4 py-2  tracking-wide">
-              Danh mục
-            </span>
-          </div>
+          <h3 className="px-4 py-3 border-b border-[#e5e5e5] text-[16px] font-bold text-[#111111]">Danh mục</h3>
           <ul className="p-2.5 divide-y divide-[#f2f2f2] text-[13px]">
             {SIDEBAR_CATEGORIES.map((cat, idx) => (
               <li key={idx}>
@@ -159,11 +136,7 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
 
       {/* Widget 4: Liên kết website */}
       <div className="bg-white  border border-[#e5e5e5] overflow-hidden ">
-        <div className="border-b-2 border-[#e11d2a] bg-white">
-          <span className="inline-block bg-[#111111] text-white text-[14px] font-bold px-4 py-2  tracking-wide">
-            Liên kết website
-          </span>
-        </div>
+        <h3 className="px-4 py-3 border-b border-[#e5e5e5] text-[16px] font-bold text-[#111111]">Liên kết website</h3>
         <div className="p-3.5">
           <div className="flex flex-wrap gap-2 text-[12.5px] text-[#555555]">
             {SIDEBAR_WEBSITE_LINKS.map((link, idx) => (

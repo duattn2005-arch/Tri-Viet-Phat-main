@@ -260,7 +260,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
         }
       />
 
-      <div className="max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-8 py-5 sm:py-6">
         {activeDoc ? (
           <ArticleFullView
             article={activeDoc}
@@ -304,7 +304,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                     </span>
                   </div>
 
-                  <div className="hidden sm:flex flex-wrap items-center gap-2">
+                  <div className="hidden sm:flex flex-wrap items-center gap-x-6 gap-y-2">
                     {DOCUMENT_CATEGORIES.map((cat) => {
                       const isActive = selectedCategory === cat.key;
                       const count =
@@ -316,23 +316,14 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                         <button
                           key={cat.key}
                           onClick={() => handleCategoryChange(cat.key)}
-                          className={`inline-flex items-center gap-2 px-3.5 py-2  text-[13px] font-bold transition-all cursor-pointer ${
+                          className={`inline-flex items-center gap-1.5 pb-2 border-b-2 text-[15px] font-semibold transition-colors cursor-pointer ${
                             isActive
-                              ? 'bg-[#111111] text-white shadow-xs'
-                              : 'bg-[#f2f2f2] text-[#555555] hover:bg-[#e5e5e5] hover:text-[#111111] hover:underline underline-offset-4'
+                              ? 'border-[#111111] text-[#111111]'
+                              : 'border-transparent text-[#999999] hover:text-[#333333]'
                           }`}
                         >
-                          <span className="material-symbols-outlined text-[16px]">
-                            {cat.icon}
-                          </span>
                           <span>{cat.label}</span>
-                          <span
-                            className={`text-[11px] px-1.5 py-0.2 rounded-full font-semibold ${
-                              isActive
-                                ? 'bg-white/25 text-white'
-                                : 'bg-[#e5e5e5] text-[#777777]'
-                            }`}
-                          >
+                          <span className="text-[13px] font-medium text-[#999999]">
                             {count}
                           </span>
                         </button>
@@ -350,7 +341,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       placeholder="Tìm tài liệu, video..."
-                      className="w-full pl-9 pr-8 py-2  border border-[#d4d4d4] text-[13px] focus:outline-none focus:border-[#111111] focus:ring-1 focus:ring-[#111111] bg-[#f7f7f7]"
+                      className="w-full pl-9 pr-8 py-2  border border-[#d4d4d4] text-[13px] focus:outline-none focus:border-[#111111] bg-white"
                     />
                     {searchQuery && (
                       <button
@@ -406,7 +397,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                               />
                               <div className="absolute top-3 left-3 flex items-center gap-1.5">
                                 <span
-                                  className={`inline-flex items-center gap-1 text-[11.5px] font-bold px-2.5 py-1 rounded-full  ${badge.badgeBg} ${badge.textColor}`}
+                                  className={`inline-flex items-center gap-1 text-[11.5px] font-bold px-2.5 py-1  ${badge.badgeBg} ${badge.textColor}`}
                                 >
                                   <span className="material-symbols-outlined text-[14px]">
                                     {badge.icon}
@@ -529,7 +520,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                           <div className="flex-1 min-w-0 flex flex-col justify-between">
                             <div>
                               <span
-                                className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${badge.badgeBg} ${badge.textColor} inline-block mb-1`}
+                                className={`text-[10px] font-bold px-2 py-0.5 ${badge.badgeBg} ${badge.textColor} inline-block mb-1`}
                               >
                                 {badge.type}
                               </span>
@@ -565,7 +556,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                     </p>
                   </div>
 
-                  <span className="inline-flex items-center gap-1 text-[12px] text-[#555555] font-bold bg-[#f2f2f2] px-3 py-1 rounded-full self-start sm:self-center">
+                  <span className="inline-flex items-center gap-1 text-[12px] text-[#555555] font-bold bg-[#f2f2f2] px-3 py-1 self-start sm:self-center">
                     <span className="material-symbols-outlined text-[15px]">verified</span>
                     <span>Tải về miễn phí</span>
                   </span>
@@ -680,7 +671,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                   </div>
 
                   <div className="p-4  bg-[#f7f7f7] border border-[#e5e5e5] relative">
-                    <span className="w-7 h-7 rounded-full bg-[#059669] text-white flex items-center justify-center text-[12px] font-bold mb-3">
+                    <span className="w-7 h-7 rounded-full bg-[#111111] text-white flex items-center justify-center text-[12px] font-bold mb-3">
                       4
                     </span>
                     <h4 className="text-[13.5px] font-bold text-[#111111] mb-1.5">

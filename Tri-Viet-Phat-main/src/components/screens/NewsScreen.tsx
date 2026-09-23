@@ -229,7 +229,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
         }
       />
 
-      <div className="max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-8 py-5 sm:py-6">
         {activeArticle ? (
           <ArticleFullView
             article={activeArticle}
@@ -270,7 +270,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                     </span>
                   </div>
 
-                  <div className="hidden sm:flex flex-wrap items-center gap-2">
+                  <div className="hidden sm:flex flex-wrap items-center gap-x-6 gap-y-2">
                     {NEWS_CATEGORIES.map((cat) => {
                       const isActive = selectedCategory === cat.key;
                       const count =
@@ -282,23 +282,14 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                         <button
                           key={cat.key}
                           onClick={() => handleCategoryChange(cat.key)}
-                          className={`inline-flex items-center gap-2 px-3.5 py-2  text-[13px] font-bold transition-all cursor-pointer ${
+                          className={`inline-flex items-center gap-1.5 pb-2 border-b-2 text-[15px] font-semibold transition-colors cursor-pointer ${
                             isActive
-                              ? 'bg-[#111111] text-white shadow-xs'
-                              : 'bg-[#f2f2f2] text-[#555555] hover:bg-[#e5e5e5] hover:text-[#111111] hover:underline underline-offset-4'
+                              ? 'border-[#111111] text-[#111111]'
+                              : 'border-transparent text-[#999999] hover:text-[#333333]'
                           }`}
                         >
-                          <span className="material-symbols-outlined text-[16px]">
-                            {cat.icon}
-                          </span>
                           <span>{cat.label}</span>
-                          <span
-                            className={`text-[11px] px-1.5 py-0.2 rounded-full font-semibold ${
-                              isActive
-                                ? 'bg-white/25 text-white'
-                                : 'bg-[#e5e5e5] text-[#777777]'
-                            }`}
-                          >
+                          <span className="text-[13px] font-medium text-[#999999]">
                             {count}
                           </span>
                         </button>
@@ -316,7 +307,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       placeholder="Tìm bài viết, tin tức..."
-                      className="w-full pl-9 pr-8 py-2  border border-[#d4d4d4] text-[13px] focus:outline-none focus:border-[#111111] focus:ring-1 focus:ring-[#111111] bg-[#f7f7f7]"
+                      className="w-full pl-9 pr-8 py-2  border border-[#d4d4d4] text-[13px] focus:outline-none focus:border-[#111111] bg-white"
                     />
                     {searchQuery && (
                       <button
@@ -347,18 +338,12 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                           e.currentTarget.src = FALLBACK_THUMBNAIL;
                         }}
                       />
-                      <div className="absolute top-3.5 left-3.5">
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11.5px] font-bold bg-[#111111] text-white ">
-                          <span className="material-symbols-outlined text-[14px]">star</span>
-                          <span>BÀI VIẾT TIÊU ĐIỂM</span>
-                        </span>
-                      </div>
                     </div>
 
                     <div className="md:col-span-6 p-5 sm:p-7 flex flex-col justify-between">
                       <div>
                         <div className="flex items-center gap-2 mb-3">
-                          <span className="text-[11.5px] font-bold px-2.5 py-0.5 rounded-full bg-[#f2f2f2] text-[#555555]">
+                          <span className="text-[12px] font-semibold uppercase tracking-wide text-[#777777]">
                             {getArticleCategoryBadge(featuredArticle.id)}
                           </span>
                           <span className="text-[12px] text-[#999999] flex items-center gap-1">
@@ -380,7 +365,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                       </div>
 
                       <div className="flex items-center justify-between pt-4 border-t border-[#f2f2f2]">
-                        <span className="text-[12.5px] text-[#059669] font-semibold flex items-center gap-1">
+                        <span className="text-[12.5px] text-[#777777] flex items-center gap-1">
                           <span className="material-symbols-outlined text-[16px]">verified</span>
                           <span>Biên tập bởi Trí Việt Phát</span>
                         </span>
@@ -437,7 +422,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                               }}
                             />
                             <div className="absolute top-3 left-3">
-                              <span className="inline-block bg-[#111111]/90 backdrop-blur-xs text-white text-[11px] font-bold px-2.5 py-1 rounded-full ">
+                              <span className="inline-block bg-[#111111]/90 backdrop-blur-xs text-white text-[11px] font-bold px-2.5 py-1 ">
                                 {getArticleCategoryBadge(art.id)}
                               </span>
                             </div>
@@ -540,7 +525,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                         </div>
                         <div className="flex-1 min-w-0 flex flex-col justify-between">
                           <div>
-                            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#f2f2f2] text-[#555555] inline-block mb-1">
+                            <span className="text-[10px] font-bold px-2 py-0.5 bg-[#f2f2f2] text-[#555555] inline-block mb-1">
                               {getArticleCategoryBadge(art.id)}
                             </span>
                             <h4 className="text-[13px] font-bold text-[#111111] group-hover:underline underline-offset-4 line-clamp-2 leading-snug">

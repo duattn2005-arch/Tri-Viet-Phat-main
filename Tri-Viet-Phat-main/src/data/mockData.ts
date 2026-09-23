@@ -301,9 +301,9 @@ export const ARTICLES: Article[] = [
     alt: "Xét nghiệm FT3 hữu hiệu trong chuẩn đoán bệnh lý tuyến giáp",
     category: "Kiến thức sức khỏe",
     readTime: "5 phút đọc",
-    excerpt: "&nbsp; Rối loạn hormon tuyến giáp là nguyên nhân của các bệnh lý tuyến giáp. Cho nên việc thường xuyên kiểm tra nồng độ hormon tuyến giáp là biện pháp hữu hiệu trong việc theo dõi, phát hiện sớm các bệnh lý tuyến giáp. FT3 mà một trong những hormon cần phải theo dõi thường [&hellip;]",
+    excerpt: "&nbsp; Rối loạn hormon tuyến giáp là nguyên nhân của các bệnh lý tuyến giáp. Cho nên việc thường xuyên kiểm tra nồng độ hormon tuyến giáp là biện pháp hữu hiệu trong việc theo dõi, phát hiện sớm các bệnh lý tuyến giáp. FT3 mà một trong những hormon cần phải theo dõi thường […]",
     content: [
-      "&nbsp; Rối loạn hormon tuyến giáp là nguyên nhân của các bệnh lý tuyến giáp. Cho nên việc thường xuyên kiểm tra nồng độ hormon tuyến giáp là biện pháp hữu hiệu trong việc theo dõi, phát hiện sớm các bệnh lý tuyến giáp. FT3 mà một trong những hormon cần phải theo dõi thường [&hellip;]",
+      "&nbsp; Rối loạn hormon tuyến giáp là nguyên nhân của các bệnh lý tuyến giáp. Cho nên việc thường xuyên kiểm tra nồng độ hormon tuyến giáp là biện pháp hữu hiệu trong việc theo dõi, phát hiện sớm các bệnh lý tuyến giáp. FT3 mà một trong những hormon cần phải theo dõi thường […]",
       "Để tìm hiểu thêm về bài viết 'Xét nghiệm FT3 hữu hiệu trong chuẩn đoán bệnh lý tuyến giáp' cũng như các giải pháp chẩn đoán xét nghiệm liên quan, quý khách hàng vui lòng liên hệ trực tiếp Trí Việt Phát Medical để được tư vấn chuyên sâu.",
       "Trí Việt Phát cam kết cung cấp các hệ thống máy xét nghiệm và sinh phẩm chẩn đoán y khoa chính hãng, đáp ứng tiêu chuẩn khắt khe của Bộ Y Tế."
     ],
@@ -385,9 +385,9 @@ export const ARTICLES: Article[] = [
     alt: "Vai trò của xét nghiệm sinh hoá - Miễn dịch máu",
     category: "Tin y tế",
     readTime: "5 phút đọc",
-    excerpt: "Xét nghiệm sinh hóa máu là một xét nghiệm y học phổ biến, xét nghiệm để đo lường nồng độ hay hoạt độ của một số chất hóa học nhất định trong bệnh phẩm là máu, qua đó giúp đánh giá chức năng của một số bộ phận, cơ quan trong cơ thể như gan, [&hellip;]",
+    excerpt: "Xét nghiệm sinh hóa máu là một xét nghiệm y học phổ biến, xét nghiệm để đo lường nồng độ hay hoạt độ của một số chất hóa học nhất định trong bệnh phẩm là máu, qua đó giúp đánh giá chức năng của một số bộ phận, cơ quan trong cơ thể như gan, […]",
     content: [
-      "Xét nghiệm sinh hóa máu là một xét nghiệm y học phổ biến, xét nghiệm để đo lường nồng độ hay hoạt độ của một số chất hóa học nhất định trong bệnh phẩm là máu, qua đó giúp đánh giá chức năng của một số bộ phận, cơ quan trong cơ thể như gan, [&hellip;]",
+      "Xét nghiệm sinh hóa máu là một xét nghiệm y học phổ biến, xét nghiệm để đo lường nồng độ hay hoạt độ của một số chất hóa học nhất định trong bệnh phẩm là máu, qua đó giúp đánh giá chức năng của một số bộ phận, cơ quan trong cơ thể như gan, […]",
       "Để tìm hiểu thêm về bài viết 'Vai trò của xét nghiệm sinh hoá - Miễn dịch máu' cũng như các giải pháp chẩn đoán xét nghiệm liên quan, quý khách hàng vui lòng liên hệ trực tiếp Trí Việt Phát Medical để được tư vấn chuyên sâu.",
       "Trí Việt Phát cam kết cung cấp các hệ thống máy xét nghiệm và sinh phẩm chẩn đoán y khoa chính hãng, đáp ứng tiêu chuẩn khắt khe của Bộ Y Tế."
     ],
@@ -406,9 +406,9 @@ export const ARTICLES: Article[] = [
     alt: "Các loại xét nghiệm miễn dịch thường dùng",
     category: "Kiến thức sức khỏe",
     readTime: "5 phút đọc",
-    excerpt: "Xét nghiệm miễn dịch là 1 trong những bước thường quy cần phải làm trong quá trình khám bệnh. Việc thực hiện xét nghiệm miễn dịch sẽ giúp đánh giá đúng hơn về tình hình sức khỏe của mỗi người, từ đó có phương hướng điều trị bệnh lý thích hợp. 1. Xét nghiệm miễn [&hellip;]",
+    excerpt: "Xét nghiệm miễn dịch là 1 trong những bước thường quy cần phải làm trong quá trình khám bệnh. Việc thực hiện xét nghiệm miễn dịch sẽ giúp đánh giá đúng hơn về tình hình sức khỏe của mỗi người, từ đó có phương hướng điều trị bệnh lý thích hợp. 1. Xét nghiệm miễn […]",
     content: [
-      "Xét nghiệm miễn dịch là 1 trong những bước thường quy cần phải làm trong quá trình khám bệnh. Việc thực hiện xét nghiệm miễn dịch sẽ giúp đánh giá đúng hơn về tình hình sức khỏe của mỗi người, từ đó có phương hướng điều trị bệnh lý thích hợp. 1. Xét nghiệm miễn [&hellip;]",
+      "Xét nghiệm miễn dịch là 1 trong những bước thường quy cần phải làm trong quá trình khám bệnh. Việc thực hiện xét nghiệm miễn dịch sẽ giúp đánh giá đúng hơn về tình hình sức khỏe của mỗi người, từ đó có phương hướng điều trị bệnh lý thích hợp. 1. Xét nghiệm miễn […]",
       "Để tìm hiểu thêm về bài viết 'Các loại xét nghiệm miễn dịch thường dùng' cũng như các giải pháp chẩn đoán xét nghiệm liên quan, quý khách hàng vui lòng liên hệ trực tiếp Trí Việt Phát Medical để được tư vấn chuyên sâu.",
       "Trí Việt Phát cam kết cung cấp các hệ thống máy xét nghiệm và sinh phẩm chẩn đoán y khoa chính hãng, đáp ứng tiêu chuẩn khắt khe của Bộ Y Tế."
     ],

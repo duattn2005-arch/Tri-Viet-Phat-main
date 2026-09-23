@@ -30,7 +30,7 @@ export const CareersScreen: React.FC = () => {
   };
 
   return (
-    <div className="w-full bg-[#f7f7f7] min-h-screen">
+    <div className="w-full bg-white">
       {/* Banner */}
       <PageBanner
         title={activeJob ? activeJob.title : 'Tin tuyển dụng'}
@@ -46,7 +46,7 @@ export const CareersScreen: React.FC = () => {
         }
       />
 
-      <div className="max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-7">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-8 py-10 sm:py-12">
         {activeJob ? (
           /* Job Detail View */
           <div className="space-y-5">
@@ -62,9 +62,6 @@ export const CareersScreen: React.FC = () => {
               {/* Job Content Column */}
               <div className="lg:col-span-8 bg-white  border border-[#e5e5e5] p-6 sm:p-8 md:p-10  space-y-6">
                 <div className="border-b border-[#f2f2f2] pb-6">
-                  <span className="inline-block px-3 py-1 bg-[#f2f2f2] text-[#555555] text-[12px] font-bold  mb-2">
-                    Vị trí tuyển dụng
-                  </span>
                   <h1 className="text-[24px] sm:text-[30px] font-bold text-[#111111] leading-tight mb-3">
                     {activeJob.title}
                   </h1>
@@ -84,7 +81,7 @@ export const CareersScreen: React.FC = () => {
                     </span>
                     <span>•</span>
                     <span className="flex items-center gap-1.5">
-                      <span className="material-symbols-outlined text-[16px] text-[#059669]">
+                      <span className="material-symbols-outlined text-[16px] text-[#777777]">
                         location_on
                       </span>
                       <span>Địa điểm: <strong className="text-[#111111]">{activeJob.location}</strong></span>
@@ -99,20 +96,20 @@ export const CareersScreen: React.FC = () => {
                 />
 
                 {/* Contact for CV application */}
-                <div className="p-5  bg-[#f0fdf4] border border-[#bbf7d0] text-[#166534] space-y-2">
+                <div className="p-5 bg-[#f7f7f7] border border-[#e5e5e5] text-[#333333] space-y-2">
                   <h4 className="font-bold text-[16px] flex items-center gap-2">
-                    <span className="material-symbols-outlined text-[20px] text-[#16a34a]">
+                    <span className="material-symbols-outlined text-[20px] text-[#111111]">
                       mark_email_read
                     </span>
                     <span>Liên hệ gửi hồ sơ ứng tuyển trực tiếp:</span>
                   </h4>
                   <p className="text-[14px]">
-                    - Vui lòng gửi CV qua email: <a href="mailto:dungtriduc@gmail.com" className="font-bold underline text-[#15803d]">dungtriduc@gmail.com</a>
+                    - Vui lòng gửi CV qua email: <a href="mailto:dungtriduc@gmail.com" className="font-bold underline text-[#111111]">dungtriduc@gmail.com</a>
                   </p>
                   <p className="text-[14px]">
-                    - Điện thoại / Zalo phụ trách: <a href="tel:0979593888" className="font-bold underline text-[#15803d]">0979.593.888 (Mr. Dũng)</a>
+                    - Điện thoại / Zalo phụ trách: <a href="tel:0979593888" className="font-bold underline text-[#111111]">0979.593.888 (Mr. Dũng)</a>
                   </p>
-                  <p className="text-[13px] text-[#166534]/80">
+                  <p className="text-[13px] text-[#555555]">
                     - Tiêu đề ứng tuyển: <strong>CV_Vị trí ứng tuyển_Họ tên</strong>
                   </p>
                 </div>
@@ -206,11 +203,9 @@ export const CareersScreen: React.FC = () => {
               {/* Other Jobs Sidebar */}
               <div className="lg:col-span-4 space-y-6">
                 <div className="bg-white  border border-[#e5e5e5] overflow-hidden ">
-                  <div className="border-b-2 border-[#e11d2a] bg-white">
-                    <span className="inline-block bg-[#111111] text-white text-[15px] font-bold px-4 py-2  tracking-wide">
-                      Các vị trí mới nhất
-                    </span>
-                  </div>
+                  <h3 className="px-4 py-3 border-b border-[#e5e5e5] text-[16px] font-bold text-[#111111]">
+                    Các vị trí đang tuyển
+                  </h3>
                   <div className="p-4 space-y-3 divide-y divide-[#f2f2f2]">
                     {REAL_JOBS.map((j) => (
                       <div
@@ -249,75 +244,51 @@ export const CareersScreen: React.FC = () => {
             </div>
           </div>
         ) : (
-          /* Jobs List Grid - Exactly 100% clone of https://thietbiytegroup.com/tin-tuyen-dung/ */
-          <div className="space-y-5">
-            <div className="text-center max-w-2xl mx-auto space-y-1.5">
-              <h2 className="text-[22px] sm:text-[26px] font-bold text-[#111111]">
-                Cơ hội nghề nghiệp tại Trí Việt Phát
-              </h2>
-              <p className="text-[13.5px] text-[#777777]">
-                Gia nhập đội ngũ nhân sự chuyên nghiệp, môi trường văn minh, chế độ đãi ngộ hấp dẫn và cơ hội phát triển sự nghiệp lâu dài.
-              </p>
-            </div>
+          /* Jobs list — plain rows, aligned to the page grid */
+          <div>
+            <p className="max-w-2xl text-[15px] text-[#555555] leading-relaxed">
+              Gia nhập đội ngũ kỹ sư và kinh doanh thiết bị y tế của Trí Việt Phát. Hiện có{' '}
+              <strong className="text-[#111111]">{REAL_JOBS.length} vị trí</strong> đang tuyển.
+            </p>
 
-            {/* Exact list_tuyendung layout */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <ul className="mt-8 border-t border-[#111111]">
               {REAL_JOBS.map((job) => (
-                <div
-                  key={job.id}
-                  className="bg-white  border border-[#e5e5e5] overflow-hidden   transition-all duration-300 flex flex-col group"
-                >
-                  {/* Thumbnail figure */}
-                  <div
+                <li key={job.id} className="border-b border-[#e5e5e5]">
+                  <button
+                    type="button"
                     onClick={() => handleSelectJob(job)}
-                    className="w-full h-[200px] overflow-hidden bg-[#f7f7f7] cursor-pointer relative"
+                    className="group w-full text-left py-6 sm:py-7 grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-8 items-start cursor-pointer"
                   >
-                    <img
-                      src={job.image}
-                      alt={job.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      loading="lazy"
-                    />
-                    <div className="absolute top-3 right-3 px-2.5 py-1  bg-[#111111] text-white text-[11px] font-bold ">
-                      {job.quantity}
-                    </div>
-                  </div>
-
-                  {/* Post Meta */}
-                  <div className="p-5 flex-1 flex flex-col justify-between">
-                    <div>
-                      <h3
-                        onClick={() => handleSelectJob(job)}
-                        className="text-[16px] sm:text-[17px] font-bold text-[#111111] hover:text-[#000000] transition-colors leading-snug cursor-pointer mb-2 line-clamp-2"
-                      >
+                    <div className="md:col-span-4">
+                      <h3 className="text-[18px] sm:text-[19px] font-bold text-[#111111] leading-snug group-hover:underline underline-offset-4">
                         {job.title}
                       </h3>
-
-                      <p className="text-[13px] text-[#777777] line-clamp-3 leading-relaxed mb-4">
-                        {job.excerpt}
+                      <p className="mt-2 text-[14px] text-[#777777]">
+                        {job.quantity} · {job.location} · {job.date}
                       </p>
                     </div>
-
-                    <div className="pt-3 border-t border-[#f2f2f2] flex items-center justify-between">
-                      <div className="flex items-center gap-1.5 text-[12px] text-[#999999]">
-                        <span className="material-symbols-outlined text-[15px] text-[#777777]">
-                          calendar_today
-                        </span>
-                        <span>{job.date}</span>
-                      </div>
-
-                      <button
-                        onClick={() => handleSelectJob(job)}
-                        className="inline-flex items-center gap-1 text-[#111111] hover:text-[#000000] text-[13px] font-bold transition-colors cursor-pointer group-hover:translate-x-0.5"
-                      >
-                        <span className="material-symbols-outlined text-[16px]">link</span>
-                        <span>Xem chi tiết</span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                    <p className="md:col-span-6 text-[14px] sm:text-[15px] text-[#555555] leading-relaxed line-clamp-2">
+                      {job.excerpt}
+                    </p>
+                    <span className="md:col-span-2 md:text-right text-[14px] font-semibold text-[#111111] whitespace-nowrap">
+                      Xem chi tiết <span aria-hidden="true">→</span>
+                    </span>
+                  </button>
+                </li>
               ))}
-            </div>
+            </ul>
+
+            <p className="mt-8 text-[14px] text-[#555555]">
+              Gửi CV về{' '}
+              <a href="mailto:dungtriduc@gmail.com" className="font-semibold text-[#111111] underline underline-offset-4">
+                dungtriduc@gmail.com
+              </a>{' '}
+              hoặc gọi{' '}
+              <a href="tel:0979593888" className="font-semibold text-[#111111] underline underline-offset-4">
+                0979.593.888
+              </a>{' '}
+              (Mr. Dũng).
+            </p>
           </div>
         )}
       </div>

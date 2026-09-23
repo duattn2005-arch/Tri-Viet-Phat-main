@@ -34,7 +34,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
         breadcrumbs={[{ label: 'Trang chủ' }, { label: 'Liên hệ' }]}
       />
 
-      <div className="max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-8 py-6 sm:py-8 space-y-6">
         {/* Slogan */}
         <div className="text-center max-w-3xl mx-auto">
           <p className="text-[15px] sm:text-[16.5px] text-[#111111] font-medium leading-relaxed italic">
@@ -74,11 +74,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
           {/* Left: Contact Form */}
           <div className="lg:col-span-6 bg-white  border border-[#e5e5e5] p-5 sm:p-6  flex flex-col justify-between">
             <div>
-              <div className="border-b-2 border-[#e11d2a] mb-5">
-                <span className="inline-block bg-[#111111] text-white text-[14.5px] font-bold px-3.5 py-1.5  tracking-wide">
-                  Liên hệ gửi yêu cầu
-                </span>
-              </div>
+              <h3 className="pb-3 border-b border-[#e5e5e5] text-[18px] font-bold text-[#111111] mb-5">Liên hệ gửi yêu cầu</h3>
 
               {submitted ? (
                 <div className="p-5  bg-[#f2f2f2] border border-[#e5e5e5] text-[#111111] space-y-2">
@@ -165,11 +161,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
           {/* Right: Company Info - Exactly 100% clone of thietbiytegroup.com */}
           <div className="lg:col-span-6 bg-white  border border-[#e5e5e5] p-5 sm:p-6  flex flex-col justify-between">
             <div className="space-y-4">
-              <div className="border-b-2 border-[#e11d2a] pb-0">
-                <span className="inline-block bg-[#111111] text-white text-[14.5px] font-bold px-3.5 py-1.5  tracking-wide">
-                  Thông tin công ty
-                </span>
-              </div>
+              <h3 className="pb-3 border-b border-[#e5e5e5] text-[18px] font-bold text-[#111111]">Thông tin công ty</h3>
 
               <div>
                 <h3 className="text-[19px] font-bold text-[#111111] leading-snug mb-1.5">
