@@ -55,7 +55,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-2xl max-w-5xl w-full max-h-[92vh] overflow-y-auto shadow-2xl relative border border-[#e2e8f0]"
+        className="bg-white rounded-lg max-w-5xl w-full max-h-[92vh] overflow-y-auto shadow-2xl relative border border-[#e2e8f0]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
@@ -116,7 +116,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
               </div>
 
               {/* Red Bordered Benefits Box - Exactly 100% as in screenshot */}
-              <div className="relative mt-6 pt-5 pb-4 px-4 sm:px-5 rounded-2xl border-2 border-[#d32f2f] bg-white">
+              <div className="relative mt-6 pt-5 pb-4 px-4 sm:px-5 rounded-lg border-2 border-[#d32f2f] bg-white">
                 <div className="absolute -top-4 left-6 bg-[#d32f2f] text-white text-[12px] sm:text-[13px] font-bold py-1.5 px-4 rounded-full flex items-center gap-2 shadow-sm">
                   <span className="material-symbols-outlined text-[16px] text-white">check_circle</span>
                   <span className="tracking-wide">LỢI ÍCH KHI MUA HÀNG THIẾT BỊ Y TẾ</span>
@@ -147,7 +147,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             </div>
 
             {/* Right: Registration Consultation Form - Exactly as in screenshot */}
-            <div className="lg:col-span-3 bg-[#0088ff] text-white p-5 rounded-2xl shadow-md">
+            <div className="lg:col-span-3 bg-[#0088ff] text-white p-5 rounded-lg shadow-md">
               <h3 className="text-center font-bold text-[16px] mb-3.5 tracking-tight text-white">
                 Đăng ký nhận tư vấn
               </h3>
@@ -216,7 +216,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
                   <button
                     type="submit"
-                    className="w-full mt-2 bg-[#e60000] hover:bg-[#cc0000] active:scale-[0.98] text-white font-bold text-[13px] py-2.5 px-4 rounded-xl shadow-md transition-all cursor-pointer uppercase tracking-wider"
+                    className="w-full mt-2 bg-[#e60000] hover:bg-[#cc0000] active:scale-[0.98] text-white font-bold text-[13px] py-2.5 px-4 rounded-xl shadow-md transition-all cursor-pointer"
                   >
                     GỬI YÊU CẦU
                   </button>
@@ -230,7 +230,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         <div className="p-5 sm:p-8 bg-white">
           {/* Red Tab Header: CHI TIẾT SẢN PHẨM */}
           <div className="border-b border-[#e2e8f0] mb-6">
-            <div className="inline-block bg-[#d32f2f] text-white font-bold text-[14px] px-6 py-2 rounded-t-lg uppercase tracking-wider">
+            <div className="inline-block bg-[#d32f2f] text-white font-bold text-[14px] px-6 py-2 rounded-t-lg">
               CHI TIẾT SẢN PHẨM
             </div>
           </div>

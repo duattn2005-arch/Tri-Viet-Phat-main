@@ -2,58 +2,45 @@ import React from 'react';
 
 interface PageBannerProps {
   title: string;
-  backgroundImage: string;
+  /** Kept for API compatibility; the flat page header no longer shows a photo. */
+  backgroundImage?: string;
   breadcrumbs: {
     label: string;
     onClick?: () => void;
   }[];
 }
 
-export const PageBanner: React.FC<PageBannerProps> = ({
-  title,
-  backgroundImage,
-  breadcrumbs,
-}) => {
+export const PageBanner: React.FC<PageBannerProps> = ({ title, breadcrumbs }) => {
   return (
-    <div
-      className="relative w-full py-5 sm:py-8 md:py-10 bg-cover bg-center flex items-center justify-center text-center overflow-hidden"
-      style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.62)), url('${backgroundImage}')`,
-      }}
-    >
-      <div className="relative z-10 max-w-4xl mx-auto px-3 sm:px-4 flex flex-col items-center">
-        {/* Title */}
-        <h1 className="text-[19px] sm:text-[25px] md:text-[30px] font-extrabold uppercase tracking-wide text-white drop-shadow-md mb-2 leading-tight">
-          {title}
-        </h1>
-
-        {/* Breadcrumb pill exactly as thietbiytegroup.com */}
+    <div className="w-full bg-[#f8fafc] border-b border-[#e2e8f0]">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-8 py-8 sm:py-10">
         <nav aria-label="Breadcrumb">
-          <ol className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-white/95 text-[#334155] text-[11.5px] sm:text-[13px] font-medium shadow-md max-w-[92vw] overflow-x-auto no-scrollbar">
+          <ol className="flex items-center gap-2 text-[13px] text-[#64748b] overflow-x-auto no-scrollbar">
             {breadcrumbs.map((item, idx) => (
               <React.Fragment key={idx}>
-                {idx > 0 && <span className="text-[#94a3b8] text-[10px] sm:text-[11px]">/</span>}
+                {idx > 0 && <li aria-hidden="true" className="text-[#cbd5e1]">/</li>}
                 <li className="whitespace-nowrap shrink-0">
                   {item.onClick ? (
                     <button
                       onClick={item.onClick}
-                      className="hover:text-[#bb0112] transition-colors cursor-pointer flex items-center gap-1"
+                      className="hover:text-[#006194] transition-colors cursor-pointer"
                     >
-                      {idx === 0 && (
-                        <span className="material-symbols-outlined text-[15px] text-[#006194]">
-                          home
-                        </span>
-                      )}
-                      <span>{item.label}</span>
+                      {item.label}
                     </button>
                   ) : (
-                    <span className="text-[#bb0112] font-semibold">{item.label}</span>
+                    <span className="text-[#0f172a]" aria-current="page">
+                      {item.label}
+                    </span>
                   )}
                 </li>
               </React.Fragment>
             ))}
           </ol>
         </nav>
+
+        <h1 className="mt-3 text-[26px] sm:text-[34px] font-bold text-[#0f172a] tracking-tight leading-tight [text-wrap:balance]">
+          {title}
+        </h1>
       </div>
     </div>
   );

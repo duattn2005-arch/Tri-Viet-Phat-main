@@ -52,7 +52,7 @@ export const CareersScreen: React.FC = () => {
           <div className="space-y-5">
             <button
               onClick={() => setActiveJob(null)}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white border border-[#e2e8f0] text-[#006194] hover:text-[#bb0112] hover:border-[#bb0112] text-[13px] font-bold shadow-xs transition-colors cursor-pointer"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white border border-[#e2e8f0] text-[#006194] hover:text-[#004a73] hover:border-[#006194] text-[13px] font-bold shadow-xs transition-colors cursor-pointer"
             >
               <span className="material-symbols-outlined text-[17px]">arrow_back</span>
               <span>Quay lại danh sách tin tuyển dụng</span>
@@ -60,17 +60,17 @@ export const CareersScreen: React.FC = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               {/* Job Content Column */}
-              <div className="lg:col-span-8 bg-white rounded-2xl border border-[#e2e8f0] p-6 sm:p-8 md:p-10 shadow-xs space-y-6">
+              <div className="lg:col-span-8 bg-white rounded-lg border border-[#e2e8f0] p-6 sm:p-8 md:p-10 shadow-xs space-y-6">
                 <div className="border-b border-[#f1f5f9] pb-6">
-                  <span className="inline-block px-3 py-1 bg-[#fee2e2] text-[#bb0112] text-[12px] font-bold rounded-md uppercase mb-2">
+                  <span className="inline-block px-3 py-1 bg-[#f1f5f9] text-[#475569] text-[12px] font-bold rounded-md mb-2">
                     Vị trí tuyển dụng
                   </span>
-                  <h1 className="text-[24px] sm:text-[30px] font-extrabold text-[#0f172a] leading-tight mb-3">
+                  <h1 className="text-[24px] sm:text-[30px] font-bold text-[#0f172a] leading-tight mb-3">
                     {activeJob.title}
                   </h1>
                   <div className="flex flex-wrap items-center gap-4 text-[13px] text-[#64748b]">
                     <span className="flex items-center gap-1.5">
-                      <span className="material-symbols-outlined text-[16px] text-[#bb0112]">
+                      <span className="material-symbols-outlined text-[16px] text-[#64748b]">
                         calendar_today
                       </span>
                       <span>Ngày đăng: {activeJob.date}</span>
@@ -194,7 +194,7 @@ export const CareersScreen: React.FC = () => {
 
                       <button
                         type="submit"
-                        className="px-6 py-2.5 rounded-xl bg-[#bb0112] hover:bg-[#99000e] text-white font-bold text-[14px] shadow-sm transition-colors cursor-pointer"
+                        className="px-6 py-2.5 rounded-xl bg-[#006194] hover:bg-[#004a73] text-white font-bold text-[14px] shadow-sm transition-colors cursor-pointer"
                       >
                         Nộp hồ sơ ngay
                       </button>
@@ -205,9 +205,9 @@ export const CareersScreen: React.FC = () => {
 
               {/* Other Jobs Sidebar */}
               <div className="lg:col-span-4 space-y-6">
-                <div className="bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden shadow-xs">
+                <div className="bg-white rounded-lg border border-[#e2e8f0] overflow-hidden shadow-xs">
                   <div className="border-b-2 border-[#D7040F] bg-white">
-                    <span className="inline-block bg-[#D7040F] text-white text-[15px] font-bold uppercase px-4 py-2 rounded-tr-[16px] tracking-wide">
+                    <span className="inline-block bg-[#006194] text-white text-[15px] font-bold px-4 py-2 rounded-tr-[16px] tracking-wide">
                       Các vị trí mới nhất
                     </span>
                   </div>
@@ -220,7 +220,7 @@ export const CareersScreen: React.FC = () => {
                           activeJob.id === j.id ? 'opacity-70 pointer-events-none' : ''
                         }`}
                       >
-                        <h4 className="text-[14px] font-bold text-[#1e293b] group-hover:text-[#bb0112] transition-colors leading-snug">
+                        <h4 className="text-[14px] font-bold text-[#1e293b] group-hover:text-[#004a73] transition-colors leading-snug">
                           {j.title}
                         </h4>
                         <div className="flex items-center gap-2 text-[12px] text-[#64748b] mt-1">
@@ -234,8 +234,8 @@ export const CareersScreen: React.FC = () => {
                 </div>
 
                 {/* Company Support Card */}
-                <div className="bg-white rounded-2xl border border-[#e2e8f0] p-5 shadow-xs text-[13.5px] space-y-3">
-                  <div className="font-bold text-[#0f172a] text-[15px] uppercase border-b border-[#f1f5f9] pb-2">
+                <div className="bg-white rounded-lg border border-[#e2e8f0] p-5 shadow-xs text-[13.5px] space-y-3">
+                  <div className="font-bold text-[#0f172a] text-[15px] border-b border-[#f1f5f9] pb-2">
                     Công ty Thiết Bị Y Tế Trí Việt Phát
                   </div>
                   <p className="text-[#64748b]">
@@ -252,7 +252,7 @@ export const CareersScreen: React.FC = () => {
           /* Jobs List Grid - Exactly 100% clone of https://thietbiytegroup.com/tin-tuyen-dung/ */
           <div className="space-y-5">
             <div className="text-center max-w-2xl mx-auto space-y-1.5">
-              <h2 className="text-[22px] sm:text-[26px] font-extrabold text-[#0f172a] uppercase">
+              <h2 className="text-[22px] sm:text-[26px] font-bold text-[#0f172a]">
                 Cơ hội nghề nghiệp tại Trí Việt Phát
               </h2>
               <p className="text-[13.5px] text-[#64748b]">
@@ -265,7 +265,7 @@ export const CareersScreen: React.FC = () => {
               {REAL_JOBS.map((job) => (
                 <div
                   key={job.id}
-                  className="bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden shadow-xs hover:shadow-md transition-all duration-300 flex flex-col group"
+                  className="bg-white rounded-lg border border-[#e2e8f0] overflow-hidden shadow-xs hover:shadow-md transition-all duration-300 flex flex-col group"
                 >
                   {/* Thumbnail figure */}
                   <div
@@ -278,7 +278,7 @@ export const CareersScreen: React.FC = () => {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       loading="lazy"
                     />
-                    <div className="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-[#bb0112] text-white text-[11px] font-bold shadow-xs">
+                    <div className="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-[#006194] text-white text-[11px] font-bold shadow-xs">
                       {job.quantity}
                     </div>
                   </div>
@@ -288,7 +288,7 @@ export const CareersScreen: React.FC = () => {
                     <div>
                       <h3
                         onClick={() => handleSelectJob(job)}
-                        className="text-[16px] sm:text-[17px] font-bold text-[#006194] hover:text-[#bb0112] transition-colors leading-snug cursor-pointer mb-2 line-clamp-2"
+                        className="text-[16px] sm:text-[17px] font-bold text-[#006194] hover:text-[#004a73] transition-colors leading-snug cursor-pointer mb-2 line-clamp-2"
                       >
                         {job.title}
                       </h3>
@@ -300,7 +300,7 @@ export const CareersScreen: React.FC = () => {
 
                     <div className="pt-3 border-t border-[#f1f5f9] flex items-center justify-between">
                       <div className="flex items-center gap-1.5 text-[12px] text-[#94a3b8]">
-                        <span className="material-symbols-outlined text-[15px] text-[#bb0112]">
+                        <span className="material-symbols-outlined text-[15px] text-[#64748b]">
                           calendar_today
                         </span>
                         <span>{job.date}</span>
@@ -308,7 +308,7 @@ export const CareersScreen: React.FC = () => {
 
                       <button
                         onClick={() => handleSelectJob(job)}
-                        className="inline-flex items-center gap-1 text-[#006194] hover:text-[#bb0112] text-[13px] font-bold transition-colors cursor-pointer group-hover:translate-x-0.5"
+                        className="inline-flex items-center gap-1 text-[#006194] hover:text-[#004a73] text-[13px] font-bold transition-colors cursor-pointer group-hover:translate-x-0.5"
                       >
                         <span className="material-symbols-outlined text-[16px]">link</span>
                         <span>Xem chi tiết</span>

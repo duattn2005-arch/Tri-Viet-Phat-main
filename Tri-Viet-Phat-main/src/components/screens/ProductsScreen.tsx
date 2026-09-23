@@ -48,9 +48,9 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({
 
   return (
     <div className="w-full bg-medical-grid-3d py-4 sm:py-6 lg:py-7">
-      <div className="max-w-[1720px] mx-auto px-4 sm:px-8 xl:px-12 space-y-4 sm:space-y-5">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-8 xl:px-12 space-y-4 sm:space-y-5">
         {/* Filter Bar & Search */}
-        <div className="card-3d bg-white p-4 sm:p-5 rounded-2xl space-y-3.5">
+        <div className="card-3d bg-white p-4 sm:p-5 rounded-lg space-y-3.5">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             {/* Search Input */}
             <div className="relative w-full sm:w-80">
@@ -150,7 +150,7 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({
 
         {/* Products Grid */}
         {filteredProducts.length === 0 ? (
-          <div className="bg-white rounded-2xl p-12 text-center border border-[#e2e8f0] space-y-4">
+          <div className="bg-white rounded-lg p-12 text-center border border-[#e2e8f0] space-y-4">
             <span className="material-symbols-outlined text-[48px] text-[#bfc7d2]">
               manage_search
             </span>
@@ -175,12 +175,12 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({
             {filteredProducts.map((prod) => (
               <div
                 key={prod.id}
-                className="flex flex-col h-full card-3d rounded-2xl overflow-hidden group"
+                className="flex flex-col h-full card-3d rounded-lg overflow-hidden group"
               >
                 <div className="relative bg-linear-to-b from-[#f8fafc] to-[#f1f5f9] p-3 sm:p-4 flex items-center justify-center aspect-[4/3] min-h-0 overflow-hidden shrink-0 border-b border-[#e2e8f0]/80">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,97,148,0.04),transparent_70%)] pointer-events-none"></div>
                   <img
-                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 drop-shadow-md"
+                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                     alt={prod.alt}
                     src={prod.image}
                   />
@@ -228,7 +228,7 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({
         )}
 
         {/* Bottom Contact Strip with 3D Bevel */}
-        <div className="p-6 sm:p-8 rounded-3xl bg-linear-to-r from-[#003d66] via-[#00517d] to-[#003865] text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-[0_12px_32px_rgba(0,60,120,0.25),inset_0_1px_1px_rgba(255,255,255,0.25)] border border-[#006194]/40 mt-8">
+        <div className="p-6 sm:p-8 rounded-xl bg-linear-to-r from-[#003d66] via-[#00517d] to-[#003865] text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-[0_12px_32px_rgba(0,60,120,0.25),inset_0_1px_1px_rgba(255,255,255,0.25)] border border-[#006194]/40 mt-8">
           <div className="space-y-1 text-center sm:text-left">
             <h3 className="text-[20px] font-bold text-white">Cần cấu hình hoặc bảng báo giá dự thầu?</h3>
             <p className="text-[14px] text-[#cce5ff]">
@@ -237,7 +237,7 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({
           </div>
           <button
             onClick={() => onOpenConsultation()}
-            className="px-6 py-3 rounded-xl bg-[#d91828] hover:bg-[#b91c1c] text-white font-bold text-[14px] transition-all shadow cursor-pointer shrink-0 inline-flex items-center gap-2"
+            className="px-6 py-3 rounded-xl btn-primary text-white font-bold text-[14px] cursor-pointer shrink-0 inline-flex items-center gap-2"
           >
             <span className="material-symbols-outlined text-[20px]">request_quote</span>
             <span>Yêu cầu tư vấn & Báo giá</span>

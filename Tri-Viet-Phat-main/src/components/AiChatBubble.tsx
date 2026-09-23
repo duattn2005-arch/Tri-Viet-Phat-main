@@ -237,7 +237,7 @@ export const AiChatBubble: React.FC<AiChatBubbleProps> = ({
       {/* Floating Chat Dialog Window */}
       {isOpen && (
         <div
-          className="fixed bottom-6 right-4 sm:right-6 z-50 w-[94vw] sm:w-[440px] md:w-[450px] h-[600px] max-h-[88vh] bg-white rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.25)] border border-[#bae6fd]/80 flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200"
+          className="fixed bottom-6 right-4 sm:right-6 z-50 w-[94vw] sm:w-[440px] md:w-[450px] h-[600px] max-h-[88vh] bg-white rounded-xl shadow-[0_20px_60px_rgba(0,0,0,0.25)] border border-[#bae6fd]/80 flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200"
           role="dialog"
           aria-label="Cửa sổ Trợ lý AI & Liên hệ Trí Việt Phát"
         >
@@ -299,7 +299,7 @@ export const AiChatBubble: React.FC<AiChatBubbleProps> = ({
                   )}
                   <div>
                     <div
-                      className={`px-3.5 py-2.5 rounded-2xl text-[13px] leading-relaxed shadow-xs ${
+                      className={`px-3.5 py-2.5 rounded-lg text-[13px] leading-relaxed shadow-xs ${
                         isUser
                           ? 'bg-[#006194] text-white rounded-br-xs'
                           : 'bg-white text-[#1e293b] border border-[#e2e8f0] rounded-bl-xs'
@@ -325,7 +325,7 @@ export const AiChatBubble: React.FC<AiChatBubbleProps> = ({
                 <div className="w-7 h-7 rounded-full bg-[#006194] text-white flex items-center justify-center shrink-0 text-[14px]">
                   <span className="material-symbols-outlined text-[16px]">smart_toy</span>
                 </div>
-                <div className="bg-white border border-[#e2e8f0] px-4 py-3 rounded-2xl rounded-bl-xs shadow-xs flex items-center gap-1.5">
+                <div className="bg-white border border-[#e2e8f0] px-4 py-3 rounded-lg rounded-bl-xs shadow-xs flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-[#006194] animate-bounce"></span>
                   <span
                     className="w-2 h-2 rounded-full bg-[#0284c7] animate-bounce"
@@ -363,7 +363,7 @@ export const AiChatBubble: React.FC<AiChatBubbleProps> = ({
 
           {/* Chat Input Bar */}
           <div className="p-3 bg-white border-t border-[#e2e8f0] shrink-0">
-            <div className="flex items-center gap-2 bg-[#f8fafc] rounded-2xl border border-[#e2e8f0] focus-within:border-[#006194] focus-within:ring-2 focus-within:ring-[#006194]/20 px-3 py-1.5 transition-all">
+            <div className="flex items-center gap-2 bg-[#f8fafc] rounded-lg border border-[#e2e8f0] focus-within:border-[#006194] focus-within:ring-2 focus-within:ring-[#006194]/20 px-3 py-1.5 transition-all">
               <input
                 ref={inputRef}
                 type="text"

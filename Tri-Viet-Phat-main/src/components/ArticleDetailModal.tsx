@@ -18,7 +18,7 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200">
       <div
-        className="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative border border-[#e2e8f0]"
+        className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative border border-[#e2e8f0]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
@@ -63,7 +63,7 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
           {/* Key points box */}
           {article.keyPoints && article.keyPoints.length > 0 && (
             <div className="p-4 rounded-xl bg-[#e0f2fe]/60 border border-[#cce5ff] space-y-2">
-              <h4 className="text-[14px] font-bold text-[#006194] uppercase tracking-wide flex items-center gap-2">
+              <h4 className="text-[14px] font-bold text-[#006194] flex items-center gap-2">
                 <span className="material-symbols-outlined text-[18px]">verified</span>
                 <span>Điểm cốt lõi bài viết</span>
               </h4>
@@ -109,7 +109,7 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
                 onClose();
                 onOpenConsultation();
               }}
-              className="px-4 py-2 rounded-xl bg-[#bb0112] hover:bg-[#b91c1c] text-white text-[13px] font-bold transition-colors shadow-sm"
+              className="px-4 py-2 rounded-xl bg-[#006194] hover:bg-[#b91c1c] text-white text-[13px] font-bold transition-colors shadow-sm"
             >
               Liên hệ chuyên gia
             </button>

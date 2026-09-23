@@ -66,169 +66,93 @@ body {
   scrollbar-width: none;
 }
 
-/* 3D Visual Depth & Tactile Lighting Classes */
+/* ---------------------------------------------------------------------------
+ * Design system — restrained, flat, B2B medical.
+ * One action colour (brand blue #006194). Red is reserved for the logo,
+ * required-field markers and errors. No gradients, glows or lift-on-hover.
+ * The legacy class names (card-3d, btn-3d-*) are kept so every screen that
+ * still uses them inherits the flat look.
+ * ------------------------------------------------------------------------- */
+
 .bg-medical-grid-3d {
   background-color: #f8fafc;
-  background-image: 
-    radial-gradient(circle at 50% 0%, rgba(0, 97, 148, 0.07) 0%, transparent 65%),
-    linear-gradient(to right, rgba(0, 97, 148, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 97, 148, 0.04) 1px, transparent 1px);
-  background-size: 100% 100%, 32px 32px, 32px 32px;
 }
 
 .bg-hero-3d-scene {
-  background: 
-    radial-gradient(ellipse 90% 60% at 85% 20%, rgba(0, 97, 148, 0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 50% at 10% 80%, rgba(225, 29, 42, 0.06) 0%, transparent 50%),
-    linear-gradient(135deg, #f0f7fc 0%, #ffffff 50%, #f8faff 100%);
-}
-
-.card-3d {
-  position: relative;
   background-color: #ffffff;
-  border: 1px solid rgba(203, 213, 225, 0.7);
-  box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.95),
-    0 1px 3px rgba(15, 23, 42, 0.04),
-    0 6px 16px -2px rgba(15, 23, 42, 0.05),
-    0 16px 32px -6px rgba(0, 97, 148, 0.06);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.card-3d:hover {
-  transform: translateY(-5px);
-  border-color: rgba(0, 97, 148, 0.35);
-  box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 1),
-    0 4px 8px rgba(0, 97, 148, 0.05),
-    0 14px 28px -4px rgba(0, 97, 148, 0.14),
-    0 28px 50px -8px rgba(15, 23, 42, 0.12);
-}
-
+.card-3d,
 .card-3d-subtle {
   position: relative;
   background-color: #ffffff;
-  border: 1px solid rgba(226, 232, 240, 0.9);
-  box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    0 1px 3px rgba(15, 23, 42, 0.04),
-    0 6px 16px -2px rgba(15, 23, 42, 0.05);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid #e2e8f0;
+  box-shadow: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
+.card-3d:hover,
 .card-3d-subtle:hover {
-  transform: translateY(-2.5px);
-  border-color: rgba(0, 97, 148, 0.3);
-  box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 1),
-    0 3px 6px rgba(15, 23, 42, 0.05),
-    0 12px 24px -3px rgba(0, 97, 148, 0.09);
+  border-color: #cbd5e1;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 12px rgba(15, 23, 42, 0.04);
 }
 
 .badge-3d {
-  box-shadow: 
-    inset 0 1px 1px rgba(255, 255, 255, 0.6),
-    0 2px 6px rgba(0, 0, 0, 0.06);
+  box-shadow: none;
 }
 
-@keyframes floatSlow {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-@keyframes pulseSlow {
-  0%, 100% {
-    opacity: 0.5;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.85;
-    transform: scale(1.05);
-  }
-}
-
-.animate-float-slow {
-  animation: floatSlow 5s ease-in-out infinite;
-}
-
-.animate-pulse-slow {
-  animation: pulseSlow 4s ease-in-out infinite;
-}
-
-.btn-3d-red {
-  background: linear-gradient(180deg, #e11d48 0%, #bb0112 100%);
-  color: #ffffff;
-  box-shadow: 
-    0 1px 0 rgba(255, 255, 255, 0.3) inset,
-    0 4px 12px rgba(187, 1, 18, 0.35),
-    0 2px 4px rgba(187, 1, 18, 0.2);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.btn-3d-red:hover {
-  background: linear-gradient(180deg, #f43f5e 0%, #c80d1e 100%);
-  transform: translateY(-1px);
-  box-shadow: 
-    0 1px 0 rgba(255, 255, 255, 0.4) inset,
-    0 6px 18px rgba(187, 1, 18, 0.42),
-    0 3px 6px rgba(187, 1, 18, 0.25);
-}
-
-.btn-3d-red:active {
-  transform: translateY(1px);
-  box-shadow: 
-    0 1px 2px rgba(0, 0, 0, 0.2) inset,
-    0 2px 6px rgba(187, 1, 18, 0.3);
-}
-
+/* Primary action: solid brand blue. Both legacy names map here so red
+   buttons no longer compete with blue ones. */
+.btn-primary,
+.btn-3d-red,
 .btn-3d-blue {
-  background: linear-gradient(180deg, #0284c7 0%, #006194 100%);
+  background-color: #006194;
   color: #ffffff;
-  box-shadow: 
-    0 1px 0 rgba(255, 255, 255, 0.3) inset,
-    0 4px 12px rgba(0, 97, 148, 0.35),
-    0 2px 4px rgba(0, 97, 148, 0.2);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: none;
+  transition: background-color 0.15s ease;
 }
 
+.btn-primary:hover,
+.btn-3d-red:hover,
 .btn-3d-blue:hover {
-  background: linear-gradient(180deg, #0ea5e9 0%, #006fa8 100%);
-  transform: translateY(-1px);
-  box-shadow: 
-    0 1px 0 rgba(255, 255, 255, 0.4) inset,
-    0 6px 18px rgba(0, 97, 148, 0.42),
-    0 3px 6px rgba(0, 97, 148, 0.25);
+  background-color: #004a73;
 }
 
-.btn-3d-blue:active {
-  transform: translateY(1px);
-  box-shadow: 
-    0 1px 2px rgba(0, 0, 0, 0.2) inset,
-    0 2px 6px rgba(0, 97, 148, 0.3);
+.btn-primary:focus-visible,
+.btn-3d-red:focus-visible,
+.btn-3d-blue:focus-visible,
+.btn-secondary:focus-visible {
+  outline: 2px solid #006194;
+  outline-offset: 2px;
+}
+
+/* Secondary action: quiet outline. */
+.btn-secondary {
+  background-color: #ffffff;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-secondary:hover {
+  border-color: #006194;
+  color: #006194;
 }
 
 .glass-3d-dark {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 
-    inset 0 1px 1px rgba(255, 255, 255, 0.15),
-    0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .glass-3d-light {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 
-    inset 0 1px 1px rgba(255, 255, 255, 0.9),
-    0 8px 28px rgba(15, 23, 42, 0.08);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+}
+
+/* Kept as no-ops: decorative motion reads as gimmicky on a B2B medical site. */
+.animate-float-slow,
+.animate-pulse-slow {
+  animation: none;
 }
 
 /* Material symbols font icon alignment */

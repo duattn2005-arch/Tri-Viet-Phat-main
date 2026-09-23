@@ -23,7 +23,7 @@ export const ArticleFullView: React.FC<ArticleFullViewProps> = ({
       <div className="mb-5 flex items-center justify-between">
         <button
           onClick={onBack}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-[#e2e8f0] text-[#006194] hover:text-[#bb0112] hover:border-[#bb0112] text-[13.5px] font-bold shadow-xs transition-colors cursor-pointer"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-[#e2e8f0] text-[#006194] hover:text-[#004a73] hover:border-[#006194] text-[13.5px] font-bold shadow-xs transition-colors cursor-pointer"
         >
           <span className="material-symbols-outlined text-[18px]">arrow_back</span>
           <span>Quay lại danh sách {categoryTitle.toLowerCase()}</span>
@@ -36,15 +36,15 @@ export const ArticleFullView: React.FC<ArticleFullViewProps> = ({
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Main Article Content */}
-        <article className="lg:col-span-8 xl:col-span-9 bg-white rounded-2xl border border-[#e2e8f0] p-6 sm:p-8 md:p-10 shadow-xs">
+        <article className="lg:col-span-8 xl:col-span-9 bg-white rounded-lg border border-[#e2e8f0] p-6 sm:p-8 md:p-10 shadow-xs">
           {/* Header */}
           <div className="border-b border-[#f1f5f9] pb-6 mb-6">
-            <h1 className="text-[22px] sm:text-[28px] md:text-[32px] font-extrabold text-[#0f172a] leading-tight mb-4">
+            <h1 className="text-[22px] sm:text-[28px] md:text-[32px] font-bold text-[#0f172a] leading-tight mb-4">
               {article.title}
             </h1>
             <div className="flex flex-wrap items-center gap-4 text-[13px] text-[#64748b]">
               <span className="flex items-center gap-1.5">
-                <span className="material-symbols-outlined text-[16px] text-[#bb0112]">
+                <span className="material-symbols-outlined text-[16px] text-[#64748b]">
                   calendar_today
                 </span>
                 <span>{article.date}</span>
@@ -87,8 +87,8 @@ export const ArticleFullView: React.FC<ArticleFullViewProps> = ({
           {/* Related Articles */}
           {relatedArticles.length > 0 && (
             <div className="mt-10 pt-8 border-t border-[#e2e8f0]">
-              <h3 className="text-[18px] font-bold text-[#0f172a] uppercase mb-4 flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#bb0112]" />
+              <h3 className="text-[18px] font-bold text-[#0f172a] mb-4 flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#006194]" />
                 <span>Bài viết liên quan</span>
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -133,7 +133,7 @@ export const ArticleFullView: React.FC<ArticleFullViewProps> = ({
               <span>Liên hệ hotline:</span>
               <a
                 href="tel:0904698699"
-                className="text-[#bb0112] font-bold hover:underline text-[15px]"
+                className="text-[#006194] font-bold hover:underline text-[15px]"
               >
                 0904.698.699
               </a>

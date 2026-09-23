@@ -82,7 +82,7 @@ export const RepairServiceModal: React.FC<RepairServiceModalProps> = ({ isOpen, 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200">
       <div
-        className="bg-white rounded-2xl max-w-xl w-full p-6 sm:p-8 shadow-2xl relative border border-[#e2e8f0] max-h-[90vh] overflow-y-auto"
+        className="bg-white rounded-lg max-w-xl w-full p-6 sm:p-8 shadow-2xl relative border border-[#e2e8f0] max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -95,7 +95,7 @@ export const RepairServiceModal: React.FC<RepairServiceModalProps> = ({ isOpen, 
 
         {submitState === 'success' ? (
           <div className="text-center py-8 space-y-4 animate-in zoom-in-95 duration-200">
-            <div className="w-16 h-16 rounded-full bg-[#e0f2fe] text-[#006194] flex items-center justify-center mx-auto">
+            <div className="w-16 h-16 rounded-full bg-[#f1f5f9] text-[#475569] flex items-center justify-center mx-auto">
               <span className="material-symbols-outlined text-[36px]">verified</span>
             </div>
             <h3 className="text-[20px] font-bold text-[#0f172a]">
@@ -114,7 +114,7 @@ export const RepairServiceModal: React.FC<RepairServiceModalProps> = ({ isOpen, 
         ) : (
           <div>
             <div className="mb-5 text-left">
-              <span className="inline-block px-3 py-1 rounded-full bg-[#006194] text-white text-[11px] font-bold uppercase tracking-wider mb-2">
+              <span className="inline-block px-3 py-1 rounded-full bg-[#006194] text-white text-[11px] font-bold mb-2">
                 Dịch Vụ Kỹ Thuật 24/7
               </span>
               <h3 className="text-[20px] font-bold text-[#0f172a] [text-wrap:balance]">
@@ -272,7 +272,7 @@ export const RepairServiceModal: React.FC<RepairServiceModalProps> = ({ isOpen, 
               </div>
 
               {submitState === 'error' && (
-                <div className="flex items-start gap-2 p-3 rounded-xl bg-[#fef2f2] border border-[#fecaca] text-[#bb0112] text-[13px]">
+                <div className="flex items-start gap-2 p-3 rounded-xl bg-[#fef2f2] border border-[#e2e8f0] text-[#bb0112] text-[13px]">
                   <span className="material-symbols-outlined text-[18px] shrink-0">error</span>
                   <span>{errorMessage}</span>
                 </div>
@@ -282,7 +282,7 @@ export const RepairServiceModal: React.FC<RepairServiceModalProps> = ({ isOpen, 
                 <button
                   type="submit"
                   disabled={submitState === 'submitting'}
-                  className="flex-1 py-3.5 rounded-xl btn-3d-blue text-white text-[14px] font-bold uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-md disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="flex-1 py-3.5 rounded-xl btn-3d-blue text-white text-[14px] font-bold flex items-center justify-center gap-2 cursor-pointer shadow-md disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {submitState === 'submitting' ? (
                     <>
@@ -303,7 +303,7 @@ export const RepairServiceModal: React.FC<RepairServiceModalProps> = ({ isOpen, 
                 <span className="text-[#64748b]">Sự cố khẩn cấp cần xử lý ngay?</span>
                 <a
                   href={`tel:${COMPANY_INFO.hotline.replace(/[^0-9]/g, '')}`}
-                  className="inline-flex items-center gap-1 text-[#e11d2a] font-bold hover:underline"
+                  className="inline-flex items-center gap-1 text-[#006194] font-bold hover:underline"
                 >
                   <span className="material-symbols-outlined text-[15px]">call</span>
                   <span>Hotline: {COMPANY_INFO.hotline}</span>

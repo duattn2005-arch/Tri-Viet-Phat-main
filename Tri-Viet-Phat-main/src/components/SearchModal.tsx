@@ -45,7 +45,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-150">
       <div
-        className="bg-white rounded-2xl max-w-2xl w-full shadow-2xl overflow-hidden border border-[#e2e8f0] animate-in zoom-in-95 duration-150"
+        className="bg-white rounded-lg max-w-2xl w-full shadow-2xl overflow-hidden border border-[#e2e8f0] animate-in zoom-in-95 duration-150"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search input bar */}
@@ -80,7 +80,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
           {/* Products results */}
           <div>
             <div className="flex items-center justify-between mb-2">
-              <span className="text-[12px] font-bold text-[#006194] uppercase tracking-wider">
+              <span className="text-[12px] font-bold text-[#006194]">
                 Thiết bị & Hóa chất ({filteredProducts.length})
               </span>
             </div>
@@ -104,7 +104,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                     />
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
-                        <span className="px-1.5 py-0.5 rounded bg-[#e0f2fe] text-[#006194] text-[10px] font-bold">
+                        <span className="px-1.5 py-0.5 rounded bg-[#f1f5f9] text-[#475569] text-[10px] font-bold">
                           {prod.categoryLabel}
                         </span>
                         <span className="text-[11px] text-[#475569]">{prod.brand}</span>
@@ -125,7 +125,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
           {/* Articles results */}
           <div className="pt-3 border-t border-[#f1f5f9]">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-[12px] font-bold text-[#bb0112] uppercase tracking-wider">
+              <span className="text-[12px] font-bold text-[#006194]">
                 Bài viết & Tin tức ({filteredArticles.length})
               </span>
             </div>
@@ -148,7 +148,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                       className="w-12 h-12 object-cover rounded-lg bg-[#f8fafc] border border-[#e2e8f0]"
                     />
                     <div className="flex-1 min-w-0">
-                      <span className="text-[10px] text-[#bb0112] font-semibold">{art.date}</span>
+                      <span className="text-[10px] text-[#006194] font-semibold">{art.date}</span>
                       <h4 className="text-[13px] font-bold text-[#0f172a] line-clamp-1 group-hover:text-[#006194]">
                         {art.title}
                       </h4>

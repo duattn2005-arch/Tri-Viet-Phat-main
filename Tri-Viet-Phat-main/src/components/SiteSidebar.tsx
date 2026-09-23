@@ -28,7 +28,7 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
       {/* Widget 1: Hỗ trợ mua hàng */}
       <div className="bg-white rounded-xl border border-[#e2e8f0] overflow-hidden shadow-xs">
         <div className="border-b-2 border-[#D7040F] bg-white">
-          <span className="inline-block bg-[#D7040F] text-white text-[14px] font-bold uppercase px-4 py-2 rounded-tr-[16px] tracking-wide">
+          <span className="inline-block bg-[#006194] text-white text-[14px] font-bold px-4 py-2 rounded-tr-[16px] tracking-wide">
             Hỗ trợ mua hàng
           </span>
         </div>
@@ -46,25 +46,25 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
           </div>
           <div className="space-y-2 pt-1 text-[13px]">
             <div className="flex items-center gap-2.5">
-              <span className="material-symbols-outlined text-[#bb0112] text-[19px]">
+              <span className="material-symbols-outlined text-[#64748b] text-[19px]">
                 call
               </span>
               <span className="text-[#64748b]">Hotline 1:</span>
               <a
                 href="tel:0904698699"
-                className="font-bold text-[#bb0112] hover:underline"
+                className="font-bold text-[#006194] hover:underline"
               >
                 0904.698.699
               </a>
             </div>
             <div className="flex items-center gap-2.5">
-              <span className="material-symbols-outlined text-[#bb0112] text-[19px]">
+              <span className="material-symbols-outlined text-[#64748b] text-[19px]">
                 phone_in_talk
               </span>
               <span className="text-[#64748b]">Hotline 2:</span>
               <a
                 href="tel:0392123688"
-                className="font-bold text-[#bb0112] hover:underline"
+                className="font-bold text-[#006194] hover:underline"
               >
                 0392.123.688
               </a>
@@ -88,7 +88,7 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
       {/* Widget 2: Các bài viết mới nhất */}
       <div className="bg-white rounded-xl border border-[#e2e8f0] overflow-hidden shadow-xs">
         <div className="border-b-2 border-[#D7040F] bg-white">
-          <span className="inline-block bg-[#D7040F] text-white text-[14px] font-bold uppercase px-4 py-2 rounded-tr-[16px] tracking-wide">
+          <span className="inline-block bg-[#006194] text-white text-[14px] font-bold px-4 py-2 rounded-tr-[16px] tracking-wide">
             Các bài viết mới nhất
           </span>
         </div>
@@ -111,11 +111,11 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
                 />
               </div>
               <div className="flex-1 min-w-0 flex flex-col justify-between">
-                <h4 className="text-[12.5px] font-bold text-[#1e293b] group-hover:text-[#bb0112] transition-colors line-clamp-2 leading-snug">
+                <h4 className="text-[12.5px] font-bold text-[#1e293b] group-hover:text-[#004a73] transition-colors line-clamp-2 leading-snug">
                   {art.title}
                 </h4>
                 <div className="flex items-center gap-1 text-[11px] text-[#94a3b8] mt-1">
-                  <span className="material-symbols-outlined text-[13px] text-[#bb0112]">
+                  <span className="material-symbols-outlined text-[13px] text-[#64748b]">
                     calendar_today
                   </span>
                   <span>{art.date}</span>
@@ -130,7 +130,7 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
       {!hideCategories && (
         <div className="bg-white rounded-xl border border-[#e2e8f0] overflow-hidden shadow-xs">
           <div className="border-b-2 border-[#D7040F] bg-white">
-            <span className="inline-block bg-[#D7040F] text-white text-[14px] font-bold uppercase px-4 py-2 rounded-tr-[16px] tracking-wide">
+            <span className="inline-block bg-[#006194] text-white text-[14px] font-bold px-4 py-2 rounded-tr-[16px] tracking-wide">
               Danh mục
             </span>
           </div>
@@ -139,10 +139,10 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
               <li key={idx}>
                 <button
                   onClick={() => onNavigateCategory && onNavigateCategory(cat.name)}
-                  className="w-full py-1.5 px-2 text-left flex items-center justify-between text-[#334155] hover:text-[#bb0112] hover:bg-[#f8fafc] rounded-md transition-colors cursor-pointer group"
+                  className="w-full py-1.5 px-2 text-left flex items-center justify-between text-[#334155] hover:text-[#004a73] hover:bg-[#f8fafc] rounded-md transition-colors cursor-pointer group"
                 >
                   <span className="flex items-center gap-1.5">
-                    <span className="text-[#cbd5e1] group-hover:text-[#bb0112] text-[10px] transition-colors">
+                    <span className="text-[#cbd5e1] group-hover:text-[#004a73] text-[10px] transition-colors">
                       ▸
                     </span>
                     <span className="line-clamp-1">{cat.name}</span>
@@ -160,7 +160,7 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
       {/* Widget 4: Liên kết website */}
       <div className="bg-white rounded-xl border border-[#e2e8f0] overflow-hidden shadow-xs">
         <div className="border-b-2 border-[#D7040F] bg-white">
-          <span className="inline-block bg-[#D7040F] text-white text-[14px] font-bold uppercase px-4 py-2 rounded-tr-[16px] tracking-wide">
+          <span className="inline-block bg-[#006194] text-white text-[14px] font-bold px-4 py-2 rounded-tr-[16px] tracking-wide">
             Liên kết website
           </span>
         </div>
