@@ -170,10 +170,6 @@ body {
   animation: marquee 40s linear infinite;
 }
 
-.marquee-slow {
-  animation-duration: 60s;
-}
-
 /* Ambient glows in dark sections */
 @keyframes glowDrift {
   0%, 100% { transform: translate(0, 0) scale(1); }

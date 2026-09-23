@@ -43,7 +43,15 @@ const FACTS = [
   { to: 4, prefix: '2–', suffix: 'h', label: 'Có mặt kỹ thuật', note: 'tại Hà Nội và tỉnh lân cận' },
 ];
 
-const MARQUEE_WORDS = ['Huyết học', 'Sinh hóa', 'Nước tiểu', 'Điện giải', 'Miễn dịch', 'Đông máu', 'Hóa chất IVD'];
+const CATEGORY_WORDS = [
+  { label: 'Huyết học', cat: 'may-xet-nghiem-huyet-hoc' },
+  { label: 'Sinh hóa', cat: 'may-xet-nghiem-sinh-hoa' },
+  { label: 'Nước tiểu', cat: 'may-xet-nghiem-nuoc-tieu' },
+  { label: 'Điện giải', cat: 'may-xet-nghiem-dien-giai' },
+  { label: 'Miễn dịch', cat: 'may-xet-nghiem-mien-dich' },
+  { label: 'Đông máu', cat: 'may-phan-tich-dong-mau' },
+  { label: 'Hóa chất IVD', cat: 'hoa-chat-xet-nghiem' },
+];
 
 const CAPABILITIES = [
   {
@@ -206,22 +214,26 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         </div>
       </section>
 
-      {/* Big scrolling word band on black — alternating solid and faint type */}
-      <section className="w-full overflow-hidden py-10 sm:py-14 bg-[#111111]" aria-hidden="true">
-        <div className="marquee-track marquee-slow flex w-max items-center">
-          {[...MARQUEE_WORDS, ...MARQUEE_WORDS].map((word, idx) => (
-            <span key={idx} className="flex items-center shrink-0">
-              <span
-                className={`px-6 sm:px-10 text-[40px] sm:text-[64px] lg:text-[80px] font-bold uppercase leading-none tracking-tight whitespace-nowrap ${
-                  idx % 2 ? 'text-white/15' : 'text-white'
+      {/* Category word band on black — static, each word links to its product category */}
+      <section className="w-full py-8 sm:py-10 bg-[#111111]">
+        <RevealGroup className="max-w-[1320px] mx-auto px-4 sm:px-8 flex flex-wrap items-center justify-center gap-x-6 lg:gap-x-5 gap-y-3">
+          {CATEGORY_WORDS.map((item, idx) => (
+            <RevealItem key={item.cat} className="flex items-center gap-6 lg:gap-5">
+              <button
+                type="button"
+                onClick={() => onNavigateTab('san-pham', item.cat)}
+                className={`text-[18px] sm:text-[22px] lg:text-[24px] font-bold uppercase leading-none tracking-tight whitespace-nowrap transition-colors duration-300 hover:text-[#e11d2a] cursor-pointer ${
+                  idx % 2 ? 'text-white/35' : 'text-white'
                 }`}
               >
-                {word}
-              </span>
-              <span className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-[#e11d2a] shrink-0" />
-            </span>
+                {item.label}
+              </button>
+              {idx < CATEGORY_WORDS.length - 1 && (
+                <span className="hidden sm:block w-1.5 h-1.5 rounded-full bg-[#e11d2a] shrink-0" aria-hidden="true" />
+              )}
+            </RevealItem>
           ))}
-        </div>
+        </RevealGroup>
       </section>
 
       {/* 5. About & technical capability — layered photos on the left, numbered capabilities on the right */}
