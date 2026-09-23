@@ -8,7 +8,7 @@ import { HeroSection } from '../HeroSection';
 import { ProductCardsSection } from '../ProductCardsSection';
 import { SectionHeader, ViewAllButton } from '../SectionHeader';
 import { ProductCard } from '../ProductCard';
-import { Reveal, RevealGroup, RevealItem, WipeImage, CountUp } from '../motion/Reveal';
+import { Reveal, RevealGroup, RevealItem, WipeImage, CountUp, MaskText } from '../motion/Reveal';
 
 interface HomeScreenProps {
   onSelectProduct: (product: Product) => void;
@@ -206,12 +206,12 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       </section>
 
       {/* Big scrolling word band — alternating dark and light type */}
-      <section className="w-full overflow-hidden py-10 sm:py-14 bg-white" aria-hidden="true">
+      <section className="w-full overflow-hidden py-8 sm:py-12 bg-white border-t border-[#e5e5e5]" aria-hidden="true">
         <div className="marquee-track marquee-slow flex w-max items-center">
           {[...MARQUEE_WORDS, ...MARQUEE_WORDS].map((word, idx) => (
             <span key={idx} className="flex items-center shrink-0">
               <span
-                className={`px-6 sm:px-10 text-[48px] sm:text-[80px] lg:text-[104px] font-bold uppercase leading-none tracking-tight whitespace-nowrap ${
+                className={`px-6 sm:px-10 text-[40px] sm:text-[64px] lg:text-[80px] font-bold uppercase leading-none tracking-tight whitespace-nowrap ${
                   idx % 2 ? 'text-[#d4d4d4]' : 'text-[#111111]'
                 }`}
               >
@@ -223,53 +223,95 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         </div>
       </section>
 
-      {/* 5. About & technical capability */}
-      <section className="w-full py-12 sm:py-16 bg-white">
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          <div className="lg:col-span-5">
+      {/* 5. About & technical capability — layered photos on the left, numbered capabilities on the right */}
+      <section className="w-full py-16 sm:py-24 bg-white">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 items-center">
+          {/* Photo composition */}
+          <div className="lg:col-span-6 relative pb-16 sm:pb-20 pr-10 sm:pr-24">
             <WipeImage
               wrapperClassName="bg-[#f2f2f2]"
-              className="w-full aspect-[4/5] sm:aspect-[4/3] lg:aspect-[4/5] object-cover"
+              className="w-full aspect-[4/5] object-cover"
               alt="Kỹ thuật viên phòng xét nghiệm làm việc với kính hiển vi"
               src={COMPANY_INFO.aboutImage}
               loading="lazy"
             />
+            {/* Secondary photo overlapping the bottom-right corner */}
+            <Reveal delay={0.35} y={40} className="absolute right-0 bottom-0 w-[46%] border-[6px] sm:border-8 border-white">
+              <img
+                src="/images/hero-pipette.jpg"
+                alt="Thao tác pipet với ống mẫu xét nghiệm"
+                loading="lazy"
+                className="w-full aspect-square object-cover"
+              />
+            </Reveal>
+            {/* Experience badge */}
+            <Reveal
+              delay={0.55}
+              y={20}
+              className="absolute left-4 sm:left-6 bottom-8 sm:bottom-12 bg-[#111111] text-white px-5 py-4 sm:px-7 sm:py-6"
+            >
+              <div className="text-[36px] sm:text-[48px] font-bold leading-none tabular-nums">
+                <CountUp
+                  to={parseInt(COMPANY_INFO.yearsOfExperience, 10)}
+                  suffix="+"
+                  suffixClassName="text-[#e11d2a] text-[0.6em] align-top ml-0.5"
+                />
+              </div>
+              <div className="mt-2 text-[12px] sm:text-[13px] font-semibold uppercase tracking-[0.14em] text-white/80">
+                Năm kinh nghiệm
+              </div>
+            </Reveal>
           </div>
 
-          <Reveal className="lg:col-span-7" delay={0.15}>
-            <h2 className="text-[20px] sm:text-[26px] font-bold text-[#111111] uppercase leading-tight">
+          {/* Copy */}
+          <Reveal className="lg:col-span-6" delay={0.15}>
+            <p className="flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.18em] text-[#e11d2a]">
+              <span className="w-8 h-px bg-[#e11d2a]" aria-hidden="true" />
               Về Trí Việt Phát
+            </p>
+            <h2 className="mt-4 text-[30px] sm:text-[40px] font-bold text-[#111111] leading-[1.15] tracking-tight">
+              <MaskText text="Đối tác tin cậy của phòng xét nghiệm Việt Nam" />
             </h2>
-            <p className="mt-4 text-[15px] sm:text-[16px] text-[#555555] leading-relaxed">
+            <p className="mt-6 text-[16px] sm:text-[17px] text-[#555555] leading-relaxed">
               {COMPANY_INFO.name} được thành lập theo giấy phép số {COMPANY_INFO.licenseNo} của{' '}
               {COMPANY_INFO.licensedBy}. Hơn {COMPANY_INFO.yearsOfExperience.replace('+', '')} năm qua, chúng tôi
-              là đối tác cung ứng thiết bị và hóa chất xét nghiệm cho các bệnh viện đa khoa, trung tâm y tế và phòng
-              khám trên toàn quốc.
+              cung ứng thiết bị và hóa chất xét nghiệm cho các bệnh viện đa khoa, trung tâm y tế và phòng khám trên
+              toàn quốc.
             </p>
 
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-x-10">
-              {CAPABILITIES.map((cap) => (
-                <div key={cap.title} className="py-5 border-t border-[#e5e5e5]">
-                  <h3 className="text-[15px] font-semibold text-[#111111]">{cap.title}</h3>
-                  <p className="mt-1.5 text-[14px] text-[#555555] leading-relaxed">{cap.desc}</p>
-                </div>
+            <ol className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8">
+              {CAPABILITIES.map((cap, idx) => (
+                <li key={cap.title} className="group flex gap-4">
+                  <span className="shrink-0 text-[14px] font-bold text-[#e11d2a] tabular-nums pt-0.5">
+                    {String(idx + 1).padStart(2, '0')}
+                  </span>
+                  <div className="pt-0.5 border-t border-[#e5e5e5] group-hover:border-[#111111] transition-colors duration-500 flex-1">
+                    <h3 className="pt-3 text-[16px] sm:text-[17px] font-semibold text-[#111111]">{cap.title}</h3>
+                    <p className="mt-2 text-[14px] sm:text-[15px] text-[#555555] leading-relaxed">{cap.desc}</p>
+                  </div>
+                </li>
               ))}
-            </div>
+            </ol>
 
-            <div className="mt-6 flex flex-wrap gap-x-8 gap-y-3 text-[14px] font-semibold">
+            <div className="mt-10 flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8">
               <button
                 type="button"
                 onClick={() => onNavigateTab('gioi-thieu')}
-                className="text-[#111111] hover:text-[#000000] cursor-pointer"
+                className="btn-primary h-12 px-8 text-[14px] font-semibold uppercase tracking-wide cursor-pointer"
               >
-                Tìm hiểu về công ty <span aria-hidden="true">→</span>
+                Tìm hiểu về công ty
               </button>
               <button
                 type="button"
                 onClick={onOpenRepairService}
-                className="text-[#111111] hover:text-[#000000] cursor-pointer"
+                className="group inline-flex items-center gap-2 text-[15px] font-semibold text-[#111111] cursor-pointer"
               >
-                Đăng ký bảo trì, sửa chữa <span aria-hidden="true">→</span>
+                <span className="bg-[linear-gradient(currentColor,currentColor)] bg-no-repeat bg-[length:0%_1px] bg-[position:0_100%] group-hover:bg-[length:100%_1px] transition-[background-size] duration-500">
+                  Đăng ký bảo trì, sửa chữa
+                </span>
+                <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">
+                  →
+                </span>
               </button>
             </div>
           </Reveal>
