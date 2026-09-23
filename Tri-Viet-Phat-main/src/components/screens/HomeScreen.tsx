@@ -5,7 +5,7 @@ import { ProvinceSelect } from '../ProvinceSelect';
 import { TestimonialsCarousel } from '../TestimonialsCarousel';
 import { HeroSection } from '../HeroSection';
 import { ProductCardsSection } from '../ProductCardsSection';
-import { SectionHeader } from '../SectionHeader';
+import { SectionHeader, ViewAllButton } from '../SectionHeader';
 
 interface HomeScreenProps {
   onSelectProduct: (product: Product) => void;
@@ -66,7 +66,7 @@ const FORM_ASSURANCES = [
 ];
 
 const INPUT_CLASS =
-  'w-full px-3.5 py-2.5 rounded-lg bg-white border border-[#cbd5e1] text-[14px] text-[#0f172a] placeholder:text-[#94a3b8] focus:outline-none focus:border-[#006194] focus:ring-1 focus:ring-[#006194]';
+  'w-full px-3.5 py-2.5 bg-white border border-[#cbd5e1] text-[14px] text-[#0f172a] placeholder:text-[#94a3b8] focus:outline-none focus:border-[#006194] focus:ring-1 focus:ring-[#006194]';
 
 const LABEL_CLASS = 'block text-[13px] font-medium text-[#334155] mb-1.5';
 
@@ -113,10 +113,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
   const filteredFeaturedProducts = useMemo(() => {
     if (featuredCategory === 'all') {
-      return PRODUCTS.slice(0, 8);
+      return PRODUCTS.slice(0, 10);
     }
     const filtered = PRODUCTS.filter((p) => p.category === featuredCategory);
-    return filtered.length > 0 ? filtered.slice(0, 8) : PRODUCTS.slice(0, 8);
+    return filtered.length > 0 ? filtered.slice(0, 10) : PRODUCTS.slice(0, 10);
   }, [featuredCategory]);
 
   return (
@@ -125,7 +125,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       <HeroSection onOpenConsultation={onOpenConsultation} />
 
       {/* 2. Key facts — plain figures, no cards or icons */}
-      <section className="w-full bg-[#f8fafc] border-b border-[#e2e8f0]">
+      <section className="w-full bg-white border-b border-[#e2e8f0]">
         <dl className="max-w-[1320px] mx-auto px-4 sm:px-8 grid grid-cols-2 lg:grid-cols-4">
           {FACTS.map((fact, idx) => (
             <div
@@ -145,21 +145,13 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       {/* 3. Product categories */}
       <ProductCardsSection onNavigateTab={onNavigateTab} />
 
-      {/* 4. Featured products */}
-      <section className="w-full py-14 sm:py-20 bg-[#f8fafc] border-y border-[#e2e8f0]" id="featured-products">
+      {/* 4. Featured products — tabs double as the section heading */}
+      <section className="w-full py-12 sm:py-16 bg-[#f3f7fa]" id="featured-products">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8">
-          <SectionHeader
-            title="Sản phẩm tiêu biểu"
-            description="Thiết bị chẩn đoán và hóa chất xét nghiệm có sẵn tại kho Hà Nội, giao toàn quốc."
-            actionLabel="Xem toàn bộ sản phẩm"
-            onAction={() => onNavigateTab('san-pham')}
-          />
-
-          {/* Category tabs */}
           <div
             role="tablist"
-            aria-label="Lọc theo danh mục"
-            className="flex gap-6 overflow-x-auto no-scrollbar border-b border-[#e2e8f0] mb-8"
+            aria-label="Sản phẩm nổi bật theo danh mục"
+            className="flex gap-6 sm:gap-8 overflow-x-auto no-scrollbar mb-8 sm:justify-center"
           >
             {CATEGORY_FILTERS.map((cat) => {
               const isSelected = featuredCategory === cat.key;
@@ -169,66 +161,56 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   role="tab"
                   aria-selected={isSelected}
                   onClick={() => setFeaturedCategory(cat.key)}
-                  className={`shrink-0 pb-3 -mb-px border-b-2 text-[14px] font-medium transition-colors cursor-pointer ${
+                  className={`shrink-0 pb-2 border-b-2 text-[16px] sm:text-[20px] font-semibold uppercase transition-colors cursor-pointer ${
                     isSelected
-                      ? 'border-[#006194] text-[#006194]'
-                      : 'border-transparent text-[#64748b] hover:text-[#0f172a]'
+                      ? 'border-[#0f172a] text-[#0f172a]'
+                      : 'border-transparent text-[#94a3b8] hover:text-[#475569]'
                   }`}
                 >
-                  {cat.label}
+                  {cat.key === 'all' ? 'Sản phẩm nổi bật' : cat.label}
                 </button>
               );
             })}
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
-            {filteredFeaturedProducts.map((prod) => (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-3 gap-y-8 sm:gap-x-4">
+            {filteredFeaturedProducts.slice(0, 10).map((prod) => (
               <button
                 key={prod.id}
                 type="button"
                 onClick={() => onSelectProduct(prod)}
-                className="group flex flex-col h-full text-left bg-white border border-[#e2e8f0] rounded-lg overflow-hidden hover:border-[#cbd5e1] hover:shadow-[0_4px_16px_rgba(15,23,42,0.06)] transition-all cursor-pointer"
+                className="group flex flex-col text-left cursor-pointer"
               >
-                <div className="relative w-full aspect-[4/3] min-h-0 shrink-0 overflow-hidden bg-white border-b border-[#f1f5f9]">
+                <div className="relative w-full aspect-square min-h-0 shrink-0 overflow-hidden bg-white">
                   <img
-                    className="absolute inset-0 w-full h-full object-contain p-5"
+                    className="absolute inset-0 w-full h-full object-contain p-5 transition-transform duration-500 group-hover:scale-105"
                     alt={prod.alt}
                     src={prod.image}
                     loading="lazy"
                   />
                 </div>
-
-                <div className="p-5 flex flex-col flex-1">
-                  <div className="flex items-center justify-between gap-2 text-[12px] text-[#64748b]">
-                    <span className="truncate">{prod.categoryLabel}</span>
-                    {prod.brand && (
-                      <span className="truncate max-w-[45%] text-right" title={prod.brand}>
-                        {prod.brand.replace(' INDUSTRIAL CO., LTD', '')}
-                      </span>
-                    )}
+                <div className="pt-3">
+                  <div className="text-[12px] text-[#64748b] truncate">
+                    {prod.brand ? prod.brand.replace(' INDUSTRIAL CO., LTD', '') : prod.categoryLabel}
                   </div>
-                  <h3 className="mt-2 text-[15px] font-semibold text-[#0f172a] group-hover:text-[#006194] transition-colors leading-snug line-clamp-2">
+                  <h3 className="mt-1 text-[14px] font-medium text-[#0f172a] group-hover:text-[#006194] transition-colors leading-snug line-clamp-2">
                     {prod.name}
                   </h3>
-                  <p className="mt-2 text-[13px] text-[#475569] leading-relaxed line-clamp-2">
-                    {prod.shortDesc}
-                  </p>
-                  <span className="mt-auto pt-4 text-[13px] font-semibold text-[#006194]">
-                    Xem chi tiết <span aria-hidden="true">→</span>
-                  </span>
                 </div>
               </button>
             ))}
           </div>
+
+          <ViewAllButton label="Xem tất cả sản phẩm" onClick={() => onNavigateTab('san-pham')} />
         </div>
       </section>
 
       {/* 5. About & technical capability */}
-      <section className="w-full py-14 sm:py-20 bg-white">
+      <section className="w-full py-12 sm:py-16 bg-white">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           <div className="lg:col-span-5">
             <img
-              className="w-full aspect-[4/5] sm:aspect-[4/3] lg:aspect-[4/5] object-cover rounded-lg bg-[#f1f5f9]"
+              className="w-full aspect-[4/5] sm:aspect-[4/3] lg:aspect-[4/5] object-cover bg-[#f1f5f9]"
               alt="Kỹ sư y sinh Trí Việt Phát"
               src={COMPANY_INFO.aboutImage}
               loading="lazy"
@@ -236,7 +218,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           </div>
 
           <div className="lg:col-span-7">
-            <h2 className="text-[24px] sm:text-[30px] font-bold text-[#0f172a] tracking-tight leading-tight">
+            <h2 className="text-[20px] sm:text-[26px] font-bold text-[#0f172a] uppercase leading-tight">
               Về Trí Việt Phát
             </h2>
             <p className="mt-4 text-[15px] sm:text-[16px] text-[#475569] leading-relaxed">
@@ -305,10 +287,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       <TestimonialsCarousel testimonials={TESTIMONIALS} />
 
       {/* 8. Consultation form */}
-      <section className="w-full py-14 sm:py-20 bg-[#f8fafc] border-y border-[#e2e8f0]" id="tu-van-form">
+      <section className="w-full py-12 sm:py-16 bg-[#f3f7fa]" id="tu-van-form">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
           <div className="lg:col-span-5">
-            <h2 className="text-[24px] sm:text-[30px] font-bold text-[#0f172a] tracking-tight leading-tight">
+            <h2 className="text-[20px] sm:text-[26px] font-bold text-[#0f172a] uppercase leading-tight">
               Yêu cầu tư vấn và báo giá
             </h2>
             <p className="mt-4 text-[15px] text-[#475569] leading-relaxed">
@@ -358,7 +340,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           </div>
 
           <div className="lg:col-span-7">
-            <div className="bg-white border border-[#e2e8f0] rounded-lg p-6 sm:p-8">
+            <div className="bg-white p-6 sm:p-8">
               {formSubmitted ? (
                 <div className="py-10 text-center" role="status">
                   <span className="material-symbols-outlined text-[40px] text-[#006194]">check_circle</span>
@@ -378,7 +360,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                           key={chip}
                           type="button"
                           onClick={() => handleAddQuickChip(chip)}
-                          className="text-[13px] px-3 py-1.5 rounded-full border border-[#cbd5e1] text-[#334155] hover:border-[#006194] hover:text-[#006194] transition-colors cursor-pointer"
+                          className="text-[13px] px-3 py-1.5 border border-[#cbd5e1] text-[#334155] hover:border-[#006194] hover:text-[#006194] transition-colors cursor-pointer"
                         >
                           {chip}
                         </button>
@@ -458,7 +440,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   </div>
 
                   <button
-                    className="btn-primary w-full sm:w-auto h-12 px-8 rounded-md text-[15px] font-semibold cursor-pointer"
+                    className="btn-primary w-full sm:w-auto h-12 px-10 text-[14px] font-semibold uppercase tracking-wide cursor-pointer"
                     type="submit"
                   >
                     Gửi yêu cầu
@@ -471,13 +453,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       </section>
 
       {/* 9. News */}
-      <section className="w-full py-14 sm:py-20 bg-white">
+      <section className="w-full py-12 sm:py-16 bg-white">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8">
-          <SectionHeader
-            title="Tin tức và hướng dẫn kỹ thuật"
-            actionLabel="Xem tất cả bài viết"
-            onAction={() => onNavigateTab('tin-tuc')}
-          />
+          <SectionHeader title="Tin tức và hướng dẫn kỹ thuật" />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {ARTICLES.slice(0, 3).map((art) => (
@@ -487,7 +465,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 onClick={() => onSelectArticle(art)}
                 className="group flex flex-col text-left cursor-pointer"
               >
-                <div className="w-full aspect-[16/9] overflow-hidden rounded-lg bg-[#f1f5f9]">
+                <div className="w-full aspect-[16/9] overflow-hidden bg-[#f1f5f9]">
                   <img
                     className="w-full h-full object-cover group-hover:opacity-90 transition-opacity"
                     alt={art.alt}
@@ -495,7 +473,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                     loading="lazy"
                   />
                 </div>
-                <div className="mt-4 text-[13px] text-[#64748b]">
+                <div className="mt-4 text-[12px] font-medium uppercase tracking-wide text-[#64748b]">
                   {art.category || 'Tin y tế'} · {art.date}
                 </div>
                 <h3 className="mt-2 text-[17px] font-semibold text-[#0f172a] group-hover:text-[#006194] transition-colors leading-snug line-clamp-2">
@@ -505,6 +483,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               </button>
             ))}
           </div>
+
+          <ViewAllButton label="Xem thêm bài viết" onClick={() => onNavigateTab('tin-tuc')} />
         </div>
       </section>
     </div>

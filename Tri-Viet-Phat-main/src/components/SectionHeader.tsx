@@ -8,8 +8,8 @@ interface SectionHeaderProps {
 }
 
 /**
- * Left-aligned section heading used across the home page: sentence-case
- * title, optional one-line description, optional quiet text link on the right.
+ * Left-aligned section heading (bold, uppercase — Torano-style), with an
+ * optional short description and an optional quiet text link on the right.
  */
 export const SectionHeader: React.FC<SectionHeaderProps> = ({
   title,
@@ -17,24 +17,38 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
   actionLabel,
   onAction,
 }) => (
-  <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 sm:mb-10">
+  <div className="flex items-end justify-between gap-4 mb-6 sm:mb-8">
     <div className="max-w-2xl">
-      <h2 className="text-[24px] sm:text-[30px] font-bold text-[#0f172a] tracking-tight leading-tight">
-        {title}
-      </h2>
-      {description && (
-        <p className="mt-3 text-[15px] text-[#475569] leading-relaxed">{description}</p>
-      )}
+      <h2 className="text-[20px] sm:text-[26px] font-bold text-[#0f172a] uppercase leading-tight">{title}</h2>
+      {description && <p className="mt-2 text-[14px] sm:text-[15px] text-[#475569] leading-relaxed">{description}</p>}
     </div>
     {actionLabel && onAction && (
       <button
         type="button"
         onClick={onAction}
-        className="shrink-0 inline-flex items-center gap-1 text-[14px] font-semibold text-[#006194] hover:text-[#004a73] cursor-pointer"
+        className="hidden sm:inline-flex shrink-0 items-center gap-1 text-[14px] font-medium text-[#0f172a] hover:text-[#006194] cursor-pointer"
       >
         <span>{actionLabel}</span>
         <span aria-hidden="true">→</span>
       </button>
     )}
+  </div>
+);
+
+interface ViewAllButtonProps {
+  label: string;
+  onClick: () => void;
+}
+
+/** Centered thin-outline button placed under a grid, as on torano.vn. */
+export const ViewAllButton: React.FC<ViewAllButtonProps> = ({ label, onClick }) => (
+  <div className="mt-8 sm:mt-10 flex justify-center">
+    <button
+      type="button"
+      onClick={onClick}
+      className="h-11 px-8 border border-[#0f172a] text-[13px] font-semibold uppercase tracking-wide text-[#0f172a] hover:bg-[#0f172a] hover:text-white transition-colors cursor-pointer"
+    >
+      {label}
+    </button>
   </div>
 );

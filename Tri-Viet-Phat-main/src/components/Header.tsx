@@ -102,24 +102,24 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-white border-b border-[#e2e8f0]">
       {/* Top utility bar */}
-      <div className="bg-[#f8fafc] text-[#475569] text-[12px] border-b border-[#e2e8f0]">
+      <div className="bg-[#0f172a] text-white/70 text-[12px]">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 flex items-center justify-between h-8 sm:h-9">
           <div className="flex items-center gap-4 min-w-0">
             <span className="truncate">
               Hotline{' '}
-              <a href={hotlineHref(COMPANY_INFO.hotline)} className="font-semibold text-[#0f172a] hover:text-[#006194]">
+              <a href={hotlineHref(COMPANY_INFO.hotline)} className="font-semibold text-white hover:underline">
                 {COMPANY_INFO.hotline}
               </a>
               <span className="hidden sm:inline">
                 {' · '}
-                <a href={hotlineHref(COMPANY_INFO.hotline2)} className="font-semibold text-[#0f172a] hover:text-[#006194]">
+                <a href={hotlineHref(COMPANY_INFO.hotline2)} className="font-semibold text-white hover:underline">
                   {COMPANY_INFO.hotline2}
                 </a>
               </span>
             </span>
             <a
               href={`mailto:${COMPANY_INFO.email}`}
-              className="hidden md:inline truncate hover:text-[#006194] transition-colors"
+              className="hidden md:inline truncate hover:text-white transition-colors"
             >
               {COMPANY_INFO.email}
             </a>
@@ -130,7 +130,7 @@ export const Header: React.FC<HeaderProps> = ({
               href={COMPANY_INFO.facebookUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[#006194] transition-colors"
+              className="hover:text-white transition-colors"
             >
               Facebook
             </a>
@@ -138,7 +138,7 @@ export const Header: React.FC<HeaderProps> = ({
               href={COMPANY_INFO.zaloUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[#006194] transition-colors"
+              className="hover:text-white transition-colors"
             >
               Zalo
             </a>
@@ -164,7 +164,7 @@ export const Header: React.FC<HeaderProps> = ({
         </button>
 
         {/* Desktop navigation */}
-        <nav ref={navRef} className="hidden lg:flex items-center gap-1 text-[14.5px]">
+        <nav ref={navRef} className="hidden lg:flex flex-1 justify-center items-center gap-1 text-[14.5px]">
           {NAV_ITEMS.map((item) => {
             const isActive = currentTab === item.tab;
             const baseClass = `relative px-3 py-2 font-medium transition-colors cursor-pointer inline-flex items-center gap-0.5 ${
@@ -210,7 +210,7 @@ export const Header: React.FC<HeaderProps> = ({
                 </button>
 
                 {isOpen && (
-                  <div className="absolute left-0 top-full mt-2 w-72 bg-white rounded-lg border border-[#e2e8f0] shadow-[0_12px_32px_rgba(15,23,42,0.10)] py-2 z-50">
+                  <div className="absolute left-0 top-full mt-2 w-72 bg-white border border-[#e2e8f0] shadow-[0_12px_32px_rgba(15,23,42,0.10)] py-2 z-50">
                     {item.children.map((child, idx) => (
                       <button
                         key={child.cat}
@@ -243,7 +243,7 @@ export const Header: React.FC<HeaderProps> = ({
 
           <button
             onClick={() => onOpenConsultation()}
-            className="hidden sm:inline-flex items-center btn-primary h-10 px-5 rounded-md text-[14px] font-semibold cursor-pointer"
+            className="hidden sm:inline-flex items-center btn-primary h-10 px-5 text-[13px] font-semibold uppercase tracking-wide cursor-pointer"
           >
             Yêu cầu báo giá
           </button>
@@ -299,7 +299,7 @@ export const Header: React.FC<HeaderProps> = ({
                 setMobileMenuOpen(false);
                 onOpenConsultation();
               }}
-              className="btn-primary w-full h-11 rounded-md text-[15px] font-semibold cursor-pointer"
+              className="btn-primary w-full h-11 text-[14px] font-semibold uppercase tracking-wide cursor-pointer"
             >
               Yêu cầu báo giá
             </button>
