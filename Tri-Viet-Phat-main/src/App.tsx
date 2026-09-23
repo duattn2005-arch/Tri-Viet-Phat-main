@@ -4,6 +4,7 @@
  */
 
 import { useState } from 'react';
+import { MotionConfig } from 'motion/react';
 import { PageTab, Product, Article } from './types';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
@@ -51,118 +52,120 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-[#111111] font-sans antialiased selection:bg-[#e5e5e5] selection:text-[#111111] overflow-x-hidden w-full max-w-full">
-      {/* Top Header */}
-      <Header
-        currentTab={currentTab}
-        onSelectTab={handleSelectTab}
-        onOpenConsultation={handleOpenConsultation}
-        onOpenRepairService={handleOpenRepairService}
-        onOpenSearch={() => setIsSearchOpen(true)}
-      />
+    <MotionConfig reducedMotion="user">
+      <div className="min-h-screen flex flex-col bg-white text-[#111111] font-sans antialiased selection:bg-[#e5e5e5] selection:text-[#111111] overflow-x-hidden w-full max-w-full">
+        {/* Top Header */}
+        <Header
+          currentTab={currentTab}
+          onSelectTab={handleSelectTab}
+          onOpenConsultation={handleOpenConsultation}
+          onOpenRepairService={handleOpenRepairService}
+          onOpenSearch={() => setIsSearchOpen(true)}
+        />
 
-      {/* Main Content Body (with padding top for fixed header h-20 + topbar h-9 = 116px) */}
-      <main className="flex-1 pt-[116px] w-full max-w-full overflow-x-hidden">
-        {currentTab === 'trang-chu' && (
-          <HomeScreen
-            onSelectProduct={(p) => setSelectedProduct(p)}
-            onSelectArticle={(a) => setSelectedArticle(a)}
-            onNavigateTab={handleSelectTab}
-            onOpenConsultation={handleOpenConsultation}
-            onOpenRepairService={handleOpenRepairService}
-          />
-        )}
+        {/* Main Content Body (with padding top for fixed header h-20 + topbar h-9 = 116px) */}
+        <main className="flex-1 pt-[116px] w-full max-w-full overflow-x-hidden">
+          {currentTab === 'trang-chu' && (
+            <HomeScreen
+              onSelectProduct={(p) => setSelectedProduct(p)}
+              onSelectArticle={(a) => setSelectedArticle(a)}
+              onNavigateTab={handleSelectTab}
+              onOpenConsultation={handleOpenConsultation}
+              onOpenRepairService={handleOpenRepairService}
+            />
+          )}
 
-        {currentTab === 'gioi-thieu' && (
-          <AboutScreen onOpenConsultation={() => handleOpenConsultation()} />
-        )}
+          {currentTab === 'gioi-thieu' && (
+            <AboutScreen onOpenConsultation={() => handleOpenConsultation()} />
+          )}
 
-        {currentTab === 'san-pham' && (
-          <ProductsScreen
-            initialCategory={categoryFilter}
-            onSelectProduct={(p) => setSelectedProduct(p)}
-            onOpenConsultation={handleOpenConsultation}
-          />
-        )}
+          {currentTab === 'san-pham' && (
+            <ProductsScreen
+              initialCategory={categoryFilter}
+              onSelectProduct={(p) => setSelectedProduct(p)}
+              onOpenConsultation={handleOpenConsultation}
+            />
+          )}
 
-        {currentTab === 'tai-lieu' && (
-          <DocumentsScreen
-            initialCategory={categoryFilter}
-            onNavigateCategory={(cat) => handleSelectTab('tai-lieu', cat)}
-            onNavigateTab={handleSelectTab}
-          />
-        )}
+          {currentTab === 'tai-lieu' && (
+            <DocumentsScreen
+              initialCategory={categoryFilter}
+              onNavigateCategory={(cat) => handleSelectTab('tai-lieu', cat)}
+              onNavigateTab={handleSelectTab}
+            />
+          )}
 
-        {currentTab === 'tin-tuc' && (
-          <NewsScreen
-            initialCategory={categoryFilter}
-            onNavigateCategory={(cat) => handleSelectTab('tin-tuc', cat)}
-            onNavigateTab={handleSelectTab}
-            onSelectArticle={(a) => setSelectedArticle(a)}
-          />
-        )}
+          {currentTab === 'tin-tuc' && (
+            <NewsScreen
+              initialCategory={categoryFilter}
+              onNavigateCategory={(cat) => handleSelectTab('tin-tuc', cat)}
+              onNavigateTab={handleSelectTab}
+              onSelectArticle={(a) => setSelectedArticle(a)}
+            />
+          )}
 
-        {currentTab === 'tuyen-dung' && <CareersScreen />}
+          {currentTab === 'tuyen-dung' && <CareersScreen />}
 
-        {currentTab === 'lien-he' && (
-          <ContactScreen
-            onOpenConsultation={() => handleOpenConsultation()}
-            onOpenRepairService={handleOpenRepairService}
-          />
-        )}
-      </main>
+          {currentTab === 'lien-he' && (
+            <ContactScreen
+              onOpenConsultation={() => handleOpenConsultation()}
+              onOpenRepairService={handleOpenRepairService}
+            />
+          )}
+        </main>
 
-      {/* Global Footer */}
-      <Footer
-        onSelectTab={handleSelectTab}
-        onOpenConsultation={handleOpenConsultation}
-      />
+        {/* Global Footer */}
+        <Footer
+          onSelectTab={handleSelectTab}
+          onOpenConsultation={handleOpenConsultation}
+        />
 
-      {/* Floating Action Buttons: AI Chat, Quick Support, Back to Top */}
-      <FloatingActions
-        onToggleAiChat={() => setIsAiChatOpen(!isAiChatOpen)}
-        isAiChatOpen={isAiChatOpen}
-        onNavigateContact={() => handleSelectTab('lien-he')}
-      />
+        {/* Floating Action Buttons: AI Chat, Quick Support, Back to Top */}
+        <FloatingActions
+          onToggleAiChat={() => setIsAiChatOpen(!isAiChatOpen)}
+          isAiChatOpen={isAiChatOpen}
+          onNavigateContact={() => handleSelectTab('lien-he')}
+        />
 
-      {/* AI Assistant Chat Window */}
-      <AiChatBubble
-        isOpen={isAiChatOpen}
-        onClose={() => setIsAiChatOpen(false)}
-        onOpenConsultation={handleOpenConsultation}
-      />
+        {/* AI Assistant Chat Window */}
+        <AiChatBubble
+          isOpen={isAiChatOpen}
+          onClose={() => setIsAiChatOpen(false)}
+          onOpenConsultation={handleOpenConsultation}
+        />
 
-      {/* Modals */}
-      <ProductDetailModal
-        product={selectedProduct}
-        onClose={() => setSelectedProduct(null)}
-        onRequestQuote={(prodName) => handleOpenConsultation(prodName)}
-      />
+        {/* Modals */}
+        <ProductDetailModal
+          product={selectedProduct}
+          onClose={() => setSelectedProduct(null)}
+          onRequestQuote={(prodName) => handleOpenConsultation(prodName)}
+        />
 
-      <ArticleDetailModal
-        article={selectedArticle}
-        onClose={() => setSelectedArticle(null)}
-        onOpenConsultation={() => handleOpenConsultation()}
-      />
+        <ArticleDetailModal
+          article={selectedArticle}
+          onClose={() => setSelectedArticle(null)}
+          onOpenConsultation={() => handleOpenConsultation()}
+        />
 
-      <ConsultationModal
-        isOpen={isConsultationOpen}
-        onClose={() => setIsConsultationOpen(false)}
-        prefilledProduct={consultationProduct}
-      />
+        <ConsultationModal
+          isOpen={isConsultationOpen}
+          onClose={() => setIsConsultationOpen(false)}
+          prefilledProduct={consultationProduct}
+        />
 
-      <RepairServiceModal
-        isOpen={isRepairServiceOpen}
-        onClose={() => setIsRepairServiceOpen(false)}
-      />
+        <RepairServiceModal
+          isOpen={isRepairServiceOpen}
+          onClose={() => setIsRepairServiceOpen(false)}
+        />
 
-      <SearchModal
-        isOpen={isSearchOpen}
-        onClose={() => setIsSearchOpen(false)}
-        onSelectProduct={(p) => setSelectedProduct(p)}
-        onSelectArticle={(a) => setSelectedArticle(a)}
-      />
-    </div>
+        <SearchModal
+          isOpen={isSearchOpen}
+          onClose={() => setIsSearchOpen(false)}
+          onSelectProduct={(p) => setSelectedProduct(p)}
+          onSelectArticle={(a) => setSelectedArticle(a)}
+        />
+      </div>
+    </MotionConfig>
   );
 }
 

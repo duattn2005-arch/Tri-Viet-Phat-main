@@ -22,8 +22,8 @@ export const COMPANY_INFO = {
   zaloUrl: 'https://zalo.me/0904698699',
   facebookUrl: 'https://www.facebook.com/thietbiytevip',
   logoUrl: '/tri-viet-phat1.jpg',
-  heroImage: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB1NM5vdfpcge4IOvCHv0ZtXWueMsjA4dvK1lqrK_gw4m8LjeSfsqphPQGwQfoozRSlLtYdeIpBE1ICsbhIx0RwUUV1WzP7Ugr5ay1Y57Bg4TXrodqsdY0Ud-Wisbb9iT-VObiofZNG6msqtn-7Ti9lMKS8hRi8Th4a_Lk1GXod7BLVOnb_rPZ_f3N1wZs14LDhg5lAVTUQJ6vX20OcbmEdhgd7iNTiY8DIDN_8yrUTVHmL2Vt39Wh53A',
-  aboutImage: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDF63WwJj_P_XstrFS-qvb_72lkEQsYYWJBVs8Nfedx2CZFhSWHTaCF2xSnevdwwl9Msji72ah9_fV1mfynBJ8tDTHgHVuxWqOlds-4u6xvi7HboTEkB8nB34AP8MRDCd8rjVMblvABIKwdlxLkjsK1O3cHdqcFGRCRkiIOqS61ceVDzxHMZ1qASS_-L-CiwOnTBloez4MGD_eUejZpmokFvbWPMS6xTOeyvKOPCbtqarekRQbeWjtNAg',
+  heroImage: '/images/hero-lab-analyzers.jpg',
+  aboutImage: '/images/about-microscope.jpg',
   formBgImage: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBfHyCzMk0MvoPL423GD2WtWUHx_FXHbyQMji2GlBvpnmr1XmEISyIgrHbX5T-WMgDeAG9r40lWl6_mVAZTe7NUTP9tOtfqXSZqx-IRtTK6oDktnFGyejL5dE0ODYfNu3IYuwwf2YTEKKBTnBRQLVU1_FhB4ip_O3qgRLm-vZWOvYhDlbOeNR_3Do2J8cwQ8KyxzUpAkpii8R_fiD1Zk0qoLe2urFOz-c-JuxPWBMz6QVGBHCQWEaDbjQ',
 };
 

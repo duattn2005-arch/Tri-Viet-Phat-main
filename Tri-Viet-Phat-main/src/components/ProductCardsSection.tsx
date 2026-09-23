@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { PageTab } from '../types';
 import { PRODUCTS } from '../data/mockData';
 import { SectionHeader } from './SectionHeader';
+import { RevealGroup, RevealItem } from './motion/Reveal';
 
 interface ProductCardsSectionProps {
   onNavigateTab: (tab: PageTab, categoryFilter?: string) => void;
@@ -36,36 +37,37 @@ export const ProductCardsSection: React.FC<ProductCardsSectionProps> = ({ onNavi
           onAction={() => onNavigateTab('san-pham')}
         />
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+        <RevealGroup className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
           {tiles.map((tile) => (
-            <button
-              key={tile.key}
-              type="button"
-              onClick={() => onNavigateTab('san-pham', tile.key)}
-              className="group relative aspect-[3/4] overflow-hidden bg-[#f2f2f2] text-left cursor-pointer"
-            >
-              {tile.image && (
-                <img
-                  src={tile.image}
-                  alt={`Máy xét nghiệm ${tile.title.toLowerCase()}`}
-                  loading="lazy"
-                  className="absolute inset-0 w-full h-full object-contain p-6 pb-16 mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
-                />
-              )}
-              <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4 flex items-center justify-between gap-2">
-                <span className="min-w-0">
-                  <span className="block text-[15px] sm:text-[16px] font-semibold text-[#111111]">{tile.title}</span>
-                  {tile.count > 0 && (
-                    <span className="block text-[12px] text-[#777777]">{tile.count} sản phẩm</span>
-                  )}
-                </span>
-                <span className="shrink-0 w-9 h-9 rounded-full bg-white text-[#111111] flex items-center justify-center group-hover:bg-[#111111] group-hover:text-white transition-colors">
-                  <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
-                </span>
-              </div>
-            </button>
+            <RevealItem key={tile.key}>
+              <button
+                type="button"
+                onClick={() => onNavigateTab('san-pham', tile.key)}
+                className="group relative w-full aspect-[3/4] overflow-hidden bg-[#f2f2f2] text-left cursor-pointer"
+              >
+                {tile.image && (
+                  <img
+                    src={tile.image}
+                    alt={`Máy xét nghiệm ${tile.title.toLowerCase()}`}
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-contain p-6 pb-16 mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
+                  />
+                )}
+                <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4 flex items-center justify-between gap-2">
+                  <span className="min-w-0">
+                    <span className="block text-[15px] sm:text-[16px] font-semibold text-[#111111]">{tile.title}</span>
+                    {tile.count > 0 && (
+                      <span className="block text-[12px] text-[#777777]">{tile.count} sản phẩm</span>
+                    )}
+                  </span>
+                  <span className="shrink-0 w-9 h-9 rounded-full bg-white text-[#111111] flex items-center justify-center group-hover:bg-[#111111] group-hover:text-white transition-colors">
+                    <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
+                  </span>
+                </div>
+              </button>
+            </RevealItem>
           ))}
-        </div>
+        </RevealGroup>
       </div>
     </section>
   );

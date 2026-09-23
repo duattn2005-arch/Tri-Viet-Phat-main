@@ -1,46 +1,201 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { COMPANY_INFO } from '../data/mockData';
 
 interface HeroSectionProps {
   onOpenConsultation: (prefilledProduct?: string) => void;
 }
 
-/** Full-bleed image banner with one message and one action (torano.vn-style). */
+const SLIDES = [
+  {
+    image: '/images/hero-lab-analyzers.jpg',
+    alt: 'Phòng xét nghiệm với dãy máy phân tích tự động',
+    eyebrow: 'Thiết bị xét nghiệm IVD chính hãng',
+    title: 'Giải pháp trọn gói cho phòng xét nghiệm',
+    desc: 'Máy huyết học, sinh hóa, nước tiểu, điện giải và hóa chất chính hãng cho bệnh viện, phòng khám toàn quốc.',
+  },
+  {
+    image: '/images/hero-pipette.jpg',
+    alt: 'Kỹ thuật viên thao tác pipet với ống mẫu xét nghiệm',
+    eyebrow: 'Hóa chất và vật tư',
+    title: 'Hóa chất chuẩn, sẵn kho tại Hà Nội',
+    desc: 'Hóa chất huyết học Dewei, thuốc thử sinh hóa và vật tư tiêu hao, giao nhanh cho phòng xét nghiệm trên toàn quốc.',
+  },
+  {
+    image: '/images/hero-engineers.jpg',
+    alt: 'Đội kỹ sư làm việc trong phòng thí nghiệm',
+    eyebrow: 'Lắp đặt và bảo trì',
+    title: 'Kỹ sư có mặt tận nơi trong 2–4 giờ',
+    desc: 'Kỹ sư y sinh được hãng đào tạo: lắp đặt, chạy mẫu đối chứng, chuyển giao và bảo trì định kỳ tại cơ sở.',
+  },
+];
+
+const SLIDE_MS = 7000;
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+/** Headline whose words rise out of a mask one after another. */
+const RevealTitle: React.FC<{ text: string }> = ({ text }) => (
+  <h1 className="mt-4 text-[34px] sm:text-[46px] lg:text-[56px] font-bold leading-[1.08] tracking-tight">
+    {text.split(' ').map((word, i, words) => (
+      <React.Fragment key={i}>
+        <span className="inline-block overflow-hidden align-bottom pb-[0.08em]">
+          <motion.span
+            className="inline-block"
+            initial={{ y: '110%' }}
+            animate={{ y: 0 }}
+            exit={{ y: '-110%', transition: { duration: 0.35, ease: EASE } }}
+            transition={{ duration: 0.8, ease: EASE, delay: 0.15 + i * 0.06 }}
+          >
+            {word}
+          </motion.span>
+        </span>
+        {/* Real space (not margin) so the heading reads correctly to screen readers and search engines */}
+        {i < words.length - 1 && ' '}
+      </React.Fragment>
+    ))}
+  </h1>
+);
+
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenConsultation }) => {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const reduce = useReducedMotion();
   const hotlineDigits = COMPANY_INFO.hotline.replace(/\./g, '');
+  const slide = SLIDES[active];
+
+  const go = useCallback((idx: number) => setActive((idx + SLIDES.length) % SLIDES.length), []);
+
+  useEffect(() => {
+    if (paused || reduce) return;
+    const id = setTimeout(() => go(active + 1), SLIDE_MS);
+    return () => clearTimeout(id);
+  }, [active, paused, reduce, go]);
 
   return (
-    <section className="relative w-full h-[520px] sm:h-[560px] lg:h-[620px] overflow-hidden bg-[#111111]">
-      <img
-        className="absolute inset-0 w-full h-full object-cover"
-        alt="Phòng xét nghiệm sử dụng thiết bị do Trí Việt Phát cung cấp"
-        src={COMPANY_INFO.heroImage}
-      />
-      {/* Left-weighted scrim keeps the text readable without darkening the whole photo */}
-      <div className="absolute inset-0 bg-linear-to-r from-[#111111]/85 via-[#111111]/55 to-transparent" />
+    <section
+      className="relative w-full h-[560px] sm:h-[600px] lg:h-[calc(100vh-116px)] lg:min-h-[600px] lg:max-h-[780px] overflow-hidden bg-[#111111]"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      aria-roledescription="carousel"
+      aria-label="Giới thiệu Trí Việt Phát"
+    >
+      {/* Images: all mounted so they are preloaded; the active one fades in and slowly zooms out */}
+      {SLIDES.map((s, i) => (
+        <motion.img
+          key={s.image}
+          src={s.image}
+          alt={i === active ? s.alt : ''}
+          aria-hidden={i !== active}
+          className="absolute inset-0 w-full h-full object-cover"
+          initial={false}
+          animate={{
+            opacity: i === active ? 1 : 0,
+            scale: i === active && !reduce ? 1 : 1.08,
+          }}
+          transition={{
+            opacity: { duration: 1.2, ease: 'easeInOut' },
+            scale: i === active ? { duration: SLIDE_MS / 1000 + 1.2, ease: 'linear' } : { duration: 1.2 },
+          }}
+          fetchPriority={i === 0 ? 'high' : 'low'}
+        />
+      ))}
+      <div className="absolute inset-0 bg-linear-to-r from-black/75 via-black/40 to-black/5" />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-black/40 to-transparent" />
 
       <div className="relative h-full max-w-[1320px] mx-auto px-4 sm:px-8 flex items-center">
-        <div className="max-w-xl text-white">
-          <p className="text-[13px] sm:text-[14px] font-medium uppercase tracking-[0.12em] text-white/80">
-            Thiết bị xét nghiệm IVD chính hãng
-          </p>
-          <h1 className="mt-4 text-[32px] sm:text-[44px] lg:text-[52px] font-bold leading-[1.1] tracking-tight [text-wrap:balance]">
-            Giải pháp trọn gói cho phòng xét nghiệm
-          </h1>
-          <p className="mt-5 text-[15px] sm:text-[17px] text-white/85 leading-relaxed">
-            Máy huyết học, sinh hóa, nước tiểu, điện giải và hóa chất chính hãng, kèm lắp đặt và bảo trì tận nơi cho
-            bệnh viện, phòng khám toàn quốc.
-          </p>
-          <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
+        <div className="max-w-2xl text-white" aria-live="polite">
+          <AnimatePresence mode="wait">
+            <motion.div key={active} exit={{ opacity: 0, transition: { duration: 0.35 } }}>
+              <motion.p
+                className="text-[13px] sm:text-[14px] font-semibold uppercase tracking-[0.18em] text-white/80"
+                initial={{ opacity: 0, x: -16 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, ease: EASE }}
+              >
+                {slide.eyebrow}
+              </motion.p>
+              <RevealTitle text={slide.title} />
+              <motion.p
+                className="mt-5 max-w-xl text-[15px] sm:text-[17px] text-white/85 leading-relaxed"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, ease: EASE, delay: 0.55 }}
+              >
+                {slide.desc}
+              </motion.p>
+            </motion.div>
+          </AnimatePresence>
+
+          <motion.div
+            className="mt-9 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-7"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: EASE, delay: 0.8 }}
+          >
             <button
               onClick={() => onOpenConsultation()}
-              className="h-12 px-8 bg-white text-[#111111] text-[14px] font-semibold uppercase tracking-wide hover:bg-[#e5e5e5] transition-colors cursor-pointer"
+              className="group relative h-12 px-8 overflow-hidden bg-white text-[#111111] text-[14px] font-semibold uppercase tracking-wide cursor-pointer"
             >
-              Yêu cầu báo giá
+              {/* Fill sweeps in from the left on hover */}
+              <span className="absolute inset-0 bg-[#111111] -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
+              <span className="relative group-hover:text-white transition-colors duration-500">Yêu cầu báo giá</span>
             </button>
-            <a href={`tel:${hotlineDigits}`} className="text-[15px] text-white/85 hover:text-white">
-              Hotline <span className="font-semibold text-white">{COMPANY_INFO.hotline}</span>
+            <a href={`tel:${hotlineDigits}`} className="group text-[15px] text-white/85 hover:text-white">
+              Hotline{' '}
+              <span className="font-semibold text-white bg-[linear-gradient(currentColor,currentColor)] bg-no-repeat bg-[length:0%_1px] bg-[position:0_100%] group-hover:bg-[length:100%_1px] transition-[background-size] duration-500">
+                {COMPANY_INFO.hotline}
+              </span>
             </a>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Slide controls: progress bars + arrows */}
+      <div className="absolute inset-x-0 bottom-8 sm:bottom-10">
+        {/* Kept on the left so the floating contact buttons (bottom-right) never cover them */}
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-8 flex items-center gap-8">
+          <div className="flex items-center gap-3">
+            {SLIDES.map((s, i) => (
+              <button
+                key={s.image}
+                onClick={() => go(i)}
+                aria-label={`Chuyển tới ảnh ${i + 1}: ${s.title}`}
+                aria-current={i === active}
+                className="group py-3 cursor-pointer"
+              >
+                <span className="block relative w-10 sm:w-16 h-[2px] bg-white/30 overflow-hidden">
+                  {i === active && (
+                    <motion.span
+                      key={`${active}-${paused}`}
+                      className="absolute inset-y-0 left-0 bg-white"
+                      initial={{ width: reduce ? '100%' : '0%' }}
+                      animate={{ width: paused && !reduce ? '0%' : '100%' }}
+                      transition={{ duration: paused || reduce ? 0 : SLIDE_MS / 1000, ease: 'linear' }}
+                    />
+                  )}
+                  {i < active && <span className="absolute inset-0 bg-white/70" />}
+                </span>
+              </button>
+            ))}
+            <span className="ml-2 text-[13px] font-semibold text-white/80 tabular-nums">
+              {String(active + 1).padStart(2, '0')} / {String(SLIDES.length).padStart(2, '0')}
+            </span>
+          </div>
+
+          <div className="hidden sm:flex items-center gap-2 pl-6 border-l border-white/25">
+            {[
+              { dir: -1, icon: 'arrow_back', label: 'Ảnh trước' },
+              { dir: 1, icon: 'arrow_forward', label: 'Ảnh tiếp theo' },
+            ].map((b) => (
+              <button
+                key={b.icon}
+                onClick={() => go(active + b.dir)}
+                aria-label={b.label}
+                className="w-11 h-11 rounded-full border border-white/40 text-white flex items-center justify-center hover:bg-white hover:text-[#111111] transition-colors cursor-pointer"
+              >
+                <span className="material-symbols-outlined text-[20px]">{b.icon}</span>
+              </button>
+            ))}
           </div>
         </div>
       </div>

@@ -7,6 +7,7 @@ import { HeroSection } from '../HeroSection';
 import { ProductCardsSection } from '../ProductCardsSection';
 import { SectionHeader, ViewAllButton } from '../SectionHeader';
 import { ProductCard } from '../ProductCard';
+import { Reveal, RevealGroup, RevealItem, WipeImage, CountUp } from '../motion/Reveal';
 
 interface HomeScreenProps {
   onSelectProduct: (product: Product) => void;
@@ -136,7 +137,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               } ${idx === 2 ? 'lg:pl-8 lg:border-l' : ''}`}
             >
               <dt className="sr-only">{fact.label}</dt>
-              <dd className="text-[24px] sm:text-[28px] font-bold text-[#111111] leading-none">{fact.value}</dd>
+              <dd className="text-[26px] sm:text-[32px] font-bold text-[#111111] leading-none tabular-nums">
+                <CountUp value={fact.value} />
+              </dd>
               <dd className="mt-2 text-[13px] sm:text-[14px] text-[#555555]">{fact.label}</dd>
             </div>
           ))}
@@ -174,16 +177,16 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             })}
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-3 gap-y-8 sm:gap-x-4">
+          <RevealGroup
+            replayKey={featuredCategory}
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-3 gap-y-8 sm:gap-x-4"
+          >
             {filteredFeaturedProducts.slice(0, 10).map((prod) => (
-              <ProductCard
-                key={prod.id}
-                product={prod}
-                onSelect={onSelectProduct}
-                onRequestQuote={onOpenConsultation}
-              />
+              <RevealItem key={prod.id}>
+                <ProductCard product={prod} onSelect={onSelectProduct} onRequestQuote={onOpenConsultation} />
+              </RevealItem>
             ))}
-          </div>
+          </RevealGroup>
 
           <ViewAllButton label="Xem tất cả sản phẩm" onClick={() => onNavigateTab('san-pham')} />
         </div>
@@ -193,15 +196,16 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       <section className="w-full py-12 sm:py-16 bg-white">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           <div className="lg:col-span-5">
-            <img
-              className="w-full aspect-[4/5] sm:aspect-[4/3] lg:aspect-[4/5] object-cover bg-[#f2f2f2]"
-              alt="Kỹ sư y sinh Trí Việt Phát"
+            <WipeImage
+              wrapperClassName="bg-[#f2f2f2]"
+              className="w-full aspect-[4/5] sm:aspect-[4/3] lg:aspect-[4/5] object-cover"
+              alt="Kỹ thuật viên phòng xét nghiệm làm việc với kính hiển vi"
               src={COMPANY_INFO.aboutImage}
               loading="lazy"
             />
           </div>
 
-          <div className="lg:col-span-7">
+          <Reveal className="lg:col-span-7" delay={0.15}>
             <h2 className="text-[20px] sm:text-[26px] font-bold text-[#111111] uppercase leading-tight">
               Về Trí Việt Phát
             </h2>
@@ -237,33 +241,35 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 Đăng ký bảo trì, sửa chữa <span aria-hidden="true">→</span>
               </button>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* 6. Partners — uniform wordmarks, no per-brand colours */}
       <section className="w-full py-12 sm:py-16 bg-white border-t border-[#e5e5e5]">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8">
-          <p className="text-[14px] text-[#777777] mb-6">
-            Phân phối chính thức sản phẩm của các hãng chẩn đoán IVD
-          </p>
-          <ul className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-px bg-[#e5e5e5] border border-[#e5e5e5]">
-            {PARTNERS.map((partner) => (
-              <li
-                key={partner.name}
-                className="bg-white h-20 flex flex-col items-center justify-center text-center px-2"
-              >
-                <span className="text-[16px] font-semibold text-[#555555] tracking-wide leading-tight">
-                  {partner.name}
-                </span>
-                {partner.subName && (
-                  <span className="text-[10px] text-[#999999] tracking-wider uppercase mt-0.5">
-                    {partner.subName}
+          <Reveal>
+            <p className="text-[14px] text-[#777777] mb-6">Phân phối chính thức sản phẩm của các hãng chẩn đoán IVD</p>
+          </Reveal>
+          {/* Infinite marquee: the list is rendered twice and slid by -50% */}
+          <div className="marquee group relative overflow-hidden border-y border-[#e5e5e5] [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+            <ul className="marquee-track flex w-max group-hover:[animation-play-state:paused]">
+              {[...PARTNERS, ...PARTNERS].map((partner, idx) => (
+                <li
+                  key={`${partner.name}-${idx}`}
+                  aria-hidden={idx >= PARTNERS.length}
+                  className="h-24 w-[180px] sm:w-[220px] shrink-0 flex flex-col items-center justify-center text-center px-4"
+                >
+                  <span className="text-[18px] font-semibold text-[#999999] hover:text-[#111111] transition-colors tracking-wide leading-tight">
+                    {partner.name}
                   </span>
-                )}
-              </li>
-            ))}
-          </ul>
+                  {partner.subName && (
+                    <span className="text-[10px] text-[#999999] tracking-wider uppercase mt-0.5">{partner.subName}</span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -273,7 +279,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       {/* 8. Consultation form */}
       <section className="w-full py-12 sm:py-16 bg-[#f7f7f7]" id="tu-van-form">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
-          <div className="lg:col-span-5">
+          <Reveal className="lg:col-span-5">
             <h2 className="text-[20px] sm:text-[26px] font-bold text-[#111111] uppercase leading-tight">
               Yêu cầu tư vấn và báo giá
             </h2>
@@ -321,9 +327,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 </dd>
               </div>
             </dl>
-          </div>
+          </Reveal>
 
-          <div className="lg:col-span-7">
+          <Reveal className="lg:col-span-7" delay={0.15}>
             <div className="bg-white p-6 sm:p-8">
               {formSubmitted ? (
                 <div className="py-10 text-center" role="status">
@@ -432,7 +438,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 </form>
               )}
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -441,32 +447,33 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8">
           <SectionHeader title="Tin tức và hướng dẫn kỹ thuật" />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <RevealGroup className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {ARTICLES.slice(0, 3).map((art) => (
-              <button
-                key={art.id}
-                type="button"
-                onClick={() => onSelectArticle(art)}
-                className="group flex flex-col text-left cursor-pointer"
-              >
-                <div className="w-full aspect-[16/9] overflow-hidden bg-[#f2f2f2]">
-                  <img
-                    className="w-full h-full object-cover group-hover:opacity-90 transition-opacity"
-                    alt={art.alt}
-                    src={art.image}
-                    loading="lazy"
-                  />
-                </div>
-                <div className="mt-4 text-[12px] font-medium uppercase tracking-wide text-[#777777]">
-                  {art.category || 'Tin y tế'} · {art.date}
-                </div>
-                <h3 className="mt-2 text-[17px] font-semibold text-[#111111] group-hover:underline underline-offset-4 transition-colors leading-snug line-clamp-2">
-                  {art.title}
-                </h3>
-                <p className="mt-2 text-[14px] text-[#555555] leading-relaxed line-clamp-3">{art.excerpt}</p>
-              </button>
+              <RevealItem key={art.id}>
+                <button
+                  type="button"
+                  onClick={() => onSelectArticle(art)}
+                  className="group flex flex-col text-left cursor-pointer"
+                >
+                  <div className="w-full aspect-[16/9] overflow-hidden bg-[#f2f2f2]">
+                    <img
+                      className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
+                      alt={art.alt}
+                      src={art.image}
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="mt-4 text-[12px] font-medium uppercase tracking-wide text-[#777777]">
+                    {art.category || 'Tin y tế'} · {art.date}
+                  </div>
+                  <h3 className="mt-2 text-[17px] font-semibold text-[#111111] group-hover:underline underline-offset-4 transition-colors leading-snug line-clamp-2">
+                    {art.title}
+                  </h3>
+                  <p className="mt-2 text-[14px] text-[#555555] leading-relaxed line-clamp-3">{art.excerpt}</p>
+                </button>
+              </RevealItem>
             ))}
-          </div>
+          </RevealGroup>
 
           <ViewAllButton label="Xem thêm bài viết" onClick={() => onNavigateTab('tin-tuc')} />
         </div>

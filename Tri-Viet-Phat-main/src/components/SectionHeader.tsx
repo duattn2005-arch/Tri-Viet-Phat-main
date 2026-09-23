@@ -1,4 +1,5 @@
 import React from 'react';
+import { Reveal } from './motion/Reveal';
 
 interface SectionHeaderProps {
   title: string;
@@ -17,7 +18,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
   actionLabel,
   onAction,
 }) => (
-  <div className="flex items-end justify-between gap-4 mb-6 sm:mb-8">
+  <Reveal className="flex items-end justify-between gap-4 mb-6 sm:mb-8">
     <div className="max-w-2xl">
       <h2 className="text-[20px] sm:text-[26px] font-bold text-[#111111] uppercase leading-tight">{title}</h2>
       {description && <p className="mt-2 text-[14px] sm:text-[15px] text-[#555555] leading-relaxed">{description}</p>}
@@ -26,13 +27,13 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
       <button
         type="button"
         onClick={onAction}
-        className="hidden sm:inline-flex shrink-0 items-center gap-1 text-[14px] font-medium text-[#111111] hover:text-[#111111] hover:underline underline-offset-4 cursor-pointer"
+        className="group hidden sm:inline-flex shrink-0 items-center gap-1 text-[14px] font-medium text-[#111111] hover:text-[#111111] hover:underline underline-offset-4 cursor-pointer"
       >
         <span>{actionLabel}</span>
-        <span aria-hidden="true">→</span>
+        <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">→</span>
       </button>
     )}
-  </div>
+  </Reveal>
 );
 
 interface ViewAllButtonProps {
@@ -46,9 +47,11 @@ export const ViewAllButton: React.FC<ViewAllButtonProps> = ({ label, onClick }) 
     <button
       type="button"
       onClick={onClick}
-      className="h-11 px-8 border border-[#111111] text-[13px] font-semibold uppercase tracking-wide text-[#111111] hover:bg-[#111111] hover:text-white transition-colors cursor-pointer"
+      className="group relative h-11 px-8 overflow-hidden border border-[#111111] text-[13px] font-semibold uppercase tracking-wide text-[#111111] cursor-pointer"
     >
-      {label}
+      {/* Fill sweeps in from the left on hover */}
+      <span className="absolute inset-0 bg-[#111111] -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
+      <span className="relative group-hover:text-white transition-colors duration-500">{label}</span>
     </button>
   </div>
 );

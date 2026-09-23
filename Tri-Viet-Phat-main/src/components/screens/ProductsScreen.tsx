@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { PRODUCTS } from '../../data/mockData';
 import { brandName, originName } from '../../data/productMeta';
 import { ProductCard } from '../ProductCard';
+import { RevealGroup, RevealItem } from '../motion/Reveal';
 import { Product } from '../../types';
 
 interface ProductsScreenProps {
@@ -303,16 +304,16 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-4 sm:gap-x-6 gap-y-10">
+            <RevealGroup
+              replayKey={`${selectedCategory}|${selectedBrands.join()}|${selectedOrigins.join()}|${sortKey}`}
+              className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-4 sm:gap-x-6 gap-y-10"
+            >
               {filteredProducts.map((prod) => (
-                <ProductCard
-                  key={prod.id}
-                  product={prod}
-                  onSelect={onSelectProduct}
-                  onRequestQuote={onOpenConsultation}
-                />
+                <RevealItem key={prod.id}>
+                  <ProductCard product={prod} onSelect={onSelectProduct} onRequestQuote={onOpenConsultation} />
+                </RevealItem>
               ))}
-            </div>
+            </RevealGroup>
           )}
         </section>
       </div>
