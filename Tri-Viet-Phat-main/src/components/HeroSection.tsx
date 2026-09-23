@@ -70,6 +70,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenConsultation }) 
   const slide = SLIDES[active];
 
   const go = useCallback((idx: number) => setActive((idx + SLIDES.length) % SLIDES.length), []);
+  const touchX = useRef<number | null>(null);
 
   // Always auto-advances; the timer restarts whenever the slide changes (including manual clicks).
   useEffect(() => {
@@ -81,6 +82,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenConsultation }) 
     <section
       ref={sectionRef}
       className="relative w-full h-[560px] sm:h-[600px] lg:h-[calc(100vh-116px)] lg:min-h-[600px] lg:max-h-[780px] overflow-hidden bg-[#111111]"
+      onTouchStart={(e) => (touchX.current = e.touches[0].clientX)}
+      onTouchEnd={(e) => {
+        if (touchX.current === null) return;
+        const dx = e.changedTouches[0].clientX - touchX.current;
+        touchX.current = null;
+        if (Math.abs(dx) > 50) go(active + (dx < 0 ? 1 : -1));
+      }}
       aria-roledescription="carousel"
       aria-label="Giới thiệu Trí Việt Phát"
     >
@@ -110,7 +118,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenConsultation }) 
       <div className="absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-black/40 to-transparent" />
 
       <motion.div
-        className="relative h-full max-w-[1320px] mx-auto px-4 sm:px-8 flex items-center"
+        className="relative h-full max-w-[1320px] mx-auto px-4 sm:px-8 sm:pl-[max(2rem,calc(84px_-_max(0px,(100vw_-_1320px)/2)))] flex items-center"
         style={{ y: contentY, opacity: contentOpacity }}
       >
         <div className="max-w-2xl text-white" aria-live="polite">
@@ -160,55 +168,21 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenConsultation }) 
         </div>
       </motion.div>
 
-      {/* Slide controls: progress bars + arrows */}
-      <div className="absolute inset-x-0 bottom-8 sm:bottom-10">
-        {/* Kept on the left so the floating contact buttons (bottom-right) never cover them */}
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-8 flex items-center gap-8">
-          <div className="flex items-center gap-3">
-            {SLIDES.map((s, i) => (
-              <button
-                key={s.image}
-                onClick={() => go(i)}
-                aria-label={`Chuyển tới ảnh ${i + 1}: ${s.title}`}
-                aria-current={i === active}
-                className="group py-3 cursor-pointer"
-              >
-                <span className="block relative w-10 sm:w-16 h-[2px] bg-white/30 overflow-hidden">
-                  {i === active && (
-                    <motion.span
-                      key={active}
-                      className="absolute inset-y-0 left-0 bg-white"
-                      initial={{ width: '0%' }}
-                      animate={{ width: '100%' }}
-                      transition={{ duration: SLIDE_MS / 1000, ease: 'linear' }}
-                    />
-                  )}
-                  {i < active && <span className="absolute inset-0 bg-white/70" />}
-                </span>
-              </button>
-            ))}
-            <span className="ml-2 text-[13px] font-semibold text-white/80 tabular-nums">
-              {String(active + 1).padStart(2, '0')} / {String(SLIDES.length).padStart(2, '0')}
-            </span>
-          </div>
-
-          <div className="hidden sm:flex items-center gap-2 pl-6 border-l border-white/25">
-            {[
-              { dir: -1, icon: 'arrow_back', label: 'Ảnh trước' },
-              { dir: 1, icon: 'arrow_forward', label: 'Ảnh tiếp theo' },
-            ].map((b) => (
-              <button
-                key={b.icon}
-                onClick={() => go(active + b.dir)}
-                aria-label={b.label}
-                className="w-11 h-11 rounded-full border border-white/40 text-white flex items-center justify-center hover:bg-white hover:text-[#111111] transition-colors cursor-pointer"
-              >
-                <span className="material-symbols-outlined text-[20px]">{b.icon}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
+      {/* Side arrows (sm+); on phones the slide is changed by swiping. The copy's left padding
+          grows only when the viewport is too narrow for the page margin to clear the left arrow. */}
+      {[
+        { dir: -1, icon: 'arrow_back', label: 'Ảnh trước', pos: 'left-3 lg:left-6' },
+        { dir: 1, icon: 'arrow_forward', label: 'Ảnh tiếp theo', pos: 'right-3 lg:right-6' },
+      ].map((b) => (
+        <button
+          key={b.icon}
+          onClick={() => go(active + b.dir)}
+          aria-label={b.label}
+          className={`hidden sm:flex absolute top-1/2 -translate-y-1/2 ${b.pos} z-10 w-12 h-12 rounded-full border border-white/40 bg-black/10 backdrop-blur-[2px] text-white items-center justify-center hover:bg-white hover:text-[#111111] hover:border-white transition-colors cursor-pointer`}
+        >
+          <span className="material-symbols-outlined text-[22px]">{b.icon}</span>
+        </button>
+      ))}
     </section>
   );
 };
