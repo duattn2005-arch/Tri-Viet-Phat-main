@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --font-inter: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Quicksand', system-ui, -apple-system, sans-serif;
+  --font-inter: 'Quicksand', system-ui, -apple-system, sans-serif;
 
   --color-primary: #006194;
   --color-primary-container: #007bb9;
@@ -43,7 +43,9 @@
 html,
 body {
   scroll-behavior: smooth;
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-family: 'Quicksand', system-ui, sans-serif;
+  /* Quicksand's 400 is thin; 500 keeps grey body text readable (as torano.vn does). */
+  font-weight: 500;
   overflow-x: hidden;
   max-width: 100%;
   width: 100%;
