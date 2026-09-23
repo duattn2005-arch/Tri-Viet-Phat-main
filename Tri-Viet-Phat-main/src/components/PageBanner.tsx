@@ -31,9 +31,9 @@ export const PageBanner: React.FC<PageBannerProps> = ({
       />
       <AmbientGlow />
 
-      <div className="relative max-w-[1320px] mx-auto px-4 sm:px-8 py-12 sm:py-16">
+      <div className="relative max-w-[1320px] mx-auto px-4 sm:px-8 py-6 sm:py-8">
         <nav aria-label="Breadcrumb">
-          <ol className="flex items-center gap-2 text-[13px] text-white/60 overflow-x-auto no-scrollbar">
+          <ol className="flex items-center gap-2 text-[12px] text-white/60 overflow-x-auto no-scrollbar">
             {breadcrumbs.map((item, idx) => (
               <React.Fragment key={idx}>
                 {idx > 0 && (
@@ -57,16 +57,16 @@ export const PageBanner: React.FC<PageBannerProps> = ({
           </ol>
         </nav>
 
-        <h1 className="mt-4 text-[30px] sm:text-[42px] font-bold tracking-tight leading-tight [text-wrap:balance] max-w-4xl">
+        <h1 className="mt-2 text-[22px] sm:text-[26px] font-bold tracking-tight leading-tight [text-wrap:balance] max-w-4xl">
           <MaskText key={title} text={title} />
         </h1>
         {subtitle && (
-          <p className="mt-3 max-w-2xl text-[15px] sm:text-[16px] text-white/70 leading-relaxed">{subtitle}</p>
+          <p className="mt-1.5 max-w-2xl text-[13px] sm:text-[14px] text-white/70 leading-relaxed">{subtitle}</p>
         )}
 
         {/* Brand accent bar: logo blue into red */}
         <span
-          className="mt-6 block h-[3px] w-20 bg-linear-to-r from-[#0a94dc] to-[#e11d2a]"
+          className="mt-3 block h-[2px] w-12 bg-linear-to-r from-[#0a94dc] to-[#e11d2a]"
           aria-hidden="true"
         />
       </div>
