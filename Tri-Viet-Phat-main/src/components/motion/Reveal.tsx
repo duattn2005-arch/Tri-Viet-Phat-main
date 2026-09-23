@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { animate, motion, useInView, useReducedMotion, Variants } from 'motion/react';
+import { animate, motion, useInView, useReducedMotion, useScroll, useTransform, Variants } from 'motion/react';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -161,3 +161,37 @@ export const MaskText: React.FC<{ text: string; delay?: number }> = ({ text, del
     </span>
   );
 };
+
+/**
+ * Full-bleed background photo that drifts slower than the page (parallax).
+ * Place inside a `relative overflow-hidden` section.
+ */
+export const ParallaxImage: React.FC<{ src: string; className?: string; strength?: number }> = ({
+  src,
+  className = '',
+  strength = 14,
+}) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
+  const y = useTransform(scrollYProgress, [0, 1], [`-${reduce ? 0 : strength}%`, `${reduce ? 0 : strength}%`]);
+  return (
+    <div ref={ref} className="absolute inset-0 overflow-hidden" aria-hidden="true">
+      <motion.img
+        src={src}
+        alt=""
+        loading="lazy"
+        style={{ y }}
+        className={`absolute inset-x-0 -top-[20%] h-[140%] w-full object-cover ${className}`}
+      />
+    </div>
+  );
+};
+
+/** Soft, slowly drifting colour glows for dark sections (decorative). */
+export const AmbientGlow: React.FC<{ className?: string }> = ({ className = '' }) => (
+  <div className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`} aria-hidden="true">
+    <div className="glow-drift absolute -top-1/2 -left-[10%] w-[55%] aspect-square rounded-full bg-[#e11d2a]/25 blur-[120px]" />
+    <div className="glow-drift-reverse absolute -bottom-1/2 -right-[10%] w-[45%] aspect-square rounded-full bg-white/10 blur-[120px]" />
+  </div>
+);

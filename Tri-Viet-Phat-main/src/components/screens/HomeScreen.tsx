@@ -8,7 +8,7 @@ import { HeroSection } from '../HeroSection';
 import { ProductCardsSection } from '../ProductCardsSection';
 import { SectionHeader, ViewAllButton } from '../SectionHeader';
 import { ProductCard } from '../ProductCard';
-import { Reveal, RevealGroup, RevealItem, WipeImage, CountUp, MaskText } from '../motion/Reveal';
+import { Reveal, RevealGroup, RevealItem, WipeImage, CountUp, MaskText, ParallaxImage, AmbientGlow } from '../motion/Reveal';
 
 interface HomeScreenProps {
   onSelectProduct: (product: Product) => void;
@@ -130,8 +130,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       <HeroSection onOpenConsultation={onOpenConsultation} />
 
       {/* 2. Key facts — dark band, counters with an accent line that draws in */}
-      <section className="w-full bg-[#111111] text-white">
-        <dl className="max-w-[1320px] mx-auto px-4 sm:px-8 py-12 sm:py-16 grid grid-cols-2 lg:grid-cols-4 gap-x-6 sm:gap-x-10 gap-y-12">
+      <section className="relative w-full overflow-hidden bg-[#111111] text-white">
+        <AmbientGlow />
+        <dl className="relative max-w-[1320px] mx-auto px-4 sm:px-8 py-12 sm:py-16 grid grid-cols-2 lg:grid-cols-4 gap-x-6 sm:gap-x-10 gap-y-12">
           {FACTS.map((fact, idx) => (
             <Reveal key={fact.label} delay={idx * 0.12} className="relative pt-6">
               {/* Top rule: faint base with an accent segment that grows in */}
@@ -205,14 +206,14 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         </div>
       </section>
 
-      {/* Big scrolling word band — alternating dark and light type */}
-      <section className="w-full overflow-hidden py-8 sm:py-12 bg-white border-t border-[#e5e5e5]" aria-hidden="true">
+      {/* Big scrolling word band on black — alternating solid and faint type */}
+      <section className="w-full overflow-hidden py-10 sm:py-14 bg-[#111111]" aria-hidden="true">
         <div className="marquee-track marquee-slow flex w-max items-center">
           {[...MARQUEE_WORDS, ...MARQUEE_WORDS].map((word, idx) => (
             <span key={idx} className="flex items-center shrink-0">
               <span
                 className={`px-6 sm:px-10 text-[40px] sm:text-[64px] lg:text-[80px] font-bold uppercase leading-none tracking-tight whitespace-nowrap ${
-                  idx % 2 ? 'text-[#d4d4d4]' : 'text-[#111111]'
+                  idx % 2 ? 'text-white/15' : 'text-white'
                 }`}
               >
                 {word}
@@ -318,8 +319,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         </div>
       </section>
 
-      {/* 6. Partners — uniform wordmarks, no per-brand colours */}
-      <section className="w-full py-12 sm:py-16 bg-white border-t border-[#e5e5e5]">
+      {/* 6. Partners */}
+      <section className="w-full py-14 sm:py-20 bg-[#f5f5f5]">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8">
           <Reveal>
             <SectionHeader title="Đối tác của chúng tôi" description="Nhà phân phối chính thức sản phẩm của các hãng chẩn đoán IVD hàng đầu." />
@@ -338,7 +339,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                       src={partner.logo}
                       alt={idx < PARTNERS.length ? partner.name : ''}
                       loading="lazy"
-                      className="max-h-12 sm:max-h-14 max-w-full object-contain hover:scale-110 transition-transform duration-500"
+                      className="max-h-12 sm:max-h-14 max-w-full object-contain mix-blend-multiply hover:scale-110 transition-transform duration-500"
                     />
                   ) : (
                     <span className="text-[18px] font-semibold text-[#999999]">{partner.name}</span>
@@ -353,51 +354,59 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       {/* 7. Testimonials */}
       <TestimonialsCarousel testimonials={TESTIMONIALS} />
 
-      {/* 8. Consultation form */}
-      <section className="w-full py-12 sm:py-16 bg-[#f7f7f7]" id="tu-van-form">
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
+      {/* 8. Consultation form — dark band over a parallax lab photo; the white form card pops forward */}
+      <section className="relative w-full overflow-hidden py-16 sm:py-24 bg-[#111111] text-white" id="tu-van-form">
+        <ParallaxImage src="/images/hero-engineers.jpg" className="opacity-55" />
+        <div className="absolute inset-0 bg-linear-to-r from-[#111111]/95 via-[#111111]/75 to-[#111111]/30" aria-hidden="true" />
+        <div className="relative max-w-[1320px] mx-auto px-4 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <Reveal className="lg:col-span-5">
-            <h2 className="text-[20px] sm:text-[26px] font-bold text-[#111111] uppercase leading-tight">
-              Yêu cầu tư vấn và báo giá
+            <p className="flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.18em] text-[#e11d2a]">
+              <span className="w-8 h-px bg-[#e11d2a]" aria-hidden="true" />
+              Tư vấn miễn phí
+            </p>
+            <h2 className="mt-4 text-[30px] sm:text-[40px] font-bold leading-[1.15] tracking-tight">
+              <MaskText text="Yêu cầu tư vấn và báo giá" />
             </h2>
-            <p className="mt-4 text-[15px] text-[#555555] leading-relaxed">
+            <p className="mt-5 text-[16px] text-white/70 leading-relaxed">
               Bệnh viện, phòng khám hoặc đơn vị dự thầu vui lòng gửi thông tin. Kỹ sư phụ trách khu vực sẽ liên hệ lại
               với báo giá và cấu hình phù hợp.
             </p>
 
-            <ul className="mt-6 space-y-3">
+            <ul className="mt-7 space-y-3.5">
               {FORM_ASSURANCES.map((item) => (
-                <li key={item} className="flex items-start gap-2.5 text-[14px] text-[#333333]">
-                  <span className="material-symbols-outlined text-[18px] text-[#111111] mt-px">check</span>
+                <li key={item} className="flex items-start gap-3 text-[15px] text-white/90">
+                  <span className="shrink-0 w-6 h-6 rounded-full bg-[#e11d2a] flex items-center justify-center mt-px">
+                    <span className="material-symbols-outlined text-[16px] text-white">check</span>
+                  </span>
                   <span>{item}</span>
                 </li>
               ))}
             </ul>
 
-            <dl className="mt-8 pt-6 border-t border-[#e5e5e5] grid grid-cols-2 gap-6 text-[14px]">
+            <dl className="mt-9 pt-7 border-t border-white/15 grid grid-cols-2 gap-6 text-[14px]">
               <div>
-                <dt className="text-[#777777]">Hotline</dt>
-                <dd className="mt-1 space-y-0.5">
+                <dt className="text-white/50 uppercase tracking-[0.12em] text-[12px]">Hotline</dt>
+                <dd className="mt-2 space-y-1">
                   <a
                     href={`tel:${COMPANY_INFO.hotline.replace(/\./g, '')}`}
-                    className="block font-semibold text-[#111111] hover:text-[#111111] hover:underline underline-offset-4"
+                    className="block text-[18px] font-bold text-white hover:text-[#e11d2a] transition-colors"
                   >
                     {COMPANY_INFO.hotline}
                   </a>
                   <a
                     href={`tel:${COMPANY_INFO.hotline2.replace(/\./g, '')}`}
-                    className="block font-semibold text-[#111111] hover:text-[#111111] hover:underline underline-offset-4"
+                    className="block text-[18px] font-bold text-white hover:text-[#e11d2a] transition-colors"
                   >
                     {COMPANY_INFO.hotline2}
                   </a>
                 </dd>
               </div>
               <div className="min-w-0">
-                <dt className="text-[#777777]">Email</dt>
-                <dd className="mt-1">
+                <dt className="text-white/50 uppercase tracking-[0.12em] text-[12px]">Email</dt>
+                <dd className="mt-2">
                   <a
                     href={`mailto:${COMPANY_INFO.email}`}
-                    className="block font-semibold text-[#111111] hover:text-[#111111] hover:underline underline-offset-4 break-all"
+                    className="block font-semibold text-white hover:text-[#e11d2a] transition-colors break-all"
                   >
                     {COMPANY_INFO.email}
                   </a>
@@ -407,7 +416,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           </Reveal>
 
           <Reveal className="lg:col-span-7" delay={0.15}>
-            <div className="bg-white p-6 sm:p-8">
+            <div className="bg-white text-[#111111] p-6 sm:p-10 shadow-[0_30px_80px_rgba(0,0,0,0.45)]">
               {formSubmitted ? (
                 <div className="py-10 text-center" role="status">
                   <span className="material-symbols-outlined text-[40px] text-[#111111]">check_circle</span>
