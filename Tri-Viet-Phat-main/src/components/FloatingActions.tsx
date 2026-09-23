@@ -119,7 +119,7 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({ onToggleAiChat
                   target={ch.external ? '_blank' : undefined}
                   rel={ch.external ? 'noopener noreferrer' : undefined}
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-between gap-3 px-4 py-2.5 hover:bg-[#f7f7f7] transition-colors group"
+                  className="flex items-center justify-between gap-3 px-4 py-2.5 hover:bg-[#f3f7fb] transition-colors group"
                 >
                   <span className="min-w-0">
                     <span className="block text-[14px] font-medium text-[#111111] group-hover:underline underline-offset-4">

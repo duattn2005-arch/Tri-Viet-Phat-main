@@ -1,5 +1,6 @@
 import React from 'react';
 import { COMPANY_INFO, CORE_VALUES, BUSINESS_AREAS, PARTNERS } from '../../data/mockData';
+import { PageBanner } from '../PageBanner';
 
 interface AboutScreenProps {
   onOpenConsultation: () => void;
@@ -7,7 +8,14 @@ interface AboutScreenProps {
 
 export const AboutScreen: React.FC<AboutScreenProps> = ({ onOpenConsultation }) => {
   return (
-    <div className="w-full bg-medical-grid-3d py-4 sm:py-6 lg:py-7">
+    <>
+    <PageBanner
+      title="Giới thiệu Trí Việt Phát"
+      subtitle="Hơn 16 năm cung ứng thiết bị và hóa chất xét nghiệm cho bệnh viện, phòng khám trên toàn quốc."
+      image="/images/hero-engineers.jpg"
+      breadcrumbs={[{ label: 'Trang chủ' }, { label: 'Giới thiệu' }]}
+    />
+    <div className="w-full bg-medical-grid-3d py-10 sm:py-14">
       <div className="max-w-[1320px] mx-auto px-4 sm:px-8 xl:px-12 space-y-6">
 
         {/* Story Section */}
@@ -64,7 +72,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onOpenConsultation }) 
         {/* Mission, Vision, Core Values */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
           <div className="bg-white p-6  card-3d flex flex-col h-full space-y-3">
-            <div className="w-12 h-12  bg-[#f2f2f2] text-[#555555] flex items-center justify-center shrink-0 ">
+            <div className="w-12 h-12  bg-[#edf3f8] text-[#555555] flex items-center justify-center shrink-0 ">
               <span className="material-symbols-outlined text-[28px]">visibility</span>
             </div>
             <h3 className="text-[18px] font-bold text-[#111111]">Tầm nhìn chiến lược</h3>
@@ -74,7 +82,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onOpenConsultation }) 
           </div>
 
           <div className="bg-white p-6  card-3d flex flex-col h-full space-y-3">
-            <div className="w-12 h-12  bg-[#f2f2f2] text-[#555555] flex items-center justify-center shrink-0 ">
+            <div className="w-12 h-12  bg-[#edf3f8] text-[#555555] flex items-center justify-center shrink-0 ">
               <span className="material-symbols-outlined text-[28px]">flag</span>
             </div>
             <h3 className="text-[18px] font-bold text-[#111111]">Sứ mệnh cao cả</h3>
@@ -84,7 +92,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onOpenConsultation }) 
           </div>
 
           <div className="bg-white p-6  card-3d flex flex-col h-full space-y-3">
-            <div className="w-12 h-12  bg-[#f2f2f2] text-[#555555] flex items-center justify-center shrink-0 ">
+            <div className="w-12 h-12  bg-[#edf3f8] text-[#555555] flex items-center justify-center shrink-0 ">
               <span className="material-symbols-outlined text-[28px]">military_tech</span>
             </div>
             <h3 className="text-[18px] font-bold text-[#111111]">Giá trị cốt lõi</h3>
@@ -108,7 +116,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onOpenConsultation }) 
             {BUSINESS_AREAS.map((area, idx) => (
               <div
                 key={idx}
-                className="p-4  card-3d-subtle bg-white hover:bg-[#f2f2f2]/30 transition-colors h-full flex flex-col justify-start"
+                className="p-4  card-3d-subtle bg-white hover:bg-[#edf3f8]/30 transition-colors h-full flex flex-col justify-start"
               >
                 <div className="flex items-center gap-2 mb-1.5">
                   <span className="material-symbols-outlined text-[#111111] text-[18px] shrink-0">
@@ -123,7 +131,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onOpenConsultation }) 
         </div>
 
         {/* CTA Banner with 3D Bevel */}
-        <div className="p-6 sm:p-8  bg-linear-to-r from-[#000000] via-[#000000] to-[#000000] text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-[0_12px_32px_rgba(0,60,120,0.25),inset_0_1px_1px_rgba(255,255,255,0.25)] border border-[#111111]/40">
+        <div className="p-6 sm:p-8  bg-linear-to-r from-[#071a2e] via-[#071a2e] to-[#071a2e] text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-[0_12px_32px_rgba(0,60,120,0.25),inset_0_1px_1px_rgba(255,255,255,0.25)] border border-[#0a2540]/40">
           <div className="space-y-1 text-center sm:text-left max-w-xl">
             <h3 className="text-[19px] font-bold text-white">Hợp tác cùng Trí Việt Phát</h3>
             <p className="text-[13px] text-[#e5e5e5] leading-relaxed">
@@ -140,5 +148,6 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onOpenConsultation }) 
         </div>
       </div>
     </div>
+    </>
   );
 };

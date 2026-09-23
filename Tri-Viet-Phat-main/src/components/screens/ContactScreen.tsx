@@ -26,7 +26,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
   };
 
   return (
-    <div className="w-full bg-[#f7f7f7] min-h-screen">
+    <div className="w-full bg-[#f3f7fb] min-h-screen">
       {/* Banner */}
       <PageBanner
         title="Liên hệ"
@@ -44,7 +44,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
 
         {/* Repair Service CTA Banner */}
         {onOpenRepairService && (
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-5 sm:p-6  bg-linear-to-r from-[#000000] to-[#111111] text-white ">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-5 sm:p-6  bg-linear-to-r from-[#071a2e] to-[#0a2540] text-white ">
             <div className="flex items-center gap-3.5 text-center sm:text-left">
               <div className="w-12 h-12  bg-white/15 flex items-center justify-center shrink-0">
                 <span className="material-symbols-outlined text-[26px]">build</span>
@@ -61,7 +61,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
             <button
               type="button"
               onClick={onOpenRepairService}
-              className="shrink-0 px-6 py-3  bg-white hover:bg-[#f7f7f7] text-[#111111] font-bold text-[13.5px]   transition-all cursor-pointer inline-flex items-center gap-2"
+              className="shrink-0 px-6 py-3  bg-white hover:bg-[#f3f7fb] text-[#111111] font-bold text-[13.5px]   transition-all cursor-pointer inline-flex items-center gap-2"
             >
               <span className="material-symbols-outlined text-[18px]">send</span>
               <span>Đăng ký sửa chữa</span>
@@ -77,7 +77,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
               <h3 className="pb-3 border-b border-[#e5e5e5] text-[18px] font-bold text-[#111111] mb-5">Liên hệ gửi yêu cầu</h3>
 
               {submitted ? (
-                <div className="p-5  bg-[#f2f2f2] border border-[#e5e5e5] text-[#111111] space-y-2">
+                <div className="p-5  bg-[#edf3f8] border border-[#e5e5e5] text-[#111111] space-y-2">
                   <div className="flex items-center gap-2 font-bold text-[15px]">
                     <span className="material-symbols-outlined text-[22px]">check_circle</span>
                     <span>Gửi yêu cầu liên hệ thành công!</span>
@@ -98,7 +98,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
                       placeholder="Nhập họ và tên của bạn"
-                      className="w-full px-4 py-2.5  border border-[#d4d4d4] text-[14px] focus:outline-none focus:border-[#111111] focus:ring-1 focus:ring-[#111111] transition-all bg-white"
+                      className="w-full px-4 py-2.5  border border-[#d4d4d4] text-[14px] focus:outline-none focus:border-[#0a2540] focus:ring-1 focus:ring-[#0a2540] transition-all bg-white"
                     />
                   </div>
 
@@ -113,7 +113,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="email@example.com"
-                        className="w-full px-4 py-2.5  border border-[#d4d4d4] text-[14px] focus:outline-none focus:border-[#111111] focus:ring-1 focus:ring-[#111111] transition-all bg-white"
+                        className="w-full px-4 py-2.5  border border-[#d4d4d4] text-[14px] focus:outline-none focus:border-[#0a2540] focus:ring-1 focus:ring-[#0a2540] transition-all bg-white"
                       />
                     </div>
                     <div>
@@ -126,7 +126,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         placeholder="0912 345 678"
-                        className="w-full px-4 py-2.5  border border-[#d4d4d4] text-[14px] focus:outline-none focus:border-[#111111] focus:ring-1 focus:ring-[#111111] transition-all bg-white"
+                        className="w-full px-4 py-2.5  border border-[#d4d4d4] text-[14px] focus:outline-none focus:border-[#0a2540] focus:ring-1 focus:ring-[#0a2540] transition-all bg-white"
                       />
                     </div>
                   </div>
@@ -140,14 +140,14 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       placeholder="Vui lòng để lại nội dung yêu cầu báo giá, tư vấn thiết bị hoặc hợp tác..."
-                      className="w-full px-4 py-2.5  border border-[#d4d4d4] text-[14px] focus:outline-none focus:border-[#111111] focus:ring-1 focus:ring-[#111111] transition-all bg-white"
+                      className="w-full px-4 py-2.5  border border-[#d4d4d4] text-[14px] focus:outline-none focus:border-[#0a2540] focus:ring-1 focus:ring-[#0a2540] transition-all bg-white"
                     />
                   </div>
 
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="px-7 py-3  bg-[#111111] hover:bg-[#000000] text-white font-bold text-[14px]   transition-all cursor-pointer flex items-center gap-2"
+                      className="px-7 py-3  bg-[#0a2540] hover:bg-[#071a2e] text-white font-bold text-[14px]   transition-all cursor-pointer flex items-center gap-2"
                     >
                       <span className="material-symbols-outlined text-[18px]">send</span>
                       <span>Gửi yêu cầu</span>
@@ -174,7 +174,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
 
               <div className="space-y-3 pt-1 text-[13.5px]">
                 <div className="flex items-start gap-3">
-                  <div className="w-9 h-9  bg-[#f2f2f2] text-[#555555] flex items-center justify-center shrink-0">
+                  <div className="w-9 h-9  bg-[#edf3f8] text-[#555555] flex items-center justify-center shrink-0">
                     <span className="material-symbols-outlined text-[20px]">phone</span>
                   </div>
                   <div>
@@ -186,7 +186,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="w-9 h-9  bg-[#f2f2f2] text-[#555555] flex items-center justify-center shrink-0">
+                  <div className="w-9 h-9  bg-[#edf3f8] text-[#555555] flex items-center justify-center shrink-0">
                     <span className="material-symbols-outlined text-[20px]">phone_in_talk</span>
                   </div>
                   <div>
@@ -198,7 +198,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="w-9 h-9  bg-[#f2f2f2] text-[#555555] flex items-center justify-center shrink-0">
+                  <div className="w-9 h-9  bg-[#edf3f8] text-[#555555] flex items-center justify-center shrink-0">
                     <span className="material-symbols-outlined text-[20px]">mail</span>
                   </div>
                   <div>
@@ -210,7 +210,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="w-9 h-9  bg-[#f2f2f2] text-[#555555] flex items-center justify-center shrink-0">
+                  <div className="w-9 h-9  bg-[#edf3f8] text-[#555555] flex items-center justify-center shrink-0">
                     <span className="material-symbols-outlined text-[20px]">apartment</span>
                   </div>
                   <div>
@@ -222,7 +222,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="w-9 h-9  bg-[#f2f2f2] text-[#555555] flex items-center justify-center shrink-0">
+                  <div className="w-9 h-9  bg-[#edf3f8] text-[#555555] flex items-center justify-center shrink-0">
                     <span className="material-symbols-outlined text-[20px]">location_on</span>
                   </div>
                   <div>
@@ -239,7 +239,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
 
         {/* Full-width Google Map from original site */}
         <div className="bg-white  border border-[#e5e5e5] overflow-hidden ">
-          <div className="p-3.5 bg-[#f7f7f7] border-b border-[#e5e5e5] flex items-center justify-between">
+          <div className="p-3.5 bg-[#f3f7fb] border-b border-[#e5e5e5] flex items-center justify-between">
             <div className="flex items-center gap-2 text-[13.5px] font-bold text-[#111111]">
               <span className="material-symbols-outlined text-[#777777] text-[18px]">map</span>
               <span>Bản đồ chỉ đường - Trụ sở Công ty Thiết Bị Y Tế Trí Việt Phát</span>

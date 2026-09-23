@@ -191,7 +191,7 @@ export const ParallaxImage: React.FC<{ src: string; className?: string; strength
 /** Soft, slowly drifting colour glows for dark sections (decorative). */
 export const AmbientGlow: React.FC<{ className?: string }> = ({ className = '' }) => (
   <div className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`} aria-hidden="true">
-    <div className="glow-drift absolute -top-1/2 -left-[10%] w-[55%] aspect-square rounded-full bg-[#e11d2a]/25 blur-[120px]" />
-    <div className="glow-drift-reverse absolute -bottom-1/2 -right-[10%] w-[45%] aspect-square rounded-full bg-white/10 blur-[120px]" />
+    <div className="glow-drift absolute -top-1/2 -left-[10%] w-[55%] aspect-square rounded-full bg-[#0a94dc]/35 blur-[120px]" />
+    <div className="glow-drift-reverse absolute -bottom-1/2 -right-[10%] w-[45%] aspect-square rounded-full bg-[#e11d2a]/20 blur-[120px]" />
   </div>
 );

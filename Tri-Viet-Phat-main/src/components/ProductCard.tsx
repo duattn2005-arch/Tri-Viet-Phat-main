@@ -12,6 +12,10 @@ interface ProductCardProps {
 export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect, onRequestQuote }) => (
   <article className="group flex flex-col">
     <div className="relative w-full aspect-square overflow-hidden bg-white">
+      <span
+        className="absolute inset-x-0 bottom-0 z-10 h-[3px] bg-linear-to-r from-[#0a94dc] to-[#e11d2a] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+        aria-hidden="true"
+      />
       <button
         type="button"
         onClick={() => onSelect(product)}
@@ -31,7 +35,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect, onR
         <button
           type="button"
           onClick={() => onRequestQuote(product.name)}
-          className="flex-1 h-11 bg-white border border-[#e5e5e5] text-[12px] sm:text-[13px] font-bold uppercase tracking-wide text-[#111111] inline-flex items-center justify-center gap-1.5 hover:bg-[#111111] hover:text-white hover:border-[#111111] transition-colors cursor-pointer"
+          className="flex-1 h-11 bg-white border border-[#e5e5e5] text-[12px] sm:text-[13px] font-bold uppercase tracking-wide text-[#111111] inline-flex items-center justify-center gap-1.5 hover:bg-[#0a2540] hover:text-white hover:border-[#0a2540] transition-colors cursor-pointer"
         >
           <span className="material-symbols-outlined text-[18px]">request_quote</span>
           <span>Báo giá</span>
@@ -40,7 +44,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect, onR
           type="button"
           onClick={() => onSelect(product)}
           aria-label={`Xem nhanh ${product.name}`}
-          className="w-11 h-11 bg-[#333333] text-white inline-flex items-center justify-center hover:bg-[#111111] transition-colors cursor-pointer"
+          className="w-11 h-11 bg-[#333333] text-white inline-flex items-center justify-center hover:bg-[#0a2540] transition-colors cursor-pointer"
         >
           <span className="material-symbols-outlined text-[20px]">visibility</span>
         </button>

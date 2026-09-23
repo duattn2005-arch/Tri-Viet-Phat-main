@@ -35,7 +35,11 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
   };
 
   return (
-    <footer className="w-full bg-[#111111] text-[#999999] text-[14px]">
+    <footer className="relative w-full bg-[#0a2540] text-white/60 text-[14px]">
+      <span
+        className="absolute inset-x-0 top-0 h-[3px] bg-linear-to-r from-[#0a94dc] via-[#0a94dc] to-[#e11d2a]"
+        aria-hidden="true"
+      />
       <div className="max-w-[1320px] mx-auto px-4 sm:px-8 pt-14 pb-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
           <div className="lg:col-span-4">

@@ -88,14 +88,14 @@ export const RepairServiceModal: React.FC<RepairServiceModalProps> = ({ isOpen, 
         <button
           onClick={handleClose}
           aria-label="Đóng"
-          className="absolute top-4 right-4 w-9 h-9 rounded-full bg-[#f2f2f2] hover:bg-[#e5e5e5] text-[#555555] flex items-center justify-center transition-colors cursor-pointer"
+          className="absolute top-4 right-4 w-9 h-9 rounded-full bg-[#edf3f8] hover:bg-[#e5e5e5] text-[#555555] flex items-center justify-center transition-colors cursor-pointer"
         >
           <span className="material-symbols-outlined text-[20px]">close</span>
         </button>
 
         {submitState === 'success' ? (
           <div className="text-center py-8 space-y-4 animate-in zoom-in-95 duration-200">
-            <div className="w-16 h-16 rounded-full bg-[#f2f2f2] text-[#555555] flex items-center justify-center mx-auto">
+            <div className="w-16 h-16 rounded-full bg-[#edf3f8] text-[#555555] flex items-center justify-center mx-auto">
               <span className="material-symbols-outlined text-[36px]">verified</span>
             </div>
             <h3 className="text-[20px] font-bold text-[#111111]">
@@ -114,7 +114,7 @@ export const RepairServiceModal: React.FC<RepairServiceModalProps> = ({ isOpen, 
         ) : (
           <div>
             <div className="mb-5 text-left">
-              <span className="inline-block px-3 py-1 rounded-full bg-[#111111] text-white text-[11px] font-bold mb-2">
+              <span className="inline-block px-3 py-1 rounded-full bg-[#0a2540] text-white text-[11px] font-bold mb-2">
                 Dịch Vụ Kỹ Thuật 24/7
               </span>
               <h3 className="text-[20px] font-bold text-[#111111] [text-wrap:balance]">
@@ -141,7 +141,7 @@ export const RepairServiceModal: React.FC<RepairServiceModalProps> = ({ isOpen, 
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
                       placeholder="Họ và tên hoặc tên đơn vị"
-                      className="w-full pl-9 pr-3 py-2.5  bg-white text-[13.5px] text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#111111] border border-[#d4d4d4]"
+                      className="w-full pl-9 pr-3 py-2.5  bg-white text-[13.5px] text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#0a2540] border border-[#d4d4d4]"
                     />
                   </div>
                 </div>
@@ -160,7 +160,7 @@ export const RepairServiceModal: React.FC<RepairServiceModalProps> = ({ isOpen, 
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="Số điện thoại liên hệ"
-                      className="w-full pl-9 pr-3 py-2.5  bg-white text-[13.5px] text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#111111] border border-[#d4d4d4]"
+                      className="w-full pl-9 pr-3 py-2.5  bg-white text-[13.5px] text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#0a2540] border border-[#d4d4d4]"
                     />
                   </div>
                 </div>
@@ -181,7 +181,7 @@ export const RepairServiceModal: React.FC<RepairServiceModalProps> = ({ isOpen, 
                       value={deviceName}
                       onChange={(e) => setDeviceName(e.target.value)}
                       placeholder="Ví dụ: Máy xét nghiệm sinh hóa CS-1600"
-                      className="w-full pl-9 pr-3 py-2.5  bg-white text-[13.5px] text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#111111] border border-[#d4d4d4]"
+                      className="w-full pl-9 pr-3 py-2.5  bg-white text-[13.5px] text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#0a2540] border border-[#d4d4d4]"
                     />
                   </div>
                 </div>
@@ -199,7 +199,7 @@ export const RepairServiceModal: React.FC<RepairServiceModalProps> = ({ isOpen, 
                       value={brand}
                       onChange={(e) => setBrand(e.target.value)}
                       placeholder="Ví dụ: Dirui, Audicom..."
-                      className="w-full pl-9 pr-3 py-2.5  bg-white text-[13.5px] text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#111111] border border-[#d4d4d4]"
+                      className="w-full pl-9 pr-3 py-2.5  bg-white text-[13.5px] text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#0a2540] border border-[#d4d4d4]"
                     />
                   </div>
                 </div>
@@ -219,7 +219,7 @@ export const RepairServiceModal: React.FC<RepairServiceModalProps> = ({ isOpen, 
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Email nhận phản hồi (nếu có)"
-                      className="w-full pl-9 pr-3 py-2.5  bg-white text-[13.5px] text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#111111] border border-[#d4d4d4]"
+                      className="w-full pl-9 pr-3 py-2.5  bg-white text-[13.5px] text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#0a2540] border border-[#d4d4d4]"
                     />
                   </div>
                 </div>
@@ -231,7 +231,7 @@ export const RepairServiceModal: React.FC<RepairServiceModalProps> = ({ isOpen, 
                   <select
                     value={urgency}
                     onChange={(e) => setUrgency(e.target.value as 'Bình thường' | 'Khẩn cấp')}
-                    className="w-full px-3 py-2.5  bg-white text-[13.5px] text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#111111] border border-[#d4d4d4] cursor-pointer"
+                    className="w-full px-3 py-2.5  bg-white text-[13.5px] text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#0a2540] border border-[#d4d4d4] cursor-pointer"
                   >
                     <option value="Bình thường">Bình thường</option>
                     <option value="Khẩn cấp">Khẩn cấp (thiết bị ngừng hoạt động)</option>
@@ -252,7 +252,7 @@ export const RepairServiceModal: React.FC<RepairServiceModalProps> = ({ isOpen, 
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
                     placeholder="Địa chỉ bệnh viện/phòng khám đang sử dụng thiết bị"
-                    className="w-full pl-9 pr-3 py-2.5  bg-white text-[13.5px] text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#111111] border border-[#d4d4d4]"
+                    className="w-full pl-9 pr-3 py-2.5  bg-white text-[13.5px] text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#0a2540] border border-[#d4d4d4]"
                   />
                 </div>
               </div>
@@ -267,7 +267,7 @@ export const RepairServiceModal: React.FC<RepairServiceModalProps> = ({ isOpen, 
                   value={issueDescription}
                   onChange={(e) => setIssueDescription(e.target.value)}
                   placeholder="Mô tả chi tiết lỗi/sự cố thiết bị đang gặp phải..."
-                  className="w-full p-3  bg-white text-[13.5px] text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#111111] border border-[#d4d4d4]"
+                  className="w-full p-3  bg-white text-[13.5px] text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#0a2540] border border-[#d4d4d4]"
                 ></textarea>
               </div>
 

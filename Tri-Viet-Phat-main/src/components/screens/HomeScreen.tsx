@@ -79,7 +79,7 @@ const FORM_ASSURANCES = [
 ];
 
 const INPUT_CLASS =
-  'w-full px-3.5 py-2.5 bg-white border border-[#d4d4d4] text-[14px] text-[#111111] placeholder:text-[#999999] focus:outline-none focus:border-[#111111] focus:ring-1 focus:ring-[#111111]';
+  'w-full px-3.5 py-2.5 bg-white border border-[#d4d4d4] text-[14px] text-[#111111] placeholder:text-[#999999] focus:outline-none focus:border-[#0a2540] focus:ring-1 focus:ring-[#0a2540]';
 
 const LABEL_CLASS = 'block text-[13px] font-medium text-[#333333] mb-1.5';
 
@@ -138,7 +138,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       <HeroSection onOpenConsultation={onOpenConsultation} />
 
       {/* 2. Key facts — dark band, counters with an accent line that draws in */}
-      <section className="relative w-full overflow-hidden bg-[#111111] text-white">
+      <section className="relative w-full overflow-hidden bg-[#0a2540] text-white">
         <AmbientGlow />
         <dl className="relative max-w-[1320px] mx-auto px-4 sm:px-8 py-12 sm:py-16 grid grid-cols-2 lg:grid-cols-4 gap-x-6 sm:gap-x-10 gap-y-12">
           {FACTS.map((fact, idx) => (
@@ -172,7 +172,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       <ProductCardsSection onNavigateTab={onNavigateTab} />
 
       {/* 4. Featured products — tabs double as the section heading */}
-      <section className="w-full py-12 sm:py-16 bg-[#f7f7f7]" id="featured-products">
+      <section className="w-full py-12 sm:py-16 bg-[#f3f7fb]" id="featured-products">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8">
           <div
             role="tablist"
@@ -189,7 +189,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   onClick={() => setFeaturedCategory(cat.key)}
                   className={`shrink-0 pb-2 border-b-2 text-[16px] sm:text-[20px] font-semibold uppercase transition-colors cursor-pointer ${
                     isSelected
-                      ? 'border-[#111111] text-[#111111]'
+                      ? 'border-[#0a2540] text-[#111111]'
                       : 'border-transparent text-[#999999] hover:text-[#555555]'
                   }`}
                 >
@@ -215,7 +215,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       </section>
 
       {/* Category word band on black — static, each word links to its product category */}
-      <section className="w-full py-8 sm:py-10 bg-[#111111]">
+      <section className="w-full py-8 sm:py-10 bg-linear-to-r from-[#0a2540] via-[#0b3a66] to-[#0a2540]">
         <RevealGroup className="max-w-[1320px] mx-auto px-4 sm:px-8 flex flex-wrap items-center justify-center gap-x-6 lg:gap-x-5 gap-y-3">
           {CATEGORY_WORDS.map((item, idx) => (
             <RevealItem key={item.cat} className="flex items-center gap-6 lg:gap-5">
@@ -242,7 +242,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           {/* Photo composition */}
           <div className="lg:col-span-6 relative pb-16 sm:pb-20 pr-10 sm:pr-24">
             <WipeImage
-              wrapperClassName="bg-[#f2f2f2]"
+              wrapperClassName="bg-[#edf3f8]"
               className="w-full aspect-[4/5] object-cover"
               alt="Kỹ thuật viên phòng xét nghiệm làm việc với kính hiển vi"
               src={COMPANY_INFO.aboutImage}
@@ -261,7 +261,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             <Reveal
               delay={0.55}
               y={20}
-              className="absolute left-4 sm:left-6 bottom-8 sm:bottom-12 bg-[#111111] text-white px-5 py-4 sm:px-7 sm:py-6"
+              className="absolute left-4 sm:left-6 bottom-8 sm:bottom-12 bg-[#0a2540] text-white px-5 py-4 sm:px-7 sm:py-6"
             >
               <div className="text-[36px] sm:text-[48px] font-bold leading-none tabular-nums">
                 <CountUp
@@ -298,7 +298,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   <span className="shrink-0 text-[14px] font-bold text-[#e11d2a] tabular-nums pt-0.5">
                     {String(idx + 1).padStart(2, '0')}
                   </span>
-                  <div className="pt-0.5 border-t border-[#e5e5e5] group-hover:border-[#111111] transition-colors duration-500 flex-1">
+                  <div className="pt-0.5 border-t border-[#e5e5e5] group-hover:border-[#0a2540] transition-colors duration-500 flex-1">
                     <h3 className="pt-3 text-[16px] sm:text-[17px] font-semibold text-[#111111]">{cap.title}</h3>
                     <p className="mt-2 text-[14px] sm:text-[15px] text-[#555555] leading-relaxed">{cap.desc}</p>
                   </div>
@@ -332,7 +332,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       </section>
 
       {/* 6. Partners */}
-      <section className="w-full py-14 sm:py-20 bg-[#f5f5f5]">
+      <section className="w-full py-14 sm:py-20 bg-[#f3f7fb]">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8">
           <Reveal>
             <SectionHeader title="Đối tác của chúng tôi" description="Nhà phân phối chính thức sản phẩm của các hãng chẩn đoán IVD hàng đầu." />
@@ -367,9 +367,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       <TestimonialsCarousel testimonials={TESTIMONIALS} />
 
       {/* 8. Consultation form — dark band over a parallax lab photo; the white form card pops forward */}
-      <section className="relative w-full overflow-hidden py-16 sm:py-24 bg-[#111111] text-white" id="tu-van-form">
+      <section className="relative w-full overflow-hidden py-16 sm:py-24 bg-[#0a2540] text-white" id="tu-van-form">
         <ParallaxImage src="/images/hero-engineers.jpg" className="opacity-55" />
-        <div className="absolute inset-0 bg-linear-to-r from-[#111111]/95 via-[#111111]/75 to-[#111111]/30" aria-hidden="true" />
+        <div className="absolute inset-0 bg-linear-to-r from-[#0a2540]/95 via-[#0a2540]/75 to-[#0a2540]/30" aria-hidden="true" />
         <div className="relative max-w-[1320px] mx-auto px-4 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <Reveal className="lg:col-span-5">
             <p className="flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.18em] text-[#e11d2a]">
@@ -448,7 +448,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                           key={chip}
                           type="button"
                           onClick={() => handleAddQuickChip(chip)}
-                          className="text-[13px] px-3 py-1.5 border border-[#d4d4d4] text-[#333333] hover:border-[#111111] hover:text-[#111111] hover:underline underline-offset-4 transition-colors cursor-pointer"
+                          className="text-[13px] px-3 py-1.5 border border-[#d4d4d4] text-[#333333] hover:border-[#0a2540] hover:text-[#111111] hover:underline underline-offset-4 transition-colors cursor-pointer"
                         >
                           {chip}
                         </button>
@@ -553,7 +553,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   onClick={() => onSelectArticle(art)}
                   className="group flex flex-col text-left cursor-pointer"
                 >
-                  <div className="w-full aspect-[16/9] overflow-hidden bg-[#f2f2f2]">
+                  <div className="w-full aspect-[16/9] overflow-hidden bg-[#edf3f8]">
                     <img
                       className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
                       alt={art.alt}

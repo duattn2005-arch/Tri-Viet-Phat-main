@@ -80,7 +80,7 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
               className="flex gap-3 group cursor-pointer border-b border-[#f2f2f2] pb-3 last:border-b-0 last:pb-0"
               onClick={() => onSelectArticle && onSelectArticle(art)}
             >
-              <div className="w-[80px] h-[58px] shrink-0  overflow-hidden border border-[#e5e5e5] bg-[#f7f7f7]">
+              <div className="w-[80px] h-[58px] shrink-0  overflow-hidden border border-[#e5e5e5] bg-[#f3f7fb]">
                 <img
                   src={art.image}
                   alt={art.title}
@@ -116,7 +116,7 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
               <li key={idx}>
                 <button
                   onClick={() => onNavigateCategory && onNavigateCategory(cat.name)}
-                  className="w-full py-1.5 px-2 text-left flex items-center justify-between text-[#333333] hover:text-[#000000] hover:bg-[#f7f7f7]  transition-colors cursor-pointer group"
+                  className="w-full py-1.5 px-2 text-left flex items-center justify-between text-[#333333] hover:text-[#000000] hover:bg-[#f3f7fb]  transition-colors cursor-pointer group"
                 >
                   <span className="flex items-center gap-1.5">
                     <span className="text-[#d4d4d4] group-hover:text-[#000000] text-[10px] transition-colors">

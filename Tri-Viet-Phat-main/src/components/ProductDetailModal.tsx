@@ -62,7 +62,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         <button
           onClick={onClose}
           aria-label="Đóng"
-          className="absolute top-3 right-3 w-9 h-9 rounded-full bg-[#f2f2f2] hover:bg-[#e5e5e5] text-[#555555] flex items-center justify-center transition-colors z-20 cursor-pointer "
+          className="absolute top-3 right-3 w-9 h-9 rounded-full bg-[#edf3f8] hover:bg-[#e5e5e5] text-[#555555] flex items-center justify-center transition-colors z-20 cursor-pointer "
         >
           <span className="material-symbols-outlined text-[20px]">close</span>
         </button>
@@ -147,7 +147,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             </div>
 
             {/* Right: Registration Consultation Form - Exactly as in screenshot */}
-            <div className="lg:col-span-3 bg-[#111111] text-white p-5  ">
+            <div className="lg:col-span-3 bg-[#0a2540] text-white p-5  ">
               <h3 className="text-center font-bold text-[16px] mb-3.5 tracking-tight text-white">
                 Đăng ký nhận tư vấn
               </h3>

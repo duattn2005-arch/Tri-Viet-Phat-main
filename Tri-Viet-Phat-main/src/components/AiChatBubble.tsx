@@ -242,11 +242,11 @@ export const AiChatBubble: React.FC<AiChatBubbleProps> = ({
           aria-label="Cửa sổ Trợ lý AI & Liên hệ Trí Việt Phát"
         >
           {/* Chat Header */}
-          <div className="bg-linear-to-r from-[#111111] to-[#111111] px-4 sm:px-5 py-3.5 text-white flex items-center justify-between  shrink-0">
+          <div className="bg-linear-to-r from-[#0a2540] to-[#0a2540] px-4 sm:px-5 py-3.5 text-white flex items-center justify-between  shrink-0">
             <div className="flex items-center gap-3">
               <div className="relative w-10 h-10 rounded-full bg-white/20 backdrop-blur flex items-center justify-center border border-white/40">
                 <span className="material-symbols-outlined text-white text-[24px]">smart_toy</span>
-                <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-[#10b981] border-2 border-[#111111]"></span>
+                <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-[#10b981] border-2 border-[#0a2540]"></span>
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
@@ -284,7 +284,7 @@ export const AiChatBubble: React.FC<AiChatBubbleProps> = ({
           </div>
 
           {/* Messages Body */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-3.5 bg-[#f7f7f7]">
+          <div className="flex-1 overflow-y-auto p-4 space-y-3.5 bg-[#f3f7fb]">
             {messages.map((msg) => {
               const isUser = msg.sender === 'user';
               return (
@@ -293,7 +293,7 @@ export const AiChatBubble: React.FC<AiChatBubbleProps> = ({
                   className={`flex gap-2.5 max-w-[88%] ${isUser ? 'ml-auto flex-row-reverse' : 'mr-auto'}`}
                 >
                   {!isUser && (
-                    <div className="w-7 h-7 rounded-full bg-[#111111] text-white flex items-center justify-center shrink-0 text-[14px] mt-0.5 ">
+                    <div className="w-7 h-7 rounded-full bg-[#0a2540] text-white flex items-center justify-center shrink-0 text-[14px] mt-0.5 ">
                       <span className="material-symbols-outlined text-[16px]">smart_toy</span>
                     </div>
                   )}
@@ -301,7 +301,7 @@ export const AiChatBubble: React.FC<AiChatBubbleProps> = ({
                     <div
                       className={`px-3.5 py-2.5  text-[13px] leading-relaxed  ${
                         isUser
-                          ? 'bg-[#111111] text-white rounded-br-xs'
+                          ? 'bg-[#0a2540] text-white rounded-br-xs'
                           : 'bg-white text-[#111111] border border-[#e5e5e5] rounded-bl-xs'
                       }`}
                     >
@@ -322,13 +322,13 @@ export const AiChatBubble: React.FC<AiChatBubbleProps> = ({
             {/* AI Typing Indicator */}
             {isLoading && (
               <div className="flex gap-2.5 max-w-[85%] mr-auto items-center">
-                <div className="w-7 h-7 rounded-full bg-[#111111] text-white flex items-center justify-center shrink-0 text-[14px]">
+                <div className="w-7 h-7 rounded-full bg-[#0a2540] text-white flex items-center justify-center shrink-0 text-[14px]">
                   <span className="material-symbols-outlined text-[16px]">smart_toy</span>
                 </div>
                 <div className="bg-white border border-[#e5e5e5] px-4 py-3    flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-[#111111] animate-bounce"></span>
+                  <span className="w-2 h-2 rounded-full bg-[#0a2540] animate-bounce"></span>
                   <span
-                    className="w-2 h-2 rounded-full bg-[#111111] animate-bounce"
+                    className="w-2 h-2 rounded-full bg-[#0a2540] animate-bounce"
                     style={{ animationDelay: '0.15s' }}
                   ></span>
                   <span
@@ -354,7 +354,7 @@ export const AiChatBubble: React.FC<AiChatBubbleProps> = ({
                 key={i}
                 disabled={isLoading}
                 onClick={() => handleSendMessage(sug)}
-                className="text-[11.5px] px-2.5 py-1 rounded-full bg-[#f2f2f2] hover:bg-[#f2f2f2] text-[#333333] hover:text-[#111111] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0 border border-transparent hover:border-[#e5e5e5] cursor-pointer disabled:opacity-50"
+                className="text-[11.5px] px-2.5 py-1 rounded-full bg-[#edf3f8] hover:bg-[#edf3f8] text-[#333333] hover:text-[#111111] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0 border border-transparent hover:border-[#e5e5e5] cursor-pointer disabled:opacity-50"
               >
                 {sug}
               </button>
@@ -363,7 +363,7 @@ export const AiChatBubble: React.FC<AiChatBubbleProps> = ({
 
           {/* Chat Input Bar */}
           <div className="p-3 bg-white border-t border-[#e5e5e5] shrink-0">
-            <div className="flex items-center gap-2 bg-[#f7f7f7]  border border-[#e5e5e5] focus-within:border-[#111111] focus-within:ring-2 focus-within:ring-[#111111]/20 px-3 py-1.5 transition-all">
+            <div className="flex items-center gap-2 bg-[#f3f7fb]  border border-[#e5e5e5] focus-within:border-[#0a2540] focus-within:ring-2 focus-within:ring-[#0a2540]/20 px-3 py-1.5 transition-all">
               <input
                 ref={inputRef}
                 type="text"
@@ -393,7 +393,7 @@ export const AiChatBubble: React.FC<AiChatBubbleProps> = ({
                 type="button"
                 disabled={!inputValue.trim() || isLoading}
                 onClick={() => handleSendMessage()}
-                className="w-8 h-8  bg-[#111111] hover:bg-[#111111] disabled:bg-[#d4d4d4] text-white flex items-center justify-center transition-colors  cursor-pointer disabled:cursor-not-allowed shrink-0"
+                className="w-8 h-8  bg-[#0a2540] hover:bg-[#0a2540] disabled:bg-[#d4d4d4] text-white flex items-center justify-center transition-colors  cursor-pointer disabled:cursor-not-allowed shrink-0"
               >
                 <span className="material-symbols-outlined text-[18px]">send</span>
               </button>

@@ -11,7 +11,7 @@ interface ConsultationModalProps {
 const QUICK_CHIPS = ['Máy huyết học', 'Máy sinh hóa', 'Máy nước tiểu', 'Máy điện giải', 'Hóa chất Dewei'];
 
 const INPUT_CLASS =
-  'w-full h-11 px-3.5 bg-white border border-[#d4d4d4] text-[14px] text-[#111111] placeholder:text-[#999999] focus:outline-none focus:border-[#111111]';
+  'w-full h-11 px-3.5 bg-white border border-[#d4d4d4] text-[14px] text-[#111111] placeholder:text-[#999999] focus:outline-none focus:border-[#0a2540]';
 const LABEL_CLASS = 'block text-[13px] font-semibold text-[#111111] mb-1.5';
 
 export const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, onClose, prefilledProduct = '' }) => {
@@ -94,7 +94,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, on
                       key={chip}
                       type="button"
                       onClick={() => addChip(chip)}
-                      className="h-8 px-3 border border-[#d4d4d4] text-[13px] text-[#333333] hover:border-[#111111] hover:text-[#111111] transition-colors cursor-pointer"
+                      className="h-8 px-3 border border-[#d4d4d4] text-[13px] text-[#333333] hover:border-[#0a2540] hover:text-[#111111] transition-colors cursor-pointer"
                     >
                       {chip}
                     </button>

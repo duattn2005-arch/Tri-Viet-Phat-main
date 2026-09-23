@@ -89,7 +89,7 @@ export const ProvinceSelect: React.FC<ProvinceSelectProps> = ({
         id={id}
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        className={`w-full ${hasIcon ? 'pl-9' : 'pl-3.5'} pr-9 h-11 ${bgStyle} text-[14px] text-[#111111] focus:outline-none focus:border-[#111111] flex items-center justify-between transition-all text-left cursor-pointer `}
+        className={`w-full ${hasIcon ? 'pl-9' : 'pl-3.5'} pr-9 h-11 ${bgStyle} text-[14px] text-[#111111] focus:outline-none focus:border-[#0a2540] flex items-center justify-between transition-all text-left cursor-pointer `}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
       >
@@ -120,7 +120,7 @@ export const ProvinceSelect: React.FC<ProvinceSelectProps> = ({
           style={{ maxHeight: '340px' }}
         >
           {/* Search box inside dropdown */}
-          <div className="p-2 border-b border-[#f2f2f2] bg-[#f7f7f7]">
+          <div className="p-2 border-b border-[#f2f2f2] bg-[#f3f7fb]">
             <div className="relative">
               <span className="material-symbols-outlined absolute left-2.5 top-2 text-[#999999] text-[17px]">
                 search
@@ -131,7 +131,7 @@ export const ProvinceSelect: React.FC<ProvinceSelectProps> = ({
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Tìm nhanh tỉnh, thành..."
-                className="w-full pl-8 pr-3 py-1.5 text-[12.5px]  bg-white border border-[#e5e5e5] focus:outline-none focus:border-[#111111] text-[#111111]"
+                className="w-full pl-8 pr-3 py-1.5 text-[12.5px]  bg-white border border-[#e5e5e5] focus:outline-none focus:border-[#0a2540] text-[#111111]"
                 onClick={(e) => e.stopPropagation()}
               />
               {searchQuery && (
@@ -155,8 +155,8 @@ export const ProvinceSelect: React.FC<ProvinceSelectProps> = ({
                   onClick={() => handleSelect('Toàn quốc')}
                   className={`w-full px-3 py-2 text-left text-[13px]  flex items-center justify-between cursor-pointer transition-colors ${
                     value === 'Toàn quốc'
-                      ? 'bg-[#f2f2f2] text-[#555555] font-semibold'
-                      : 'text-[#333333] hover:bg-[#f2f2f2]'
+                      ? 'bg-[#edf3f8] text-[#555555] font-semibold'
+                      : 'text-[#333333] hover:bg-[#edf3f8]'
                   }`}
                 >
                   <span>Khu vực (Toàn quốc)</span>
@@ -170,9 +170,9 @@ export const ProvinceSelect: React.FC<ProvinceSelectProps> = ({
             {/* 8 Thành phố trực thuộc Trung ương */}
             {filteredCities.length > 0 && (
               <div className="p-1">
-                <div className="px-3 py-1.5 text-[11px] font-bold text-[#111111] bg-[#f7f7f7]  flex items-center justify-between mb-1">
+                <div className="px-3 py-1.5 text-[11px] font-bold text-[#111111] bg-[#f3f7fb]  flex items-center justify-between mb-1">
                   <span>8 Thành phố trực thuộc TW</span>
-                  <span className="text-[10px] bg-[#111111] text-white px-1.5 py-0.2 rounded-full font-semibold">
+                  <span className="text-[10px] bg-[#0a2540] text-white px-1.5 py-0.2 rounded-full font-semibold">
                     {filteredCities.length}
                   </span>
                 </div>
@@ -183,8 +183,8 @@ export const ProvinceSelect: React.FC<ProvinceSelectProps> = ({
                     onClick={() => handleSelect(city)}
                     className={`w-full px-3 py-1.5 text-left text-[13px]  flex items-center justify-between cursor-pointer transition-colors ${
                       value === city
-                        ? 'bg-[#f2f2f2] text-[#555555] font-bold'
-                        : 'text-[#111111] hover:bg-[#f2f2f2]'
+                        ? 'bg-[#edf3f8] text-[#555555] font-bold'
+                        : 'text-[#111111] hover:bg-[#edf3f8]'
                     }`}
                   >
                     <span>{city}</span>
@@ -199,7 +199,7 @@ export const ProvinceSelect: React.FC<ProvinceSelectProps> = ({
             {/* 26 Tỉnh sau sáp nhập */}
             {filteredProvinces.length > 0 && (
               <div className="p-1">
-                <div className="px-3 py-1.5 text-[11px] font-bold text-[#555555] bg-[#f7f7f7]  flex items-center justify-between mb-1">
+                <div className="px-3 py-1.5 text-[11px] font-bold text-[#555555] bg-[#f3f7fb]  flex items-center justify-between mb-1">
                   <span>26 Tỉnh sau sáp nhập</span>
                   <span className="text-[10px] bg-[#777777] text-white px-1.5 py-0.2 rounded-full font-semibold">
                     {filteredProvinces.length}
@@ -212,8 +212,8 @@ export const ProvinceSelect: React.FC<ProvinceSelectProps> = ({
                     onClick={() => handleSelect(prov)}
                     className={`w-full px-3 py-1.5 text-left text-[13px]  flex items-center justify-between cursor-pointer transition-colors ${
                       value === prov
-                        ? 'bg-[#f2f2f2] text-[#555555] font-bold'
-                        : 'text-[#111111] hover:bg-[#f2f2f2]'
+                        ? 'bg-[#edf3f8] text-[#555555] font-bold'
+                        : 'text-[#111111] hover:bg-[#edf3f8]'
                     }`}
                   >
                     <span>{prov}</span>

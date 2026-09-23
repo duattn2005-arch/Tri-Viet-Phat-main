@@ -68,7 +68,7 @@ const TestimonialCard: React.FC<{ testimonial: Testimonial }> = ({ testimonial: 
     {/* Header: Avatar | Name/Role | KPI badge */}
     <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-2 mb-4 relative z-10">
       <div className="flex items-center gap-3 min-w-0">
-        <div className="w-12 h-12 rounded-full shrink-0 overflow-hidden bg-[#f2f2f2]">
+        <div className="w-12 h-12 rounded-full shrink-0 overflow-hidden bg-[#edf3f8]">
           {t.avatarUrl ? (
             <img src={t.avatarUrl} alt={t.name} className="w-full h-full object-cover" />
           ) : (
@@ -121,7 +121,7 @@ const TestimonialCard: React.FC<{ testimonial: Testimonial }> = ({ testimonial: 
 );
 
 const EmptyState: React.FC<{ title: string; message: string }> = ({ title, message }) => (
-  <div className="flex flex-col items-center text-center gap-3 py-10 px-6  border border-dashed border-[#d4d4d4] bg-[#f7f7f7] max-w-xl mx-auto">
+  <div className="flex flex-col items-center text-center gap-3 py-10 px-6  border border-dashed border-[#d4d4d4] bg-[#f3f7fb] max-w-xl mx-auto">
     <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center " style={{ color: COLOR_PRIMARY }}>
       <MessageSquareHeart size={26} />
     </div>

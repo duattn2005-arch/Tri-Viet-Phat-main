@@ -37,10 +37,10 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
             alt={article.alt}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/40 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a2540] via-[#0a2540]/40 to-transparent"></div>
           <div className="absolute bottom-6 left-6 right-6 text-white space-y-2">
             <div className="flex items-center gap-3 text-[12px] text-[#d4d4d4]">
-              <span className="px-2.5 py-0.5  bg-[#111111]/80 backdrop-blur text-white font-semibold">
+              <span className="px-2.5 py-0.5  bg-[#0a2540]/80 backdrop-blur text-white font-semibold">
                 {article.category}
               </span>
               <span className="flex items-center gap-1">
@@ -62,7 +62,7 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
         <div className="p-6 sm:p-8 space-y-6">
           {/* Key points box */}
           {article.keyPoints && article.keyPoints.length > 0 && (
-            <div className="p-4  bg-[#f2f2f2]/60 border border-[#e5e5e5] space-y-2">
+            <div className="p-4  bg-[#edf3f8]/60 border border-[#e5e5e5] space-y-2">
               <h4 className="text-[14px] font-bold text-[#111111] flex items-center gap-2">
                 <span className="material-symbols-outlined text-[18px]">verified</span>
                 <span>Điểm cốt lõi bài viết</span>
@@ -88,7 +88,7 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
           </div>
 
           {/* Source and author banner */}
-          <div className="pt-6 border-t border-[#e5e5e5] flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#f7f7f7] p-4 ">
+          <div className="pt-6 border-t border-[#e5e5e5] flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#f3f7fb] p-4 ">
             <div className="flex items-center gap-3">
               <img
                 src={COMPANY_INFO.logoUrl}
@@ -109,7 +109,7 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
                 onClose();
                 onOpenConsultation();
               }}
-              className="px-4 py-2  bg-[#111111] hover:bg-[#e11d2a] text-white text-[13px] font-bold transition-colors "
+              className="px-4 py-2  bg-[#0a2540] hover:bg-[#e11d2a] text-white text-[13px] font-bold transition-colors "
             >
               Liên hệ chuyên gia
             </button>

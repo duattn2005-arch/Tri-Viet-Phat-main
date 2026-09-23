@@ -134,7 +134,7 @@ export const Header: React.FC<HeaderProps> = ({
         aria-hidden="true"
       />
       {/* Top utility bar */}
-      <div className="bg-[#111111] text-white/70 text-[12px]">
+      <div className="bg-[#0a2540] text-white/70 text-[12px]">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 flex items-center justify-between h-8 sm:h-9">
           <div className="flex items-center gap-4 min-w-0">
             <span className="truncate">
@@ -204,7 +204,7 @@ export const Header: React.FC<HeaderProps> = ({
             // Underline that slides in from the left on hover and stays for the active page
             const activeBar = (
               <span
-                className={`absolute left-3 right-3 -bottom-[21px] h-0.5 bg-[#111111] origin-left transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                className={`absolute left-3 right-3 -bottom-[21px] h-0.5 bg-[#0a2540] origin-left transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                   isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                 }`}
                 aria-hidden="true"
@@ -252,7 +252,7 @@ export const Header: React.FC<HeaderProps> = ({
                       <button
                         key={child.cat}
                         onClick={() => handleNavClick(item.tab, child.cat)}
-                        className={`w-full text-left px-4 py-2 text-[14px] hover:bg-[#f7f7f7] hover:text-[#111111] hover:underline underline-offset-4 transition-colors cursor-pointer ${
+                        className={`w-full text-left px-4 py-2 text-[14px] hover:bg-[#f3f7fb] hover:text-[#111111] hover:underline underline-offset-4 transition-colors cursor-pointer ${
                           idx === 0
                             ? 'font-semibold text-[#111111] border-b border-[#f2f2f2] mb-1 pb-2.5'
                             : 'text-[#555555]'
@@ -273,7 +273,7 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             onClick={onOpenSearch}
             aria-label="Tìm kiếm"
-            className="w-10 h-10  flex items-center justify-center text-[#555555] hover:text-[#111111] hover:underline underline-offset-4 hover:bg-[#f2f2f2] transition-colors cursor-pointer"
+            className="w-10 h-10  flex items-center justify-center text-[#555555] hover:text-[#111111] hover:underline underline-offset-4 hover:bg-[#edf3f8] transition-colors cursor-pointer"
           >
             <span className="material-symbols-outlined text-[22px]">search</span>
           </button>
@@ -289,7 +289,7 @@ export const Header: React.FC<HeaderProps> = ({
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Menu"
             aria-expanded={mobileMenuOpen}
-            className="lg:hidden w-10 h-10  flex items-center justify-center text-[#333333] hover:bg-[#f2f2f2] transition-colors cursor-pointer"
+            className="lg:hidden w-10 h-10  flex items-center justify-center text-[#333333] hover:bg-[#edf3f8] transition-colors cursor-pointer"
           >
             <span className="material-symbols-outlined text-[24px]">{mobileMenuOpen ? 'close' : 'menu'}</span>
           </button>

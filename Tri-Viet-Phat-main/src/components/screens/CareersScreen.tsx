@@ -52,7 +52,7 @@ export const CareersScreen: React.FC = () => {
           <div className="space-y-5">
             <button
               onClick={() => setActiveJob(null)}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5  bg-white border border-[#e5e5e5] text-[#111111] hover:text-[#000000] hover:border-[#111111] text-[13px] font-bold  transition-colors cursor-pointer"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5  bg-white border border-[#e5e5e5] text-[#111111] hover:text-[#000000] hover:border-[#0a2540] text-[13px] font-bold  transition-colors cursor-pointer"
             >
               <span className="material-symbols-outlined text-[17px]">arrow_back</span>
               <span>Quay lại danh sách tin tuyển dụng</span>
@@ -96,7 +96,7 @@ export const CareersScreen: React.FC = () => {
                 />
 
                 {/* Contact for CV application */}
-                <div className="p-5 bg-[#f7f7f7] border border-[#e5e5e5] text-[#333333] space-y-2">
+                <div className="p-5 bg-[#f3f7fb] border border-[#e5e5e5] text-[#333333] space-y-2">
                   <h4 className="font-bold text-[16px] flex items-center gap-2">
                     <span className="material-symbols-outlined text-[20px] text-[#111111]">
                       mark_email_read
@@ -122,7 +122,7 @@ export const CareersScreen: React.FC = () => {
                   </h3>
 
                   {appliedSuccess ? (
-                    <div className="p-4  bg-[#f2f2f2] border border-[#e5e5e5] text-[#111111] flex items-center gap-3">
+                    <div className="p-4  bg-[#edf3f8] border border-[#e5e5e5] text-[#111111] flex items-center gap-3">
                       <span className="material-symbols-outlined text-[24px]">verified</span>
                       <div>
                         <div className="font-bold text-[14px]">Đã nhận hồ sơ ứng tuyển thành công!</div>
@@ -144,7 +144,7 @@ export const CareersScreen: React.FC = () => {
                             value={candidateName}
                             onChange={(e) => setCandidateName(e.target.value)}
                             placeholder="Nguyễn Văn A"
-                            className="w-full px-3.5 py-2.5  border border-[#d4d4d4] text-[14px] focus:outline-none focus:border-[#111111] bg-white"
+                            className="w-full px-3.5 py-2.5  border border-[#d4d4d4] text-[14px] focus:outline-none focus:border-[#0a2540] bg-white"
                           />
                         </div>
                         <div>
@@ -157,7 +157,7 @@ export const CareersScreen: React.FC = () => {
                             value={candidatePhone}
                             onChange={(e) => setCandidatePhone(e.target.value)}
                             placeholder="0912 345 678"
-                            className="w-full px-3.5 py-2.5  border border-[#d4d4d4] text-[14px] focus:outline-none focus:border-[#111111] bg-white"
+                            className="w-full px-3.5 py-2.5  border border-[#d4d4d4] text-[14px] focus:outline-none focus:border-[#0a2540] bg-white"
                           />
                         </div>
                       </div>
@@ -172,7 +172,7 @@ export const CareersScreen: React.FC = () => {
                           value={candidateEmail}
                           onChange={(e) => setCandidateEmail(e.target.value)}
                           placeholder="ungvien@example.com"
-                          className="w-full px-3.5 py-2.5  border border-[#d4d4d4] text-[14px] focus:outline-none focus:border-[#111111] bg-white"
+                          className="w-full px-3.5 py-2.5  border border-[#d4d4d4] text-[14px] focus:outline-none focus:border-[#0a2540] bg-white"
                         />
                       </div>
 
@@ -185,13 +185,13 @@ export const CareersScreen: React.FC = () => {
                           value={candidateNote}
                           onChange={(e) => setCandidateNote(e.target.value)}
                           placeholder="Mô tả tóm tắt kinh nghiệm làm việc hoặc chuyên ngành đã học..."
-                          className="w-full px-3.5 py-2.5  border border-[#d4d4d4] text-[14px] focus:outline-none focus:border-[#111111] bg-white"
+                          className="w-full px-3.5 py-2.5  border border-[#d4d4d4] text-[14px] focus:outline-none focus:border-[#0a2540] bg-white"
                         />
                       </div>
 
                       <button
                         type="submit"
-                        className="px-6 py-2.5  bg-[#111111] hover:bg-[#000000] text-white font-bold text-[14px]  transition-colors cursor-pointer"
+                        className="px-6 py-2.5  bg-[#0a2540] hover:bg-[#071a2e] text-white font-bold text-[14px]  transition-colors cursor-pointer"
                       >
                         Nộp hồ sơ ngay
                       </button>
@@ -251,7 +251,7 @@ export const CareersScreen: React.FC = () => {
               <strong className="text-[#111111]">{REAL_JOBS.length} vị trí</strong> đang tuyển.
             </p>
 
-            <ul className="mt-8 border-t border-[#111111]">
+            <ul className="mt-8 border-t border-[#0a2540]">
               {REAL_JOBS.map((job) => (
                 <li key={job.id} className="border-b border-[#e5e5e5]">
                   <button

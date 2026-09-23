@@ -72,8 +72,9 @@ body {
 
 /* ---------------------------------------------------------------------------
  * Design system — restrained, flat, B2B medical.
- * Monochrome, as torano.vn: ink #111, neutral greys, black primary buttons.
- * One accent red (#e11d2a) for "Liên hệ báo giá", required markers and errors. No gradients, glows or lift-on-hover.
+ * Brand palette taken from the logo: navy #0a2540 for dark surfaces and
+ * primary buttons, logo blue #0a94dc and red #e11d2a as accents, cool
+ * blue-grey light surfaces. Body text stays near-black #111. No gradients, glows or lift-on-hover.
  * The legacy class names (card-3d, btn-3d-*) are kept so every screen that
  * still uses them inherits the flat look.
  * ------------------------------------------------------------------------- */
@@ -111,7 +112,7 @@ body {
 .btn-3d-red,
 .btn-3d-blue {
   /* Accent fill sweeps in from the left on hover */
-  background: linear-gradient(#e11d2a, #e11d2a) no-repeat left center / 0% 100%, #111111;
+  background: linear-gradient(#e11d2a, #e11d2a) no-repeat left center / 0% 100%, #0a2540;
   color: #ffffff;
   box-shadow: none;
   transition: background-size 0.5s cubic-bezier(0.22, 1, 0.36, 1);
@@ -127,7 +128,7 @@ body {
 .btn-3d-red:focus-visible,
 .btn-3d-blue:focus-visible,
 .btn-secondary:focus-visible {
-  outline: 2px solid #111111;
+  outline: 2px solid #0a94dc;
   outline-offset: 2px;
 }
 

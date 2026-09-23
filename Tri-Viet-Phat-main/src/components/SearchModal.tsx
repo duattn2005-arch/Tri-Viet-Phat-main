@@ -49,7 +49,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search input bar */}
-        <div className="p-4 border-b border-[#e5e5e5] flex items-center gap-3 bg-[#f7f7f7]">
+        <div className="p-4 border-b border-[#e5e5e5] flex items-center gap-3 bg-[#f3f7fb]">
           <span className="material-symbols-outlined text-[#111111] text-[24px]">search</span>
           <input
             type="text"
@@ -95,16 +95,16 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                       onClose();
                       onSelectProduct(prod);
                     }}
-                    className="w-full flex items-center gap-3 p-2.5  hover:bg-[#f2f2f2]/40 transition-colors text-left border border-transparent hover:border-[#e5e5e5] group"
+                    className="w-full flex items-center gap-3 p-2.5  hover:bg-[#edf3f8]/40 transition-colors text-left border border-transparent hover:border-[#e5e5e5] group"
                   >
                     <img
                       src={prod.image}
                       alt={prod.alt}
-                      className="w-12 h-12 object-contain  bg-[#f7f7f7] p-1 border border-[#e5e5e5]"
+                      className="w-12 h-12 object-contain  bg-[#f3f7fb] p-1 border border-[#e5e5e5]"
                     />
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
-                        <span className="px-1.5 py-0.5  bg-[#f2f2f2] text-[#555555] text-[10px] font-bold">
+                        <span className="px-1.5 py-0.5  bg-[#edf3f8] text-[#555555] text-[10px] font-bold">
                           {prod.categoryLabel}
                         </span>
                         <span className="text-[11px] text-[#555555]">{prod.brand}</span>
@@ -140,12 +140,12 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                       onClose();
                       onSelectArticle(art);
                     }}
-                    className="w-full flex items-center gap-3 p-2.5  hover:bg-[#f7f7f7] transition-colors text-left border border-transparent hover:border-[#e5e5e5] group"
+                    className="w-full flex items-center gap-3 p-2.5  hover:bg-[#f3f7fb] transition-colors text-left border border-transparent hover:border-[#e5e5e5] group"
                   >
                     <img
                       src={art.image}
                       alt={art.alt}
-                      className="w-12 h-12 object-cover  bg-[#f7f7f7] border border-[#e5e5e5]"
+                      className="w-12 h-12 object-cover  bg-[#f3f7fb] border border-[#e5e5e5]"
                     />
                     <div className="flex-1 min-w-0">
                       <span className="text-[10px] text-[#111111] font-semibold">{art.date}</span>

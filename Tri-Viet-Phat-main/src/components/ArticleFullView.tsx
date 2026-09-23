@@ -23,7 +23,7 @@ export const ArticleFullView: React.FC<ArticleFullViewProps> = ({
       <div className="mb-5 flex items-center justify-between">
         <button
           onClick={onBack}
-          className="inline-flex items-center gap-2 px-4 py-2  bg-white border border-[#e5e5e5] text-[#111111] hover:text-[#000000] hover:border-[#111111] text-[13.5px] font-bold  transition-colors cursor-pointer"
+          className="inline-flex items-center gap-2 px-4 py-2  bg-white border border-[#e5e5e5] text-[#111111] hover:text-[#000000] hover:border-[#0a2540] text-[13.5px] font-bold  transition-colors cursor-pointer"
         >
           <span className="material-symbols-outlined text-[18px]">arrow_back</span>
           <span>Quay lại danh sách {categoryTitle.toLowerCase()}</span>
@@ -66,7 +66,7 @@ export const ArticleFullView: React.FC<ArticleFullViewProps> = ({
 
           {/* Featured Image if present */}
           {article.image && (
-            <div className="mb-8  overflow-hidden border border-[#e5e5e5] bg-[#f7f7f7]">
+            <div className="mb-8  overflow-hidden border border-[#e5e5e5] bg-[#f3f7fb]">
               <img
                 src={article.image}
                 alt={article.title}
@@ -80,7 +80,7 @@ export const ArticleFullView: React.FC<ArticleFullViewProps> = ({
 
           {/* Article HTML Content */}
           <div
-            className="article-rendered-body space-y-4 text-[#333333] text-[15px] sm:text-[16px] leading-relaxed [&>h2]:text-[20px] [&>h2]:font-bold [&>h2]:text-[#111111] [&>h2]:mt-6 [&>h2]:mb-3 [&>h3]:text-[17px] [&>h3]:font-bold [&>h3]:text-[#111111] [&>h3]:mt-5 [&>h3]:mb-2 [&>p]:mb-4 [&>p]:leading-relaxed [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:space-y-1.5 [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:space-y-1.5 [&>table]:w-full [&>table]:my-6 [&>table]:border-collapse [&_th]:border [&_th]:border-[#d4d4d4] [&_th]:p-2.5 [&_th]:bg-[#f2f2f2] [&_td]:border [&_td]:border-[#d4d4d4] [&_td]:p-2.5 [&_img]:mx-auto [&_img]:my-4 [&_a]:text-[#111111] [&_a]:underline"
+            className="article-rendered-body space-y-4 text-[#333333] text-[15px] sm:text-[16px] leading-relaxed [&>h2]:text-[20px] [&>h2]:font-bold [&>h2]:text-[#111111] [&>h2]:mt-6 [&>h2]:mb-3 [&>h3]:text-[17px] [&>h3]:font-bold [&>h3]:text-[#111111] [&>h3]:mt-5 [&>h3]:mb-2 [&>p]:mb-4 [&>p]:leading-relaxed [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:space-y-1.5 [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:space-y-1.5 [&>table]:w-full [&>table]:my-6 [&>table]:border-collapse [&_th]:border [&_th]:border-[#d4d4d4] [&_th]:p-2.5 [&_th]:bg-[#edf3f8] [&_td]:border [&_td]:border-[#d4d4d4] [&_td]:p-2.5 [&_img]:mx-auto [&_img]:my-4 [&_a]:text-[#111111] [&_a]:underline"
             dangerouslySetInnerHTML={{ __html: article.contentHtml }}
           />
 
@@ -88,7 +88,7 @@ export const ArticleFullView: React.FC<ArticleFullViewProps> = ({
           {relatedArticles.length > 0 && (
             <div className="mt-10 pt-8 border-t border-[#e5e5e5]">
               <h3 className="text-[18px] font-bold text-[#111111] mb-4 flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#111111]" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#0a2540]" />
                 <span>Bài viết liên quan</span>
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -99,10 +99,10 @@ export const ArticleFullView: React.FC<ArticleFullViewProps> = ({
                       onSelectArticle(rel);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}
-                    className="group p-3  border border-[#e5e5e5] hover:border-[#111111] transition-all cursor-pointer bg-white flex flex-col justify-between"
+                    className="group p-3  border border-[#e5e5e5] hover:border-[#0a2540] transition-all cursor-pointer bg-white flex flex-col justify-between"
                   >
                     <div>
-                      <div className="h-32  overflow-hidden mb-2.5 bg-[#f7f7f7]">
+                      <div className="h-32  overflow-hidden mb-2.5 bg-[#f3f7fb]">
                         <img
                           src={rel.image}
                           alt={rel.title}
@@ -127,7 +127,7 @@ export const ArticleFullView: React.FC<ArticleFullViewProps> = ({
           )}
 
           {/* Share & Contact Bar */}
-          <div className="mt-8 pt-5 border-t border-[#e5e5e5] flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#f7f7f7] -mx-6 -mb-6 sm:-mx-8 sm:-mb-8 md:-mx-10 md:-mb-10 p-6 ">
+          <div className="mt-8 pt-5 border-t border-[#e5e5e5] flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#f3f7fb] -mx-6 -mb-6 sm:-mx-8 sm:-mb-8 md:-mx-10 md:-mb-10 p-6 ">
             <div className="flex items-center gap-2 text-[13.5px] text-[#555555]">
               <span className="font-semibold text-[#111111]">Cần tư vấn thiết bị?</span>
               <span>Liên hệ hotline:</span>
@@ -141,7 +141,7 @@ export const ArticleFullView: React.FC<ArticleFullViewProps> = ({
 
             <button
               onClick={onBack}
-              className="px-5 py-2  bg-[#111111] text-white hover:bg-[#111111] text-[13px] font-bold transition-colors cursor-pointer"
+              className="px-5 py-2  bg-[#0a2540] text-white hover:bg-[#0a2540] text-[13px] font-bold transition-colors cursor-pointer"
             >
               Xem các bài viết khác
             </button>

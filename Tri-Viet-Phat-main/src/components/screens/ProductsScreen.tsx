@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { PRODUCTS } from '../../data/mockData';
 import { brandName, originName } from '../../data/productMeta';
 import { ProductCard } from '../ProductCard';
+import { PageBanner } from '../PageBanner';
 import { RevealGroup, RevealItem } from '../motion/Reveal';
 import { Product } from '../../types';
 
@@ -71,7 +72,7 @@ const CheckRow: React.FC<{ label: string; count: number; checked: boolean; onCha
 }) => (
   <label className="flex items-center gap-3 py-1.5 text-[15px] tracking-[0.04em] text-[#222] cursor-pointer select-none group">
     <input type="checkbox" checked={checked} onChange={onChange} className="peer sr-only" />
-    <span className="w-[18px] h-[18px] border border-[#999999] flex items-center justify-center peer-checked:bg-[#111] peer-checked:border-[#111] peer-focus-visible:ring-2 peer-focus-visible:ring-[#111111]">
+    <span className="w-[18px] h-[18px] border border-[#999999] flex items-center justify-center peer-checked:bg-[#0a2540] peer-checked:border-[#0a2540] peer-focus-visible:ring-2 peer-focus-visible:ring-[#0a2540]">
       {checked && <span className="material-symbols-outlined text-[14px] text-white">check</span>}
     </span>
     <span className="flex-1 group-hover:underline underline-offset-4">{label}</span>
@@ -141,23 +142,16 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({
 
   return (
     <div className="w-full bg-white">
-      {/* Breadcrumb bar */}
-      <div className="bg-[#f5f5f5]">
-        <nav
-          aria-label="Breadcrumb"
-          className="max-w-[1320px] mx-auto px-4 sm:px-8 h-11 flex items-center gap-2 text-[13px] text-[#333]"
-        >
-          <button onClick={() => selectCategory('all')} className="hover:text-[#111111] hover:underline underline-offset-4 cursor-pointer">
-            Sản phẩm
-          </button>
-          {selectedCategory !== 'all' && (
-            <>
-              <span className="text-[#bbb]">/</span>
-              <span aria-current="page">{categoryLabel}</span>
-            </>
-          )}
-        </nav>
-      </div>
+      <PageBanner
+        title={categoryLabel}
+        subtitle="Thiết bị xét nghiệm và hóa chất IVD chính hãng, đủ CO/CQ, giao và lắp đặt toàn quốc."
+        image="/images/hero-pipette.jpg"
+        breadcrumbs={
+          selectedCategory === 'all'
+            ? [{ label: 'Trang chủ' }, { label: 'Sản phẩm' }]
+            : [{ label: 'Trang chủ' }, { label: 'Sản phẩm', onClick: () => selectCategory('all') }, { label: categoryLabel }]
+        }
+      />
 
       <div className="max-w-[1320px] mx-auto px-4 sm:px-8 py-8 sm:py-10 lg:flex lg:gap-12">
         {/* Filter sidebar */}
@@ -178,7 +172,7 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Tìm tên máy, hãng..."
                 aria-label="Tìm sản phẩm"
-                className="w-full h-11 pl-10 pr-3 border border-[#d4d4d4] text-[14px] text-[#111] placeholder:text-[#999999] focus:outline-none focus:border-[#111]"
+                className="w-full h-11 pl-10 pr-3 border border-[#d4d4d4] text-[14px] text-[#111] placeholder:text-[#999999] focus:outline-none focus:border-[#0a2540]"
               />
             </div>
           </div>
@@ -278,7 +272,7 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({
                   id="product-sort"
                   value={sortKey}
                   onChange={(e) => setSortKey(e.target.value as SortKey)}
-                  className="w-full sm:w-[240px] h-12 appearance-none pl-4 pr-10 border border-[#d4d4d4] bg-white text-[15px] text-[#111] focus:outline-none focus:border-[#111] cursor-pointer"
+                  className="w-full sm:w-[240px] h-12 appearance-none pl-4 pr-10 border border-[#d4d4d4] bg-white text-[15px] text-[#111] focus:outline-none focus:border-[#0a2540] cursor-pointer"
                 >
                   {SORT_OPTIONS.map((o) => (
                     <option key={o.key} value={o.key}>
@@ -298,7 +292,7 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({
               <p className="text-[18px] text-[#111]">Không tìm thấy sản phẩm phù hợp.</p>
               <button
                 onClick={resetAll}
-                className="mt-5 h-11 px-8 border border-[#111] text-[14px] font-semibold uppercase tracking-wide text-[#111] hover:bg-[#111] hover:text-white transition-colors cursor-pointer"
+                className="mt-5 h-11 px-8 border border-[#0a2540] text-[14px] font-semibold uppercase tracking-wide text-[#111] hover:bg-[#0a2540] hover:text-white transition-colors cursor-pointer"
               >
                 Xem tất cả sản phẩm
               </button>

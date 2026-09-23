@@ -43,7 +43,7 @@ export const ProductCardsSection: React.FC<ProductCardsSectionProps> = ({ onNavi
               <button
                 type="button"
                 onClick={() => onNavigateTab('san-pham', tile.key)}
-                className="group relative w-full aspect-[3/4] overflow-hidden bg-[#f2f2f2] hover:bg-[#e9e9e9] transition-colors duration-500 text-left cursor-pointer"
+                className="group relative w-full aspect-[3/4] overflow-hidden bg-[#edf3f8] hover:bg-[#e2ecf5] transition-colors duration-500 text-left cursor-pointer"
               >
                 {tile.image && (
                   <img
@@ -60,7 +60,7 @@ export const ProductCardsSection: React.FC<ProductCardsSectionProps> = ({ onNavi
                       <span className="block text-[12px] text-[#777777]">{tile.count} sản phẩm</span>
                     )}
                   </span>
-                  <span className="shrink-0 w-9 h-9 rounded-full bg-white text-[#111111] flex items-center justify-center group-hover:bg-[#111111] group-hover:text-white transition-colors">
+                  <span className="shrink-0 w-9 h-9 rounded-full bg-white text-[#111111] flex items-center justify-center group-hover:bg-[#0a2540] group-hover:text-white transition-colors">
                     <span className="material-symbols-outlined text-[20px] transition-transform duration-500 group-hover:-rotate-45">arrow_forward</span>
                   </span>
                 </div>

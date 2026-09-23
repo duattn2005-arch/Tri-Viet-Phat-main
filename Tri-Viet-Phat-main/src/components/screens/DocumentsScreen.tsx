@@ -202,7 +202,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
       return {
         label: 'Video hướng dẫn HD',
         icon: 'play_circle',
-        badgeBg: 'bg-[#f2f2f2]',
+        badgeBg: 'bg-[#edf3f8]',
         textColor: 'text-[#111111]',
         type: 'Video',
       };
@@ -219,14 +219,14 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
     return {
       label: 'Tài liệu sản phẩm',
       icon: 'description',
-      badgeBg: 'bg-[#f2f2f2]',
+      badgeBg: 'bg-[#edf3f8]',
       textColor: 'text-[#111111]',
       type: 'Tài liệu PDF',
     };
   };
 
   return (
-    <div className="w-full bg-[#f7f7f7] min-h-screen">
+    <div className="w-full bg-[#f3f7fb] min-h-screen">
       {/* Banner */}
       <PageBanner
         title={activeDoc ? activeDoc.title : categoryTitle}
@@ -285,7 +285,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                       value={selectedCategory}
                       onChange={(e) => handleCategoryChange(e.target.value)}
                       aria-label="Chọn danh mục tài liệu"
-                      className="w-full appearance-none pl-3.5 pr-10 py-3  border border-[#d4d4d4] bg-[#f7f7f7] text-[13.5px] font-bold text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#111111] cursor-pointer"
+                      className="w-full appearance-none pl-3.5 pr-10 py-3  border border-[#d4d4d4] bg-[#f3f7fb] text-[13.5px] font-bold text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#0a2540] cursor-pointer"
                     >
                       {DOCUMENT_CATEGORIES.map((cat) => {
                         const count =
@@ -318,7 +318,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                           onClick={() => handleCategoryChange(cat.key)}
                           className={`inline-flex items-center gap-1.5 pb-2 border-b-2 text-[15px] font-semibold transition-colors cursor-pointer ${
                             isActive
-                              ? 'border-[#111111] text-[#111111]'
+                              ? 'border-[#0a2540] text-[#111111]'
                               : 'border-transparent text-[#999999] hover:text-[#333333]'
                           }`}
                         >
@@ -341,7 +341,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       placeholder="Tìm tài liệu, video..."
-                      className="w-full pl-9 pr-8 py-2  border border-[#d4d4d4] text-[13px] focus:outline-none focus:border-[#111111] bg-white"
+                      className="w-full pl-9 pr-8 py-2  border border-[#d4d4d4] text-[13px] focus:outline-none focus:border-[#0a2540] bg-white"
                     />
                     {searchQuery && (
                       <button
@@ -359,7 +359,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
               <div>
                 <div className="flex items-center justify-between mb-3 px-1">
                   <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#111111]" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#0a2540]" />
                     <h2 className="text-[16px] sm:text-[18px] font-bold text-[#111111]">
                       {selectedCategory === 'all'
                         ? 'Tài liệu hướng dẫn & Video chuyên ngành'
@@ -378,13 +378,13 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                       return (
                         <div
                           key={doc.id}
-                          className="bg-white  border border-[#e5e5e5] overflow-hidden   hover:border-[#111111]/40 transition-all group flex flex-col justify-between"
+                          className="bg-white  border border-[#e5e5e5] overflow-hidden   hover:border-[#0a2540]/40 transition-all group flex flex-col justify-between"
                         >
                           <div>
                             {/* Card Image */}
                             <div
                               onClick={() => handleSelect(doc)}
-                              className="relative h-48 sm:h-52 w-full overflow-hidden bg-[#f2f2f2] cursor-pointer"
+                              className="relative h-48 sm:h-52 w-full overflow-hidden bg-[#edf3f8] cursor-pointer"
                             >
                               <img
                                 src={doc.image}
@@ -432,7 +432,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                           </div>
 
                           {/* Card Footer */}
-                          <div className="px-4 sm:px-5 py-3 bg-[#f7f7f7] border-t border-[#f2f2f2] flex items-center justify-between">
+                          <div className="px-4 sm:px-5 py-3 bg-[#f3f7fb] border-t border-[#f2f2f2] flex items-center justify-between">
                             <div className="flex items-center gap-1.5 text-[12px] text-[#999999]">
                               <span className="material-symbols-outlined text-[15px] text-[#777777]">
                                 calendar_today
@@ -470,7 +470,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                         setSearchQuery('');
                         setSelectedCategory('all');
                       }}
-                      className="mt-4 px-4 py-2 bg-[#111111] text-white  text-[13px] font-bold hover:bg-[#000000] transition-colors cursor-pointer"
+                      className="mt-4 px-4 py-2 bg-[#0a2540] text-white  text-[13px] font-bold hover:bg-[#071a2e] transition-colors cursor-pointer"
                     >
                       Xem tất cả tài liệu
                     </button>
@@ -505,9 +505,9 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                         <div
                           key={doc.id}
                           onClick={() => handleSelect(doc)}
-                          className="flex gap-3.5 p-3  border border-[#f2f2f2] hover:border-[#111111]/40 hover:bg-[#f7f7f7] transition-all cursor-pointer group"
+                          className="flex gap-3.5 p-3  border border-[#f2f2f2] hover:border-[#0a2540]/40 hover:bg-[#f3f7fb] transition-all cursor-pointer group"
                         >
-                          <div className="w-24 h-20 shrink-0  overflow-hidden bg-[#f2f2f2] border border-[#e5e5e5]">
+                          <div className="w-24 h-20 shrink-0  overflow-hidden bg-[#edf3f8] border border-[#e5e5e5]">
                             <img
                               src={doc.image}
                               alt={doc.title}
@@ -556,7 +556,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                     </p>
                   </div>
 
-                  <span className="inline-flex items-center gap-1 text-[12px] text-[#555555] font-bold bg-[#f2f2f2] px-3 py-1 self-start sm:self-center">
+                  <span className="inline-flex items-center gap-1 text-[12px] text-[#555555] font-bold bg-[#edf3f8] px-3 py-1 self-start sm:self-center">
                     <span className="material-symbols-outlined text-[15px]">verified</span>
                     <span>Tải về miễn phí</span>
                   </span>
@@ -566,12 +566,12 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                   {DOWNLOADABLE_DOCS.map((file) => (
                     <div
                       key={file.id}
-                      className="p-4  border border-[#e5e5e5] hover:border-[#111111] transition-all bg-[#f7f7f7] hover:bg-white flex flex-col justify-between group"
+                      className="p-4  border border-[#e5e5e5] hover:border-[#0a2540] transition-all bg-[#f3f7fb] hover:bg-white flex flex-col justify-between group"
                     >
                       <div>
                         <div className="flex items-start justify-between gap-3 mb-2">
                           <div className="flex items-center gap-2">
-                            <span className="w-8 h-8  bg-[#f2f2f2] text-[#555555] flex items-center justify-center font-bold text-[11px]">
+                            <span className="w-8 h-8  bg-[#edf3f8] text-[#555555] flex items-center justify-center font-bold text-[11px]">
                               PDF
                             </span>
                             <div>
@@ -583,7 +583,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                               </span>
                             </div>
                           </div>
-                          <span className="text-[11px] font-bold text-[#111111] bg-[#f2f2f2] px-2 py-0.5 ">
+                          <span className="text-[11px] font-bold text-[#111111] bg-[#edf3f8] px-2 py-0.5 ">
                             {file.fileSize}
                           </span>
                         </div>
@@ -611,7 +611,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                               `Đang chuẩn bị tải xuống: ${file.title} (${file.fileSize}). Quý khách cũng có thể liên hệ Hotline 0904.698.699 để nhận trọn bộ tài liệu gốc có đóng dấu Trí Việt Phát.`
                             );
                           }}
-                          className="px-3 py-1.5  bg-[#111111] text-white hover:bg-[#000000] text-[12px] font-bold transition-colors inline-flex items-center gap-1.5 cursor-pointer "
+                          className="px-3 py-1.5  bg-[#0a2540] text-white hover:bg-[#071a2e] text-[12px] font-bold transition-colors inline-flex items-center gap-1.5 cursor-pointer "
                         >
                           <span className="material-symbols-outlined text-[15px]">download</span>
                           <span>Tải PDF</span>
@@ -634,8 +634,8 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                  <div className="p-4  bg-[#f7f7f7] border border-[#e5e5e5] relative">
-                    <span className="w-7 h-7 rounded-full bg-[#111111] text-white flex items-center justify-center text-[12px] font-bold mb-3">
+                  <div className="p-4  bg-[#f3f7fb] border border-[#e5e5e5] relative">
+                    <span className="w-7 h-7 rounded-full bg-[#0a2540] text-white flex items-center justify-center text-[12px] font-bold mb-3">
                       1
                     </span>
                     <h4 className="text-[13.5px] font-bold text-[#111111] mb-1.5">
@@ -646,8 +646,8 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                     </p>
                   </div>
 
-                  <div className="p-4  bg-[#f7f7f7] border border-[#e5e5e5] relative">
-                    <span className="w-7 h-7 rounded-full bg-[#111111] text-white flex items-center justify-center text-[12px] font-bold mb-3">
+                  <div className="p-4  bg-[#f3f7fb] border border-[#e5e5e5] relative">
+                    <span className="w-7 h-7 rounded-full bg-[#0a2540] text-white flex items-center justify-center text-[12px] font-bold mb-3">
                       2
                     </span>
                     <h4 className="text-[13.5px] font-bold text-[#111111] mb-1.5">
@@ -658,8 +658,8 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                     </p>
                   </div>
 
-                  <div className="p-4  bg-[#f7f7f7] border border-[#e5e5e5] relative">
-                    <span className="w-7 h-7 rounded-full bg-[#111111] text-white flex items-center justify-center text-[12px] font-bold mb-3">
+                  <div className="p-4  bg-[#f3f7fb] border border-[#e5e5e5] relative">
+                    <span className="w-7 h-7 rounded-full bg-[#0a2540] text-white flex items-center justify-center text-[12px] font-bold mb-3">
                       3
                     </span>
                     <h4 className="text-[13.5px] font-bold text-[#111111] mb-1.5">
@@ -670,8 +670,8 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                     </p>
                   </div>
 
-                  <div className="p-4  bg-[#f7f7f7] border border-[#e5e5e5] relative">
-                    <span className="w-7 h-7 rounded-full bg-[#111111] text-white flex items-center justify-center text-[12px] font-bold mb-3">
+                  <div className="p-4  bg-[#f3f7fb] border border-[#e5e5e5] relative">
+                    <span className="w-7 h-7 rounded-full bg-[#0a2540] text-white flex items-center justify-center text-[12px] font-bold mb-3">
                       4
                     </span>
                     <h4 className="text-[13.5px] font-bold text-[#111111] mb-1.5">
@@ -705,10 +705,10 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                       >
                         <button
                           onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
-                          className="w-full p-4 text-left font-bold text-[14px] text-[#111111] flex items-center justify-between gap-3 hover:bg-[#f7f7f7] cursor-pointer"
+                          className="w-full p-4 text-left font-bold text-[14px] text-[#111111] flex items-center justify-between gap-3 hover:bg-[#f3f7fb] cursor-pointer"
                         >
                           <span className="flex items-center gap-2">
-                            <span className="w-5 h-5 rounded-full bg-[#f2f2f2] text-[#555555] flex items-center justify-center text-[11px]">
+                            <span className="w-5 h-5 rounded-full bg-[#edf3f8] text-[#555555] flex items-center justify-center text-[11px]">
                               Q
                             </span>
                             <span>{faq.q}</span>
@@ -722,7 +722,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                           </span>
                         </button>
                         {isOpen && (
-                          <div className="p-4 pt-1 bg-[#f7f7f7] text-[13px] text-[#555555] leading-relaxed border-t border-[#f2f2f2]">
+                          <div className="p-4 pt-1 bg-[#f3f7fb] text-[13px] text-[#555555] leading-relaxed border-t border-[#f2f2f2]">
                             {faq.a}
                           </div>
                         )}
@@ -758,10 +758,10 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                       onClick={() => {
                         onNavigateTab?.('tin-tuc', 'all');
                       }}
-                      className="group p-3  border border-[#f2f2f2] hover:border-[#111111] transition-all cursor-pointer bg-[#f7f7f7] hover:bg-white flex flex-col justify-between"
+                      className="group p-3  border border-[#f2f2f2] hover:border-[#0a2540] transition-all cursor-pointer bg-[#f3f7fb] hover:bg-white flex flex-col justify-between"
                     >
                       <div>
-                        <div className="h-28  overflow-hidden mb-2 bg-[#f2f2f2]">
+                        <div className="h-28  overflow-hidden mb-2 bg-[#edf3f8]">
                           <img
                             src={art.image}
                             alt={art.title}
@@ -803,7 +803,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
           <div className="bg-white  max-w-lg w-full p-6 shadow-2xl border border-[#d4d4d4] animate-in fade-in zoom-in-95">
             <div className="flex items-start justify-between gap-3 border-b border-[#f2f2f2] pb-4 mb-4">
               <div className="flex items-center gap-2.5">
-                <span className="w-10 h-10  bg-[#f2f2f2] text-[#555555] flex items-center justify-center font-bold text-[13px]">
+                <span className="w-10 h-10  bg-[#edf3f8] text-[#555555] flex items-center justify-center font-bold text-[13px]">
                   PDF
                 </span>
                 <div>
@@ -817,14 +817,14 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
               </div>
               <button
                 onClick={() => setPreviewPdf(null)}
-                className="w-8 h-8 rounded-full bg-[#f2f2f2] hover:bg-[#e5e5e5] flex items-center justify-center text-[#777777] hover:text-[#111111] hover:underline underline-offset-4 transition-colors cursor-pointer shrink-0"
+                className="w-8 h-8 rounded-full bg-[#edf3f8] hover:bg-[#e5e5e5] flex items-center justify-center text-[#777777] hover:text-[#111111] hover:underline underline-offset-4 transition-colors cursor-pointer shrink-0"
               >
                 ✕
               </button>
             </div>
 
             <div className="space-y-3 text-[13.5px] text-[#333333] leading-relaxed">
-              <div className="p-3.5  bg-[#f7f7f7] border border-[#e5e5e5] space-y-1.5 text-[12.5px]">
+              <div className="p-3.5  bg-[#f3f7fb] border border-[#e5e5e5] space-y-1.5 text-[12.5px]">
                 <div className="flex justify-between">
                   <span className="text-[#777777]">Định dạng:</span>
                   <span className="font-semibold text-[#111111]">{previewPdf.format}</span>
@@ -848,7 +848,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                 <p className="text-[#777777] text-[13px]">{previewPdf.description}</p>
               </div>
 
-              <div className="p-3  bg-[#f7f7f7] text-[#111111] text-[12px] flex items-center gap-2">
+              <div className="p-3  bg-[#f3f7fb] text-[#111111] text-[12px] flex items-center gap-2">
                 <span className="material-symbols-outlined text-[16px]">info</span>
                 <span>Tài liệu đã được kiểm duyệt kỹ thuật. Có thể chia sẻ nội bộ phòng khám / bệnh viện.</span>
               </div>
@@ -857,7 +857,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
             <div className="mt-6 pt-4 border-t border-[#f2f2f2] flex items-center justify-end gap-3">
               <button
                 onClick={() => setPreviewPdf(null)}
-                className="px-4 py-2  text-[13px] font-medium text-[#777777] hover:bg-[#f2f2f2] cursor-pointer"
+                className="px-4 py-2  text-[13px] font-medium text-[#777777] hover:bg-[#edf3f8] cursor-pointer"
               >
                 Đóng
               </button>
@@ -866,7 +866,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                   alert(`Bắt đầu tải xuống file: ${previewPdf.title}`);
                   setPreviewPdf(null);
                 }}
-                className="px-5 py-2  bg-[#111111] text-white hover:bg-[#000000] text-[13px] font-bold transition-colors inline-flex items-center gap-2 cursor-pointer "
+                className="px-5 py-2  bg-[#0a2540] text-white hover:bg-[#071a2e] text-[13px] font-bold transition-colors inline-flex items-center gap-2 cursor-pointer "
               >
                 <span className="material-symbols-outlined text-[16px]">download</span>
                 <span>Tải về ngay</span>

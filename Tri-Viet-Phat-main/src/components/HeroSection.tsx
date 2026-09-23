@@ -81,7 +81,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenConsultation }) 
   return (
     <section
       ref={sectionRef}
-      className="relative w-full h-[560px] sm:h-[600px] lg:h-[calc(100vh-116px)] lg:min-h-[600px] lg:max-h-[780px] overflow-hidden bg-[#111111]"
+      className="relative w-full h-[560px] sm:h-[600px] lg:h-[calc(100vh-116px)] lg:min-h-[600px] lg:max-h-[780px] overflow-hidden bg-[#0a2540]"
       onTouchStart={(e) => (touchX.current = e.touches[0].clientX)}
       onTouchEnd={(e) => {
         if (touchX.current === null) return;
@@ -155,7 +155,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenConsultation }) 
               className="group relative h-12 px-8 overflow-hidden bg-white text-[#111111] text-[14px] font-semibold uppercase tracking-wide cursor-pointer"
             >
               {/* Fill sweeps in from the left on hover */}
-              <span className="absolute inset-0 bg-[#111111] -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
+              <span className="absolute inset-0 bg-[#0a2540] -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
               <span className="relative group-hover:text-white transition-colors duration-500">Yêu cầu báo giá</span>
             </button>
             <a href={`tel:${hotlineDigits}`} className="group text-[15px] text-white/85 hover:text-white">
