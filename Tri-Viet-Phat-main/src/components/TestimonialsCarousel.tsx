@@ -27,8 +27,8 @@ interface TestimonialsCarouselProps {
 }
 
 // Cocoon-inspired palette, scoped to this section
-const COLOR_PRIMARY = '#006194';
-const COLOR_TEXT_DARK = '#0f172a';
+const COLOR_PRIMARY = '#111111';
+const COLOR_TEXT_DARK = '#111111';
 
 const TABLET_BREAKPOINT_PX = 768;
 const DESKTOP_BREAKPOINT_PX = 1024;
@@ -56,24 +56,24 @@ const StarRating: React.FC<{ rating: number }> = ({ rating }) => (
       <Star
         key={idx}
         size={14}
-        className={idx < rating ? 'fill-[#475569] text-[#475569]' : 'fill-[#e2e8f0] text-[#e2e8f0]'}
+        className={idx < rating ? 'fill-[#555555] text-[#555555]' : 'fill-[#e5e5e5] text-[#e5e5e5]'}
       />
     ))}
   </div>
 );
 
 const TestimonialCard: React.FC<{ testimonial: Testimonial }> = ({ testimonial: t }) => (
-  <div className="relative h-full flex flex-col p-6 rounded-lg bg-white border border-[#e2e8f0]">
+  <div className="relative h-full flex flex-col p-6  bg-white border border-[#e5e5e5]">
 
     {/* Header: Avatar | Name/Role | KPI badge */}
     <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-2 mb-4 relative z-10">
       <div className="flex items-center gap-3 min-w-0">
-        <div className="w-12 h-12 rounded-full shrink-0 overflow-hidden bg-[#f1f5f9]">
+        <div className="w-12 h-12 rounded-full shrink-0 overflow-hidden bg-[#f2f2f2]">
           {t.avatarUrl ? (
             <img src={t.avatarUrl} alt={t.name} className="w-full h-full object-cover" />
           ) : (
             <div
-              className="w-full h-full flex items-center justify-center font-semibold text-[16px] text-[#475569]"
+              className="w-full h-full flex items-center justify-center font-semibold text-[16px] text-[#555555]"
             >
               {t.avatarInitials}
             </div>
@@ -83,12 +83,12 @@ const TestimonialCard: React.FC<{ testimonial: Testimonial }> = ({ testimonial: 
           <div className="text-[14.5px] font-bold truncate" style={{ color: COLOR_TEXT_DARK }}>
             {t.title ? `${t.title} ` : ''}{t.name}
           </div>
-          <div className="text-[12px] text-[#94a3b8] truncate">{t.role}</div>
+          <div className="text-[12px] text-[#999999] truncate">{t.role}</div>
         </div>
       </div>
 
       {t.kpi && (
-        <div className="shrink-0 inline-flex items-center gap-1 text-[#475569] text-[12px] font-medium whitespace-nowrap">
+        <div className="shrink-0 inline-flex items-center gap-1 text-[#555555] text-[12px] font-medium whitespace-nowrap">
           {t.kpi.trend === 'up' ? <TrendingUp size={13} /> : <TrendingDown size={13} />}
           <span>{t.kpi.label}</span>
         </div>
@@ -97,11 +97,11 @@ const TestimonialCard: React.FC<{ testimonial: Testimonial }> = ({ testimonial: 
 
     <StarRating rating={t.rating} />
 
-    <p className="mt-3 font-sans text-[14.5px] text-[#334155] leading-relaxed flex-1">
+    <p className="mt-3 font-sans text-[14.5px] text-[#333333] leading-relaxed flex-1">
       “{t.quote}”
     </p>
 
-    <div className="mt-4 pt-4 border-t border-[#e2e8f0] flex items-center justify-between gap-2 text-[11.5px] text-[#94a3b8]">
+    <div className="mt-4 pt-4 border-t border-[#e5e5e5] flex items-center justify-between gap-2 text-[11.5px] text-[#999999]">
       <div className="min-w-0 space-y-1">
         <div className="flex items-center gap-1.5 truncate">
           <Building2 size={13} className="shrink-0" />
@@ -121,12 +121,12 @@ const TestimonialCard: React.FC<{ testimonial: Testimonial }> = ({ testimonial: 
 );
 
 const EmptyState: React.FC<{ title: string; message: string }> = ({ title, message }) => (
-  <div className="flex flex-col items-center text-center gap-3 py-10 px-6 rounded-lg border border-dashed border-[#cbd5e1] bg-[#f8fafc] max-w-xl mx-auto">
-    <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-sm" style={{ color: COLOR_PRIMARY }}>
+  <div className="flex flex-col items-center text-center gap-3 py-10 px-6  border border-dashed border-[#d4d4d4] bg-[#f7f7f7] max-w-xl mx-auto">
+    <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center " style={{ color: COLOR_PRIMARY }}>
       <MessageSquareHeart size={26} />
     </div>
     <h3 className="text-[16px] font-bold" style={{ color: COLOR_TEXT_DARK }}>{title}</h3>
-    <p className="text-[13.5px] text-[#475569] leading-relaxed">{message}</p>
+    <p className="text-[13.5px] text-[#555555] leading-relaxed">{message}</p>
   </div>
 );
 
@@ -201,9 +201,9 @@ export const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({
     <section className="w-full py-14 sm:py-20 bg-white">
       <div className="max-w-[1320px] mx-auto px-4 sm:px-8">
         <div className="max-w-2xl mb-8 sm:mb-10">
-          {eyebrow && <p className="text-[14px] font-semibold text-[#006194] mb-2">{eyebrow}</p>}
-          <h2 className="text-[24px] sm:text-[30px] font-bold text-[#0f172a] tracking-tight leading-tight">{title}</h2>
-          {subtitle && <p className="mt-3 text-[15px] text-[#475569] leading-relaxed">{subtitle}</p>}
+          {eyebrow && <p className="text-[14px] font-semibold text-[#111111] mb-2">{eyebrow}</p>}
+          <h2 className="text-[24px] sm:text-[30px] font-bold text-[#111111] tracking-tight leading-tight">{title}</h2>
+          {subtitle && <p className="mt-3 text-[15px] text-[#555555] leading-relaxed">{subtitle}</p>}
         </div>
 
         {items.length === 0 ? (
@@ -246,7 +246,7 @@ export const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({
                   type="button"
                   onClick={goPrev}
                   aria-label="Đánh giá trước"
-                  className="hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-10 h-10 rounded-full bg-white border border-[#e2e8f0] items-center justify-center cursor-pointer"
+                  className="hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-10 h-10 rounded-full bg-white border border-[#e5e5e5] items-center justify-center cursor-pointer"
                   style={{ color: COLOR_PRIMARY }}
                 >
                   <ChevronLeft size={20} />
@@ -255,7 +255,7 @@ export const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({
                   type="button"
                   onClick={goNext}
                   aria-label="Đánh giá tiếp theo"
-                  className="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-10 h-10 rounded-full bg-white border border-[#e2e8f0] items-center justify-center cursor-pointer"
+                  className="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-10 h-10 rounded-full bg-white border border-[#e5e5e5] items-center justify-center cursor-pointer"
                   style={{ color: COLOR_PRIMARY }}
                 >
                   <ChevronRight size={20} />
@@ -272,7 +272,7 @@ export const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({
                       initial={false}
                       animate={{
                         width: index === idx ? 24 : 8,
-                        backgroundColor: index === idx ? COLOR_PRIMARY : '#cbd5e1',
+                        backgroundColor: index === idx ? COLOR_PRIMARY : '#d4d4d4',
                       }}
                       transition={{ duration: 0.3 }}
                     />
@@ -285,7 +285,7 @@ export const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({
                     type="button"
                     onClick={goPrev}
                     aria-label="Đánh giá trước"
-                    className="w-9 h-9 rounded-full bg-white border border-[#e2e8f0] shadow-xs flex items-center justify-center cursor-pointer"
+                    className="w-9 h-9 rounded-full bg-white border border-[#e5e5e5]  flex items-center justify-center cursor-pointer"
                     style={{ color: COLOR_PRIMARY }}
                   >
                     <ChevronLeft size={18} />
@@ -294,7 +294,7 @@ export const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({
                     type="button"
                     onClick={goNext}
                     aria-label="Đánh giá tiếp theo"
-                    className="w-9 h-9 rounded-full bg-white border border-[#e2e8f0] shadow-xs flex items-center justify-center cursor-pointer"
+                    className="w-9 h-9 rounded-full bg-white border border-[#e5e5e5]  flex items-center justify-center cursor-pointer"
                     style={{ color: COLOR_PRIMARY }}
                   >
                     <ChevronRight size={18} />

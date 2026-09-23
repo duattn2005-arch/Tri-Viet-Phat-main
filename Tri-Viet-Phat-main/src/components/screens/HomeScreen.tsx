@@ -6,6 +6,7 @@ import { TestimonialsCarousel } from '../TestimonialsCarousel';
 import { HeroSection } from '../HeroSection';
 import { ProductCardsSection } from '../ProductCardsSection';
 import { SectionHeader, ViewAllButton } from '../SectionHeader';
+import { ProductCard } from '../ProductCard';
 
 interface HomeScreenProps {
   onSelectProduct: (product: Product) => void;
@@ -66,9 +67,9 @@ const FORM_ASSURANCES = [
 ];
 
 const INPUT_CLASS =
-  'w-full px-3.5 py-2.5 bg-white border border-[#cbd5e1] text-[14px] text-[#0f172a] placeholder:text-[#94a3b8] focus:outline-none focus:border-[#006194] focus:ring-1 focus:ring-[#006194]';
+  'w-full px-3.5 py-2.5 bg-white border border-[#d4d4d4] text-[14px] text-[#111111] placeholder:text-[#999999] focus:outline-none focus:border-[#111111] focus:ring-1 focus:ring-[#111111]';
 
-const LABEL_CLASS = 'block text-[13px] font-medium text-[#334155] mb-1.5';
+const LABEL_CLASS = 'block text-[13px] font-medium text-[#333333] mb-1.5';
 
 export const HomeScreen: React.FC<HomeScreenProps> = ({
   onSelectProduct,
@@ -125,18 +126,18 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       <HeroSection onOpenConsultation={onOpenConsultation} />
 
       {/* 2. Key facts — plain figures, no cards or icons */}
-      <section className="w-full bg-white border-b border-[#e2e8f0]">
+      <section className="w-full bg-white border-b border-[#e5e5e5]">
         <dl className="max-w-[1320px] mx-auto px-4 sm:px-8 grid grid-cols-2 lg:grid-cols-4">
           {FACTS.map((fact, idx) => (
             <div
               key={fact.label}
-              className={`py-6 sm:py-8 ${idx % 2 === 1 ? 'pl-5 sm:pl-8 border-l border-[#e2e8f0]' : ''} ${
-                idx >= 2 ? 'border-t lg:border-t-0 border-[#e2e8f0]' : ''
+              className={`py-6 sm:py-8 ${idx % 2 === 1 ? 'pl-5 sm:pl-8 border-l border-[#e5e5e5]' : ''} ${
+                idx >= 2 ? 'border-t lg:border-t-0 border-[#e5e5e5]' : ''
               } ${idx === 2 ? 'lg:pl-8 lg:border-l' : ''}`}
             >
               <dt className="sr-only">{fact.label}</dt>
-              <dd className="text-[24px] sm:text-[28px] font-bold text-[#0f172a] leading-none">{fact.value}</dd>
-              <dd className="mt-2 text-[13px] sm:text-[14px] text-[#475569]">{fact.label}</dd>
+              <dd className="text-[24px] sm:text-[28px] font-bold text-[#111111] leading-none">{fact.value}</dd>
+              <dd className="mt-2 text-[13px] sm:text-[14px] text-[#555555]">{fact.label}</dd>
             </div>
           ))}
         </dl>
@@ -146,7 +147,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       <ProductCardsSection onNavigateTab={onNavigateTab} />
 
       {/* 4. Featured products — tabs double as the section heading */}
-      <section className="w-full py-12 sm:py-16 bg-[#f3f7fa]" id="featured-products">
+      <section className="w-full py-12 sm:py-16 bg-[#f7f7f7]" id="featured-products">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8">
           <div
             role="tablist"
@@ -163,8 +164,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   onClick={() => setFeaturedCategory(cat.key)}
                   className={`shrink-0 pb-2 border-b-2 text-[16px] sm:text-[20px] font-semibold uppercase transition-colors cursor-pointer ${
                     isSelected
-                      ? 'border-[#0f172a] text-[#0f172a]'
-                      : 'border-transparent text-[#94a3b8] hover:text-[#475569]'
+                      ? 'border-[#111111] text-[#111111]'
+                      : 'border-transparent text-[#999999] hover:text-[#555555]'
                   }`}
                 >
                   {cat.key === 'all' ? 'Sản phẩm nổi bật' : cat.label}
@@ -175,29 +176,12 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-3 gap-y-8 sm:gap-x-4">
             {filteredFeaturedProducts.slice(0, 10).map((prod) => (
-              <button
+              <ProductCard
                 key={prod.id}
-                type="button"
-                onClick={() => onSelectProduct(prod)}
-                className="group flex flex-col text-left cursor-pointer"
-              >
-                <div className="relative w-full aspect-square min-h-0 shrink-0 overflow-hidden bg-white">
-                  <img
-                    className="absolute inset-0 w-full h-full object-contain p-5 transition-transform duration-500 group-hover:scale-105"
-                    alt={prod.alt}
-                    src={prod.image}
-                    loading="lazy"
-                  />
-                </div>
-                <div className="pt-3">
-                  <div className="text-[12px] text-[#64748b] truncate">
-                    {prod.brand ? prod.brand.replace(' INDUSTRIAL CO., LTD', '') : prod.categoryLabel}
-                  </div>
-                  <h3 className="mt-1 text-[14px] font-medium text-[#0f172a] group-hover:text-[#006194] transition-colors leading-snug line-clamp-2">
-                    {prod.name}
-                  </h3>
-                </div>
-              </button>
+                product={prod}
+                onSelect={onSelectProduct}
+                onRequestQuote={onOpenConsultation}
+              />
             ))}
           </div>
 
@@ -210,7 +194,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           <div className="lg:col-span-5">
             <img
-              className="w-full aspect-[4/5] sm:aspect-[4/3] lg:aspect-[4/5] object-cover bg-[#f1f5f9]"
+              className="w-full aspect-[4/5] sm:aspect-[4/3] lg:aspect-[4/5] object-cover bg-[#f2f2f2]"
               alt="Kỹ sư y sinh Trí Việt Phát"
               src={COMPANY_INFO.aboutImage}
               loading="lazy"
@@ -218,10 +202,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           </div>
 
           <div className="lg:col-span-7">
-            <h2 className="text-[20px] sm:text-[26px] font-bold text-[#0f172a] uppercase leading-tight">
+            <h2 className="text-[20px] sm:text-[26px] font-bold text-[#111111] uppercase leading-tight">
               Về Trí Việt Phát
             </h2>
-            <p className="mt-4 text-[15px] sm:text-[16px] text-[#475569] leading-relaxed">
+            <p className="mt-4 text-[15px] sm:text-[16px] text-[#555555] leading-relaxed">
               {COMPANY_INFO.name} được thành lập theo giấy phép số {COMPANY_INFO.licenseNo} của{' '}
               {COMPANY_INFO.licensedBy}. Hơn {COMPANY_INFO.yearsOfExperience.replace('+', '')} năm qua, chúng tôi
               là đối tác cung ứng thiết bị và hóa chất xét nghiệm cho các bệnh viện đa khoa, trung tâm y tế và phòng
@@ -230,9 +214,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
             <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-x-10">
               {CAPABILITIES.map((cap) => (
-                <div key={cap.title} className="py-5 border-t border-[#e2e8f0]">
-                  <h3 className="text-[15px] font-semibold text-[#0f172a]">{cap.title}</h3>
-                  <p className="mt-1.5 text-[14px] text-[#475569] leading-relaxed">{cap.desc}</p>
+                <div key={cap.title} className="py-5 border-t border-[#e5e5e5]">
+                  <h3 className="text-[15px] font-semibold text-[#111111]">{cap.title}</h3>
+                  <p className="mt-1.5 text-[14px] text-[#555555] leading-relaxed">{cap.desc}</p>
                 </div>
               ))}
             </div>
@@ -241,14 +225,14 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               <button
                 type="button"
                 onClick={() => onNavigateTab('gioi-thieu')}
-                className="text-[#006194] hover:text-[#004a73] cursor-pointer"
+                className="text-[#111111] hover:text-[#000000] cursor-pointer"
               >
                 Tìm hiểu về công ty <span aria-hidden="true">→</span>
               </button>
               <button
                 type="button"
                 onClick={onOpenRepairService}
-                className="text-[#006194] hover:text-[#004a73] cursor-pointer"
+                className="text-[#111111] hover:text-[#000000] cursor-pointer"
               >
                 Đăng ký bảo trì, sửa chữa <span aria-hidden="true">→</span>
               </button>
@@ -258,22 +242,22 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       </section>
 
       {/* 6. Partners — uniform wordmarks, no per-brand colours */}
-      <section className="w-full py-12 sm:py-16 bg-white border-t border-[#e2e8f0]">
+      <section className="w-full py-12 sm:py-16 bg-white border-t border-[#e5e5e5]">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8">
-          <p className="text-[14px] text-[#64748b] mb-6">
+          <p className="text-[14px] text-[#777777] mb-6">
             Phân phối chính thức sản phẩm của các hãng chẩn đoán IVD
           </p>
-          <ul className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-px bg-[#e2e8f0] border border-[#e2e8f0]">
+          <ul className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-px bg-[#e5e5e5] border border-[#e5e5e5]">
             {PARTNERS.map((partner) => (
               <li
                 key={partner.name}
                 className="bg-white h-20 flex flex-col items-center justify-center text-center px-2"
               >
-                <span className="text-[16px] font-semibold text-[#475569] tracking-wide leading-tight">
+                <span className="text-[16px] font-semibold text-[#555555] tracking-wide leading-tight">
                   {partner.name}
                 </span>
                 {partner.subName && (
-                  <span className="text-[10px] text-[#94a3b8] tracking-wider uppercase mt-0.5">
+                  <span className="text-[10px] text-[#999999] tracking-wider uppercase mt-0.5">
                     {partner.subName}
                   </span>
                 )}
@@ -287,50 +271,50 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       <TestimonialsCarousel testimonials={TESTIMONIALS} />
 
       {/* 8. Consultation form */}
-      <section className="w-full py-12 sm:py-16 bg-[#f3f7fa]" id="tu-van-form">
+      <section className="w-full py-12 sm:py-16 bg-[#f7f7f7]" id="tu-van-form">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
           <div className="lg:col-span-5">
-            <h2 className="text-[20px] sm:text-[26px] font-bold text-[#0f172a] uppercase leading-tight">
+            <h2 className="text-[20px] sm:text-[26px] font-bold text-[#111111] uppercase leading-tight">
               Yêu cầu tư vấn và báo giá
             </h2>
-            <p className="mt-4 text-[15px] text-[#475569] leading-relaxed">
+            <p className="mt-4 text-[15px] text-[#555555] leading-relaxed">
               Bệnh viện, phòng khám hoặc đơn vị dự thầu vui lòng gửi thông tin. Kỹ sư phụ trách khu vực sẽ liên hệ lại
               với báo giá và cấu hình phù hợp.
             </p>
 
             <ul className="mt-6 space-y-3">
               {FORM_ASSURANCES.map((item) => (
-                <li key={item} className="flex items-start gap-2.5 text-[14px] text-[#334155]">
-                  <span className="material-symbols-outlined text-[18px] text-[#006194] mt-px">check</span>
+                <li key={item} className="flex items-start gap-2.5 text-[14px] text-[#333333]">
+                  <span className="material-symbols-outlined text-[18px] text-[#111111] mt-px">check</span>
                   <span>{item}</span>
                 </li>
               ))}
             </ul>
 
-            <dl className="mt-8 pt-6 border-t border-[#e2e8f0] grid grid-cols-2 gap-6 text-[14px]">
+            <dl className="mt-8 pt-6 border-t border-[#e5e5e5] grid grid-cols-2 gap-6 text-[14px]">
               <div>
-                <dt className="text-[#64748b]">Hotline</dt>
+                <dt className="text-[#777777]">Hotline</dt>
                 <dd className="mt-1 space-y-0.5">
                   <a
                     href={`tel:${COMPANY_INFO.hotline.replace(/\./g, '')}`}
-                    className="block font-semibold text-[#0f172a] hover:text-[#006194]"
+                    className="block font-semibold text-[#111111] hover:text-[#111111] hover:underline underline-offset-4"
                   >
                     {COMPANY_INFO.hotline}
                   </a>
                   <a
                     href={`tel:${COMPANY_INFO.hotline2.replace(/\./g, '')}`}
-                    className="block font-semibold text-[#0f172a] hover:text-[#006194]"
+                    className="block font-semibold text-[#111111] hover:text-[#111111] hover:underline underline-offset-4"
                   >
                     {COMPANY_INFO.hotline2}
                   </a>
                 </dd>
               </div>
               <div className="min-w-0">
-                <dt className="text-[#64748b]">Email</dt>
+                <dt className="text-[#777777]">Email</dt>
                 <dd className="mt-1">
                   <a
                     href={`mailto:${COMPANY_INFO.email}`}
-                    className="block font-semibold text-[#0f172a] hover:text-[#006194] break-all"
+                    className="block font-semibold text-[#111111] hover:text-[#111111] hover:underline underline-offset-4 break-all"
                   >
                     {COMPANY_INFO.email}
                   </a>
@@ -343,9 +327,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             <div className="bg-white p-6 sm:p-8">
               {formSubmitted ? (
                 <div className="py-10 text-center" role="status">
-                  <span className="material-symbols-outlined text-[40px] text-[#006194]">check_circle</span>
-                  <h3 className="mt-3 text-[19px] font-semibold text-[#0f172a]">Đã tiếp nhận yêu cầu</h3>
-                  <p className="mt-2 text-[14px] text-[#475569] max-w-md mx-auto">
+                  <span className="material-symbols-outlined text-[40px] text-[#111111]">check_circle</span>
+                  <h3 className="mt-3 text-[19px] font-semibold text-[#111111]">Đã tiếp nhận yêu cầu</h3>
+                  <p className="mt-2 text-[14px] text-[#555555] max-w-md mx-auto">
                     Kỹ sư phụ trách khu vực <strong>{formProvince}</strong> sẽ liên hệ qua số{' '}
                     <strong>{formPhone}</strong> để gửi báo giá.
                   </p>
@@ -360,7 +344,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                           key={chip}
                           type="button"
                           onClick={() => handleAddQuickChip(chip)}
-                          className="text-[13px] px-3 py-1.5 border border-[#cbd5e1] text-[#334155] hover:border-[#006194] hover:text-[#006194] transition-colors cursor-pointer"
+                          className="text-[13px] px-3 py-1.5 border border-[#d4d4d4] text-[#333333] hover:border-[#111111] hover:text-[#111111] hover:underline underline-offset-4 transition-colors cursor-pointer"
                         >
                           {chip}
                         </button>
@@ -371,7 +355,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
                       <label htmlFor="home-form-name" className={LABEL_CLASS}>
-                        Họ tên / Đơn vị <span className="text-[#bb0112]">*</span>
+                        Họ tên / Đơn vị <span className="text-[#e11d2a]">*</span>
                       </label>
                       <input
                         id="home-form-name"
@@ -385,7 +369,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                     </div>
                     <div>
                       <label htmlFor="home-form-phone" className={LABEL_CLASS}>
-                        Số điện thoại <span className="text-[#bb0112]">*</span>
+                        Số điện thoại <span className="text-[#e11d2a]">*</span>
                       </label>
                       <input
                         id="home-form-phone"
@@ -415,7 +399,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                     </div>
                     <div>
                       <span className={LABEL_CLASS}>
-                        Tỉnh/thành phố <span className="text-[#bb0112]">*</span>
+                        Tỉnh/thành phố <span className="text-[#e11d2a]">*</span>
                       </span>
                       <ProvinceSelect
                         value={formProvince}
@@ -465,7 +449,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 onClick={() => onSelectArticle(art)}
                 className="group flex flex-col text-left cursor-pointer"
               >
-                <div className="w-full aspect-[16/9] overflow-hidden bg-[#f1f5f9]">
+                <div className="w-full aspect-[16/9] overflow-hidden bg-[#f2f2f2]">
                   <img
                     className="w-full h-full object-cover group-hover:opacity-90 transition-opacity"
                     alt={art.alt}
@@ -473,13 +457,13 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                     loading="lazy"
                   />
                 </div>
-                <div className="mt-4 text-[12px] font-medium uppercase tracking-wide text-[#64748b]">
+                <div className="mt-4 text-[12px] font-medium uppercase tracking-wide text-[#777777]">
                   {art.category || 'Tin y tế'} · {art.date}
                 </div>
-                <h3 className="mt-2 text-[17px] font-semibold text-[#0f172a] group-hover:text-[#006194] transition-colors leading-snug line-clamp-2">
+                <h3 className="mt-2 text-[17px] font-semibold text-[#111111] group-hover:underline underline-offset-4 transition-colors leading-snug line-clamp-2">
                   {art.title}
                 </h3>
-                <p className="mt-2 text-[14px] text-[#475569] leading-relaxed line-clamp-3">{art.excerpt}</p>
+                <p className="mt-2 text-[14px] text-[#555555] leading-relaxed line-clamp-3">{art.excerpt}</p>
               </button>
             ))}
           </div>

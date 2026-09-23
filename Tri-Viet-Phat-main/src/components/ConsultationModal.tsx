@@ -8,11 +8,13 @@ interface ConsultationModalProps {
   prefilledProduct?: string;
 }
 
-export const ConsultationModal: React.FC<ConsultationModalProps> = ({
-  isOpen,
-  onClose,
-  prefilledProduct = '',
-}) => {
+const QUICK_CHIPS = ['Máy huyết học', 'Máy sinh hóa', 'Máy nước tiểu', 'Máy điện giải', 'Hóa chất Dewei'];
+
+const INPUT_CLASS =
+  'w-full h-11 px-3.5 bg-white border border-[#d4d4d4] text-[14px] text-[#111111] placeholder:text-[#999999] focus:outline-none focus:border-[#111111]';
+const LABEL_CLASS = 'block text-[13px] font-semibold text-[#111111] mb-1.5';
+
+export const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, onClose, prefilledProduct = '' }) => {
   const [fullName, setFullName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
@@ -21,13 +23,16 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    if (prefilledProduct) {
-      setNote(`Tôi quan tâm và cần nhận bảng báo giá thiết bị: ${prefilledProduct}`);
-    } else {
-      setNote('');
-    }
+    setNote(prefilledProduct ? `Tôi cần báo giá thiết bị: ${prefilledProduct}` : '');
     setSubmitted(false);
   }, [prefilledProduct, isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -35,193 +40,163 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
     e.preventDefault();
     setSubmitted(true);
     setTimeout(() => {
-      // Auto close after 2.5s
-      setTimeout(() => {
-        setSubmitted(false);
-        onClose();
-      }, 2500);
-    }, 500);
+      setSubmitted(false);
+      onClose();
+    }, 3000);
   };
 
+  const addChip = (chip: string) =>
+    setNote((prev) => (prev.includes(chip) ? prev : prev ? `${prev}, ${chip}` : `Cần báo giá: ${chip}`));
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="consultation-title"
+    >
       <div
-        className="bg-white rounded-lg max-w-xl w-full p-6 sm:p-8 shadow-2xl relative border border-[#e2e8f0]"
+        className="bg-white max-w-xl w-full max-h-[calc(100vh-32px)] overflow-y-auto p-6 sm:p-8 relative"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
           aria-label="Đóng"
-          className="absolute top-4 right-4 w-9 h-9 rounded-full bg-[#f1f5f9] hover:bg-[#e2e8f0] text-[#475569] flex items-center justify-center transition-colors"
+          className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center text-[#111111] hover:opacity-60 cursor-pointer"
         >
-          <span className="material-symbols-outlined text-[20px]">close</span>
+          <span className="material-symbols-outlined text-[24px]">close</span>
         </button>
 
         {submitted ? (
-          <div className="text-center py-8 space-y-4 animate-in zoom-in-95 duration-200">
-            <div className="w-16 h-16 rounded-full bg-[#f1f5f9] text-[#475569] flex items-center justify-center mx-auto">
-              <span className="material-symbols-outlined text-[36px]">verified</span>
-            </div>
-            <h3 className="text-[20px] font-bold text-[#0f172a]">
-              Đã gửi yêu cầu thành công!
-            </h3>
-            <p className="text-[14px] text-[#475569] max-w-sm mx-auto leading-relaxed">
-              Cảm ơn Quý khách! Kỹ sư chuyên môn của Trí Việt Phát sẽ liên hệ phản hồi và gửi bảng báo giá qua số điện thoại <strong>{phone}</strong> trong vòng 15 phút.
+          <div className="text-center py-10" role="status">
+            <span className="material-symbols-outlined text-[44px] text-[#111111]">check_circle</span>
+            <h3 className="mt-3 text-[20px] font-bold text-[#111111]">Đã gửi yêu cầu</h3>
+            <p className="mt-2 text-[14px] text-[#555555] max-w-sm mx-auto leading-relaxed">
+              Kỹ sư Trí Việt Phát sẽ liên hệ qua số <strong className="text-[#111111]">{phone}</strong> để gửi báo giá.
             </p>
           </div>
         ) : (
-          <div>
-            <div className="mb-5 text-left">
-              <span className="inline-block px-3 py-1 rounded-full bg-[#006194] text-white text-[11px] font-bold mb-2">
-                Tư Vấn Chuyên Sâu 24/7
-              </span>
-              <h3 className="text-[20px] font-bold text-[#0f172a] [text-wrap:balance]">
-                Đăng ký tư vấn & Báo giá thiết bị y tế
-              </h3>
-              <p className="text-[13px] text-[#475569] mt-1 [text-wrap:balance]">
-                Kỹ sư y sinh của Trí Việt Phát cam kết bảo mật thông tin và tư vấn giải pháp tối ưu chi phí nhất.
-              </p>
-            </div>
+          <>
+            <h3 id="consultation-title" className="pr-10 text-[22px] font-bold text-[#111111] leading-tight">
+              Yêu cầu tư vấn và báo giá
+            </h3>
+            <p className="mt-2 text-[14px] text-[#555555] leading-relaxed">
+              Để lại thông tin, kỹ sư phụ trách khu vực sẽ liên hệ lại với báo giá và cấu hình phù hợp.
+            </p>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Quick Suggestion Chips */}
+            <form onSubmit={handleSubmit} className="mt-6 space-y-4">
               <div>
-                <span className="block text-[11.5px] font-bold text-[#475569] mb-1.5">
-                  Chọn nhanh thiết bị hoặc hóa chất cần báo giá:
-                </span>
-                <div className="flex flex-wrap gap-1.5">
-                  {['Máy Huyết học', 'Máy Sinh hóa', 'Máy Nước tiểu', 'Máy Điện giải', 'Hóa chất Dewei'].map((chip, idx) => (
+                <span className={LABEL_CLASS}>Chọn nhanh</span>
+                <div className="flex flex-wrap gap-2">
+                  {QUICK_CHIPS.map((chip) => (
                     <button
-                      key={idx}
+                      key={chip}
                       type="button"
-                      onClick={() => setNote((prev) => prev ? `${prev}, ${chip}` : `Cần báo giá: ${chip}`)}
-                      className="text-[11px] font-semibold px-2 py-0.5 rounded-lg bg-[#f1f5f9] hover:bg-[#e0f2fe] text-[#334155] hover:text-[#006194] border border-[#e2e8f0] transition-colors cursor-pointer"
+                      onClick={() => addChip(chip)}
+                      className="h-8 px-3 border border-[#d4d4d4] text-[13px] text-[#333333] hover:border-[#111111] hover:text-[#111111] transition-colors cursor-pointer"
                     >
-                      + {chip}
+                      {chip}
                     </button>
                   ))}
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[12px] font-semibold text-[#0f172a] mb-1">
-                    Họ tên/Đơn vị <span className="text-[#bb0112]">*</span>
+                  <label htmlFor="cm-name" className={LABEL_CLASS}>
+                    Họ tên / Đơn vị <span className="text-[#e11d2a]">*</span>
                   </label>
-                  <div className="relative">
-                    <span className="material-symbols-outlined absolute left-3 top-2.5 text-[#475569] text-[18px]">
-                      person
-                    </span>
-                    <input
-                      type="text"
-                      required
-                      value={fullName}
-                      onChange={(e) => setFullName(e.target.value)}
-                      placeholder="Họ và tên hoặc tên đơn vị"
-                      className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-[#f1f5f9] text-[13.5px] text-[#0f172a] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#006194] border border-[#e2e8f0]"
-                    />
-                  </div>
+                  <input
+                    id="cm-name"
+                    type="text"
+                    required
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    placeholder="Họ tên hoặc tên cơ sở y tế"
+                    className={INPUT_CLASS}
+                  />
                 </div>
-
                 <div>
-                  <label className="block text-[12px] font-semibold text-[#0f172a] mb-1">
-                    Số điện thoại <span className="text-[#bb0112]">*</span>
+                  <label htmlFor="cm-phone" className={LABEL_CLASS}>
+                    Số điện thoại <span className="text-[#e11d2a]">*</span>
                   </label>
-                  <div className="relative">
-                    <span className="material-symbols-outlined absolute left-3 top-2.5 text-[#475569] text-[18px]">
-                      call
-                    </span>
-                    <input
-                      type="tel"
-                      required
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      placeholder="Số điện thoại liên hệ"
-                      className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-[#f1f5f9] text-[13.5px] text-[#0f172a] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#006194] border border-[#e2e8f0]"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                <div>
-                  <label className="block text-[12px] font-semibold text-[#0f172a] mb-1">
-                    Địa chỉ email
-                  </label>
-                  <div className="relative">
-                    <span className="material-symbols-outlined absolute left-3 top-2.5 text-[#475569] text-[18px]">
-                      mail
-                    </span>
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Email nhận báo giá (nếu có)"
-                      className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-[#f1f5f9] text-[13.5px] text-[#0f172a] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#006194] border border-[#e2e8f0]"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-[12px] font-semibold text-[#0f172a] mb-1">
-                    Khu vực tỉnh/thành phố <span className="text-[#bb0112]">*</span>
-                  </label>
-                  <ProvinceSelect
-                    value={province}
-                    onChange={(val) => setProvince(val)}
-                    variant="light"
+                  <input
+                    id="cm-phone"
+                    type="tel"
+                    required
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="Số điện thoại liên hệ"
+                    className={INPUT_CLASS}
                   />
                 </div>
               </div>
 
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="cm-email" className={LABEL_CLASS}>
+                    Email
+                  </label>
+                  <input
+                    id="cm-email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Email nhận báo giá (nếu có)"
+                    className={INPUT_CLASS}
+                  />
+                </div>
+                <div>
+                  <span className={LABEL_CLASS}>
+                    Tỉnh/thành phố <span className="text-[#e11d2a]">*</span>
+                  </span>
+                  <ProvinceSelect value={province} onChange={(val) => setProvince(val)} variant="white" />
+                </div>
+              </div>
+
               <div>
-                <label className="block text-[12px] font-semibold text-[#0f172a] mb-1">
-                  Nội dung quan tâm / Thiết bị cần báo giá
+                <label htmlFor="cm-note" className={LABEL_CLASS}>
+                  Nội dung cần tư vấn
                 </label>
                 <textarea
+                  id="cm-note"
                   rows={3}
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
-                  placeholder="Ví dụ: Cần tư vấn lắp đặt máy xét nghiệm điện giải và bảng giá hóa chất huyết học Dewei..."
-                  className="w-full p-3 rounded-xl bg-[#f1f5f9] text-[13.5px] text-[#0f172a] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#006194] border border-[#e2e8f0]"
+                  placeholder="Ví dụ: cần báo giá máy điện giải và hóa chất huyết học Dewei"
+                  className={`${INPUT_CLASS} h-auto py-2.5`}
                 ></textarea>
               </div>
 
-              <div className="pt-2 flex items-center gap-3">
-                <button
-                  type="submit"
-                  className="flex-1 py-3.5 rounded-xl btn-3d-red text-white text-[14px] font-bold flex items-center justify-center gap-2 cursor-pointer shadow-md"
-                >
-                  <span className="material-symbols-outlined text-[18px]">send</span>
-                  <span>GỬI YÊU CẦU BÁO GIÁ</span>
-                </button>
-              </div>
+              <button
+                type="submit"
+                className="btn-primary w-full h-12 text-[14px] font-semibold uppercase tracking-wide cursor-pointer"
+              >
+                Gửi yêu cầu báo giá
+              </button>
 
-              {/* Fast Direct Contact Bar */}
-              <div className="pt-3 border-t border-[#f1f5f9] flex flex-wrap items-center justify-between gap-2 text-[12px]">
-                <span className="text-[#64748b]">Cần kết nối khẩn cấp?</span>
-                <div className="flex items-center gap-2">
+              <div className="pt-4 border-t border-[#e5e5e5] flex flex-wrap items-center justify-between gap-2 text-[13px] text-[#555555]">
+                <span>Cần gấp?</span>
+                <span className="flex items-center gap-4">
                   <a
                     href={`tel:${COMPANY_INFO.hotline.replace(/[^0-9]/g, '')}`}
-                    className="inline-flex items-center gap-1 text-[#006194] font-bold hover:underline"
+                    className="font-semibold text-[#111111] hover:underline underline-offset-4"
                   >
-                    <span className="material-symbols-outlined text-[15px]">call</span>
-                    <span>Hotline: {COMPANY_INFO.hotline}</span>
+                    Hotline {COMPANY_INFO.hotline}
                   </a>
-                  <span className="text-[#cbd5e1]">•</span>
                   <a
                     href={COMPANY_INFO.zaloUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1 text-[#0068ff] font-bold hover:underline"
+                    className="font-semibold text-[#111111] hover:underline underline-offset-4"
                   >
-                    <span className="material-symbols-outlined text-[15px]">chat</span>
-                    <span>Chat Zalo</span>
+                    Chat Zalo
                   </a>
-                </div>
+                </span>
               </div>
             </form>
-          </div>
+          </>
         )}
       </div>
     </div>

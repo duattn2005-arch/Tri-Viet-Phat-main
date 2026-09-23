@@ -19,14 +19,14 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
 }) => (
   <div className="flex items-end justify-between gap-4 mb-6 sm:mb-8">
     <div className="max-w-2xl">
-      <h2 className="text-[20px] sm:text-[26px] font-bold text-[#0f172a] uppercase leading-tight">{title}</h2>
-      {description && <p className="mt-2 text-[14px] sm:text-[15px] text-[#475569] leading-relaxed">{description}</p>}
+      <h2 className="text-[20px] sm:text-[26px] font-bold text-[#111111] uppercase leading-tight">{title}</h2>
+      {description && <p className="mt-2 text-[14px] sm:text-[15px] text-[#555555] leading-relaxed">{description}</p>}
     </div>
     {actionLabel && onAction && (
       <button
         type="button"
         onClick={onAction}
-        className="hidden sm:inline-flex shrink-0 items-center gap-1 text-[14px] font-medium text-[#0f172a] hover:text-[#006194] cursor-pointer"
+        className="hidden sm:inline-flex shrink-0 items-center gap-1 text-[14px] font-medium text-[#111111] hover:text-[#111111] hover:underline underline-offset-4 cursor-pointer"
       >
         <span>{actionLabel}</span>
         <span aria-hidden="true">→</span>
@@ -46,7 +46,7 @@ export const ViewAllButton: React.FC<ViewAllButtonProps> = ({ label, onClick }) 
     <button
       type="button"
       onClick={onClick}
-      className="h-11 px-8 border border-[#0f172a] text-[13px] font-semibold uppercase tracking-wide text-[#0f172a] hover:bg-[#0f172a] hover:text-white transition-colors cursor-pointer"
+      className="h-11 px-8 border border-[#111111] text-[13px] font-semibold uppercase tracking-wide text-[#111111] hover:bg-[#111111] hover:text-white transition-colors cursor-pointer"
     >
       {label}
     </button>

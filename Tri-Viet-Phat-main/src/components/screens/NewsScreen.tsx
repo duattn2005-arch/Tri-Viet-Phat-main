@@ -195,7 +195,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
   }, [featuredArticle, filteredArticles]);
 
   return (
-    <div className="w-full bg-[#f8fafc] min-h-screen">
+    <div className="w-full bg-[#f7f7f7] min-h-screen">
       {/* Banner */}
       <PageBanner
         title={activeArticle ? activeArticle.title : categoryTitle}
@@ -243,7 +243,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
             {/* Left Column: Rich, balanced news content */}
             <div className="lg:col-span-8 xl:col-span-9 space-y-6">
               {/* Category Filter Pills & Search Bar */}
-              <div className="bg-white rounded-lg border border-[#e2e8f0] p-4 sm:p-5 shadow-xs">
+              <div className="bg-white  border border-[#e5e5e5] p-4 sm:p-5 ">
                 <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
                   {/* Category Filter - dropdown select on mobile, pills from sm+ */}
                   <div className="relative sm:hidden">
@@ -251,7 +251,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                       value={selectedCategory}
                       onChange={(e) => handleCategoryChange(e.target.value)}
                       aria-label="Chọn danh mục tin tức"
-                      className="w-full appearance-none pl-3.5 pr-10 py-3 rounded-xl border border-[#cbd5e1] bg-[#f8fafc] text-[13.5px] font-bold text-[#0f172a] focus:outline-none focus:ring-2 focus:ring-[#006194] focus:bg-white cursor-pointer"
+                      className="w-full appearance-none pl-3.5 pr-10 py-3  border border-[#d4d4d4] bg-[#f7f7f7] text-[13.5px] font-bold text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#111111] cursor-pointer"
                     >
                       {NEWS_CATEGORIES.map((cat) => {
                         const count =
@@ -265,7 +265,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                         );
                       })}
                     </select>
-                    <span className="material-symbols-outlined pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[20px] text-[#006194]">
+                    <span className="material-symbols-outlined pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[20px] text-[#111111]">
                       expand_more
                     </span>
                   </div>
@@ -282,10 +282,10 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                         <button
                           key={cat.key}
                           onClick={() => handleCategoryChange(cat.key)}
-                          className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-[13px] font-bold transition-all cursor-pointer ${
+                          className={`inline-flex items-center gap-2 px-3.5 py-2  text-[13px] font-bold transition-all cursor-pointer ${
                             isActive
-                              ? 'bg-[#006194] text-white shadow-xs'
-                              : 'bg-[#f1f5f9] text-[#475569] hover:bg-[#e2e8f0] hover:text-[#006194]'
+                              ? 'bg-[#111111] text-white shadow-xs'
+                              : 'bg-[#f2f2f2] text-[#555555] hover:bg-[#e5e5e5] hover:text-[#111111] hover:underline underline-offset-4'
                           }`}
                         >
                           <span className="material-symbols-outlined text-[16px]">
@@ -296,7 +296,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                             className={`text-[11px] px-1.5 py-0.2 rounded-full font-semibold ${
                               isActive
                                 ? 'bg-white/25 text-white'
-                                : 'bg-[#e2e8f0] text-[#64748b]'
+                                : 'bg-[#e5e5e5] text-[#777777]'
                             }`}
                           >
                             {count}
@@ -308,7 +308,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
 
                   {/* Search input */}
                   <div className="relative w-full md:w-72 shrink-0">
-                    <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-[#94a3b8]">
+                    <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-[#999999]">
                       search
                     </span>
                     <input
@@ -316,12 +316,12 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       placeholder="Tìm bài viết, tin tức..."
-                      className="w-full pl-9 pr-8 py-2 rounded-xl border border-[#cbd5e1] text-[13px] focus:outline-none focus:border-[#006194] focus:ring-1 focus:ring-[#006194] bg-[#f8fafc]"
+                      className="w-full pl-9 pr-8 py-2  border border-[#d4d4d4] text-[13px] focus:outline-none focus:border-[#111111] focus:ring-1 focus:ring-[#111111] bg-[#f7f7f7]"
                     />
                     {searchQuery && (
                       <button
                         onClick={() => setSearchQuery('')}
-                        className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#94a3b8] hover:text-[#0f172a] text-[14px]"
+                        className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#999999] hover:text-[#111111] hover:underline underline-offset-4 text-[14px]"
                       >
                         ✕
                       </button>
@@ -332,11 +332,11 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
 
               {/* Featured Hero Article (when on All view) */}
               {featuredArticle && (
-                <div className="bg-white rounded-lg border border-[#e2e8f0] overflow-hidden shadow-xs hover:shadow-md transition-all group">
+                <div className="bg-white  border border-[#e5e5e5] overflow-hidden   transition-all group">
                   <div className="grid grid-cols-1 md:grid-cols-12">
                     <div
                       onClick={() => handleSelect(featuredArticle)}
-                      className="md:col-span-6 relative h-64 md:h-full min-h-[260px] overflow-hidden bg-[#f1f5f9] cursor-pointer"
+                      className="md:col-span-6 relative h-64 md:h-full min-h-[260px] overflow-hidden bg-[#f2f2f2] cursor-pointer"
                     >
                       <img
                         src={featuredArticle.image}
@@ -348,7 +348,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                         }}
                       />
                       <div className="absolute top-3.5 left-3.5">
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11.5px] font-bold bg-[#006194] text-white shadow-md">
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11.5px] font-bold bg-[#111111] text-white ">
                           <span className="material-symbols-outlined text-[14px]">star</span>
                           <span>BÀI VIẾT TIÊU ĐIỂM</span>
                         </span>
@@ -358,10 +358,10 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                     <div className="md:col-span-6 p-5 sm:p-7 flex flex-col justify-between">
                       <div>
                         <div className="flex items-center gap-2 mb-3">
-                          <span className="text-[11.5px] font-bold px-2.5 py-0.5 rounded-full bg-[#f1f5f9] text-[#475569]">
+                          <span className="text-[11.5px] font-bold px-2.5 py-0.5 rounded-full bg-[#f2f2f2] text-[#555555]">
                             {getArticleCategoryBadge(featuredArticle.id)}
                           </span>
-                          <span className="text-[12px] text-[#94a3b8] flex items-center gap-1">
+                          <span className="text-[12px] text-[#999999] flex items-center gap-1">
                             <span className="material-symbols-outlined text-[14px]">calendar_today</span>
                             {featuredArticle.date}
                           </span>
@@ -369,17 +369,17 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
 
                         <h2
                           onClick={() => handleSelect(featuredArticle)}
-                          className="text-[18px] sm:text-[21px] font-bold text-[#0f172a] group-hover:text-[#006194] transition-colors leading-snug cursor-pointer mb-3"
+                          className="text-[18px] sm:text-[21px] font-bold text-[#111111] group-hover:underline underline-offset-4 transition-colors leading-snug cursor-pointer mb-3"
                         >
                           {featuredArticle.title}
                         </h2>
 
-                        <p className="text-[13.5px] text-[#475569] line-clamp-3 leading-relaxed mb-4">
+                        <p className="text-[13.5px] text-[#555555] line-clamp-3 leading-relaxed mb-4">
                           {featuredArticle.excerpt}
                         </p>
                       </div>
 
-                      <div className="flex items-center justify-between pt-4 border-t border-[#f1f5f9]">
+                      <div className="flex items-center justify-between pt-4 border-t border-[#f2f2f2]">
                         <span className="text-[12.5px] text-[#059669] font-semibold flex items-center gap-1">
                           <span className="material-symbols-outlined text-[16px]">verified</span>
                           <span>Biên tập bởi Trí Việt Phát</span>
@@ -387,7 +387,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
 
                         <button
                           onClick={() => handleSelect(featuredArticle)}
-                          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#006194] text-white hover:bg-[#004a73] text-[13px] font-bold transition-colors cursor-pointer shadow-xs"
+                          className="inline-flex items-center gap-1.5 px-4 py-2  bg-[#111111] text-white hover:bg-[#000000] text-[13px] font-bold transition-colors cursor-pointer "
                         >
                           <span>Đọc chi tiết</span>
                           <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
@@ -402,14 +402,14 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
               <div>
                 <div className="flex items-center justify-between mb-3 px-1">
                   <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#006194]" />
-                    <h3 className="text-[16px] sm:text-[18px] font-bold text-[#0f172a]">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#111111]" />
+                    <h3 className="text-[16px] sm:text-[18px] font-bold text-[#111111]">
                       {selectedCategory === 'all'
                         ? 'Các bài viết mới nhất'
                         : `${categoryTitle} (${filteredArticles.length})`}
                     </h3>
                   </div>
-                  <span className="text-[12px] text-[#64748b]">
+                  <span className="text-[12px] text-[#777777]">
                     {gridArticles.length} bài viết
                   </span>
                 </div>
@@ -419,13 +419,13 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                     {gridArticles.map((art) => (
                       <div
                         key={art.id}
-                        className="bg-white rounded-lg border border-[#e2e8f0] overflow-hidden shadow-xs hover:shadow-md hover:border-[#006194]/40 transition-all group flex flex-col justify-between"
+                        className="bg-white  border border-[#e5e5e5] overflow-hidden   hover:border-[#111111]/40 transition-all group flex flex-col justify-between"
                       >
                         <div>
                           {/* Thumbnail */}
                           <div
                             onClick={() => handleSelect(art)}
-                            className="relative h-48 sm:h-52 w-full overflow-hidden bg-[#f1f5f9] cursor-pointer"
+                            className="relative h-48 sm:h-52 w-full overflow-hidden bg-[#f2f2f2] cursor-pointer"
                           >
                             <img
                               src={art.image}
@@ -437,7 +437,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                               }}
                             />
                             <div className="absolute top-3 left-3">
-                              <span className="inline-block bg-[#006194]/90 backdrop-blur-xs text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow-xs">
+                              <span className="inline-block bg-[#111111]/90 backdrop-blur-xs text-white text-[11px] font-bold px-2.5 py-1 rounded-full ">
                                 {getArticleCategoryBadge(art.id)}
                               </span>
                             </div>
@@ -447,20 +447,20 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                           <div className="p-4 sm:p-5">
                             <h4
                               onClick={() => handleSelect(art)}
-                              className="text-[15px] sm:text-[16px] font-bold text-[#0f172a] group-hover:text-[#006194] transition-colors line-clamp-2 leading-snug cursor-pointer mb-2.5"
+                              className="text-[15px] sm:text-[16px] font-bold text-[#111111] group-hover:underline underline-offset-4 transition-colors line-clamp-2 leading-snug cursor-pointer mb-2.5"
                             >
                               {art.title}
                             </h4>
-                            <p className="text-[13px] text-[#64748b] line-clamp-3 leading-relaxed mb-3">
+                            <p className="text-[13px] text-[#777777] line-clamp-3 leading-relaxed mb-3">
                               {art.excerpt}
                             </p>
                           </div>
                         </div>
 
                         {/* Footer */}
-                        <div className="px-4 sm:px-5 py-3 bg-[#f8fafc] border-t border-[#f1f5f9] flex items-center justify-between">
-                          <div className="flex items-center gap-1.5 text-[12px] text-[#94a3b8]">
-                            <span className="material-symbols-outlined text-[15px] text-[#64748b]">
+                        <div className="px-4 sm:px-5 py-3 bg-[#f7f7f7] border-t border-[#f2f2f2] flex items-center justify-between">
+                          <div className="flex items-center gap-1.5 text-[12px] text-[#999999]">
+                            <span className="material-symbols-outlined text-[15px] text-[#777777]">
                               calendar_today
                             </span>
                             <span>{art.date}</span>
@@ -468,7 +468,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
 
                           <button
                             onClick={() => handleSelect(art)}
-                            className="inline-flex items-center gap-1 text-[#006194] group-hover:text-[#004a73] text-[13px] font-bold transition-colors cursor-pointer"
+                            className="inline-flex items-center gap-1 text-[#111111] group-hover:text-[#000000] text-[13px] font-bold transition-colors cursor-pointer"
                           >
                             <span>Xem chi tiết</span>
                             <span className="material-symbols-outlined text-[16px] group-hover:translate-x-0.5 transition-transform">
@@ -480,11 +480,11 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                     ))}
                   </div>
                 ) : (
-                  <div className="bg-white rounded-lg border border-[#e2e8f0] p-10 text-center text-[#64748b]">
-                    <span className="material-symbols-outlined text-[48px] text-[#94a3b8] mb-2">
+                  <div className="bg-white  border border-[#e5e5e5] p-10 text-center text-[#777777]">
+                    <span className="material-symbols-outlined text-[48px] text-[#999999] mb-2">
                       search_off
                     </span>
-                    <p className="text-[15px] font-semibold text-[#1e293b]">
+                    <p className="text-[15px] font-semibold text-[#111111]">
                       Không tìm thấy bài viết phù hợp với từ khóa "{searchQuery}"
                     </p>
                     <button
@@ -492,7 +492,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                         setSearchQuery('');
                         setSelectedCategory('all');
                       }}
-                      className="mt-4 px-4 py-2 bg-[#006194] text-white rounded-xl text-[13px] font-bold hover:bg-[#004e76] transition-colors cursor-pointer"
+                      className="mt-4 px-4 py-2 bg-[#111111] text-white  text-[13px] font-bold hover:bg-[#000000] transition-colors cursor-pointer"
                     >
                       Xem tất cả tin tức
                     </button>
@@ -502,19 +502,19 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
 
               {/* Other Articles Section (When filtered, ensures no empty space) */}
               {otherArticles.length > 0 && (
-                <div className="bg-white rounded-lg border border-[#e2e8f0] p-5 sm:p-6 shadow-xs">
-                  <div className="flex items-center justify-between mb-4 border-b border-[#f1f5f9] pb-3">
+                <div className="bg-white  border border-[#e5e5e5] p-5 sm:p-6 ">
+                  <div className="flex items-center justify-between mb-4 border-b border-[#f2f2f2] pb-3">
                     <div className="flex items-center gap-2">
-                      <span className="material-symbols-outlined text-[#006194] text-[20px]">
+                      <span className="material-symbols-outlined text-[#111111] text-[20px]">
                         recommend
                       </span>
-                      <h3 className="text-[16px] sm:text-[17px] font-bold text-[#0f172a]">
+                      <h3 className="text-[16px] sm:text-[17px] font-bold text-[#111111]">
                         Bài viết đề xuất từ chuyên mục khác
                       </h3>
                     </div>
                     <button
                       onClick={() => handleCategoryChange('all')}
-                      className="text-[12.5px] font-semibold text-[#006194] hover:text-[#004a73] transition-colors cursor-pointer"
+                      className="text-[12.5px] font-semibold text-[#111111] hover:text-[#000000] transition-colors cursor-pointer"
                     >
                       Xem toàn bộ ({REAL_NEWS_ARTICLES.length}) ▸
                     </button>
@@ -525,9 +525,9 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                       <div
                         key={art.id}
                         onClick={() => handleSelect(art)}
-                        className="flex gap-3.5 p-3 rounded-xl border border-[#f1f5f9] hover:border-[#006194]/40 hover:bg-[#f8fafc] transition-all cursor-pointer group"
+                        className="flex gap-3.5 p-3  border border-[#f2f2f2] hover:border-[#111111]/40 hover:bg-[#f7f7f7] transition-all cursor-pointer group"
                       >
-                        <div className="w-24 h-20 shrink-0 rounded-lg overflow-hidden bg-[#f1f5f9] border border-[#e2e8f0]">
+                        <div className="w-24 h-20 shrink-0  overflow-hidden bg-[#f2f2f2] border border-[#e5e5e5]">
                           <img
                             src={art.image}
                             alt={art.title}
@@ -540,14 +540,14 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                         </div>
                         <div className="flex-1 min-w-0 flex flex-col justify-between">
                           <div>
-                            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#f1f5f9] text-[#475569] inline-block mb-1">
+                            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#f2f2f2] text-[#555555] inline-block mb-1">
                               {getArticleCategoryBadge(art.id)}
                             </span>
-                            <h4 className="text-[13px] font-bold text-[#1e293b] group-hover:text-[#006194] line-clamp-2 leading-snug">
+                            <h4 className="text-[13px] font-bold text-[#111111] group-hover:underline underline-offset-4 line-clamp-2 leading-snug">
                               {art.title}
                             </h4>
                           </div>
-                          <span className="text-[11px] text-[#94a3b8] mt-1">
+                          <span className="text-[11px] text-[#999999] mt-1">
                             {art.date}
                           </span>
                         </div>
@@ -560,12 +560,12 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
               {/* Trending Topics & Newsletter Box */}
               <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
                 {/* Trending Tags */}
-                <div className="md:col-span-6 bg-white rounded-lg border border-[#e2e8f0] p-5 shadow-xs">
-                  <div className="flex items-center gap-2 mb-3 border-b border-[#f1f5f9] pb-2">
-                    <span className="material-symbols-outlined text-[#64748b] text-[20px]">
+                <div className="md:col-span-6 bg-white  border border-[#e5e5e5] p-5 ">
+                  <div className="flex items-center gap-2 mb-3 border-b border-[#f2f2f2] pb-2">
+                    <span className="material-symbols-outlined text-[#777777] text-[20px]">
                       local_fire_department
                     </span>
-                    <h4 className="text-[15px] font-bold text-[#0f172a]">
+                    <h4 className="text-[15px] font-bold text-[#111111]">
                       Chủ đề Y tế được quan tâm
                     </h4>
                   </div>
@@ -577,7 +577,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                           const keyword = tag.replace('#', '').split(' ')[0];
                           setSearchQuery(keyword);
                         }}
-                        className="px-3 py-1.5 rounded-lg bg-[#f1f5f9] hover:bg-[#e0f2fe] text-[#334155] hover:text-[#006194] text-[12px] font-medium transition-colors cursor-pointer"
+                        className="px-3 py-1.5  bg-[#f2f2f2] hover:bg-[#f2f2f2] text-[#333333] hover:text-[#111111] hover:underline underline-offset-4 text-[12px] font-medium transition-colors cursor-pointer"
                       >
                         {tag}
                       </button>
@@ -586,7 +586,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                 </div>
 
                 {/* Newsletter Box */}
-                <div className="md:col-span-6 bg-linear-to-br from-[#006194] to-[#004266] rounded-lg p-5 text-white shadow-xs flex flex-col justify-between">
+                <div className="md:col-span-6 bg-linear-to-br from-[#111111] to-[#000000]  p-5 text-white  flex flex-col justify-between">
                   <div>
                     <div className="flex items-center gap-2 mb-2">
                       <span className="material-symbols-outlined text-[20px] text-amber-300">
@@ -602,7 +602,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                   </div>
 
                   {newsletterSubscribed ? (
-                    <div className="p-2.5 rounded-xl bg-white/20 text-[12.5px] font-bold flex items-center gap-2">
+                    <div className="p-2.5  bg-white/20 text-[12.5px] font-bold flex items-center gap-2">
                       <span className="material-symbols-outlined text-[18px] text-emerald-300">
                         check_circle
                       </span>
@@ -624,11 +624,11 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                         value={newsletterEmail}
                         onChange={(e) => setNewsletterEmail(e.target.value)}
                         placeholder="Nhập email hoặc SĐT..."
-                        className="flex-1 px-3 py-2 rounded-xl bg-white text-[#0f172a] text-[12.5px] focus:outline-none placeholder:text-[#94a3b8]"
+                        className="flex-1 px-3 py-2  bg-white text-[#111111] text-[12.5px] focus:outline-none placeholder:text-[#999999]"
                       />
                       <button
                         type="submit"
-                        className="px-4 py-2 bg-[#006194] hover:bg-[#004a73] text-white font-bold text-[12.5px] rounded-xl transition-colors shrink-0 cursor-pointer"
+                        className="px-4 py-2 bg-[#111111] hover:bg-[#000000] text-white font-bold text-[12.5px]  transition-colors shrink-0 cursor-pointer"
                       >
                         Gửi
                       </button>

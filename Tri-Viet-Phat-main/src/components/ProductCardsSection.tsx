@@ -42,7 +42,7 @@ export const ProductCardsSection: React.FC<ProductCardsSectionProps> = ({ onNavi
               key={tile.key}
               type="button"
               onClick={() => onNavigateTab('san-pham', tile.key)}
-              className="group relative aspect-[3/4] overflow-hidden bg-[#f1f5f9] text-left cursor-pointer"
+              className="group relative aspect-[3/4] overflow-hidden bg-[#f2f2f2] text-left cursor-pointer"
             >
               {tile.image && (
                 <img
@@ -54,12 +54,12 @@ export const ProductCardsSection: React.FC<ProductCardsSectionProps> = ({ onNavi
               )}
               <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4 flex items-center justify-between gap-2">
                 <span className="min-w-0">
-                  <span className="block text-[15px] sm:text-[16px] font-semibold text-[#0f172a]">{tile.title}</span>
+                  <span className="block text-[15px] sm:text-[16px] font-semibold text-[#111111]">{tile.title}</span>
                   {tile.count > 0 && (
-                    <span className="block text-[12px] text-[#64748b]">{tile.count} sản phẩm</span>
+                    <span className="block text-[12px] text-[#777777]">{tile.count} sản phẩm</span>
                   )}
                 </span>
-                <span className="shrink-0 w-9 h-9 rounded-full bg-white text-[#0f172a] flex items-center justify-center group-hover:bg-[#0f172a] group-hover:text-white transition-colors">
+                <span className="shrink-0 w-9 h-9 rounded-full bg-white text-[#111111] flex items-center justify-center group-hover:bg-[#111111] group-hover:text-white transition-colors">
                   <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
                 </span>
               </div>

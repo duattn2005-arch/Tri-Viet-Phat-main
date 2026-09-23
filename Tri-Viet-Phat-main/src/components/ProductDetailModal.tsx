@@ -55,23 +55,23 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-lg max-w-5xl w-full max-h-[92vh] overflow-y-auto shadow-2xl relative border border-[#e2e8f0]"
+        className="bg-white  max-w-5xl w-full max-h-[92vh] overflow-y-auto shadow-2xl relative border border-[#e5e5e5]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
         <button
           onClick={onClose}
           aria-label="Đóng"
-          className="absolute top-3 right-3 w-9 h-9 rounded-full bg-[#f1f5f9] hover:bg-[#e2e8f0] text-[#475569] flex items-center justify-center transition-colors z-20 cursor-pointer shadow-xs"
+          className="absolute top-3 right-3 w-9 h-9 rounded-full bg-[#f2f2f2] hover:bg-[#e5e5e5] text-[#555555] flex items-center justify-center transition-colors z-20 cursor-pointer "
         >
           <span className="material-symbols-outlined text-[20px]">close</span>
         </button>
 
         {/* TOP SECTION: 3 COLUMNS (IMAGE | INFO & BENEFITS | CONSULTATION FORM) */}
-        <div className="p-5 sm:p-8 bg-white border-b border-[#e2e8f0]">
+        <div className="p-5 sm:p-8 bg-white border-b border-[#e5e5e5]">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             {/* Left: Product Image */}
-            <div className="lg:col-span-4 flex items-center justify-center bg-white rounded-xl p-3 border border-[#e2e8f0] shadow-xs aspect-[4/3] min-h-0 min-w-0 overflow-hidden">
+            <div className="lg:col-span-4 flex items-center justify-center bg-white  p-3 border border-[#e5e5e5]  aspect-[4/3] min-h-0 min-w-0 overflow-hidden">
               <img
                 src={product.image}
                 alt={product.alt}
@@ -81,65 +81,65 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
             {/* Center: Details & Benefits */}
             <div className="lg:col-span-5 space-y-3.5">
-              <h1 className="text-[20px] sm:text-[22px] font-bold text-[#0f172a] leading-snug">
+              <h1 className="text-[20px] sm:text-[22px] font-bold text-[#111111] leading-snug">
                 {product.name}
               </h1>
 
-              <div className="space-y-1.5 text-[14px] text-[#334155]">
+              <div className="space-y-1.5 text-[14px] text-[#333333]">
                 {product.model && (
                   <p>
-                    <strong className="text-[#0f172a]">Model:</strong> {product.model}
+                    <strong className="text-[#111111]">Model:</strong> {product.model}
                   </p>
                 )}
                 {product.manufacturer && (
                   <p>
-                    <strong className="text-[#0f172a]">Hãng sản xuất:</strong>{' '}
+                    <strong className="text-[#111111]">Hãng sản xuất:</strong>{' '}
                     {product.manufacturer}
                   </p>
                 )}
                 {product.countryOfOrigin && (
                   <p>
-                    <strong className="text-[#0f172a]">Nước sản xuất:</strong>{' '}
+                    <strong className="text-[#111111]">Nước sản xuất:</strong>{' '}
                     {product.countryOfOrigin}
                   </p>
                 )}
                 {!product.manufacturer && (
                   <p>
-                    <strong className="text-[#0f172a]">Hãng sản xuất:</strong> {product.brand}
+                    <strong className="text-[#111111]">Hãng sản xuất:</strong> {product.brand}
                   </p>
                 )}
                 {!product.countryOfOrigin && (
                   <p>
-                    <strong className="text-[#0f172a]">Xuất xứ:</strong> {product.origin}
+                    <strong className="text-[#111111]">Xuất xứ:</strong> {product.origin}
                   </p>
                 )}
               </div>
 
               {/* Red Bordered Benefits Box - Exactly 100% as in screenshot */}
-              <div className="relative mt-6 pt-5 pb-4 px-4 sm:px-5 rounded-lg border-2 border-[#d32f2f] bg-white">
-                <div className="absolute -top-4 left-6 bg-[#d32f2f] text-white text-[12px] sm:text-[13px] font-bold py-1.5 px-4 rounded-full flex items-center gap-2 shadow-sm">
+              <div className="relative mt-6 pt-5 pb-4 px-4 sm:px-5  border-2 border-[#e11d2a] bg-white">
+                <div className="absolute -top-4 left-6 bg-[#e11d2a] text-white text-[12px] sm:text-[13px] font-bold py-1.5 px-4 rounded-full flex items-center gap-2 ">
                   <span className="material-symbols-outlined text-[16px] text-white">check_circle</span>
                   <span className="tracking-wide">LỢI ÍCH KHI MUA HÀNG THIẾT BỊ Y TẾ</span>
                 </div>
-                <div className="space-y-3 pt-1 text-[13.5px] text-[#1e293b]">
+                <div className="space-y-3 pt-1 text-[13.5px] text-[#111111]">
                   <div className="flex items-start gap-3">
-                    <span className="text-[#d32f2f] material-symbols-outlined text-[19px] shrink-0 mt-0.5">person</span>
+                    <span className="text-[#e11d2a] material-symbols-outlined text-[19px] shrink-0 mt-0.5">person</span>
                     <span>Nhà cung cấp uy tín thiết bị y tế ở Việt Nam</span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <span className="text-white bg-[#d32f2f] rounded-full w-4 h-4 flex items-center justify-center text-[11px] font-bold shrink-0 mt-0.5">P</span>
+                    <span className="text-white bg-[#e11d2a] rounded-full w-4 h-4 flex items-center justify-center text-[11px] font-bold shrink-0 mt-0.5">P</span>
                     <span>Thiết bị y tế đạt chất lượng giá cả hợp lý</span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <span className="text-[#d32f2f] material-symbols-outlined text-[19px] shrink-0 mt-0.5">sync</span>
+                    <span className="text-[#e11d2a] material-symbols-outlined text-[19px] shrink-0 mt-0.5">sync</span>
                     <span>Thời gian bảo hành 12 tháng, dịch vụ chuyên nghiệp</span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <span className="text-[#d32f2f] material-symbols-outlined text-[19px] shrink-0 mt-0.5">calendar_month</span>
+                    <span className="text-[#e11d2a] material-symbols-outlined text-[19px] shrink-0 mt-0.5">calendar_month</span>
                     <span>Hàng có sẵn kho có thể giao ngay</span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <span className="text-[#d32f2f] material-symbols-outlined text-[19px] shrink-0 mt-0.5">featured_seasonal_and_gifts</span>
+                    <span className="text-[#e11d2a] material-symbols-outlined text-[19px] shrink-0 mt-0.5">featured_seasonal_and_gifts</span>
                     <span>Ưu đãi khi mua hàng với số lượng lớn</span>
                   </div>
                 </div>
@@ -147,13 +147,13 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             </div>
 
             {/* Right: Registration Consultation Form - Exactly as in screenshot */}
-            <div className="lg:col-span-3 bg-[#0088ff] text-white p-5 rounded-lg shadow-md">
+            <div className="lg:col-span-3 bg-[#111111] text-white p-5  ">
               <h3 className="text-center font-bold text-[16px] mb-3.5 tracking-tight text-white">
                 Đăng ký nhận tư vấn
               </h3>
 
               {isSubmitted ? (
-                <div className="p-4 bg-white/20 backdrop-blur-xs rounded-xl text-center space-y-2 text-white">
+                <div className="p-4 bg-white/20 backdrop-blur-xs  text-center space-y-2 text-white">
                   <span className="material-symbols-outlined text-[36px] text-white">
                     verified
                   </span>
@@ -173,7 +173,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                       onChange={(e) =>
                         setFormData({ ...formData, fullName: e.target.value })
                       }
-                      className="w-full bg-white text-[#0f172a] placeholder-[#94a3b8] text-[13px] px-3.5 py-2.5 rounded-xl border border-transparent focus:outline-none focus:ring-2 focus:ring-white"
+                      className="w-full bg-white text-[#111111] placeholder-[#999999] text-[13px] px-3.5 py-2.5  border border-transparent focus:outline-none focus:ring-2 focus:ring-white"
                     />
                   </div>
 
@@ -186,7 +186,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                       onChange={(e) =>
                         setFormData({ ...formData, phone: e.target.value })
                       }
-                      className="w-full bg-white text-[#0f172a] placeholder-[#94a3b8] text-[13px] px-3.5 py-2.5 rounded-xl border border-transparent focus:outline-none focus:ring-2 focus:ring-white"
+                      className="w-full bg-white text-[#111111] placeholder-[#999999] text-[13px] px-3.5 py-2.5  border border-transparent focus:outline-none focus:ring-2 focus:ring-white"
                     />
                   </div>
 
@@ -198,7 +198,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                       onChange={(e) =>
                         setFormData({ ...formData, email: e.target.value })
                       }
-                      className="w-full bg-white text-[#0f172a] placeholder-[#94a3b8] text-[13px] px-3.5 py-2.5 rounded-xl border border-transparent focus:outline-none focus:ring-2 focus:ring-white"
+                      className="w-full bg-white text-[#111111] placeholder-[#999999] text-[13px] px-3.5 py-2.5  border border-transparent focus:outline-none focus:ring-2 focus:ring-white"
                     />
                   </div>
 
@@ -216,7 +216,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
                   <button
                     type="submit"
-                    className="w-full mt-2 bg-[#e60000] hover:bg-[#cc0000] active:scale-[0.98] text-white font-bold text-[13px] py-2.5 px-4 rounded-xl shadow-md transition-all cursor-pointer"
+                    className="w-full mt-2 bg-[#e11d2a] hover:bg-[#e11d2a] active:scale-[0.98] text-white font-bold text-[13px] py-2.5 px-4   transition-all cursor-pointer"
                   >
                     GỬI YÊU CẦU
                   </button>
@@ -229,13 +229,13 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         {/* BOTTOM SECTION: CHI TIẾT SẢN PHẨM TAB & CONTENT */}
         <div className="p-5 sm:p-8 bg-white">
           {/* Red Tab Header: CHI TIẾT SẢN PHẨM */}
-          <div className="border-b border-[#e2e8f0] mb-6">
-            <div className="inline-block bg-[#d32f2f] text-white font-bold text-[14px] px-6 py-2 rounded-t-lg">
+          <div className="border-b border-[#e5e5e5] mb-6">
+            <div className="inline-block bg-[#e11d2a] text-white font-bold text-[14px] px-6 py-2 ">
               CHI TIẾT SẢN PHẨM
             </div>
           </div>
 
-          <div className="space-y-6 text-[#1e293b]">
+          <div className="space-y-6 text-[#111111]">
             {/* Scraped Complete Content / Table from Website */}
             {product.detailHtml && (
               <div 
@@ -247,15 +247,15 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             {/* 1. Thông số kỹ thuật (if no detailHtml or detailed specs available) */}
             {(!product.detailHtml || (product.specs && product.specs.length > 0 && product.id !== 'dewei')) && (
               <div>
-                <h3 className="text-[17px] font-bold text-[#0f172a] mb-3">
+                <h3 className="text-[17px] font-bold text-[#111111] mb-3">
                   {product.detailHtml ? 'Thông số bổ sung' : '1. Thông số kỹ thuật'}
                 </h3>
-                <ul className="space-y-2 text-[14px] pl-2 text-[#334155]">
+                <ul className="space-y-2 text-[14px] pl-2 text-[#333333]">
                   {product.specs.map((spec, idx) => (
                     <li key={idx} className="flex items-start gap-2">
-                      <span className="text-[#64748b]">-</span>
+                      <span className="text-[#777777]">-</span>
                       <span>
-                        <strong className="text-[#0f172a]">{spec.label}:</strong> {spec.value}
+                        <strong className="text-[#111111]">{spec.label}:</strong> {spec.value}
                       </span>
                     </li>
                   ))}
@@ -266,7 +266,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             {/* 2. Đặc điểm kỹ thuật (if no detailHtml) */}
             {!product.detailHtml && (
               <div>
-                <h3 className="text-[17px] font-bold text-[#0f172a] mb-3">
+                <h3 className="text-[17px] font-bold text-[#111111] mb-3">
                   2. Đặc điểm kỹ thuật
                 </h3>
 
@@ -274,11 +274,11 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                   <div className="space-y-4 pl-2">
                     {product.detailedFeatures.map((feat, idx) => (
                       <div key={idx} className="space-y-1">
-                        <h4 className="text-[14.5px] font-bold text-[#0f172a] flex items-center gap-2">
-                          <span className="text-[#0f172a] text-[18px] leading-none">•</span>
+                        <h4 className="text-[14.5px] font-bold text-[#111111] flex items-center gap-2">
+                          <span className="text-[#111111] text-[18px] leading-none">•</span>
                           <span>{feat.title}</span>
                         </h4>
-                        <p className="text-[13.5px] text-[#475569] pl-4 leading-relaxed">
+                        <p className="text-[13.5px] text-[#555555] pl-4 leading-relaxed">
                           {feat.desc}
                         </p>
                       </div>
@@ -289,9 +289,9 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                     {product.features.map((feat, idx) => (
                       <li
                         key={idx}
-                        className="text-[13.5px] text-[#475569] flex items-start gap-2"
+                        className="text-[13.5px] text-[#555555] flex items-start gap-2"
                       >
-                        <span className="text-[#0f172a]">•</span>
+                        <span className="text-[#111111]">•</span>
                         <span>{feat}</span>
                       </li>
                     ))}
@@ -302,20 +302,20 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
             {/* 3. Tiêu chuẩn chất lượng & Cam kết Trí Việt Phát */}
             {product.certifications && product.certifications.length > 0 && (
-              <div className="pt-4 border-t border-[#f1f5f9] flex flex-wrap items-center justify-between gap-4">
+              <div className="pt-4 border-t border-[#f2f2f2] flex flex-wrap items-center justify-between gap-4">
                 <div className="flex items-center gap-3">
-                  <span className="material-symbols-outlined text-[#006194] text-[24px]">
+                  <span className="material-symbols-outlined text-[#111111] text-[24px]">
                     verified_user
                   </span>
-                  <div className="text-[13px] text-[#475569]">
-                    <span className="font-bold text-[#0f172a] mr-2">
+                  <div className="text-[13px] text-[#555555]">
+                    <span className="font-bold text-[#111111] mr-2">
                       Tiêu chuẩn chứng nhận:
                     </span>
                     <span>{product.certifications.join(' • ')}</span>
                   </div>
                 </div>
 
-                <div className="text-[12.5px] text-[#64748b] italic">
+                <div className="text-[12.5px] text-[#777777] italic">
                   Cam kết bảo hành chính hãng 12 tháng & hỗ trợ kỹ thuật trọn đời máy.
                 </div>
               </div>

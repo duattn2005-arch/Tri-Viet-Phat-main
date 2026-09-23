@@ -10,14 +10,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenConsultation }) 
   const hotlineDigits = COMPANY_INFO.hotline.replace(/\./g, '');
 
   return (
-    <section className="relative w-full h-[520px] sm:h-[560px] lg:h-[620px] overflow-hidden bg-[#0c1f33]">
+    <section className="relative w-full h-[520px] sm:h-[560px] lg:h-[620px] overflow-hidden bg-[#111111]">
       <img
         className="absolute inset-0 w-full h-full object-cover"
         alt="Phòng xét nghiệm sử dụng thiết bị do Trí Việt Phát cung cấp"
         src={COMPANY_INFO.heroImage}
       />
       {/* Left-weighted scrim keeps the text readable without darkening the whole photo */}
-      <div className="absolute inset-0 bg-linear-to-r from-[#0c1f33]/85 via-[#0c1f33]/55 to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-r from-[#111111]/85 via-[#111111]/55 to-transparent" />
 
       <div className="relative h-full max-w-[1320px] mx-auto px-4 sm:px-8 flex items-center">
         <div className="max-w-xl text-white">
@@ -34,7 +34,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenConsultation }) 
           <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
             <button
               onClick={() => onOpenConsultation()}
-              className="h-12 px-8 bg-white text-[#0f172a] text-[14px] font-semibold uppercase tracking-wide hover:bg-[#e2e8f0] transition-colors cursor-pointer"
+              className="h-12 px-8 bg-white text-[#111111] text-[14px] font-semibold uppercase tracking-wide hover:bg-[#e5e5e5] transition-colors cursor-pointer"
             >
               Yêu cầu báo giá
             </button>

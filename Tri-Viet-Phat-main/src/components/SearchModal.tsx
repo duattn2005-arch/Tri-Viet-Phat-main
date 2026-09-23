@@ -45,31 +45,31 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-150">
       <div
-        className="bg-white rounded-lg max-w-2xl w-full shadow-2xl overflow-hidden border border-[#e2e8f0] animate-in zoom-in-95 duration-150"
+        className="bg-white  max-w-2xl w-full shadow-2xl overflow-hidden border border-[#e5e5e5] animate-in zoom-in-95 duration-150"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search input bar */}
-        <div className="p-4 border-b border-[#e2e8f0] flex items-center gap-3 bg-[#f8fafc]">
-          <span className="material-symbols-outlined text-[#006194] text-[24px]">search</span>
+        <div className="p-4 border-b border-[#e5e5e5] flex items-center gap-3 bg-[#f7f7f7]">
+          <span className="material-symbols-outlined text-[#111111] text-[24px]">search</span>
           <input
             type="text"
             autoFocus
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Tìm máy xét nghiệm, hóa chất, tài liệu, bài viết..."
-            className="flex-1 bg-transparent text-[15px] text-[#0f172a] focus:outline-none placeholder:text-[#bfc7d2]"
+            className="flex-1 bg-transparent text-[15px] text-[#111111] focus:outline-none placeholder:text-[#999999]"
           />
           {query && (
             <button
               onClick={() => setQuery('')}
-              className="text-[#475569] hover:text-[#0f172a] text-[13px] px-2 py-1 rounded bg-[#e2e8f0]"
+              className="text-[#555555] hover:text-[#111111] hover:underline underline-offset-4 text-[13px] px-2 py-1  bg-[#e5e5e5]"
             >
               Xóa
             </button>
           )}
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-lg bg-[#e2e8f0] hover:bg-[#cbd5e1] text-[#475569] flex items-center justify-center transition-colors"
+            className="w-8 h-8  bg-[#e5e5e5] hover:bg-[#d4d4d4] text-[#555555] flex items-center justify-center transition-colors"
           >
             <span className="material-symbols-outlined text-[18px]">close</span>
           </button>
@@ -80,12 +80,12 @@ export const SearchModal: React.FC<SearchModalProps> = ({
           {/* Products results */}
           <div>
             <div className="flex items-center justify-between mb-2">
-              <span className="text-[12px] font-bold text-[#006194]">
+              <span className="text-[12px] font-bold text-[#111111]">
                 Thiết bị & Hóa chất ({filteredProducts.length})
               </span>
             </div>
             {filteredProducts.length === 0 ? (
-              <p className="text-[13px] text-[#475569] py-2">Không tìm thấy sản phẩm phù hợp</p>
+              <p className="text-[13px] text-[#555555] py-2">Không tìm thấy sản phẩm phù hợp</p>
             ) : (
               <div className="space-y-2">
                 {filteredProducts.map((prod) => (
@@ -95,25 +95,25 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                       onClose();
                       onSelectProduct(prod);
                     }}
-                    className="w-full flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#e0f2fe]/40 transition-colors text-left border border-transparent hover:border-[#cce5ff] group"
+                    className="w-full flex items-center gap-3 p-2.5  hover:bg-[#f2f2f2]/40 transition-colors text-left border border-transparent hover:border-[#e5e5e5] group"
                   >
                     <img
                       src={prod.image}
                       alt={prod.alt}
-                      className="w-12 h-12 object-contain rounded-lg bg-[#f8fafc] p-1 border border-[#e2e8f0]"
+                      className="w-12 h-12 object-contain  bg-[#f7f7f7] p-1 border border-[#e5e5e5]"
                     />
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
-                        <span className="px-1.5 py-0.5 rounded bg-[#f1f5f9] text-[#475569] text-[10px] font-bold">
+                        <span className="px-1.5 py-0.5  bg-[#f2f2f2] text-[#555555] text-[10px] font-bold">
                           {prod.categoryLabel}
                         </span>
-                        <span className="text-[11px] text-[#475569]">{prod.brand}</span>
+                        <span className="text-[11px] text-[#555555]">{prod.brand}</span>
                       </div>
-                      <h4 className="text-[13.5px] font-bold text-[#0f172a] truncate group-hover:text-[#006194]">
+                      <h4 className="text-[13.5px] font-bold text-[#111111] truncate group-hover:underline underline-offset-4">
                         {prod.name}
                       </h4>
                     </div>
-                    <span className="material-symbols-outlined text-[18px] text-[#bfc7d2] group-hover:text-[#006194]">
+                    <span className="material-symbols-outlined text-[18px] text-[#999999] group-hover:underline underline-offset-4">
                       chevron_right
                     </span>
                   </button>
@@ -123,14 +123,14 @@ export const SearchModal: React.FC<SearchModalProps> = ({
           </div>
 
           {/* Articles results */}
-          <div className="pt-3 border-t border-[#f1f5f9]">
+          <div className="pt-3 border-t border-[#f2f2f2]">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-[12px] font-bold text-[#006194]">
+              <span className="text-[12px] font-bold text-[#111111]">
                 Bài viết & Tin tức ({filteredArticles.length})
               </span>
             </div>
             {filteredArticles.length === 0 ? (
-              <p className="text-[13px] text-[#475569] py-2">Không tìm thấy bài viết phù hợp</p>
+              <p className="text-[13px] text-[#555555] py-2">Không tìm thấy bài viết phù hợp</p>
             ) : (
               <div className="space-y-2">
                 {filteredArticles.map((art) => (
@@ -140,21 +140,21 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                       onClose();
                       onSelectArticle(art);
                     }}
-                    className="w-full flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#f8fafc] transition-colors text-left border border-transparent hover:border-[#e2e8f0] group"
+                    className="w-full flex items-center gap-3 p-2.5  hover:bg-[#f7f7f7] transition-colors text-left border border-transparent hover:border-[#e5e5e5] group"
                   >
                     <img
                       src={art.image}
                       alt={art.alt}
-                      className="w-12 h-12 object-cover rounded-lg bg-[#f8fafc] border border-[#e2e8f0]"
+                      className="w-12 h-12 object-cover  bg-[#f7f7f7] border border-[#e5e5e5]"
                     />
                     <div className="flex-1 min-w-0">
-                      <span className="text-[10px] text-[#006194] font-semibold">{art.date}</span>
-                      <h4 className="text-[13px] font-bold text-[#0f172a] line-clamp-1 group-hover:text-[#006194]">
+                      <span className="text-[10px] text-[#111111] font-semibold">{art.date}</span>
+                      <h4 className="text-[13px] font-bold text-[#111111] line-clamp-1 group-hover:underline underline-offset-4">
                         {art.title}
                       </h4>
-                      <p className="text-[11px] text-[#475569] line-clamp-1">{art.excerpt}</p>
+                      <p className="text-[11px] text-[#555555] line-clamp-1">{art.excerpt}</p>
                     </div>
-                    <span className="material-symbols-outlined text-[18px] text-[#bfc7d2] group-hover:text-[#006194]">
+                    <span className="material-symbols-outlined text-[18px] text-[#999999] group-hover:underline underline-offset-4">
                       chevron_right
                     </span>
                   </button>

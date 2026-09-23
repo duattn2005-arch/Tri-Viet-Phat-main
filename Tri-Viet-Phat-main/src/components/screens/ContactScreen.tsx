@@ -26,7 +26,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
   };
 
   return (
-    <div className="w-full bg-[#f8fafc] min-h-screen">
+    <div className="w-full bg-[#f7f7f7] min-h-screen">
       {/* Banner */}
       <PageBanner
         title="Liên hệ"
@@ -37,23 +37,23 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
       <div className="max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
         {/* Slogan */}
         <div className="text-center max-w-3xl mx-auto">
-          <p className="text-[15px] sm:text-[16.5px] text-[#1e293b] font-medium leading-relaxed italic">
+          <p className="text-[15px] sm:text-[16.5px] text-[#111111] font-medium leading-relaxed italic">
             "Trí Việt Phát luôn tiên phong nghiên cứu, phát triển và cung cấp cho thị trường các loại thiết bị, sản phẩm với chất lượng tốt nhất."
           </p>
         </div>
 
         {/* Repair Service CTA Banner */}
         {onOpenRepairService && (
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-5 sm:p-6 rounded-lg bg-linear-to-r from-[#003865] to-[#006194] text-white shadow-md">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-5 sm:p-6  bg-linear-to-r from-[#000000] to-[#111111] text-white ">
             <div className="flex items-center gap-3.5 text-center sm:text-left">
-              <div className="w-12 h-12 rounded-xl bg-white/15 flex items-center justify-center shrink-0">
+              <div className="w-12 h-12  bg-white/15 flex items-center justify-center shrink-0">
                 <span className="material-symbols-outlined text-[26px]">build</span>
               </div>
               <div>
                 <h3 className="text-[16px] sm:text-[17px] font-bold">
                   Thiết bị gặp sự cố cần sửa chữa?
                 </h3>
-                <p className="text-[13px] text-[#cce5ff] [text-wrap:balance]">
+                <p className="text-[13px] text-[#e5e5e5] [text-wrap:balance]">
                   Đăng ký dịch vụ sửa chữa để kỹ sư kỹ thuật liên hệ và xử lý nhanh nhất.
                 </p>
               </div>
@@ -61,7 +61,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
             <button
               type="button"
               onClick={onOpenRepairService}
-              className="shrink-0 px-6 py-3 rounded-xl bg-white hover:bg-[#f0f7ff] text-[#006194] font-bold text-[13.5px] shadow-sm hover:shadow-md transition-all cursor-pointer inline-flex items-center gap-2"
+              className="shrink-0 px-6 py-3  bg-white hover:bg-[#f7f7f7] text-[#111111] font-bold text-[13.5px]   transition-all cursor-pointer inline-flex items-center gap-2"
             >
               <span className="material-symbols-outlined text-[18px]">send</span>
               <span>Đăng ký sửa chữa</span>
@@ -72,16 +72,16 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
         {/* 2-Column Section */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
           {/* Left: Contact Form */}
-          <div className="lg:col-span-6 bg-white rounded-lg border border-[#e2e8f0] p-5 sm:p-6 shadow-xs flex flex-col justify-between">
+          <div className="lg:col-span-6 bg-white  border border-[#e5e5e5] p-5 sm:p-6  flex flex-col justify-between">
             <div>
-              <div className="border-b-2 border-[#D7040F] mb-5">
-                <span className="inline-block bg-[#006194] text-white text-[14.5px] font-bold px-3.5 py-1.5 rounded-tr-[14px] tracking-wide">
+              <div className="border-b-2 border-[#e11d2a] mb-5">
+                <span className="inline-block bg-[#111111] text-white text-[14.5px] font-bold px-3.5 py-1.5  tracking-wide">
                   Liên hệ gửi yêu cầu
                 </span>
               </div>
 
               {submitted ? (
-                <div className="p-5 rounded-xl bg-[#e0f2fe] border border-[#bae6fd] text-[#006194] space-y-2">
+                <div className="p-5  bg-[#f2f2f2] border border-[#e5e5e5] text-[#111111] space-y-2">
                   <div className="flex items-center gap-2 font-bold text-[15px]">
                     <span className="material-symbols-outlined text-[22px]">check_circle</span>
                     <span>Gửi yêu cầu liên hệ thành công!</span>
@@ -93,8 +93,8 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-[13.5px] font-bold text-[#334155] mb-1.5">
-                      Họ và tên <span className="text-[#bb0112]">*</span>
+                    <label className="block text-[13.5px] font-bold text-[#333333] mb-1.5">
+                      Họ và tên <span className="text-[#e11d2a]">*</span>
                     </label>
                     <input
                       type="text"
@@ -102,14 +102,14 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
                       placeholder="Nhập họ và tên của bạn"
-                      className="w-full px-4 py-2.5 rounded-xl border border-[#cbd5e1] text-[14px] focus:outline-none focus:border-[#006194] focus:ring-1 focus:ring-[#006194] transition-all bg-white"
+                      className="w-full px-4 py-2.5  border border-[#d4d4d4] text-[14px] focus:outline-none focus:border-[#111111] focus:ring-1 focus:ring-[#111111] transition-all bg-white"
                     />
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-[13.5px] font-bold text-[#334155] mb-1.5">
-                        Email của bạn <span className="text-[#bb0112]">*</span>
+                      <label className="block text-[13.5px] font-bold text-[#333333] mb-1.5">
+                        Email của bạn <span className="text-[#e11d2a]">*</span>
                       </label>
                       <input
                         type="email"
@@ -117,12 +117,12 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="email@example.com"
-                        className="w-full px-4 py-2.5 rounded-xl border border-[#cbd5e1] text-[14px] focus:outline-none focus:border-[#006194] focus:ring-1 focus:ring-[#006194] transition-all bg-white"
+                        className="w-full px-4 py-2.5  border border-[#d4d4d4] text-[14px] focus:outline-none focus:border-[#111111] focus:ring-1 focus:ring-[#111111] transition-all bg-white"
                       />
                     </div>
                     <div>
-                      <label className="block text-[13.5px] font-bold text-[#334155] mb-1.5">
-                        Số điện thoại <span className="text-[#bb0112]">*</span>
+                      <label className="block text-[13.5px] font-bold text-[#333333] mb-1.5">
+                        Số điện thoại <span className="text-[#e11d2a]">*</span>
                       </label>
                       <input
                         type="tel"
@@ -130,13 +130,13 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         placeholder="0912 345 678"
-                        className="w-full px-4 py-2.5 rounded-xl border border-[#cbd5e1] text-[14px] focus:outline-none focus:border-[#006194] focus:ring-1 focus:ring-[#006194] transition-all bg-white"
+                        className="w-full px-4 py-2.5  border border-[#d4d4d4] text-[14px] focus:outline-none focus:border-[#111111] focus:ring-1 focus:ring-[#111111] transition-all bg-white"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-[13.5px] font-bold text-[#334155] mb-1.5">
+                    <label className="block text-[13.5px] font-bold text-[#333333] mb-1.5">
                       Lời nhắn
                     </label>
                     <textarea
@@ -144,14 +144,14 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       placeholder="Vui lòng để lại nội dung yêu cầu báo giá, tư vấn thiết bị hoặc hợp tác..."
-                      className="w-full px-4 py-2.5 rounded-xl border border-[#cbd5e1] text-[14px] focus:outline-none focus:border-[#006194] focus:ring-1 focus:ring-[#006194] transition-all bg-white"
+                      className="w-full px-4 py-2.5  border border-[#d4d4d4] text-[14px] focus:outline-none focus:border-[#111111] focus:ring-1 focus:ring-[#111111] transition-all bg-white"
                     />
                   </div>
 
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="px-7 py-3 rounded-xl bg-[#006194] hover:bg-[#004a73] text-white font-bold text-[14px] shadow-sm hover:shadow-md transition-all cursor-pointer flex items-center gap-2"
+                      className="px-7 py-3  bg-[#111111] hover:bg-[#000000] text-white font-bold text-[14px]   transition-all cursor-pointer flex items-center gap-2"
                     >
                       <span className="material-symbols-outlined text-[18px]">send</span>
                       <span>Gửi yêu cầu</span>
@@ -163,79 +163,79 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
           </div>
 
           {/* Right: Company Info - Exactly 100% clone of thietbiytegroup.com */}
-          <div className="lg:col-span-6 bg-white rounded-lg border border-[#e2e8f0] p-5 sm:p-6 shadow-xs flex flex-col justify-between">
+          <div className="lg:col-span-6 bg-white  border border-[#e5e5e5] p-5 sm:p-6  flex flex-col justify-between">
             <div className="space-y-4">
-              <div className="border-b-2 border-[#D7040F] pb-0">
-                <span className="inline-block bg-[#006194] text-white text-[14.5px] font-bold px-3.5 py-1.5 rounded-tr-[14px] tracking-wide">
+              <div className="border-b-2 border-[#e11d2a] pb-0">
+                <span className="inline-block bg-[#111111] text-white text-[14.5px] font-bold px-3.5 py-1.5  tracking-wide">
                   Thông tin công ty
                 </span>
               </div>
 
               <div>
-                <h3 className="text-[19px] font-bold text-[#006194] leading-snug mb-1.5">
+                <h3 className="text-[19px] font-bold text-[#111111] leading-snug mb-1.5">
                   Công ty thiết bị y tế Trí Việt Phát
                 </h3>
-                <p className="text-[13px] text-[#64748b] leading-relaxed">
-                  Công ty cung cấp thiết bị y tế dịch vụ Trí Việt Phát được thành lập theo Quyết định số <strong className="text-[#0f172a]">0105558779</strong> của Sở kế hoạch đầu tư thành phố Hà Nội
+                <p className="text-[13px] text-[#777777] leading-relaxed">
+                  Công ty cung cấp thiết bị y tế dịch vụ Trí Việt Phát được thành lập theo Quyết định số <strong className="text-[#111111]">0105558779</strong> của Sở kế hoạch đầu tư thành phố Hà Nội
                 </p>
               </div>
 
               <div className="space-y-3 pt-1 text-[13.5px]">
                 <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-[#f1f5f9] text-[#475569] flex items-center justify-center shrink-0">
+                  <div className="w-9 h-9  bg-[#f2f2f2] text-[#555555] flex items-center justify-center shrink-0">
                     <span className="material-symbols-outlined text-[20px]">phone</span>
                   </div>
                   <div>
-                    <span className="text-[#64748b] text-[12px] block font-semibold">Điện thoại bàn:</span>
-                    <a href="tel:0392123688" className="font-bold text-[#006194] text-[15px] hover:underline">
+                    <span className="text-[#777777] text-[12px] block font-semibold">Điện thoại bàn:</span>
+                    <a href="tel:0392123688" className="font-bold text-[#111111] text-[15px] hover:underline">
                       0392.123.688
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-[#f1f5f9] text-[#475569] flex items-center justify-center shrink-0">
+                  <div className="w-9 h-9  bg-[#f2f2f2] text-[#555555] flex items-center justify-center shrink-0">
                     <span className="material-symbols-outlined text-[20px]">phone_in_talk</span>
                   </div>
                   <div>
-                    <span className="text-[#64748b] text-[12px] block font-semibold">Hotline tư vấn 24/7:</span>
-                    <a href="tel:0904698699" className="font-bold text-[#006194] text-[15px] hover:underline">
+                    <span className="text-[#777777] text-[12px] block font-semibold">Hotline tư vấn 24/7:</span>
+                    <a href="tel:0904698699" className="font-bold text-[#111111] text-[15px] hover:underline">
                       0904.698.699
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-[#f1f5f9] text-[#475569] flex items-center justify-center shrink-0">
+                  <div className="w-9 h-9  bg-[#f2f2f2] text-[#555555] flex items-center justify-center shrink-0">
                     <span className="material-symbols-outlined text-[20px]">mail</span>
                   </div>
                   <div>
-                    <span className="text-[#64748b] text-[12px] block font-semibold">Email:</span>
-                    <a href="mailto:infothietbiyte168@gmail.com" className="font-bold text-[#006194] hover:underline">
+                    <span className="text-[#777777] text-[12px] block font-semibold">Email:</span>
+                    <a href="mailto:infothietbiyte168@gmail.com" className="font-bold text-[#111111] hover:underline">
                       infothietbiyte168@gmail.com
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-[#f1f5f9] text-[#475569] flex items-center justify-center shrink-0">
+                  <div className="w-9 h-9  bg-[#f2f2f2] text-[#555555] flex items-center justify-center shrink-0">
                     <span className="material-symbols-outlined text-[20px]">apartment</span>
                   </div>
                   <div>
-                    <span className="text-[#64748b] text-[12px] block font-semibold">Văn phòng giao dịch:</span>
-                    <span className="text-[#1e293b] font-medium leading-relaxed text-[13px]">
+                    <span className="text-[#777777] text-[12px] block font-semibold">Văn phòng giao dịch:</span>
+                    <span className="text-[#111111] font-medium leading-relaxed text-[13px]">
                       Số 5, nhà P16 TT Trương Định, phường Tương Mai, Quận Hoàng Mai, Thành phố Hà Nội, Việt Nam
                     </span>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-[#f1f5f9] text-[#475569] flex items-center justify-center shrink-0">
+                  <div className="w-9 h-9  bg-[#f2f2f2] text-[#555555] flex items-center justify-center shrink-0">
                     <span className="material-symbols-outlined text-[20px]">location_on</span>
                   </div>
                   <div>
-                    <span className="text-[#64748b] text-[12px] block font-semibold">Trụ sở công ty:</span>
-                    <span className="text-[#1e293b] font-medium leading-relaxed text-[13px]">
+                    <span className="text-[#777777] text-[12px] block font-semibold">Trụ sở công ty:</span>
+                    <span className="text-[#111111] font-medium leading-relaxed text-[13px]">
                       Số 5, nhà P16 TT Trương Định, phường Tương Mai, Quận Hoàng Mai, Thành phố Hà Nội, Việt Nam
                     </span>
                   </div>
@@ -246,17 +246,17 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
         </div>
 
         {/* Full-width Google Map from original site */}
-        <div className="bg-white rounded-lg border border-[#e2e8f0] overflow-hidden shadow-xs">
-          <div className="p-3.5 bg-[#f8fafc] border-b border-[#e2e8f0] flex items-center justify-between">
-            <div className="flex items-center gap-2 text-[13.5px] font-bold text-[#0f172a]">
-              <span className="material-symbols-outlined text-[#64748b] text-[18px]">map</span>
+        <div className="bg-white  border border-[#e5e5e5] overflow-hidden ">
+          <div className="p-3.5 bg-[#f7f7f7] border-b border-[#e5e5e5] flex items-center justify-between">
+            <div className="flex items-center gap-2 text-[13.5px] font-bold text-[#111111]">
+              <span className="material-symbols-outlined text-[#777777] text-[18px]">map</span>
               <span>Bản đồ chỉ đường - Trụ sở Công ty Thiết Bị Y Tế Trí Việt Phát</span>
             </div>
             <a
               href="https://maps.google.com/?q=168+Hoàng+Mai,+Hoàng+Văn+Thụ,+Hoàng+Mai,+Hà+Nội"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#006194] hover:underline text-[12.5px] font-semibold flex items-center gap-1"
+              className="text-[#111111] hover:underline text-[12.5px] font-semibold flex items-center gap-1"
             >
               <span>Xem trên Google Maps</span>
               <span className="material-symbols-outlined text-[14px]">open_in_new</span>

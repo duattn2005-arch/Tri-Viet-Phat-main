@@ -26,14 +26,14 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
   return (
     <aside className={`w-full space-y-6 ${className}`}>
       {/* Widget 1: Hỗ trợ mua hàng */}
-      <div className="bg-white rounded-xl border border-[#e2e8f0] overflow-hidden shadow-xs">
-        <div className="border-b-2 border-[#D7040F] bg-white">
-          <span className="inline-block bg-[#006194] text-white text-[14px] font-bold px-4 py-2 rounded-tr-[16px] tracking-wide">
+      <div className="bg-white  border border-[#e5e5e5] overflow-hidden ">
+        <div className="border-b-2 border-[#e11d2a] bg-white">
+          <span className="inline-block bg-[#111111] text-white text-[14px] font-bold px-4 py-2  tracking-wide">
             Hỗ trợ mua hàng
           </span>
         </div>
         <div className="p-4 space-y-3.5">
-          <div className="rounded-lg overflow-hidden border border-[#e2e8f0] bg-[#f8fafc]">
+          <div className=" overflow-hidden border border-[#e5e5e5] bg-[#f7f7f7]">
             <img
               src="https://thietbiytegroup.com/wp-content/uploads/2024/09/hotlinetvp.jpg"
               alt="Hỗ trợ mua hàng Trí Việt Phát"
@@ -46,37 +46,37 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
           </div>
           <div className="space-y-2 pt-1 text-[13px]">
             <div className="flex items-center gap-2.5">
-              <span className="material-symbols-outlined text-[#64748b] text-[19px]">
+              <span className="material-symbols-outlined text-[#777777] text-[19px]">
                 call
               </span>
-              <span className="text-[#64748b]">Hotline 1:</span>
+              <span className="text-[#777777]">Hotline 1:</span>
               <a
                 href="tel:0904698699"
-                className="font-bold text-[#006194] hover:underline"
+                className="font-bold text-[#111111] hover:underline"
               >
                 0904.698.699
               </a>
             </div>
             <div className="flex items-center gap-2.5">
-              <span className="material-symbols-outlined text-[#64748b] text-[19px]">
+              <span className="material-symbols-outlined text-[#777777] text-[19px]">
                 phone_in_talk
               </span>
-              <span className="text-[#64748b]">Hotline 2:</span>
+              <span className="text-[#777777]">Hotline 2:</span>
               <a
                 href="tel:0392123688"
-                className="font-bold text-[#006194] hover:underline"
+                className="font-bold text-[#111111] hover:underline"
               >
                 0392.123.688
               </a>
             </div>
             <div className="flex items-center gap-2.5">
-              <span className="material-symbols-outlined text-[#006194] text-[19px]">
+              <span className="material-symbols-outlined text-[#111111] text-[19px]">
                 mail
               </span>
-              <span className="text-[#64748b]">Email:</span>
+              <span className="text-[#777777]">Email:</span>
               <a
                 href="mailto:infothietbiyte168@gmail.com"
-                className="text-[#006194] font-medium hover:underline text-[12px] truncate"
+                className="text-[#111111] font-medium hover:underline text-[12px] truncate"
               >
                 infothietbiyte168@gmail.com
               </a>
@@ -86,9 +86,9 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
       </div>
 
       {/* Widget 2: Các bài viết mới nhất */}
-      <div className="bg-white rounded-xl border border-[#e2e8f0] overflow-hidden shadow-xs">
-        <div className="border-b-2 border-[#D7040F] bg-white">
-          <span className="inline-block bg-[#006194] text-white text-[14px] font-bold px-4 py-2 rounded-tr-[16px] tracking-wide">
+      <div className="bg-white  border border-[#e5e5e5] overflow-hidden ">
+        <div className="border-b-2 border-[#e11d2a] bg-white">
+          <span className="inline-block bg-[#111111] text-white text-[14px] font-bold px-4 py-2  tracking-wide">
             Các bài viết mới nhất
           </span>
         </div>
@@ -96,10 +96,10 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
           {latestArticles.map((art) => (
             <article
               key={art.id}
-              className="flex gap-3 group cursor-pointer border-b border-[#f1f5f9] pb-3 last:border-b-0 last:pb-0"
+              className="flex gap-3 group cursor-pointer border-b border-[#f2f2f2] pb-3 last:border-b-0 last:pb-0"
               onClick={() => onSelectArticle && onSelectArticle(art)}
             >
-              <div className="w-[80px] h-[58px] shrink-0 rounded-lg overflow-hidden border border-[#e2e8f0] bg-[#f8fafc]">
+              <div className="w-[80px] h-[58px] shrink-0  overflow-hidden border border-[#e5e5e5] bg-[#f7f7f7]">
                 <img
                   src={art.image}
                   alt={art.title}
@@ -111,11 +111,11 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
                 />
               </div>
               <div className="flex-1 min-w-0 flex flex-col justify-between">
-                <h4 className="text-[12.5px] font-bold text-[#1e293b] group-hover:text-[#004a73] transition-colors line-clamp-2 leading-snug">
+                <h4 className="text-[12.5px] font-bold text-[#111111] group-hover:text-[#000000] transition-colors line-clamp-2 leading-snug">
                   {art.title}
                 </h4>
-                <div className="flex items-center gap-1 text-[11px] text-[#94a3b8] mt-1">
-                  <span className="material-symbols-outlined text-[13px] text-[#64748b]">
+                <div className="flex items-center gap-1 text-[11px] text-[#999999] mt-1">
+                  <span className="material-symbols-outlined text-[13px] text-[#777777]">
                     calendar_today
                   </span>
                   <span>{art.date}</span>
@@ -128,26 +128,26 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
 
       {/* Widget 3: Danh mục */}
       {!hideCategories && (
-        <div className="bg-white rounded-xl border border-[#e2e8f0] overflow-hidden shadow-xs">
-          <div className="border-b-2 border-[#D7040F] bg-white">
-            <span className="inline-block bg-[#006194] text-white text-[14px] font-bold px-4 py-2 rounded-tr-[16px] tracking-wide">
+        <div className="bg-white  border border-[#e5e5e5] overflow-hidden ">
+          <div className="border-b-2 border-[#e11d2a] bg-white">
+            <span className="inline-block bg-[#111111] text-white text-[14px] font-bold px-4 py-2  tracking-wide">
               Danh mục
             </span>
           </div>
-          <ul className="p-2.5 divide-y divide-[#f1f5f9] text-[13px]">
+          <ul className="p-2.5 divide-y divide-[#f2f2f2] text-[13px]">
             {SIDEBAR_CATEGORIES.map((cat, idx) => (
               <li key={idx}>
                 <button
                   onClick={() => onNavigateCategory && onNavigateCategory(cat.name)}
-                  className="w-full py-1.5 px-2 text-left flex items-center justify-between text-[#334155] hover:text-[#004a73] hover:bg-[#f8fafc] rounded-md transition-colors cursor-pointer group"
+                  className="w-full py-1.5 px-2 text-left flex items-center justify-between text-[#333333] hover:text-[#000000] hover:bg-[#f7f7f7]  transition-colors cursor-pointer group"
                 >
                   <span className="flex items-center gap-1.5">
-                    <span className="text-[#cbd5e1] group-hover:text-[#004a73] text-[10px] transition-colors">
+                    <span className="text-[#d4d4d4] group-hover:text-[#000000] text-[10px] transition-colors">
                       ▸
                     </span>
                     <span className="line-clamp-1">{cat.name}</span>
                   </span>
-                  <span className="material-symbols-outlined text-[14px] text-[#94a3b8] group-hover:translate-x-0.5 transition-transform shrink-0">
+                  <span className="material-symbols-outlined text-[14px] text-[#999999] group-hover:translate-x-0.5 transition-transform shrink-0">
                     chevron_right
                   </span>
                 </button>
@@ -158,22 +158,22 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
       )}
 
       {/* Widget 4: Liên kết website */}
-      <div className="bg-white rounded-xl border border-[#e2e8f0] overflow-hidden shadow-xs">
-        <div className="border-b-2 border-[#D7040F] bg-white">
-          <span className="inline-block bg-[#006194] text-white text-[14px] font-bold px-4 py-2 rounded-tr-[16px] tracking-wide">
+      <div className="bg-white  border border-[#e5e5e5] overflow-hidden ">
+        <div className="border-b-2 border-[#e11d2a] bg-white">
+          <span className="inline-block bg-[#111111] text-white text-[14px] font-bold px-4 py-2  tracking-wide">
             Liên kết website
           </span>
         </div>
         <div className="p-3.5">
-          <div className="flex flex-wrap gap-2 text-[12.5px] text-[#475569]">
+          <div className="flex flex-wrap gap-2 text-[12.5px] text-[#555555]">
             {SIDEBAR_WEBSITE_LINKS.map((link, idx) => (
               <React.Fragment key={idx}>
-                {idx > 0 && <span className="text-[#cbd5e1]">|</span>}
+                {idx > 0 && <span className="text-[#d4d4d4]">|</span>}
                 <a
                   href={link.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[#006194] transition-colors"
+                  className="hover:text-[#111111] hover:underline underline-offset-4 transition-colors"
                 >
                   {link.name}
                 </a>

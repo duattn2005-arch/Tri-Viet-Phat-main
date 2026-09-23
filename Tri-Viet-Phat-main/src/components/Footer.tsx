@@ -35,7 +35,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
   };
 
   return (
-    <footer className="w-full bg-[#0c1f33] text-[#94a3b8] text-[14px]">
+    <footer className="w-full bg-[#111111] text-[#999999] text-[14px]">
       <div className="max-w-[1320px] mx-auto px-4 sm:px-8 pt-14 pb-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
           <div className="lg:col-span-4">
@@ -119,7 +119,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
           </div>
         </div>
 
-        <div className="pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-[12.5px] text-[#64748b]">
+        <div className="pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-[12.5px] text-[#777777]">
           <p>
             © {new Date().getFullYear()} {COMPANY_INFO.name}
           </p>

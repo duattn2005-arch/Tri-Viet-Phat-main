@@ -51,7 +51,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-[#0f172a] font-sans antialiased selection:bg-[#cce5ff] selection:text-[#006194] overflow-x-hidden w-full max-w-full">
+    <div className="min-h-screen flex flex-col bg-white text-[#111111] font-sans antialiased selection:bg-[#e5e5e5] selection:text-[#111111] overflow-x-hidden w-full max-w-full">
       {/* Top Header */}
       <Header
         currentTab={currentTab}

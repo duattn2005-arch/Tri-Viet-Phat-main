@@ -4,7 +4,7 @@
   --font-sans: 'Quicksand', system-ui, -apple-system, sans-serif;
   --font-inter: 'Quicksand', system-ui, -apple-system, sans-serif;
 
-  --color-primary: #006194;
+  --color-primary: #111111;
   --color-primary-container: #007bb9;
   --color-primary-fixed: #cce5ff;
   --color-primary-fixed-dim: #93ccff;
@@ -21,14 +21,14 @@
 
   --color-surface: #f8f9ff;
   --color-surface-pure: #ffffff;
-  --color-surface-subtle: #f1f5f9;
-  --color-surface-muted: #f8fafc;
+  --color-surface-subtle: #f2f2f2;
+  --color-surface-muted: #f7f7f7;
   --color-surface-container: #e5eeff;
   --color-surface-container-high: #dce9ff;
 
-  --color-text-primary: #0f172a;
+  --color-text-primary: #111111;
   --color-text-secondary: #475569;
-  --color-border-light: #e2e8f0;
+  --color-border-light: #e5e5e5;
   --color-outline-variant: #bfc7d2;
   --color-on-surface: #0b1c30;
   --color-on-surface-variant: #3f4850;
@@ -46,6 +46,8 @@ body {
   font-family: 'Quicksand', system-ui, sans-serif;
   /* Quicksand's 400 is thin; 500 keeps grey body text readable (as torano.vn does). */
   font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #111111;
   overflow-x: hidden;
   max-width: 100%;
   width: 100%;
@@ -70,14 +72,14 @@ body {
 
 /* ---------------------------------------------------------------------------
  * Design system — restrained, flat, B2B medical.
- * One action colour (brand blue #006194). Red is reserved for the logo,
- * required-field markers and errors. No gradients, glows or lift-on-hover.
+ * Monochrome, as torano.vn: ink #111, neutral greys, black primary buttons.
+ * One accent red (#e11d2a) for "Liên hệ báo giá", required markers and errors. No gradients, glows or lift-on-hover.
  * The legacy class names (card-3d, btn-3d-*) are kept so every screen that
  * still uses them inherits the flat look.
  * ------------------------------------------------------------------------- */
 
 .bg-medical-grid-3d {
-  background-color: #f8fafc;
+  background-color: #f7f7f7;
 }
 
 .bg-hero-3d-scene {
@@ -88,14 +90,14 @@ body {
 .card-3d-subtle {
   position: relative;
   background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #e5e5e5;
   box-shadow: none;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .card-3d:hover,
 .card-3d-subtle:hover {
-  border-color: #cbd5e1;
+  border-color: #d4d4d4;
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 12px rgba(15, 23, 42, 0.04);
 }
 
@@ -108,7 +110,7 @@ body {
 .btn-primary,
 .btn-3d-red,
 .btn-3d-blue {
-  background-color: #006194;
+  background-color: #111111;
   color: #ffffff;
   box-shadow: none;
   transition: background-color 0.15s ease;
@@ -117,28 +119,28 @@ body {
 .btn-primary:hover,
 .btn-3d-red:hover,
 .btn-3d-blue:hover {
-  background-color: #004a73;
+  background-color: #000000;
 }
 
 .btn-primary:focus-visible,
 .btn-3d-red:focus-visible,
 .btn-3d-blue:focus-visible,
 .btn-secondary:focus-visible {
-  outline: 2px solid #006194;
+  outline: 2px solid #111111;
   outline-offset: 2px;
 }
 
 /* Secondary action: quiet outline. */
 .btn-secondary {
   background-color: #ffffff;
-  color: #0f172a;
-  border: 1px solid #cbd5e1;
+  color: #111111;
+  border: 1px solid #d4d4d4;
   transition: border-color 0.15s ease, color 0.15s ease;
 }
 
 .btn-secondary:hover {
-  border-color: #006194;
-  color: #006194;
+  border-color: #111111;
+  color: #111111;
 }
 
 .glass-3d-dark {
@@ -148,7 +150,7 @@ body {
 
 .glass-3d-light {
   background: #ffffff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #e5e5e5;
 }
 
 /* Kept as no-ops: decorative motion reads as gimmicky on a B2B medical site. */
@@ -167,7 +169,7 @@ body {
 
 /* Scraped rich product detail HTML styling */
 .product-detail-html {
-  color: #1e293b;
+  color: #111111;
   font-size: 14.5px;
   line-height: 1.7;
 }
@@ -175,7 +177,7 @@ body {
 .product-detail-html h2 {
   font-size: 18px;
   font-weight: 700;
-  color: #0f172a;
+  color: #111111;
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
   line-height: 1.4;
@@ -184,7 +186,7 @@ body {
 .product-detail-html h3 {
   font-size: 16px;
   font-weight: 700;
-  color: #006194;
+  color: #111111;
   margin-top: 1.25rem;
   margin-bottom: 0.5rem;
 }
@@ -210,24 +212,24 @@ body {
   border-collapse: collapse !important;
   margin: 1.25rem 0 !important;
   font-size: 13.5px !important;
-  border: 1px solid #cbd5e1 !important;
+  border: 1px solid #d4d4d4 !important;
 }
 
 .product-detail-html th,
 .product-detail-html td {
-  border: 1px solid #cbd5e1 !important;
+  border: 1px solid #d4d4d4 !important;
   padding: 8px 10px !important;
   vertical-align: middle !important;
 }
 
 .product-detail-html tr:first-child td,
 .product-detail-html tr:first-child th {
-  background-color: #f1f5f9 !important;
+  background-color: #f2f2f2 !important;
   font-weight: 700 !important;
 }
 
 .product-detail-html tr:hover {
-  background-color: #f8fafc;
+  background-color: #f7f7f7;
 }
 
 .product-detail-html img {
