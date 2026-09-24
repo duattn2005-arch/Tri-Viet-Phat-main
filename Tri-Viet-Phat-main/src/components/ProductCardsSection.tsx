@@ -3,6 +3,7 @@ import { PageTab } from '../types';
 import { PRODUCTS } from '../data/mockData';
 import { SectionHeader } from './SectionHeader';
 import { RevealGroup, RevealItem } from './motion/Reveal';
+import { Tilt } from './motion/Tilt';
 
 interface ProductCardsSectionProps {
   onNavigateTab: (tab: PageTab, categoryFilter?: string) => void;
@@ -40,31 +41,33 @@ export const ProductCardsSection: React.FC<ProductCardsSectionProps> = ({ onNavi
         <RevealGroup className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
           {tiles.map((tile) => (
             <RevealItem key={tile.key}>
-              <button
-                type="button"
-                onClick={() => onNavigateTab('san-pham', tile.key)}
-                className="group relative w-full aspect-[3/4] overflow-hidden bg-[#edf3f8] hover:bg-[#e2ecf5] transition-colors duration-500 text-left cursor-pointer"
-              >
-                {tile.image && (
-                  <img
-                    src={tile.image}
-                    alt={`Máy xét nghiệm ${tile.title.toLowerCase()}`}
-                    loading="lazy"
-                    className="absolute inset-0 w-full h-full object-contain p-6 pb-16 mix-blend-multiply transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110 group-hover:-translate-y-2"
-                  />
-                )}
-                <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4 flex items-center justify-between gap-2">
-                  <span className="min-w-0">
-                    <span className="block text-[15px] sm:text-[16px] font-semibold text-[#111111]">{tile.title}</span>
-                    {tile.count > 0 && (
-                      <span className="block text-[12px] text-[#777777]">{tile.count} sản phẩm</span>
-                    )}
-                  </span>
-                  <span className="shrink-0 w-9 h-9 rounded-full bg-white text-[#111111] flex items-center justify-center group-hover:bg-[#0a2540] group-hover:text-white transition-colors">
-                    <span className="material-symbols-outlined text-[20px] transition-transform duration-500 group-hover:-rotate-45">arrow_forward</span>
-                  </span>
-                </div>
-              </button>
+              <Tilt>
+                <button
+                  type="button"
+                  onClick={() => onNavigateTab('san-pham', tile.key)}
+                  className="group fx-shine relative w-full aspect-[3/4] overflow-hidden bg-[#edf3f8] hover:bg-[#e2ecf5] transition-colors duration-500 text-left cursor-pointer"
+                >
+                  {tile.image && (
+                    <img
+                      src={tile.image}
+                      alt={`Máy xét nghiệm ${tile.title.toLowerCase()}`}
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-contain p-6 pb-16 mix-blend-multiply transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110 group-hover:-translate-y-2"
+                    />
+                  )}
+                  <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4 flex items-center justify-between gap-2">
+                    <span className="min-w-0">
+                      <span className="block text-[15px] sm:text-[16px] font-semibold text-[#111111] group-hover:text-[#0a94dc] transition-colors duration-300">{tile.title}</span>
+                      {tile.count > 0 && (
+                        <span className="block text-[12px] text-[#777777]">{tile.count} sản phẩm</span>
+                      )}
+                    </span>
+                    <span className="shrink-0 w-9 h-9 rounded-full bg-white text-[#111111] flex items-center justify-center group-hover:bg-linear-to-br group-hover:from-[#0a94dc] group-hover:to-[#e11d2a] group-hover:text-white transition-colors">
+                      <span className="material-symbols-outlined text-[20px] transition-transform duration-500 group-hover:-rotate-45">arrow_forward</span>
+                    </span>
+                  </div>
+                </button>
+              </Tilt>
             </RevealItem>
           ))}
         </RevealGroup>

@@ -37,7 +37,7 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
               <span className="text-[#777777]">Hotline 1:</span>
               <a
                 href="tel:0904698699"
-                className="font-bold text-[#111111] hover:underline"
+                className="font-bold text-[#111111] fx-link"
               >
                 0904.698.699
               </a>
@@ -49,7 +49,7 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
               <span className="text-[#777777]">Hotline 2:</span>
               <a
                 href="tel:0392123688"
-                className="font-bold text-[#111111] hover:underline"
+                className="font-bold text-[#111111] fx-link"
               >
                 0392.123.688
               </a>
@@ -61,7 +61,7 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
               <span className="text-[#777777]">Email:</span>
               <a
                 href="mailto:infothietbiyte168@gmail.com"
-                className="text-[#111111] font-medium hover:underline text-[12px] truncate"
+                className="text-[#111111] font-medium fx-link text-[12px] truncate"
               >
                 infothietbiyte168@gmail.com
               </a>
@@ -146,7 +146,7 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
                   href={link.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[#111111] hover:underline underline-offset-4 transition-colors"
+                  className="fx-link transition-colors"
                 >
                   {link.name}
                 </a>

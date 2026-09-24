@@ -312,7 +312,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                     {searchQuery && (
                       <button
                         onClick={() => setSearchQuery('')}
-                        className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#999999] hover:text-[#111111] hover:underline underline-offset-4 text-[14px]"
+                        className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#999999] fx-link text-[14px]"
                       >
                         ✕
                       </button>
@@ -354,7 +354,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
 
                         <h2
                           onClick={() => handleSelect(featuredArticle)}
-                          className="text-[18px] sm:text-[21px] font-bold text-[#111111] group-hover:underline underline-offset-4 transition-colors leading-snug cursor-pointer mb-3"
+                          className="text-[18px] sm:text-[21px] font-bold text-[#111111] group-hover:text-[#0a94dc] transition-colors duration-300 transition-colors leading-snug cursor-pointer mb-3"
                         >
                           {featuredArticle.title}
                         </h2>
@@ -432,7 +432,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                           <div className="p-4 sm:p-5">
                             <h4
                               onClick={() => handleSelect(art)}
-                              className="text-[15px] sm:text-[16px] font-bold text-[#111111] group-hover:underline underline-offset-4 transition-colors line-clamp-2 leading-snug cursor-pointer mb-2.5"
+                              className="text-[15px] sm:text-[16px] font-bold text-[#111111] group-hover:text-[#0a94dc] transition-colors duration-300 transition-colors line-clamp-2 leading-snug cursor-pointer mb-2.5"
                             >
                               {art.title}
                             </h4>
@@ -528,7 +528,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                             <span className="text-[10px] font-bold px-2 py-0.5 bg-[#edf3f8] text-[#555555] inline-block mb-1">
                               {getArticleCategoryBadge(art.id)}
                             </span>
-                            <h4 className="text-[13px] font-bold text-[#111111] group-hover:underline underline-offset-4 line-clamp-2 leading-snug">
+                            <h4 className="text-[13px] font-bold text-[#111111] group-hover:text-[#0a94dc] transition-colors duration-300 line-clamp-2 leading-snug">
                               {art.title}
                             </h4>
                           </div>
@@ -562,7 +562,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                           const keyword = tag.replace('#', '').split(' ')[0];
                           setSearchQuery(keyword);
                         }}
-                        className="px-3 py-1.5  bg-[#edf3f8] hover:bg-[#edf3f8] text-[#333333] hover:text-[#111111] hover:underline underline-offset-4 text-[12px] font-medium transition-colors cursor-pointer"
+                        className="px-3 py-1.5  bg-[#edf3f8] hover:bg-[#edf3f8] text-[#333333] fx-link text-[12px] font-medium transition-colors cursor-pointer"
                       >
                         {tag}
                       </button>

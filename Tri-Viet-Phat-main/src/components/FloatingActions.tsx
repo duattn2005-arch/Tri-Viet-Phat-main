@@ -61,7 +61,7 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({ onToggleAiChat
   }, [isOpen]);
 
   const secondaryButton =
-    'w-10 h-10 rounded-full bg-white border border-[#e5e5e5] text-[#555555] hover:text-[#111111] hover:underline underline-offset-4 hover:border-[#d4d4d4] shadow-[0_2px_8px_rgba(15,23,42,0.08)] flex items-center justify-center cursor-pointer transition-colors';
+    'w-10 h-10 rounded-full bg-white border border-[#e5e5e5] text-[#555555] fx-link hover:border-[#d4d4d4] shadow-[0_2px_8px_rgba(15,23,42,0.08)] flex items-center justify-center cursor-pointer transition-colors';
 
   return (
     <div
@@ -122,12 +122,12 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({ onToggleAiChat
                   className="flex items-center justify-between gap-3 px-4 py-2.5 hover:bg-[#f3f7fb] transition-colors group"
                 >
                   <span className="min-w-0">
-                    <span className="block text-[14px] font-medium text-[#111111] group-hover:underline underline-offset-4">
+                    <span className="block text-[14px] font-medium text-[#111111] group-hover:text-[#0a94dc] transition-colors duration-300">
                       {ch.label}
                     </span>
                     <span className="block text-[12.5px] text-[#777777] truncate">{ch.detail}</span>
                   </span>
-                  <span className="material-symbols-outlined text-[18px] text-[#d4d4d4] group-hover:underline underline-offset-4">
+                  <span className="material-symbols-outlined text-[18px] text-[#d4d4d4] group-hover:text-[#0a94dc] transition-colors duration-300">
                     chevron_right
                   </span>
                 </a>

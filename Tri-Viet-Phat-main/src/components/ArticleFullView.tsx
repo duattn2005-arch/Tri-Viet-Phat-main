@@ -113,7 +113,7 @@ export const ArticleFullView: React.FC<ArticleFullViewProps> = ({
                           }}
                         />
                       </div>
-                      <h4 className="text-[13px] font-bold text-[#111111] group-hover:underline underline-offset-4 line-clamp-2 leading-snug">
+                      <h4 className="text-[13px] font-bold text-[#111111] group-hover:text-[#0a94dc] transition-colors duration-300 line-clamp-2 leading-snug">
                         {rel.title}
                       </h4>
                     </div>
@@ -133,7 +133,7 @@ export const ArticleFullView: React.FC<ArticleFullViewProps> = ({
               <span>Liên hệ hotline:</span>
               <a
                 href="tel:0904698699"
-                className="text-[#111111] font-bold hover:underline text-[15px]"
+                className="text-[#111111] font-bold fx-link text-[15px]"
               >
                 0904.698.699
               </a>

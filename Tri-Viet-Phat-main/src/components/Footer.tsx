@@ -35,7 +35,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
   };
 
   return (
-    <footer className="relative w-full bg-[#0a2540] text-white/60 text-[14px]">
+    <footer className="fx-spotlight relative w-full bg-[#0a2540] text-white/60 text-[14px]">
       <span
         className="absolute inset-x-0 top-0 h-[3px] bg-linear-to-r from-[#0a94dc] via-[#0a94dc] to-[#e11d2a]"
         aria-hidden="true"
@@ -102,14 +102,14 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
                 Hotline:{' '}
                 <a
                   href={`tel:${COMPANY_INFO.hotline.replace(/\./g, '')}`}
-                  className="font-semibold text-white hover:underline"
+                  className="font-semibold text-white fx-link"
                 >
                   {COMPANY_INFO.hotline}
                 </a>
                 {' · '}
                 <a
                   href={`tel:${COMPANY_INFO.hotline2.replace(/\./g, '')}`}
-                  className="font-semibold text-white hover:underline"
+                  className="font-semibold text-white fx-link"
                 >
                   {COMPANY_INFO.hotline2}
                 </a>

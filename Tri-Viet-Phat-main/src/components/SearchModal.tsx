@@ -62,7 +62,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
           {query && (
             <button
               onClick={() => setQuery('')}
-              className="text-[#555555] hover:text-[#111111] hover:underline underline-offset-4 text-[13px] px-2 py-1  bg-[#e5e5e5]"
+              className="text-[#555555] fx-link text-[13px] px-2 py-1  bg-[#e5e5e5]"
             >
               Xóa
             </button>
@@ -109,11 +109,11 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                         </span>
                         <span className="text-[11px] text-[#555555]">{prod.brand}</span>
                       </div>
-                      <h4 className="text-[13.5px] font-bold text-[#111111] truncate group-hover:underline underline-offset-4">
+                      <h4 className="text-[13.5px] font-bold text-[#111111] truncate group-hover:text-[#0a94dc] transition-colors duration-300">
                         {prod.name}
                       </h4>
                     </div>
-                    <span className="material-symbols-outlined text-[18px] text-[#999999] group-hover:underline underline-offset-4">
+                    <span className="material-symbols-outlined text-[18px] text-[#999999] group-hover:text-[#0a94dc] transition-colors duration-300">
                       chevron_right
                     </span>
                   </button>
@@ -149,12 +149,12 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                     />
                     <div className="flex-1 min-w-0">
                       <span className="text-[10px] text-[#111111] font-semibold">{art.date}</span>
-                      <h4 className="text-[13px] font-bold text-[#111111] line-clamp-1 group-hover:underline underline-offset-4">
+                      <h4 className="text-[13px] font-bold text-[#111111] line-clamp-1 group-hover:text-[#0a94dc] transition-colors duration-300">
                         {art.title}
                       </h4>
                       <p className="text-[11px] text-[#555555] line-clamp-1">{art.excerpt}</p>
                     </div>
-                    <span className="material-symbols-outlined text-[18px] text-[#999999] group-hover:underline underline-offset-4">
+                    <span className="material-symbols-outlined text-[18px] text-[#999999] group-hover:text-[#0a94dc] transition-colors duration-300">
                       chevron_right
                     </span>
                   </button>

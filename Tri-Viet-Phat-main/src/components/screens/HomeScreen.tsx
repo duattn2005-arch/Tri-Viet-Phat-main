@@ -8,6 +8,7 @@ import { HeroSection } from '../HeroSection';
 import { ProductCardsSection } from '../ProductCardsSection';
 import { SectionHeader, ViewAllButton } from '../SectionHeader';
 import { ProductCard } from '../ProductCard';
+import { Tilt } from '../motion/Tilt';
 import { Reveal, RevealGroup, RevealItem, WipeImage, CountUp, MaskText, ParallaxImage, AmbientGlow } from '../motion/Reveal';
 
 interface HomeScreenProps {
@@ -138,7 +139,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       <HeroSection onOpenConsultation={onOpenConsultation} />
 
       {/* 2. Key facts — dark band, counters with an accent line that draws in */}
-      <section className="relative w-full overflow-hidden bg-[#0a2540] text-white">
+      <section className="fx-spotlight relative w-full overflow-hidden bg-[#0a2540] text-white">
         <AmbientGlow />
         <dl className="relative max-w-[1320px] mx-auto px-4 sm:px-8 py-12 sm:py-16 grid grid-cols-2 lg:grid-cols-4 gap-x-6 sm:gap-x-10 gap-y-12">
           {FACTS.map((fact, idx) => (
@@ -172,8 +173,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       <ProductCardsSection onNavigateTab={onNavigateTab} />
 
       {/* 4. Featured products — tabs double as the section heading */}
-      <section className="w-full py-12 sm:py-16 bg-[#f3f7fb]" id="featured-products">
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-8">
+      <section className="relative w-full overflow-hidden py-12 sm:py-16 bg-[#f3f7fb]" id="featured-products">
+        <AmbientGlow light />
+        <div className="relative max-w-[1320px] mx-auto px-4 sm:px-8">
           <div
             role="tablist"
             aria-label="Sản phẩm nổi bật theo danh mục"
@@ -215,7 +217,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       </section>
 
       {/* Category word band on black — static, each word links to its product category */}
-      <section className="w-full py-8 sm:py-10 bg-linear-to-r from-[#0a2540] via-[#0b3a66] to-[#0a2540]">
+      <section className="fx-spotlight w-full py-8 sm:py-10 bg-linear-to-r from-[#0a2540] via-[#0b3a66] to-[#0a2540]">
         <RevealGroup className="max-w-[1320px] mx-auto px-4 sm:px-8 flex flex-wrap items-center justify-center gap-x-6 lg:gap-x-5 gap-y-3">
           {CATEGORY_WORDS.map((item, idx) => (
             <RevealItem key={item.cat} className="flex items-center gap-6 lg:gap-5">
@@ -241,20 +243,22 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 items-center">
           {/* Photo composition */}
           <div className="lg:col-span-6 relative pb-16 sm:pb-20 pr-10 sm:pr-24">
-            <WipeImage
-              wrapperClassName="bg-[#edf3f8]"
-              className="w-full aspect-[4/5] object-cover"
-              alt="Kỹ thuật viên phòng xét nghiệm làm việc với kính hiển vi"
-              src={COMPANY_INFO.aboutImage}
-              loading="lazy"
-            />
+            <Tilt max={5}>
+              <WipeImage
+                wrapperClassName="bg-[#edf3f8] fx-shine"
+                className="w-full aspect-[4/5] object-cover"
+                alt="Kỹ thuật viên phòng xét nghiệm làm việc với kính hiển vi"
+                src={COMPANY_INFO.aboutImage}
+                loading="lazy"
+              />
+            </Tilt>
             {/* Secondary photo overlapping the bottom-right corner */}
-            <Reveal delay={0.35} y={40} className="absolute right-0 bottom-0 w-[46%] border-[6px] sm:border-8 border-white">
+            <Reveal delay={0.35} y={40} className="absolute right-0 bottom-0 w-[46%] border-[6px] sm:border-8 border-white fx-shine group">
               <img
                 src="/images/hero-pipette.jpg"
                 alt="Thao tác pipet với ống mẫu xét nghiệm"
                 loading="lazy"
-                className="w-full aspect-square object-cover"
+                className="w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-110"
               />
             </Reveal>
             {/* Experience badge */}
@@ -332,8 +336,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       </section>
 
       {/* 6. Partners */}
-      <section className="w-full py-14 sm:py-20 bg-[#f3f7fb]">
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-8">
+      <section className="relative w-full overflow-hidden py-14 sm:py-20 bg-[#f3f7fb]">
+        <AmbientGlow light />
+        <div className="relative max-w-[1320px] mx-auto px-4 sm:px-8">
           <Reveal>
             <SectionHeader title="Đối tác của chúng tôi" description="Nhà phân phối chính thức sản phẩm của các hãng chẩn đoán IVD hàng đầu." />
           </Reveal>
@@ -367,7 +372,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       <TestimonialsCarousel testimonials={TESTIMONIALS} />
 
       {/* 8. Consultation form — dark band over a parallax lab photo; the white form card pops forward */}
-      <section className="relative w-full overflow-hidden py-16 sm:py-24 bg-[#0a2540] text-white" id="tu-van-form">
+      <section className="fx-spotlight relative w-full overflow-hidden py-16 sm:py-24 bg-[#0a2540] text-white" id="tu-van-form">
         <ParallaxImage src="/images/hero-engineers.jpg" className="opacity-55" />
         <div className="absolute inset-0 bg-linear-to-r from-[#0a2540]/95 via-[#0a2540]/75 to-[#0a2540]/30" aria-hidden="true" />
         <div className="relative max-w-[1320px] mx-auto px-4 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
@@ -448,7 +453,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                           key={chip}
                           type="button"
                           onClick={() => handleAddQuickChip(chip)}
-                          className="text-[13px] px-3 py-1.5 border border-[#d4d4d4] text-[#333333] hover:border-[#0a2540] hover:text-[#111111] hover:underline underline-offset-4 transition-colors cursor-pointer"
+                          className="text-[13px] px-3 py-1.5 border border-[#d4d4d4] text-[#333333] hover:border-[#0a2540] fx-link transition-colors cursor-pointer"
                         >
                           {chip}
                         </button>
@@ -553,7 +558,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   onClick={() => onSelectArticle(art)}
                   className="group flex flex-col text-left cursor-pointer"
                 >
-                  <div className="w-full aspect-[16/9] overflow-hidden bg-[#edf3f8]">
+                  <div className="fx-shine w-full aspect-[16/9] overflow-hidden bg-[#edf3f8]">
                     <img
                       className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
                       alt={art.alt}
@@ -564,7 +569,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   <div className="mt-4 text-[12px] font-medium uppercase tracking-wide text-[#777777]">
                     {art.category || 'Tin y tế'} · {art.date}
                   </div>
-                  <h3 className="mt-2 text-[17px] font-semibold text-[#111111] group-hover:underline underline-offset-4 transition-colors leading-snug line-clamp-2">
+                  <h3 className="mt-2 text-[17px] font-semibold text-[#111111] group-hover:text-[#0a94dc] transition-colors duration-300 transition-colors leading-snug line-clamp-2">
                     {art.title}
                   </h3>
                   <p className="mt-2 text-[14px] text-[#555555] leading-relaxed line-clamp-3">{art.excerpt}</p>

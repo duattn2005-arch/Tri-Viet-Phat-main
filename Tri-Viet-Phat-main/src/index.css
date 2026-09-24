@@ -122,6 +122,7 @@ body {
 .btn-3d-red:hover,
 .btn-3d-blue:hover {
   background-size: 100% 100%, auto;
+  box-shadow: 0 10px 28px -8px rgba(10, 148, 220, 0.55);
 }
 
 .btn-primary:focus-visible,
@@ -171,6 +172,78 @@ body {
   animation: marquee 40s linear infinite;
 }
 
+/* ---- Hover & colour effects ------------------------------------------- */
+
+/* Links: blue-to-red underline that sweeps in from the left */
+.fx-link {
+  background-image: linear-gradient(90deg, #0a94dc, #e11d2a);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 2px;
+  padding-bottom: 2px;
+  transition: background-size 0.45s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s ease;
+}
+
+.fx-link:hover,
+.fx-link:focus-visible {
+  background-size: 100% 2px;
+}
+
+/* Images: a diagonal light streak crosses the picture on hover */
+.fx-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.fx-shine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 15;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.55) 50%, transparent 70%);
+  transform: translateX(-120%);
+}
+
+.fx-shine:hover::after,
+.group:hover .fx-shine::after {
+  transform: translateX(120%);
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Dark sections: a blue light follows the pointer (position set from App.tsx) */
+.fx-spotlight {
+  position: relative;
+}
+
+.fx-spotlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 50%), rgba(10, 148, 220, 0.28), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.fx-spotlight:hover::before {
+  opacity: 1;
+}
+
+/* Slowly flowing navy/blue gradient (top bar) */
+@keyframes gradientFlow {
+  from { background-position: 0% 50%; }
+  to { background-position: 200% 50%; }
+}
+
+.fx-gradient-flow {
+  background: linear-gradient(90deg, #0a2540, #0b3a66, #0a4f86, #0b3a66, #0a2540);
+  background-size: 200% 100%;
+  animation: gradientFlow 14s linear infinite;
+}
+
 /* Ambient glows in dark sections */
 @keyframes glowDrift {
   0%, 100% { transform: translate(0, 0) scale(1); }
@@ -201,7 +274,8 @@ body {
   .marquee-track,
   .dropdown-in,
   .glow-drift,
-  .glow-drift-reverse {
+  .glow-drift-reverse,
+  .fx-gradient-flow {
     animation: none;
   }
   html,

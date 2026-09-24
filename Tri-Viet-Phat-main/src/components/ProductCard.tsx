@@ -1,6 +1,7 @@
 import React from 'react';
 import { Product } from '../types';
 import { brandName, originName } from '../data/productMeta';
+import { Tilt } from './motion/Tilt';
 
 interface ProductCardProps {
   product: Product;
@@ -11,7 +12,7 @@ interface ProductCardProps {
 /** Shared product tile (home + products page), modelled on torano.vn's listing card. */
 export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect, onRequestQuote }) => (
   <article className="group flex flex-col">
-    <div className="relative w-full aspect-square overflow-hidden bg-white">
+    <Tilt className="w-full aspect-square overflow-hidden bg-white fx-shine">
       <span
         className="absolute inset-x-0 bottom-0 z-10 h-[3px] bg-linear-to-r from-[#0a94dc] to-[#e11d2a] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
         aria-hidden="true"
@@ -23,7 +24,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect, onR
         className="absolute inset-0 cursor-pointer"
       >
         <img
-          className="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-105"
+          className="w-full h-full object-contain p-4 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
           alt={product.alt}
           src={product.image}
           loading="lazy"
@@ -49,7 +50,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect, onR
           <span className="material-symbols-outlined text-[20px]">visibility</span>
         </button>
       </div>
-    </div>
+    </Tilt>
 
     <div className="pt-4 flex flex-col flex-1">
       <div className="flex items-center justify-between gap-2 text-[13px] sm:text-[14px] text-[#555555]">
@@ -59,7 +60,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect, onR
       <button
         type="button"
         onClick={() => onSelect(product)}
-        className="mt-2 text-left text-[14px] sm:text-[15px] text-[#111111] leading-snug line-clamp-2 hover:underline underline-offset-4 transition-colors cursor-pointer"
+        className="mt-2 text-left text-[14px] sm:text-[15px] text-[#111111] leading-snug line-clamp-2 group-hover:text-[#0a94dc] transition-colors duration-300 cursor-pointer"
       >
         {product.name}
       </button>

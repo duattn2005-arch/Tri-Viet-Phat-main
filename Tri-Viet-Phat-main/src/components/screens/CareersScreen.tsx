@@ -260,7 +260,7 @@ export const CareersScreen: React.FC = () => {
                     className="group w-full text-left py-6 sm:py-7 grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-8 items-start cursor-pointer"
                   >
                     <div className="md:col-span-4">
-                      <h3 className="text-[18px] sm:text-[19px] font-bold text-[#111111] leading-snug group-hover:underline underline-offset-4">
+                      <h3 className="text-[18px] sm:text-[19px] font-bold text-[#111111] leading-snug group-hover:text-[#0a94dc] transition-colors duration-300">
                         {job.title}
                       </h3>
                       <p className="mt-2 text-[14px] text-[#777777]">

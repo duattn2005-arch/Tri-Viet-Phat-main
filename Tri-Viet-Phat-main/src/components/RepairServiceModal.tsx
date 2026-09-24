@@ -303,7 +303,7 @@ export const RepairServiceModal: React.FC<RepairServiceModalProps> = ({ isOpen, 
                 <span className="text-[#777777]">Sự cố khẩn cấp cần xử lý ngay?</span>
                 <a
                   href={`tel:${COMPANY_INFO.hotline.replace(/[^0-9]/g, '')}`}
-                  className="inline-flex items-center gap-1 text-[#111111] font-bold hover:underline"
+                  className="inline-flex items-center gap-1 text-[#111111] font-bold fx-link"
                 >
                   <span className="material-symbols-outlined text-[15px]">call</span>
                   <span>Hotline: {COMPANY_INFO.hotline}</span>

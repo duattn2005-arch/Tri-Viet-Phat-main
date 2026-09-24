@@ -75,7 +75,7 @@ const CheckRow: React.FC<{ label: string; count: number; checked: boolean; onCha
     <span className="w-[18px] h-[18px] border border-[#999999] flex items-center justify-center peer-checked:bg-[#0a2540] peer-checked:border-[#0a2540] peer-focus-visible:ring-2 peer-focus-visible:ring-[#0a2540]">
       {checked && <span className="material-symbols-outlined text-[14px] text-white">check</span>}
     </span>
-    <span className="flex-1 group-hover:underline underline-offset-4">{label}</span>
+    <span className="flex-1 group-hover:text-[#0a94dc] transition-colors duration-300">{label}</span>
     <span className="text-[13px] text-[#999999]">{count}</span>
   </label>
 );
@@ -190,7 +190,7 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({
                       type="button"
                       onClick={() => selectCategory(cat.key)}
                       className={`w-full flex items-center justify-between py-1.5 text-left text-[15px] tracking-[0.04em] cursor-pointer transition-colors ${
-                        isSelected ? 'text-[#111] font-bold' : 'text-[#333] hover:text-[#111111] hover:underline underline-offset-4'
+                        isSelected ? 'text-[#111] font-bold' : 'text-[#333] fx-link'
                       }`}
                     >
                       <span>{cat.label}</span>

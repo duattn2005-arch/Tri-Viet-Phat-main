@@ -33,7 +33,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
       <button
         type="button"
         onClick={onAction}
-        className="group hidden sm:inline-flex shrink-0 items-center gap-1 text-[14px] font-medium text-[#111111] hover:text-[#111111] hover:underline underline-offset-4 cursor-pointer"
+        className="group hidden sm:inline-flex shrink-0 items-center gap-1 text-[14px] font-medium text-[#111111] fx-link cursor-pointer"
       >
         <span>{actionLabel}</span>
         <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">→</span>

@@ -134,17 +134,17 @@ export const Header: React.FC<HeaderProps> = ({
         aria-hidden="true"
       />
       {/* Top utility bar */}
-      <div className="bg-[#0a2540] text-white/70 text-[12px]">
+      <div className="fx-gradient-flow text-white/70 text-[12px]">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 flex items-center justify-between h-8 sm:h-9">
           <div className="flex items-center gap-4 min-w-0">
             <span className="truncate">
               Hotline{' '}
-              <a href={hotlineHref(COMPANY_INFO.hotline)} className="font-semibold text-white hover:underline">
+              <a href={hotlineHref(COMPANY_INFO.hotline)} className="font-semibold text-white fx-link">
                 {COMPANY_INFO.hotline}
               </a>
               <span className="hidden sm:inline">
                 {' · '}
-                <a href={hotlineHref(COMPANY_INFO.hotline2)} className="font-semibold text-white hover:underline">
+                <a href={hotlineHref(COMPANY_INFO.hotline2)} className="font-semibold text-white fx-link">
                   {COMPANY_INFO.hotline2}
                 </a>
               </span>
@@ -200,7 +200,7 @@ export const Header: React.FC<HeaderProps> = ({
           {NAV_ITEMS.map((item) => {
             const isActive = currentTab === item.tab;
             const baseClass =
-              'group relative px-3 py-2 font-semibold text-[#111111] cursor-pointer inline-flex items-center gap-0.5';
+              'group relative px-3 py-2 font-semibold text-[#111111] hover:text-[#0a94dc] transition-colors duration-300 cursor-pointer inline-flex items-center gap-0.5';
             // Underline that slides in from the left on hover and stays for the active page
             const activeBar = (
               <span
@@ -252,7 +252,7 @@ export const Header: React.FC<HeaderProps> = ({
                       <button
                         key={child.cat}
                         onClick={() => handleNavClick(item.tab, child.cat)}
-                        className={`w-full text-left px-4 py-2 text-[14px] hover:bg-[#f3f7fb] hover:text-[#111111] hover:underline underline-offset-4 transition-colors cursor-pointer ${
+                        className={`w-full text-left px-4 py-2 text-[14px] hover:bg-[#f3f7fb] fx-link transition-colors cursor-pointer ${
                           idx === 0
                             ? 'font-semibold text-[#111111] border-b border-[#f2f2f2] mb-1 pb-2.5'
                             : 'text-[#555555]'
@@ -273,7 +273,7 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             onClick={onOpenSearch}
             aria-label="Tìm kiếm"
-            className="w-10 h-10  flex items-center justify-center text-[#555555] hover:text-[#111111] hover:underline underline-offset-4 hover:bg-[#edf3f8] transition-colors cursor-pointer"
+            className="w-10 h-10  flex items-center justify-center text-[#555555] fx-link hover:bg-[#edf3f8] transition-colors cursor-pointer"
           >
             <span className="material-symbols-outlined text-[22px]">search</span>
           </button>
@@ -318,7 +318,7 @@ export const Header: React.FC<HeaderProps> = ({
                         <button
                           key={child.cat}
                           onClick={() => handleNavClick(item.tab, child.cat)}
-                          className="block w-full text-left py-1.5 text-[14px] text-[#777777] hover:text-[#111111] hover:underline underline-offset-4 cursor-pointer"
+                          className="block w-full text-left py-1.5 text-[14px] text-[#777777] fx-link cursor-pointer"
                         >
                           {child.label}
                         </button>

@@ -179,7 +179,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
                   </div>
                   <div>
                     <span className="text-[#777777] text-[12px] block font-semibold">Điện thoại bàn:</span>
-                    <a href="tel:0392123688" className="font-bold text-[#111111] text-[15px] hover:underline">
+                    <a href="tel:0392123688" className="font-bold text-[#111111] text-[15px] fx-link">
                       0392.123.688
                     </a>
                   </div>
@@ -191,7 +191,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
                   </div>
                   <div>
                     <span className="text-[#777777] text-[12px] block font-semibold">Hotline tư vấn 24/7:</span>
-                    <a href="tel:0904698699" className="font-bold text-[#111111] text-[15px] hover:underline">
+                    <a href="tel:0904698699" className="font-bold text-[#111111] text-[15px] fx-link">
                       0904.698.699
                     </a>
                   </div>
@@ -203,7 +203,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
                   </div>
                   <div>
                     <span className="text-[#777777] text-[12px] block font-semibold">Email:</span>
-                    <a href="mailto:infothietbiyte168@gmail.com" className="font-bold text-[#111111] hover:underline">
+                    <a href="mailto:infothietbiyte168@gmail.com" className="font-bold text-[#111111] fx-link">
                       infothietbiyte168@gmail.com
                     </a>
                   </div>
@@ -248,7 +248,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
               href="https://maps.google.com/?q=168+Hoàng+Mai,+Hoàng+Văn+Thụ,+Hoàng+Mai,+Hà+Nội"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#111111] hover:underline text-[12.5px] font-semibold flex items-center gap-1"
+              className="text-[#111111] fx-link text-[12.5px] font-semibold flex items-center gap-1"
             >
               <span>Xem trên Google Maps</span>
               <span className="material-symbols-outlined text-[14px]">open_in_new</span>

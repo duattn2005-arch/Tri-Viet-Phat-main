@@ -346,7 +346,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                     {searchQuery && (
                       <button
                         onClick={() => setSearchQuery('')}
-                        className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#999999] hover:text-[#111111] hover:underline underline-offset-4 text-[14px]"
+                        className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#999999] fx-link text-[14px]"
                       >
                         ✕
                       </button>
@@ -421,7 +421,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                             <div className="p-4 sm:p-5">
                               <h3
                                 onClick={() => handleSelect(doc)}
-                                className="text-[15px] sm:text-[16px] font-bold text-[#111111] group-hover:underline underline-offset-4 transition-colors line-clamp-2 leading-snug cursor-pointer mb-2.5"
+                                className="text-[15px] sm:text-[16px] font-bold text-[#111111] group-hover:text-[#0a94dc] transition-colors duration-300 transition-colors line-clamp-2 leading-snug cursor-pointer mb-2.5"
                               >
                                 {doc.title}
                               </h3>
@@ -524,7 +524,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                               >
                                 {badge.type}
                               </span>
-                              <h4 className="text-[13px] font-bold text-[#111111] group-hover:underline underline-offset-4 line-clamp-2 leading-snug">
+                              <h4 className="text-[13px] font-bold text-[#111111] group-hover:text-[#0a94dc] transition-colors duration-300 line-clamp-2 leading-snug">
                                 {doc.title}
                               </h4>
                             </div>
@@ -588,7 +588,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                           </span>
                         </div>
 
-                        <h4 className="text-[13.5px] font-bold text-[#111111] group-hover:underline underline-offset-4 line-clamp-2 leading-snug mb-1.5">
+                        <h4 className="text-[13.5px] font-bold text-[#111111] group-hover:text-[#0a94dc] transition-colors duration-300 line-clamp-2 leading-snug mb-1.5">
                           {file.title}
                         </h4>
                         <p className="text-[12.5px] text-[#777777] line-clamp-2 leading-relaxed">
@@ -599,7 +599,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                       <div className="mt-4 pt-3 border-t border-[#e5e5e5]/80 flex items-center justify-between">
                         <button
                           onClick={() => setPreviewPdf(file)}
-                          className="text-[12.5px] font-semibold text-[#111111] hover:underline cursor-pointer inline-flex items-center gap-1"
+                          className="text-[12.5px] font-semibold text-[#111111] fx-link cursor-pointer inline-flex items-center gap-1"
                         >
                           <span className="material-symbols-outlined text-[15px]">visibility</span>
                           <span>Xem tóm tắt</span>
@@ -772,7 +772,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                             }}
                           />
                         </div>
-                        <h4 className="text-[13px] font-bold text-[#111111] group-hover:underline underline-offset-4 line-clamp-2 leading-snug">
+                        <h4 className="text-[13px] font-bold text-[#111111] group-hover:text-[#0a94dc] transition-colors duration-300 line-clamp-2 leading-snug">
                           {art.title}
                         </h4>
                       </div>
@@ -817,7 +817,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
               </div>
               <button
                 onClick={() => setPreviewPdf(null)}
-                className="w-8 h-8 rounded-full bg-[#edf3f8] hover:bg-[#e5e5e5] flex items-center justify-center text-[#777777] hover:text-[#111111] hover:underline underline-offset-4 transition-colors cursor-pointer shrink-0"
+                className="w-8 h-8 rounded-full bg-[#edf3f8] hover:bg-[#e5e5e5] flex items-center justify-center text-[#777777] fx-link transition-colors cursor-pointer shrink-0"
               >
                 ✕
               </button>

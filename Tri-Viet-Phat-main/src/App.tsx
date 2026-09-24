@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, MotionConfig, motion } from 'motion/react';
 import { PageTab, Product, Article } from './types';
 import { Header } from './components/Header';
@@ -36,6 +36,20 @@ export default function App() {
   const [isRepairServiceOpen, setIsRepairServiceOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isAiChatOpen, setIsAiChatOpen] = useState(false);
+
+  // Feed the pointer position to any `.fx-spotlight` section under the cursor (CSS draws the light).
+  useEffect(() => {
+    const onMove = (e: PointerEvent) => {
+      if (e.pointerType !== 'mouse') return;
+      const el = (e.target as Element | null)?.closest?.('.fx-spotlight') as HTMLElement | null;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      el.style.setProperty('--mx', `${e.clientX - r.left}px`);
+      el.style.setProperty('--my', `${e.clientY - r.top}px`);
+    };
+    window.addEventListener('pointermove', onMove, { passive: true });
+    return () => window.removeEventListener('pointermove', onMove);
+  }, []);
 
   const handleSelectTab = (tab: PageTab, cat?: string) => {
     setCurrentTab(tab);

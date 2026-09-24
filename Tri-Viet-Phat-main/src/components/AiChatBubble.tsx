@@ -354,7 +354,7 @@ export const AiChatBubble: React.FC<AiChatBubbleProps> = ({
                 key={i}
                 disabled={isLoading}
                 onClick={() => handleSendMessage(sug)}
-                className="text-[11.5px] px-2.5 py-1 rounded-full bg-[#edf3f8] hover:bg-[#edf3f8] text-[#333333] hover:text-[#111111] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0 border border-transparent hover:border-[#e5e5e5] cursor-pointer disabled:opacity-50"
+                className="text-[11.5px] px-2.5 py-1 rounded-full bg-[#edf3f8] hover:bg-[#edf3f8] text-[#333333] fx-link transition-colors whitespace-nowrap shrink-0 border border-transparent hover:border-[#e5e5e5] cursor-pointer disabled:opacity-50"
               >
                 {sug}
               </button>
@@ -383,7 +383,7 @@ export const AiChatBubble: React.FC<AiChatBubbleProps> = ({
                     onOpenConsultation();
                   }}
                   title="Mở biểu mẫu báo giá chính thức"
-                  className="text-[#777777] hover:text-[#111111] hover:underline underline-offset-4 p-1  transition-colors cursor-pointer"
+                  className="text-[#777777] fx-link p-1  transition-colors cursor-pointer"
                 >
                   <span className="material-symbols-outlined text-[19px]">assignment</span>
                 </button>
@@ -403,7 +403,7 @@ export const AiChatBubble: React.FC<AiChatBubbleProps> = ({
                 href={COMPANY_INFO.zaloUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#111111] hover:underline flex items-center gap-1"
+                className="text-[#111111] fx-link flex items-center gap-1"
               >
                 <span className="material-symbols-outlined text-[13px]">chat</span>
                 Chat Zalo trực tiếp

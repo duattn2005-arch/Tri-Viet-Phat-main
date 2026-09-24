@@ -181,7 +181,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, on
                 <span className="flex items-center gap-4">
                   <a
                     href={`tel:${COMPANY_INFO.hotline.replace(/[^0-9]/g, '')}`}
-                    className="font-semibold text-[#111111] hover:underline underline-offset-4"
+                    className="font-semibold text-[#111111] fx-link"
                   >
                     Hotline {COMPANY_INFO.hotline}
                   </a>
@@ -189,7 +189,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, on
                     href={COMPANY_INFO.zaloUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="font-semibold text-[#111111] hover:underline underline-offset-4"
+                    className="font-semibold text-[#111111] fx-link"
                   >
                     Chat Zalo
                   </a>
