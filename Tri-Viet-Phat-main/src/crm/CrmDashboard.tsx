@@ -231,7 +231,9 @@ const ModuleWorkspace: React.FC<{
   onDelete: (rowIndex: number) => void;
 }> = ({ name, module, query, onQueryChange, onAdd, onEdit, onDelete }) => {
   if (!module) return null;
-  const visibleRows = module.rows.filter((row) => row.join(' ').toLowerCase().includes(query.trim().toLowerCase()));
+  const visibleRows = module.rows
+    .map((row, rowIndex) => ({ row, rowIndex }))
+    .filter(({ row }) => row.join(' ').toLowerCase().includes(query.trim().toLowerCase()));
 
   return (
     <>
@@ -256,15 +258,12 @@ const ModuleWorkspace: React.FC<{
               <tr>{module.columns.map((column) => <th key={column} className={TH}>{column}</th>)}<th className={TH}>Thao tác</th></tr>
             </thead>
             <tbody>
-              {visibleRows.map((row) => {
-                const rowIndex = module.rows.indexOf(row);
-                return (
+              {visibleRows.map(({ row, rowIndex }) => (
                 <tr key={`${name}-${rowIndex}`} className="border-b border-[#eef2f8] last:border-0 hover:bg-[#f8fafd]">
                   {row.map((cell, cellIndex) => <td key={`${rowIndex}-${cellIndex}`} className={cellIndex === 0 ? `${TD} font-medium text-[#1a64d6]` : TD}>{cell}</td>)}
                   <td className={`${TD} space-x-3`}><button onClick={() => onEdit(rowIndex)} className="text-[#1a64d6] hover:underline cursor-pointer">Sửa</button><button onClick={() => onDelete(rowIndex)} className="text-[#dc2626] hover:underline cursor-pointer">Xóa</button></td>
                 </tr>
-                );
-              })}
+              ))}
               {!visibleRows.length && <tr><td colSpan={module.columns.length + 1} className="px-3 py-8 text-center text-[13px] text-[#5b6780]">Chưa có dữ liệu phù hợp.</td></tr>}
             </tbody>
           </table>
@@ -499,8 +498,10 @@ export const CrmDashboard: React.FC = () => {
       .slice(-2)
       .map((part) => part[0]?.toUpperCase())
       .join('');
+    const today = new Date();
+    const todayStr = `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
     setCustomers((current) => [
-      { initials, name, sub: 'Khách hàng mới', type: ['Phòng khám', 'green'], need, date: '24/09/2025', status: ['Mới', 'blue'] },
+      { initials, name, sub: 'Khách hàng mới', type: ['Phòng khám', 'green'], need, date: todayStr, status: ['Mới', 'blue'] },
       ...current,
     ]);
     setNewCustomerName('');
@@ -516,8 +517,13 @@ export const CrmDashboard: React.FC = () => {
   const isDashboard = activeNav === 'Tổng quan' || activeNav === 'CRM - Khách hàng';
 
   const openModuleForm = (rowIndex?: number) => {
-    setEditingModuleRow(rowIndex ?? null);
-    setModuleDraft(rowIndex === undefined ? new Array(moduleRecords[activeNav]?.columns.length || 0).fill('') : [...moduleRecords[activeNav].rows[rowIndex]]);
+    const isEditing = rowIndex !== undefined && rowIndex !== null;
+    setEditingModuleRow(isEditing ? rowIndex! : null);
+    setModuleDraft(
+      isEditing
+        ? [...moduleRecords[activeNav].rows[rowIndex!]]
+        : new Array(moduleRecords[activeNav]?.columns.length || 0).fill('')
+    );
     setIsAddModuleOpen(true);
   };
 
@@ -603,8 +609,14 @@ export const CrmDashboard: React.FC = () => {
             <Search size={16} />
             <input
               placeholder="Tìm kiếm khách hàng, thiết bị, phiếu sửa chữa..."
-              value={searchTerm}
-              onChange={(event) => setSearchTerm(event.target.value)}
+              value={isDashboard || activeNav === 'Khách hàng' ? searchTerm : moduleQuery}
+              onChange={(event) => {
+                if (isDashboard || activeNav === 'Khách hàng') {
+                  setSearchTerm(event.target.value);
+                } else {
+                  setModuleQuery(event.target.value);
+                }
+              }}
               className="flex-1 bg-transparent text-[13px] text-[#0f1f3d] placeholder:text-[#6b7891] outline-none"
             />
           </label>
@@ -935,7 +947,7 @@ export const CrmDashboard: React.FC = () => {
                         <td className={TD}>{t.customer}</td>
                         <td className={TD}>{t.due}</td>
                         <td className={TD}>
-                          {t.done ? <Badge tone="blue">Đang thực hiện</Badge> : <Badge tone="red">Chưa hoàn thành</Badge>}
+                          {t.done ? <Badge tone="green">Đã hoàn thành</Badge> : <Badge tone="amber">Chưa thực hiện</Badge>}
                         </td>
                       </tr>
                     ))}
