@@ -1,7 +1,7 @@
 // Login popup for the Decap CMS admin (/admin). Two modes, picked by Vercel environment variables:
 //
-// 1. Password (preferred): ADMIN_PASSWORD + GITHUB_TOKEN. The popup asks for the shared admin
-//    password; on a match it hands Decap GITHUB_TOKEN, a fine-grained personal access token limited
+// 1. Username/password (preferred): ADMIN_USERNAME + ADMIN_PASSWORD + GITHUB_TOKEN. The popup asks for
+//    the admin account; on a match it hands Decap GITHUB_TOKEN, a fine-grained personal access token limited
 //    to this repository with "Contents: Read and write".
 // 2. GitHub OAuth (fallback): GITHUB_CLIENT_ID / GITHUB_CLIENT_SECRET from a GitHub OAuth App whose
 //    redirect URI is https://<your-domain>/api/callback; each editor signs in with their own account.
@@ -11,7 +11,7 @@ const STATE_COOKIE = 'decap_oauth_state';
 const FAILED_LOGIN_DELAY_MS = 1500;
 
 function passwordMode(): boolean {
-  return Boolean(process.env.ADMIN_PASSWORD && process.env.GITHUB_TOKEN);
+  return Boolean(process.env.ADMIN_USERNAME && process.env.ADMIN_PASSWORD && process.env.GITHUB_TOKEN);
 }
 
 function page(body: string, status = 200): Response {
@@ -36,8 +36,9 @@ function page(body: string, status = 200): Response {
 function passwordForm(error = ''): Response {
   return page(`<form method="post" action="/api/auth">
   <h1>Quản trị nội dung</h1>
-  <p>Trí Việt Phát — nhập mật khẩu quản trị để tiếp tục.</p>
-  <input type="password" name="password" placeholder="Mật khẩu" autocomplete="current-password" autofocus required />
+  <p>Trí Việt Phát — đăng nhập để chỉnh sửa nội dung website.</p>
+  <input type="text" name="username" placeholder="Tên đăng nhập" autocomplete="username" autofocus required />
+  <input type="password" name="password" placeholder="Mật khẩu" autocomplete="current-password" required />
   ${error ? `<div class="error">${error}</div>` : ''}
   <button type="submit">Đăng nhập</button>
 </form>`);
@@ -61,7 +62,7 @@ function handOver(origin: string, token: string): Response {
 </script>`);
 }
 
-function samePassword(given: string, expected: string): boolean {
+function sameSecret(given: string, expected: string): boolean {
   const a = createHash('sha256').update(given).digest();
   const b = createHash('sha256').update(expected).digest();
   return timingSafeEqual(a, b);
@@ -72,7 +73,7 @@ export function GET(request: Request): Response {
 
   const clientId = process.env.GITHUB_CLIENT_ID;
   if (!clientId) {
-    return new Response('Chưa cấu hình đăng nhập: cần ADMIN_PASSWORD + GITHUB_TOKEN trên Vercel.', { status: 500 });
+    return new Response('Chưa cấu hình đăng nhập: cần ADMIN_USERNAME, ADMIN_PASSWORD và GITHUB_TOKEN trên Vercel.', { status: 500 });
   }
 
   const url = new URL(request.url);
@@ -96,12 +97,16 @@ export async function POST(request: Request): Promise<Response> {
   if (!passwordMode()) return new Response('Đăng nhập bằng mật khẩu chưa được bật.', { status: 404 });
 
   const form = await request.formData();
+  const username = String(form.get('username') ?? '').trim();
   const password = String(form.get('password') ?? '');
+  // Check both before branching so a wrong username and a wrong password take the same time
+  const userOk = sameSecret(username.toLowerCase(), process.env.ADMIN_USERNAME!.trim().toLowerCase());
+  const passOk = sameSecret(password, process.env.ADMIN_PASSWORD!);
 
-  if (!samePassword(password, process.env.ADMIN_PASSWORD!)) {
+  if (!userOk || !passOk) {
     // Slow down guessing; each attempt costs the caller a full request plus this wait.
     await new Promise((resolve) => setTimeout(resolve, FAILED_LOGIN_DELAY_MS));
-    return passwordForm('Sai mật khẩu, vui lòng thử lại.');
+    return passwordForm('Sai tên đăng nhập hoặc mật khẩu.');
   }
   return handOver(new URL(request.url).origin, process.env.GITHUB_TOKEN!);
 }
