@@ -23,15 +23,9 @@ import { DocumentsScreen } from './components/screens/DocumentsScreen';
 import { NewsScreen } from './components/screens/NewsScreen';
 import { CareersScreen } from './components/screens/CareersScreen';
 import { ContactScreen } from './components/screens/ContactScreen';
-import { CrmDashboard } from './crm/CrmDashboard';
 
 export default function App() {
-  const [currentTab, setCurrentTab] = useState<PageTab>(() => {
-    if (typeof window !== 'undefined' && (window.location.pathname.startsWith('/crm') || window.location.hash === '#crm')) {
-      return 'crm';
-    }
-    return 'trang-chu';
-  });
+  const [currentTab, setCurrentTab] = useState<PageTab>('trang-chu');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
 
   // Modal States
@@ -60,11 +54,6 @@ export default function App() {
   const handleSelectTab = (tab: PageTab, cat?: string) => {
     setCurrentTab(tab);
     setCategoryFilter(cat || 'all');
-    if (tab === 'crm') {
-      window.history.pushState(null, '', '#crm');
-    } else if (window.location.hash === '#crm') {
-      window.history.pushState(null, '', window.location.pathname);
-    }
   };
 
   const handleOpenConsultation = (prefilledProd?: string) => {
@@ -140,10 +129,6 @@ export default function App() {
 
               {currentTab === 'tuyen-dung' && <CareersScreen />}
 
-              {currentTab === 'crm' && (
-                <CrmDashboard onNavigateTab={handleSelectTab} />
-              )}
-
               {currentTab === 'lien-he' && (
                 <ContactScreen
                   onOpenConsultation={() => handleOpenConsultation()}
@@ -154,22 +139,18 @@ export default function App() {
           </AnimatePresence>
         </main>
 
-        {/* Global Footer (hidden on CRM) */}
-        {currentTab !== 'crm' && (
-          <Footer
-            onSelectTab={handleSelectTab}
-            onOpenConsultation={handleOpenConsultation}
-          />
-        )}
+        {/* Global Footer */}
+        <Footer
+          onSelectTab={handleSelectTab}
+          onOpenConsultation={handleOpenConsultation}
+        />
 
         {/* Floating Action Buttons: AI Chat, Quick Support, Back to Top */}
-        {currentTab !== 'crm' && (
-          <FloatingActions
-            onToggleAiChat={() => setIsAiChatOpen(!isAiChatOpen)}
-            isAiChatOpen={isAiChatOpen}
-            onNavigateContact={() => handleSelectTab('lien-he')}
-          />
-        )}
+        <FloatingActions
+          onToggleAiChat={() => setIsAiChatOpen(!isAiChatOpen)}
+          isAiChatOpen={isAiChatOpen}
+          onNavigateContact={() => handleSelectTab('lien-he')}
+        />
 
         {/* AI Assistant Chat Window */}
         <AiChatBubble
