@@ -1,0 +1,54 @@
+{
+  "order": 13,
+  "name": "Máy xét nghiệm miễn dịch hóa phát quang - iStar 500",
+  "category": "may-xet-nghiem-mien-dich",
+  "categoryLabel": "Máy xét nghiệm miễn dịch",
+  "image": "/istar-500.png",
+  "alt": "Máy xét nghiệm miễn dịch hóa phát quang - iStar 500",
+  "shortDesc": "Thiết bị y tế chính hãng Máy xét nghiệm miễn dịch hóa phát quang - iStar 500 từ Shenzhen YHLO Biotech Co., Ltd (Trung Quốc), đáp ứng hoàn hảo các yêu cầu xét nghiệm y khoa với độ chính xác cao, chuẩn CE & ISO 13485.",
+  "fullDesc": "Máy xét nghiệm miễn dịch hóa phát quang - iStar 500 được cung cấp và phân phối độc quyền bởi Công ty TNHH Thiết bị Y tế Trí Việt Phát. Sản phẩm sở hữu công nghệ tân tiến từ Shenzhen YHLO Biotech Co., Ltd, mang lại giải pháp xét nghiệm toàn diện, vận hành tự động thông minh và tiết kiệm chi phí tối ưu cho phòng Lab và bệnh viện.",
+  "brand": "Shenzhen YHLO Biotech Co., Ltd",
+  "origin": "Trung Quốc",
+  "model": "iStar 500",
+  "manufacturer": "Shenzhen YHLO Biotech Co., Ltd",
+  "countryOfOrigin": "Trung Quốc",
+  "specs": [
+    {
+      "label": "Tốc độ",
+      "value": "36 test/giờ"
+    },
+    {
+      "label": "Kết quả đầu tiên trong",
+      "value": "11 phút"
+    },
+    {
+      "label": "Vị trí lấy mẫu tự động",
+      "value": "5 vị trí"
+    },
+    {
+      "label": "Loại mẫu tự động",
+      "value": "huyết thanh, huyết tương, nước tiểu..."
+    }
+  ],
+  "features": [
+    "Tốc độ: 36 test/giờ",
+    "Kết quả đầu tiên trong: 11 phút",
+    "Vị trí lấy mẫu tự động: 5 vị trí",
+    "Loại mẫu tự động: huyết thanh, huyết tương, nước tiểu..."
+  ],
+  "detailedFeatures": [],
+  "benefits": [
+    "Nhà cung cấp uy tín thiết bị y tế ở Việt Nam",
+    "Thiết bị y tế đạt chất lượng giá cả hợp lý",
+    "Thời gian bảo hành 12 tháng, dịch vụ chuyên nghiệp",
+    "Hàng có sẵn kho có thể giao ngay",
+    "Ưu đãi khi mua hàng với số lượng lớn"
+  ],
+  "certifications": [
+    "CE Mark",
+    "ISO 13485",
+    "ISO 9001",
+    "Bộ Y tế cấp phép"
+  ],
+  "detailHtml": "**Máy xét nghiệm miễn dịch hóa phát quang - iStar 500**\n\n**1\\. Thiết kế nhỏ gọn**\n\n- Dải thuốc thử thông minh\n- Bộ kit thuốc thử đóng gói nhỏ\n- Máy để bàn\n\n**2\\. Hiệu quả cao**\n\n- Tốc độ: 36 test/giờ\n- Kết quả đầu tiên trong: 11 phút\n- Vị trí lấy mẫu tự động: 5 vị trí\n- Loại mẫu tự động: huyết thanh, huyết tương, nước tiểu...\n\n**3\\. Linh hoạt vượt trội**\n\n- Thuốc thử đơn\n- Xét nghiệm liên tiếp đa thông số\n\n**4\\. Tự động cao**\n\n- Tự động lấy mẫu\n- Theo dõi tiêu thụ theo thời gian thực\n- Hỗ trợ kết nối LIS\n\n**5\\. Kết quả chính xác**\n\n- Phát quang bằng Acridium easter, độ nhạy < 10<sup>-18</sup>\n- Hệ thống rửa chống nhiễm chéo\n- Trộn không tiếp xúc"
+}

@@ -1,0 +1,59 @@
+{
+  "order": 10,
+  "name": "Máy xét nghiệm sinh hóa tự động CS - 1200",
+  "category": "may-xet-nghiem-sinh-hoa",
+  "categoryLabel": "Máy xét nghiệm sinh hóa",
+  "image": "/cs-1200.png",
+  "alt": "Máy xét nghiệm sinh hóa tự động CS - 1200",
+  "shortDesc": "Thiết bị y tế chính hãng Máy xét nghiệm sinh hóa tự động CS - 1200 từ Dirui Industrial Co., Ltd (Trung Quốc), đáp ứng hoàn hảo các yêu cầu xét nghiệm y khoa với độ chính xác cao, chuẩn CE & ISO 13485.",
+  "fullDesc": "Máy xét nghiệm sinh hóa tự động CS - 1200 được cung cấp và phân phối độc quyền bởi Công ty TNHH Thiết bị Y tế Trí Việt Phát. Sản phẩm sở hữu công nghệ tân tiến từ Dirui Industrial Co., Ltd, mang lại giải pháp xét nghiệm toàn diện, vận hành tự động thông minh và tiết kiệm chi phí tối ưu cho phòng Lab và bệnh viện.",
+  "brand": "Dirui Industrial Co., Ltd",
+  "origin": "Trung Quốc",
+  "model": "CS-1200",
+  "manufacturer": "Dirui Industrial Co., Ltd",
+  "countryOfOrigin": "Trung Quốc",
+  "specs": [
+    {
+      "label": "Tốc độ",
+      "value": "800 test/h cho xét nghiệm sinh hóa và 400 test/h cho xét nghiệm điện giải ISE (lựa chọn thêm)"
+    },
+    {
+      "label": "Bước sóng",
+      "value": "340 ~ 800nm, 12 bước sóng"
+    },
+    {
+      "label": "Phương pháp chuẩn",
+      "value": "1 điểm, 2 điểm, tuyến tính đa điểm, phi tuyến tính."
+    },
+    {
+      "label": "Cuvette phản ứng",
+      "value": "160 cuvette phản ứng làm công nghẹ mới."
+    },
+    {
+      "label": "Khay mẫu",
+      "value": "140 vị trí mẫu, tương thích với tất cả loại ống và cốc mấu"
+    }
+  ],
+  "features": [
+    "Tốc độ: 800 test/h cho xét nghiệm sinh hóa và 400 test/h cho xét nghiệm điện giải ISE (lựa chọn thêm)",
+    "Bước sóng: 340 ~ 800nm, 12 bước sóng",
+    "Phương pháp chuẩn: 1 điểm, 2 điểm, tuyến tính đa điểm, phi tuyến tính.",
+    "Cuvette phản ứng: 160 cuvette phản ứng làm công nghẹ mới.",
+    "Khay mẫu: 140 vị trí mẫu, tương thích với tất cả loại ống và cốc mấu"
+  ],
+  "detailedFeatures": [],
+  "benefits": [
+    "Nhà cung cấp uy tín thiết bị y tế ở Việt Nam",
+    "Thiết bị y tế đạt chất lượng giá cả hợp lý",
+    "Thời gian bảo hành 12 tháng, dịch vụ chuyên nghiệp",
+    "Hàng có sẵn kho có thể giao ngay",
+    "Ưu đãi khi mua hàng với số lượng lớn"
+  ],
+  "certifications": [
+    "CE Mark",
+    "ISO 13485",
+    "ISO 9001",
+    "Bộ Y tế cấp phép"
+  ],
+  "detailHtml": "**Máy xét nghiệm sinh hóa tự động CS - 1200**\n\n**Thông số kỹ thuật**\n\n- Tốc độ: 800 test/h cho xét nghiệm sinh hóa và 400 test/h cho xét nghiệm điện giải ISE (lựa chọn thêm)\n- Bước sóng: 340 ~ 800nm, 12 bước sóng\n- Phương pháp chuẩn: 1 điểm, 2 điểm, tuyến tính đa điểm, phi tuyến tính.\n- Cuvette phản ứng: 160 cuvette phản ứng làm công nghẹ mới.\n- Khay mẫu: 140 vị trí mẫu, tương thích với tất cả loại ống và cốc mấu"
+}

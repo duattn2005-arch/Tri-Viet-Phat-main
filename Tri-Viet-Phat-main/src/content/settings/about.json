@@ -1,0 +1,28 @@
+{
+  "businessAreas": [
+    {
+      "title": "Máy móc trang thiết bị y tế",
+      "desc": "Hệ thống máy xét nghiệm sinh hóa, huyết học, miễn dịch, đông máu, nước tiểu tự động."
+    },
+    {
+      "title": "Hóa chất xét nghiệm",
+      "desc": "Hóa chất phân tích dùng trong y tế đạt chuẩn kiểm định CE & FDA."
+    },
+    {
+      "title": "Thiết bị đo lường kiểm nghiệm",
+      "desc": "Máy phân tích chuyên sâu cho nghiên cứu và chẩn đoán lâm sàng."
+    },
+    {
+      "title": "Hóa chất y tế & công nghiệp",
+      "desc": "Các loại dung môi, chất tẩy rửa sinh học và vật tư phụ trợ phòng Lab."
+    },
+    {
+      "title": "Dịch vụ lắp đặt bảo trì",
+      "desc": "Bảo dưỡng định kỳ, sửa chữa thiết bị y tế theo chuẩn nhà sản xuất."
+    },
+    {
+      "title": "Tư vấn thiết kế chuyên sâu",
+      "desc": "Thiết kế lắp đặt phòng xét nghiệm đạt tiêu chuẩn an toàn sinh học cấp I, II."
+    }
+  ]
+}

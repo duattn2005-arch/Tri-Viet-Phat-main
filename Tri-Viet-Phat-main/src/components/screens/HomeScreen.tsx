@@ -1,7 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'motion/react';
-import { COMPANY_INFO, PRODUCTS, PARTNERS, ARTICLES, TESTIMONIALS } from '../../data/mockData';
-import { Product, Article, PageTab } from '../../types';
+import { COMPANY_INFO, PRODUCTS, PARTNERS, TESTIMONIALS } from '../../data/mockData';
+import { REAL_NEWS_ARTICLES, NEWS_CATEGORY_LABELS, SiteArticle } from '../../data/realSiteContent';
+import { Product, PageTab } from '../../types';
 import { ProvinceSelect } from '../ProvinceSelect';
 import { TestimonialsCarousel } from '../TestimonialsCarousel';
 import { HeroSection } from '../HeroSection';
@@ -13,7 +14,7 @@ import { Reveal, RevealGroup, RevealItem, WipeImage, CountUp, MaskText, Parallax
 
 interface HomeScreenProps {
   onSelectProduct: (product: Product) => void;
-  onSelectArticle: (article: Article) => void;
+  onSelectArticle: (article: SiteArticle) => void;
   onNavigateTab: (tab: PageTab, categoryFilter?: string) => void;
   onOpenConsultation: (prefilledProduct?: string) => void;
   onOpenRepairService: () => void;
@@ -587,7 +588,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           <SectionHeader align="center" title="Tin tức và hướng dẫn kỹ thuật" description="Cập nhật kiến thức xét nghiệm, hướng dẫn vận hành và bảo trì thiết bị." />
 
           <RevealGroup className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {ARTICLES.slice(0, 3).map((art) => (
+            {REAL_NEWS_ARTICLES.slice(0, 3).map((art) => (
               <RevealItem key={art.id}>
                 <button
                   type="button"
@@ -597,13 +598,13 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   <div className="relative fx-shine w-full aspect-[16/9] overflow-hidden bg-[#edf3f8]">
                     <img
                       className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
-                      alt={art.alt}
+                      alt={art.title}
                       src={art.image}
                       loading="lazy"
                     />
                   </div>
                   <div className="mt-4 text-[12px] font-medium uppercase tracking-wide text-[#777777]">
-                    {art.category || 'Tin y tế'} · {art.date}
+                    {NEWS_CATEGORY_LABELS[art.categorySlug ?? ''] ?? 'Tin y tế'} · {art.date}
                   </div>
                   <h3 className="mt-2 text-[17px] font-semibold text-[#111111] group-hover:text-[#0a94dc] transition-colors duration-300 transition-colors leading-snug line-clamp-2">
                     {art.title}

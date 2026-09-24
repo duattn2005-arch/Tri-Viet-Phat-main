@@ -1,0 +1,240 @@
+# Decap CMS — trang quản trị nội dung tại /admin
+# Mỗi lần bấm "Xuất bản", nội dung được commit lên GitHub và Vercel tự build lại web (1–2 phút).
+# Đường dẫn tính từ gốc repo, nên có tiền tố "Tri-Viet-Phat-main/".
+
+backend:
+  name: github
+  repo: duattn2005-arch/Tri-Viet-Phat-main
+  branch: main
+  # base_url được gán theo tên miền hiện tại trong admin/index.html
+  auth_endpoint: api/auth
+  commit_messages:
+    create: 'cms: thêm {{collection}} "{{slug}}"'
+    update: 'cms: sửa {{collection}} "{{slug}}"'
+    delete: 'cms: xóa {{collection}} "{{slug}}"'
+    uploadMedia: 'cms: tải lên "{{path}}"'
+    deleteMedia: 'cms: xóa "{{path}}"'
+
+# Chạy thử trên máy: chạy `npx decap-server` ở thư mục gốc repo (thư mục cha), `npm run dev`, rồi mở http://localhost:3000/admin/index.html
+local_backend: true
+
+locale: vi
+display_url: /
+
+media_folder: Tri-Viet-Phat-main/public/uploads
+public_folder: /uploads
+
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: '-'
+
+collections:
+  # ---------- Sản phẩm ----------
+  - name: products
+    label: Sản phẩm
+    label_singular: sản phẩm
+    folder: Tri-Viet-Phat-main/src/content/products
+    format: json
+    extension: json
+    create: true
+    delete: true
+    identifier_field: name
+    slug: '{{name}}'
+    summary: '{{name}} — {{model}}'
+    sortable_fields: { fields: [order, name], default: { field: order, direction: ascending } }
+    fields:
+      - { name: name, label: Tên sản phẩm, widget: string }
+      - { name: order, label: Thứ tự hiển thị, widget: number, value_type: int, default: 0, hint: Số nhỏ hiện trước. }
+      - name: category
+        label: Danh mục
+        widget: select
+        options:
+          - { label: Máy xét nghiệm sinh hóa, value: may-xet-nghiem-sinh-hoa }
+          - { label: Máy xét nghiệm nước tiểu, value: may-xet-nghiem-nuoc-tieu }
+          - { label: Máy xét nghiệm huyết học, value: may-xet-nghiem-huyet-hoc }
+          - { label: Máy xét nghiệm điện giải, value: may-xet-nghiem-dien-giai }
+          - { label: Máy xét nghiệm miễn dịch, value: may-xet-nghiem-mien-dich }
+          - { label: Máy xét nghiệm đông máu, value: may-phan-tich-dong-mau }
+          - { label: Máy xét nghiệm HbA1c, value: may-xet-nghiem-hba1c }
+          - { label: Hóa chất, thuốc thử xét nghiệm, value: hoa-chat-xet-nghiem }
+          - { label: Thiết bị y tế khác, value: thiet-bi-khac }
+      - { name: image, label: Ảnh sản phẩm, widget: image }
+      - { name: alt, label: Mô tả ảnh (cho SEO), widget: string, required: false, hint: Bỏ trống thì dùng tên sản phẩm. }
+      - { name: model, label: Model, widget: string, required: false }
+      - { name: brand, label: Hãng, widget: string, hint: 'Ví dụ: DIRUI INDUSTRIAL CO., LTD' }
+      - { name: manufacturer, label: Nhà sản xuất, widget: string, required: false }
+      - { name: origin, label: Xuất xứ, widget: string, hint: 'Ví dụ: Trung Quốc' }
+      - { name: countryOfOrigin, label: Nước sản xuất, widget: string, required: false }
+      - { name: shortDesc, label: Mô tả ngắn, widget: text }
+      - { name: fullDesc, label: Mô tả đầy đủ, widget: text }
+      - name: specs
+        label: Thông số kỹ thuật
+        label_singular: thông số
+        widget: list
+        required: false
+        summary: '{{fields.label}}: {{fields.value}}'
+        fields:
+          - { name: label, label: Tên thông số, widget: string }
+          - { name: value, label: Giá trị, widget: string }
+      - { name: features, label: Đặc điểm nổi bật, label_singular: đặc điểm, widget: list, required: false, field: { name: item, label: Đặc điểm, widget: string } }
+      - name: detailedFeatures
+        label: Tính năng chi tiết
+        label_singular: tính năng
+        widget: list
+        required: false
+        summary: '{{fields.title}}'
+        fields:
+          - { name: title, label: Tiêu đề, widget: string }
+          - { name: desc, label: Mô tả, widget: text }
+      - { name: benefits, label: Lợi ích, label_singular: lợi ích, widget: list, required: false, field: { name: item, label: Lợi ích, widget: string } }
+      - { name: certifications, label: Chứng nhận, label_singular: chứng nhận, widget: list, required: false, field: { name: item, label: Chứng nhận, widget: string } }
+      - { name: detailHtml, label: Bài giới thiệu chi tiết, widget: markdown, required: false, hint: Nếu có, nội dung này thay cho phần đặc điểm kỹ thuật. }
+
+  # ---------- Tin tức ----------
+  - name: news
+    label: Tin tức
+    label_singular: bài viết
+    folder: Tri-Viet-Phat-main/src/content/news
+    format: json
+    extension: json
+    create: true
+    delete: true
+    slug: '{{title}}'
+    summary: '{{title}} ({{date}})'
+    sortable_fields: { fields: [order, title], default: { field: order, direction: ascending } }
+    fields:
+      - { name: title, label: Tiêu đề, widget: string }
+      - { name: order, label: Thứ tự hiển thị, widget: number, value_type: int, default: 0, hint: Số nhỏ hiện trước. Bài mới để 0 sẽ nằm trên cùng. }
+      - { name: date, label: Ngày đăng, widget: string, pattern: ['^\d{2}/\d{2}/\d{4}$', 'Nhập theo dạng ngày/tháng/năm, ví dụ 25/09/2026'] }
+      - name: categorySlug
+        label: Danh mục
+        widget: select
+        options:
+          - { label: Kiến thức sức khỏe, value: kien-thuc-suc-khoe }
+          - { label: Tin y tế, value: tin-y-te }
+          - { label: Tin nội bộ, value: tin-noi-bo }
+      - { name: image, label: Ảnh đại diện, widget: image }
+      - { name: excerpt, label: Tóm tắt, widget: text }
+      - { name: content, label: Nội dung, widget: markdown }
+
+  # ---------- Tài liệu ----------
+  - name: documents
+    label: Tài liệu
+    label_singular: tài liệu
+    folder: Tri-Viet-Phat-main/src/content/documents
+    format: json
+    extension: json
+    create: true
+    delete: true
+    slug: '{{title}}'
+    summary: '{{title}} ({{date}})'
+    sortable_fields: { fields: [order, title], default: { field: order, direction: ascending } }
+    fields:
+      - { name: title, label: Tiêu đề, widget: string }
+      - { name: order, label: Thứ tự hiển thị, widget: number, value_type: int, default: 0, hint: Số nhỏ hiện trước. }
+      - { name: date, label: Ngày đăng, widget: string, pattern: ['^\d{2}/\d{2}/\d{4}$', 'Nhập theo dạng ngày/tháng/năm, ví dụ 25/09/2026'] }
+      - { name: image, label: Ảnh đại diện, widget: image }
+      - { name: excerpt, label: Tóm tắt, widget: text }
+      - { name: content, label: Nội dung, widget: markdown }
+
+  # ---------- Tuyển dụng ----------
+  - name: jobs
+    label: Tuyển dụng
+    label_singular: tin tuyển dụng
+    folder: Tri-Viet-Phat-main/src/content/jobs
+    format: json
+    extension: json
+    create: true
+    delete: true
+    slug: '{{title}}'
+    summary: '{{title}} ({{date}})'
+    sortable_fields: { fields: [order, title], default: { field: order, direction: ascending } }
+    fields:
+      - { name: title, label: Vị trí tuyển dụng, widget: string }
+      - { name: order, label: Thứ tự hiển thị, widget: number, value_type: int, default: 0, hint: Số nhỏ hiện trước. }
+      - { name: date, label: Ngày đăng, widget: string, pattern: ['^\d{2}/\d{2}/\d{4}$', 'Nhập theo dạng ngày/tháng/năm, ví dụ 25/09/2026'] }
+      - { name: quantity, label: Số lượng, widget: string, hint: 'Ví dụ: 02 người' }
+      - { name: location, label: Nơi làm việc, widget: string, hint: 'Ví dụ: Hà Nội' }
+      - { name: image, label: Ảnh đại diện, widget: image }
+      - { name: excerpt, label: Tóm tắt, widget: text }
+      - { name: content, label: Mô tả công việc, widget: markdown }
+
+  # ---------- Cài đặt chung ----------
+  - name: settings
+    label: Cài đặt chung
+    editor: { preview: false }
+    files:
+      - name: company
+        label: Thông tin công ty
+        file: Tri-Viet-Phat-main/src/content/settings/company.json
+        fields:
+          - { name: name, label: Tên công ty, widget: string }
+          - { name: hotline, label: Hotline chính, widget: string }
+          - { name: hotline2, label: Hotline phụ, widget: string }
+          - { name: email, label: Email, widget: string }
+          - { name: address, label: Địa chỉ, widget: string }
+          - { name: licenseNo, label: Mã số doanh nghiệp, widget: string }
+          - { name: licensedBy, label: Nơi cấp, widget: string }
+          - { name: zaloUrl, label: Link Zalo, widget: string }
+          - { name: facebookUrl, label: Link Facebook, widget: string }
+          - { name: logoUrl, label: Logo, widget: image }
+          - { name: aboutImage, label: Ảnh trang Giới thiệu, widget: image }
+          - { name: yearsOfExperience, label: Số năm kinh nghiệm, widget: string, hint: 'Ví dụ: 16+' }
+          - { name: genuineReagents, label: Tỷ lệ hóa chất chính hãng, widget: string, hint: 'Ví dụ: 100%' }
+          - { name: provincesCovered, label: Số tỉnh thành phục vụ, widget: string }
+
+      - name: partners
+        label: Đối tác (logo trang chủ)
+        file: Tri-Viet-Phat-main/src/content/settings/partners.json
+        fields:
+          - name: partners
+            label: Danh sách đối tác
+            label_singular: đối tác
+            widget: list
+            summary: '{{fields.name}}'
+            fields:
+              - { name: name, label: Tên hãng, widget: string }
+              - { name: logo, label: Logo, widget: image }
+              - { name: url, label: Website của hãng, widget: string, required: false }
+
+      - name: about
+        label: Lĩnh vực kinh doanh (trang Giới thiệu)
+        file: Tri-Viet-Phat-main/src/content/settings/about.json
+        fields:
+          - name: businessAreas
+            label: Lĩnh vực kinh doanh
+            label_singular: lĩnh vực
+            widget: list
+            summary: '{{fields.title}}'
+            fields:
+              - { name: title, label: Tên lĩnh vực, widget: string }
+              - { name: desc, label: Mô tả, widget: text }
+
+      - name: testimonials
+        label: Đánh giá khách hàng
+        file: Tri-Viet-Phat-main/src/content/settings/testimonials.json
+        fields:
+          - name: testimonials
+            label: Danh sách đánh giá
+            label_singular: đánh giá
+            widget: list
+            summary: '{{fields.title}} {{fields.name}} — {{fields.facility}}'
+            fields:
+              - { name: isPlaceholder, label: Dữ liệu mẫu (ẩn khỏi web), widget: boolean, default: false, hint: Bật lên thì đánh giá này không hiện trên web. }
+              - { name: title, label: Học hàm / học vị, widget: string, required: false, hint: 'Ví dụ: TS. BS.' }
+              - { name: name, label: Họ tên, widget: string }
+              - { name: role, label: Chức vụ, widget: string }
+              - { name: facility, label: Đơn vị công tác, widget: string }
+              - { name: location, label: Tỉnh / thành phố, widget: string }
+              - { name: avatarUrl, label: Ảnh đại diện, widget: image, required: false }
+              - { name: quote, label: Nội dung đánh giá, widget: text }
+              - { name: rating, label: Số sao (1–5), widget: number, value_type: int, min: 1, max: 5, default: 5 }
+              - { name: datePosted, label: Ngày đánh giá, widget: string, hint: 'Ví dụ: 15/08/2025' }
+              - name: kpi
+                label: Chỉ số nổi bật
+                widget: object
+                required: false
+                fields:
+                  - { name: label, label: Nội dung, widget: string, required: false, hint: 'Ví dụ: +140% năng suất' }
+                  - { name: trend, label: Xu hướng, widget: select, required: false, options: [{ label: Tăng, value: up }, { label: Giảm, value: down }] }

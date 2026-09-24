@@ -1,0 +1,95 @@
+{
+  "order": 3,
+  "name": "Máy xét nghiệm sinh hóa tự động CS-600B",
+  "category": "may-xet-nghiem-sinh-hoa",
+  "categoryLabel": "Máy xét nghiệm sinh hóa",
+  "image": "/cs-600b.png",
+  "alt": "Máy xét nghiệm sinh hóa tự động CS-600B",
+  "shortDesc": "Thiết bị y tế chính hãng Máy xét nghiệm sinh hóa tự động CS-600B từ DIRUI INDUSTRIAL CO., LTD (Trung Quốc), đáp ứng hoàn hảo các yêu cầu xét nghiệm y khoa với độ chính xác cao, chuẩn CE & ISO 13485.",
+  "fullDesc": "Máy xét nghiệm sinh hóa tự động CS-600B được cung cấp và phân phối độc quyền bởi Công ty TNHH Thiết bị Y tế Trí Việt Phát. Sản phẩm sở hữu công nghệ tân tiến từ DIRUI INDUSTRIAL CO., LTD, mang lại giải pháp xét nghiệm toàn diện, vận hành tự động thông minh và tiết kiệm chi phí tối ưu cho phòng Lab và bệnh viện.",
+  "brand": "DIRUI INDUSTRIAL CO., LTD",
+  "origin": "Trung Quốc",
+  "model": "CS-60B",
+  "manufacturer": "DIRUI INDUSTRIAL CO., LTD",
+  "countryOfOrigin": "Trung Quốc",
+  "specs": [
+    {
+      "label": "Tốc độ",
+      "value": "600 test/h (thuốc thử đôi/ đơn) hoặc 800 test/h với ISE."
+    },
+    {
+      "label": "Các xét nghiệm phân tích đồng thời",
+      "value": "88 xét nghiệm so màu và 3 xét nghiệm ISE (K, Na, Cl –"
+    },
+    {
+      "label": "Vị trí mẫu",
+      "value": "115 vị trí mẫu bao gồm: 50 vị trí mẫu thường quy, 20 vị trí STAT, 34 vị trí chuẩn, 8 vị trí QC, 3 vị trí hóa chất rửa. Liên tục làm mát vị trí chuẩn và vị trí QC để giữ nhiệt độ từ 5~15˚ C trong vòng 24 tiếng"
+    },
+    {
+      "label": "Cuvette phản ứng",
+      "value": "120 vị trí lỗ cuvette quang bằng nhựa, đường kính quang học 6mm"
+    },
+    {
+      "label": "Tự động phát hiện mực chất lỏng",
+      "value": "Kim tự động phát hiện mực chất lỏng, đảm bảo kim xâm nhập vào chất lỏng ở độ sâu hoàn hảo và giảm thiểu lây nhiễm trên bề mặt kim."
+    },
+    {
+      "label": "Phát hiện cục nghẽn thông minh",
+      "value": "dây bơm có cảm biến áp lực có thể phát hiện tình trạng cục nghẽn. Dây bơm có chức năng rửa áp suất cao để làm sạch cục nghẽn, đảm bảo hút chính xác thể tích."
+    },
+    {
+      "label": "Công nghệ khử nước",
+      "value": "máy phân tích có thiết bị khử đặc biệt để loại bỏ khí trong đường ống, đảm bảo hút mẫu nhanh và chính xác."
+    },
+    {
+      "label": "Rửa kim",
+      "value": "rửa áp lực cao bên trong kim và bằng nước chảy liên tục bên ngoài."
+    },
+    {
+      "label": "Quy tắc QC",
+      "value": "mặc định theo quy tắc Westgard."
+    },
+    {
+      "label": "Biểu đồ QC",
+      "value": "tự động vẽ và in biểu đồ QC, L-J và Cumulative, biểu đồ đôi."
+    }
+  ],
+  "features": [
+    "Tốc độ: 600 test/h (thuốc thử đôi/ đơn) hoặc 800 test/h với ISE.",
+    "Các xét nghiệm phân tích đồng thời: 88 xét nghiệm so màu và 3 xét nghiệm ISE (K, Na, Cl –",
+    "Vị trí mẫu: 115 vị trí mẫu bao gồm: 50 vị trí mẫu thường quy, 20 vị trí STAT, 34 vị trí chuẩn, 8 vị trí QC, 3 vị trí hóa chất rửa. Liên tục làm mát vị trí chuẩn và vị trí QC để giữ nhiệt độ từ 5~15˚ C trong vòng 24 tiếng",
+    "Cuvette phản ứng: 120 vị trí lỗ cuvette quang bằng nhựa, đường kính quang học 6mm",
+    "Tự động phát hiện mực chất lỏng: Kim tự động phát hiện mực chất lỏng, đảm bảo kim xâm nhập vào chất lỏng ở độ sâu hoàn hảo và giảm thiểu lây nhiễm trên bề mặt kim.",
+    "3 kim hút có chức năng chống va chạm, tự reset, tự động hút lại mẫu và hóa chất.",
+    "Phát hiện cục nghẽn thông minh: dây bơm có cảm biến áp lực có thể phát hiện tình trạng cục nghẽn. Dây bơm có chức năng rửa áp suất cao để làm sạch cục nghẽn, đảm bảo hút chính xác thể tích.",
+    "Công nghệ khử nước: máy phân tích có thiết bị khử đặc biệt để loại bỏ khí trong đường ống, đảm bảo hút mẫu nhanh và chính xác."
+  ],
+  "detailedFeatures": [
+    {
+      "title": "2. Hệ thống cơ học hút  mẫu / hóa chất:",
+      "desc": "3 kim hút riêng biệt, một cho mẫu, hai cho hóa chất. Các kim hút được đánh bóng theo công nghệ nano, giảm thiểu lây nhiễm chéo."
+    },
+    {
+      "title": "3. Cuvette phản ứng được rửa tự động",
+      "desc": "7 trạm với 11 bước, được rửa bằng nước ấm, đảm bảo sạch hoàn toàn."
+    },
+    {
+      "title": "4. Chức năng QC và hiệu chuẩn",
+      "desc": "Hiệu chuẩn tuyến tính và phi tuyến tính, được thiết lập với thời gian, số lô thuốc thử… với phương pháp hiệu chuẩn linh hoạt."
+    }
+  ],
+  "benefits": [
+    "Nhà cung cấp uy tín thiết bị y tế ở Việt Nam",
+    "Thiết bị y tế đạt chất lượng giá cả hợp lý",
+    "Thời gian bảo hành 12 tháng, dịch vụ chuyên nghiệp",
+    "Hàng có sẵn kho có thể giao ngay",
+    "Ưu đãi khi mua hàng với số lượng lớn"
+  ],
+  "certifications": [
+    "CE Mark",
+    "ISO 13485",
+    "ISO 9001",
+    "Bộ Y tế cấp phép"
+  ],
+  "detailHtml": "**Máy xét nghiệm sinh hóa tự động CS-600B**\n\n## 1\\. Thông số kỹ thuật\n- Tốc độ: 600 test/h (thuốc thử đôi/ đơn) hoặc 800 test/h với ISE.\n- Các xét nghiệm phân tích đồng thời: 88 xét nghiệm so màu và 3 xét nghiệm ISE (K, Na, Cl – **Lựa chọn thêm**)\n- Vị trí mẫu: 115 vị trí mẫu bao gồm: 50 vị trí mẫu thường quy, 20 vị trí STAT, 34 vị trí chuẩn, 8 vị trí QC, 3 vị trí hóa chất rửa. Liên tục làm mát vị trí chuẩn và vị trí QC để giữ nhiệt độ từ 5~15˚ C trong vòng 24 tiếng\n- Cuvette phản ứng: 120 vị trí lỗ cuvette quang bằng nhựa, đường kính quang học 6mm\n\n## 2\\. Hệ thống cơ học hút mẫu / hóa chất:\n- 3 kim hút riêng biệt, một cho mẫu, hai cho hóa chất. Các kim hút được đánh bóng theo công nghệ nano, giảm thiểu lây nhiễm chéo.\n- Tự động phát hiện mực chất lỏng: Kim tự động phát hiện mực chất lỏng, đảm bảo kim xâm nhập vào chất lỏng ở độ sâu hoàn hảo và giảm thiểu lây nhiễm trên bề mặt kim.\n- 3 sy-ranh riêng biệt, một cho mẫu, hai cho hóa chất. Sy-ranh được làm bằng piston ceramic có tuổi thọ cao, đảm bảo hút mẫu chính xác, chi phí bảo trì thấp.\n- 3 kim hút có chức năng chống va chạm, tự reset, tự động hút lại mẫu và hóa chất.\n- Phát hiện cục nghẽn thông minh: dây bơm có cảm biến áp lực có thể phát hiện tình trạng cục nghẽn. Dây bơm có chức năng rửa áp suất cao để làm sạch cục nghẽn, đảm bảo hút chính xác thể tích.\n- Công nghệ khử nước: máy phân tích có thiết bị khử đặc biệt để loại bỏ khí trong đường ống, đảm bảo hút mẫu nhanh và chính xác.\n- Tự động phát hiện thể tích mẫu, thể tích chất thử còn lại và số xét nghiệm tương ứng. Máy có cảnh báo khi thể tích không đủ để tiếp tục xét nghiệm.\n- Rửa kim: rửa áp lực cao bên trong kim và bằng nước chảy liên tục bên ngoài.\n- Kim có chức năng phát hiện tắc nghẽn.\n\n## 3\\. Cuvette phản ứng được rửa tự động\n- 7 trạm với 11 bước, được rửa bằng nước ấm, đảm bảo sạch hoàn toàn.\n- Thoát nước chân không, rửa bằng nước ấm và nước rửa chuyên dụng giúp tăng cường khả năng làm sạch.\n\n## 4\\. Chức năng QC và hiệu chuẩn\n- Hiệu chuẩn tuyến tính và phi tuyến tính, được thiết lập với thời gian, số lô thuốc thử… với phương pháp hiệu chuẩn linh hoạt.\n- 9 loại đường cong hiệu chuẩn đáp ứng nhiều yêu cầu phân tích khác nnhau.\n- Có thể sử dụng 6 mức hiệu chuẩn khác nhau cho mỗi xét nghiệm.\n- Có chức năng truy vấn hiệu chuẩn, vẽ độ trượt (trend) của giá trị K hiệu chuẩn, giúp giảm thiểu lỗi hệ thống.\n- QC theo nhu cầu và QC hàng tháng, đảm bảo máy hoạt động trong điều kiện tốt nhất.\n- Quy tắc QC: mặc định theo quy tắc Westgard.\n- Biểu đồ QC: tự động vẽ và in biểu đồ QC, L-J và Cumulative, biểu đồ đôi.\n- Tự động lưu trữ nguyên nhân dẫn đến máy ngoài tầm kiểm soát và dữ liệu sơ cấp, giúp quản lý chất phòng lab QC."
+}

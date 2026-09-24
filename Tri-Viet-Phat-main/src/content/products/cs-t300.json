@@ -1,0 +1,61 @@
+{
+  "order": 9,
+  "name": "Máy xét nghiệm sinh hóa tự động CS –T300",
+  "category": "may-xet-nghiem-sinh-hoa",
+  "categoryLabel": "Máy xét nghiệm sinh hóa",
+  "image": "/cs-t300.png",
+  "alt": "Máy xét nghiệm sinh hóa tự động CS –T300",
+  "shortDesc": "Thiết bị y tế chính hãng Máy xét nghiệm sinh hóa tự động CS –T300 từ DIRUI INDUSTRIAL CO., LTD (Trung Quốc), đáp ứng hoàn hảo các yêu cầu xét nghiệm y khoa với độ chính xác cao, chuẩn CE & ISO 13485.",
+  "fullDesc": "Máy xét nghiệm sinh hóa tự động CS –T300 được cung cấp và phân phối độc quyền bởi Công ty TNHH Thiết bị Y tế Trí Việt Phát. Sản phẩm sở hữu công nghệ tân tiến từ DIRUI INDUSTRIAL CO., LTD, mang lại giải pháp xét nghiệm toàn diện, vận hành tự động thông minh và tiết kiệm chi phí tối ưu cho phòng Lab và bệnh viện.",
+  "brand": "DIRUI INDUSTRIAL CO., LTD",
+  "origin": "Trung Quốc",
+  "model": "CS –T300",
+  "manufacturer": "DIRUI INDUSTRIAL CO., LTD",
+  "countryOfOrigin": "Trung Quốc",
+  "specs": [
+    {
+      "label": "Tốc độ",
+      "value": "300 xét nghiệm hóa sinh/ giờ."
+    },
+    {
+      "label": "Vị trí mẫu và chất thử",
+      "value": "chất thử và mẫu được dùng chung 1 khay, tổng 67 vị trí. Mẫu và chất thử được làm mát ở nhiệt độ 5 – 15"
+    },
+    {
+      "label": "Cuvette mẫu",
+      "value": "Cốc chuẩn, ống máu gốc, ống nghiệm với nhiều kích cỡ."
+    },
+    {
+      "label": "Cuvette phản ứng",
+      "value": "120 vị trí cho cuvette nhựa quang học, đường kính 6mm."
+    }
+  ],
+  "features": [
+    "Tốc độ: 300 xét nghiệm hóa sinh/ giờ.",
+    "Vị trí mẫu và chất thử: chất thử và mẫu được dùng chung 1 khay, tổng 67 vị trí. Mẫu và chất thử được làm mát ở nhiệt độ 5 – 15",
+    "Cuvette mẫu: Cốc chuẩn, ống máu gốc, ống nghiệm với nhiều kích cỡ.",
+    "Cuvette phản ứng: 120 vị trí cho cuvette nhựa quang học, đường kính 6mm.",
+    "Kết nối LIS/HIS, có hỗ trợ bảo trì từ xa.",
+    "Nhập thông tin bệnh nhân dễ dàng, do người sử dụng quy định."
+  ],
+  "detailedFeatures": [
+    {
+      "title": "trong vòng 24 giờ",
+      "desc": "Tự động phát hiện mức chất lỏng, nhằm đảm bảo thiết bị hoạt động ổn định và giảm thiểu lây nhiễm chéo qua bề mặt kim hút."
+    }
+  ],
+  "benefits": [
+    "Nhà cung cấp uy tín thiết bị y tế ở Việt Nam",
+    "Thiết bị y tế đạt chất lượng giá cả hợp lý",
+    "Thời gian bảo hành 12 tháng, dịch vụ chuyên nghiệp",
+    "Hàng có sẵn kho có thể giao ngay",
+    "Ưu đãi khi mua hàng với số lượng lớn"
+  ],
+  "certifications": [
+    "CE Mark",
+    "ISO 13485",
+    "ISO 9001",
+    "Bộ Y tế cấp phép"
+  ],
+  "detailHtml": "**Máy xét nghiệm sinh hóa tự động CS –T300**\n\n**Thông số kỹ thuật:**\n\n- Tốc độ: 300 xét nghiệm hóa sinh/ giờ.\n- Vị trí mẫu và chất thử: chất thử và mẫu được dùng chung 1 khay, tổng 67 vị trí. Mẫu và chất thử được làm mát ở nhiệt độ 5 – 15<sup>0</sup> trong vòng 24 giờ\n- Cuvette mẫu: Cốc chuẩn, ống máu gốc, ống nghiệm với nhiều kích cỡ.\n- Cuvette phản ứng: 120 vị trí cho cuvette nhựa quang học, đường kính 6mm.\n- Tự động phát hiện mức chất lỏng, nhằm đảm bảo thiết bị hoạt động ổn định và giảm thiểu lây nhiễm chéo qua bề mặt kim hút.\n- Khay chứa mẫu và hoá chất đa chức năng, người sử dụng có thể tự quy định vị trí mẫu và vị trí thuốc thử. Hỗ trợ nhiều dạng ống mẫu và cuvette mẫu\n- Kết nối LIS/HIS, có hỗ trợ bảo trì từ xa.\n- Nhập thông tin bệnh nhân dễ dàng, do người sử dụng quy định."
+}

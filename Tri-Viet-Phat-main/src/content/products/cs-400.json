@@ -1,0 +1,79 @@
+{
+  "order": 5,
+  "name": "Máy xét nghiệm sinh học tự động CS-400",
+  "category": "may-xet-nghiem-sinh-hoa",
+  "categoryLabel": "Máy xét nghiệm sinh hóa",
+  "image": "/cs-400.png",
+  "alt": "Máy xét nghiệm sinh học tự động CS-400",
+  "shortDesc": "Thiết bị y tế chính hãng Máy xét nghiệm sinh học tự động CS-400 từ DIRUI INDUSTRIAL CO., LTD (Trung Quốc), đáp ứng hoàn hảo các yêu cầu xét nghiệm y khoa với độ chính xác cao, chuẩn CE & ISO 13485.",
+  "fullDesc": "Máy xét nghiệm sinh học tự động CS-400 được cung cấp và phân phối độc quyền bởi Công ty TNHH Thiết bị Y tế Trí Việt Phát. Sản phẩm sở hữu công nghệ tân tiến từ DIRUI INDUSTRIAL CO., LTD, mang lại giải pháp xét nghiệm toàn diện, vận hành tự động thông minh và tiết kiệm chi phí tối ưu cho phòng Lab và bệnh viện.",
+  "brand": "DIRUI INDUSTRIAL CO., LTD",
+  "origin": "Trung Quốc",
+  "model": "CS-400",
+  "manufacturer": "DIRUI INDUSTRIAL CO., LTD",
+  "countryOfOrigin": "Trung Quốc",
+  "specs": [
+    {
+      "label": "Tự động phát hiện mực chất lỏng",
+      "value": "Kim tự động phát hiện mực chất lỏng, đảm bảo kim xâm nhập vào chất lỏng ở độ sâu hoàn hảo và giảm thiểu lây nhiễm trên bề mặt kim."
+    },
+    {
+      "label": "Phát hiện cục nghẽn thông minh",
+      "value": "dây bơm có cảm biến áp lực có thể phát hiện tình trạng cục nghẽn. Dây bơm có chức năng rửa áp suất cao để làm sạch cục nghẽn, đảm bảo hút chính xác thể tích."
+    },
+    {
+      "label": "Quy tắc QC",
+      "value": "mặc định theo quy tắc Westgard"
+    },
+    {
+      "label": "Biểu đồ QC",
+      "value": "tự động vẽ và in biểu đồ QC, L-J và Cumulative."
+    }
+  ],
+  "features": [
+    "Kim hút 60nm được đánh bóng với chức năng phát hiện mực chất lỏng, tắc nghẽn và tránh va chạm.",
+    "Cuvette so màu tự động rửa và phát hiện cuvette trống.",
+    "Chạy lại mẫu và chức năng pha loãng.",
+    "Phần mền vận hành bằng tiếng Anh, hỗ trợ in báo cáo nhiều format.",
+    "Tự động phát hiện mực chất lỏng: Kim tự động phát hiện mực chất lỏng, đảm bảo kim xâm nhập vào chất lỏng ở độ sâu hoàn hảo và giảm thiểu lây nhiễm trên bề mặt kim.",
+    "3 kim hút có chức năng chống va chạm, tự reset, tự động hút lại mẫu và hóa chất.",
+    "Phát hiện cục nghẽn thông minh: dây bơm có cảm biến áp lực có thể phát hiện tình trạng cục nghẽn. Dây bơm có chức năng rửa áp suất cao để làm sạch cục nghẽn, đảm bảo hút chính xác thể tích.",
+    "Bề mặt que được tráng telfon để tránh hình thành thể vẩn trong chất lỏng và giảm lây nhiễm chéo."
+  ],
+  "detailedFeatures": [
+    {
+      "title": "1. Đặc điểm chung",
+      "desc": "Spectrophotometer của lưới sóng mặt phẳng lõm kỹ thuật toàn cảnh và đường quang chùm, giúp nhận diện được thể tích siêu nhỏ của dung dịch phản ứng."
+    },
+    {
+      "title": "2. Hệ thống cơ học hút  mẫu / hóa chất:",
+      "desc": "3 kim hút riêng biệt, một cho mẫu, hai cho hóa chất. Các kim hút được đánh bóng theo công nghệ nano, giảm thiểu lây nhiễm chéo."
+    },
+    {
+      "title": "3. Hệ thống cơ học của que khuấy đôi",
+      "desc": "2 que khuấy riêng biệt bắt đầu khuấy ngay sau khi máy thêm hóa chất để trộn đều dung dịch phản ứng."
+    },
+    {
+      "title": "4. Cuvette phản ứng được rửa tự động",
+      "desc": "7 trạm với 11 bước, được rửa bằng nước ấm, đảm bảo sạch hoàn toàn."
+    },
+    {
+      "title": "5. Chức năng QC và hiệu chuẩn",
+      "desc": "Hiệu chuẩn tuyến tính và phi tuyến tính, được thiết lập với thời gian, số lô thuốc thử… với phương pháp hiệu chuẩn linh hoạt."
+    }
+  ],
+  "benefits": [
+    "Nhà cung cấp uy tín thiết bị y tế ở Việt Nam",
+    "Thiết bị y tế đạt chất lượng giá cả hợp lý",
+    "Thời gian bảo hành 12 tháng, dịch vụ chuyên nghiệp",
+    "Hàng có sẵn kho có thể giao ngay",
+    "Ưu đãi khi mua hàng với số lượng lớn"
+  ],
+  "certifications": [
+    "CE Mark",
+    "ISO 13485",
+    "ISO 9001",
+    "Bộ Y tế cấp phép"
+  ],
+  "detailHtml": "**Máy xét nghiệm sinh học tự động CS-400**\n\n## 1\\. Đặc điểm chung\n- Spectrophotometer của lưới sóng mặt phẳng lõm kỹ thuật toàn cảnh và đường quang chùm, giúp nhận diện được thể tích siêu nhỏ của dung dịch phản ứng.\n- Kim hút 60nm được đánh bóng với chức năng phát hiện mực chất lỏng, tắc nghẽn và tránh va chạm.\n- Cuvette so màu tự động rửa và phát hiện cuvette trống.\n- Chạy lại mẫu và chức năng pha loãng.\n- Phần mền vận hành bằng tiếng Anh, hỗ trợ in báo cáo nhiều format.\n- Người dùng có thể tự nhập thông tin bệnh nhân theo mẻ/batch kết hợp, phù hợp để thiết lập nhanh cho các bệnh viện đặc biệt, trạm máu và các đợt kiểm tra sức khỏe.\n\n## 2\\. Hệ thống cơ học hút mẫu / hóa chất:\n- 3 kim hút riêng biệt, một cho mẫu, hai cho hóa chất. Các kim hút được đánh bóng theo công nghệ nano, giảm thiểu lây nhiễm chéo.\n- Tự động phát hiện mực chất lỏng: Kim tự động phát hiện mực chất lỏng, đảm bảo kim xâm nhập vào chất lỏng ở độ sâu hoàn hảo và giảm thiểu lây nhiễm trên bề mặt kim.\n- 3 sy-ranh riêng biệt, một cho mẫu, hai cho hóa chất. Sy-ranh được làm bằng piston ceramic có tuổi thọ cao, đảm bảo hút mẫu chính xác, chi phí bảo trì thấp.\n- 3 kim hút có chức năng chống va chạm, tự reset, tự động hút lại mẫu và hóa chất.\n- Phát hiện cục nghẽn thông minh: dây bơm có cảm biến áp lực có thể phát hiện tình trạng cục nghẽn. Dây bơm có chức năng rửa áp suất cao để làm sạch cục nghẽn, đảm bảo hút chính xác thể tích.\n\n## 3\\. Hệ thống cơ học của que khuấy đôi\n- 2 que khuấy riêng biệt bắt đầu khuấy ngay sau khi máy thêm hóa chất để trộn đều dung dịch phản ứng.\n- Bề mặt que được tráng telfon để tránh hình thành thể vẩn trong chất lỏng và giảm lây nhiễm chéo.\n- Que khấy có thiết kế dạng mái chèo, được rửa theo phương thức cuộn tròn với hiệu quả làm sạch tốt nhất\n\n## 4\\. Cuvette phản ứng được rửa tự động\n- 7 trạm với 11 bước, được rửa bằng nước ấm, đảm bảo sạch hoàn toàn.\n- Thoát nước chân không, rửa bằng nước ấm và nước rửa chuyên dụng giúp tăng cường khả năng làm sạch.\n\n## 5\\. Chức năng QC và hiệu chuẩn\n- Hiệu chuẩn tuyến tính và phi tuyến tính, được thiết lập với thời gian, số lô thuốc thử… với phương pháp hiệu chuẩn linh hoạt.\n- 9 loại đường cong hiệu chuẩn đáp ứng nhiều yêu cầu phân tích khác nnhau.\n- Có thể sử dụng 6 mức hiệu chuẩn khác nhau cho mỗi xét nghiệm.\n- Có chức năng truy vấn hiệu chuẩn, vẽ độ trượt (trend) của giá trị K hiệu chuẩn, giúp giảm thiểu lỗi hệ thống.\n- QC theo nhu cầu và QC hàng tháng, đảm bảo máy hoạt động trong điều kiện tốt nhất.\n- Quy tắc QC: mặc định theo quy tắc Westgard\n- Biểu đồ QC: tự động vẽ và in biểu đồ QC, L-J và Cumulative.\n- Tự động lưu trữ nguyên nhân dẫn đến máy ngoài tầm kiểm soát và dữ liệu sơ cấp, giúp quản lý chất phòng lab QC."
+}

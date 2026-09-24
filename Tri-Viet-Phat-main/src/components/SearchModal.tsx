@@ -1,12 +1,13 @@
 import React, { useState, useMemo } from 'react';
-import { PRODUCTS, ARTICLES } from '../data/mockData';
-import { Product, Article } from '../types';
+import { PRODUCTS } from '../data/mockData';
+import { REAL_NEWS_ARTICLES, SiteArticle } from '../data/realSiteContent';
+import { Product } from '../types';
 
 interface SearchModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSelectProduct: (product: Product) => void;
-  onSelectArticle: (article: Article) => void;
+  onSelectArticle: (article: SiteArticle) => void;
 }
 
 export const SearchModal: React.FC<SearchModalProps> = ({
@@ -30,13 +31,13 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   }, [query]);
 
   const filteredArticles = useMemo(() => {
-    if (!query.trim()) return ARTICLES.slice(0, 3);
+    if (!query.trim()) return REAL_NEWS_ARTICLES.slice(0, 3);
     const q = query.toLowerCase();
-    return ARTICLES.filter(
+    return REAL_NEWS_ARTICLES.filter(
       (a) =>
         a.title.toLowerCase().includes(q) ||
         a.excerpt.toLowerCase().includes(q) ||
-        a.category.toLowerCase().includes(q)
+        a.plainText.toLowerCase().includes(q)
     );
   }, [query]);
 
@@ -144,7 +145,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                   >
                     <img
                       src={art.image}
-                      alt={art.alt}
+                      alt={art.title}
                       className="w-12 h-12 object-cover  bg-[#f3f7fb] border border-[#e5e5e5]"
                     />
                     <div className="flex-1 min-w-0">

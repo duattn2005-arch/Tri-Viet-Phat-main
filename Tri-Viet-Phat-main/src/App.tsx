@@ -5,13 +5,13 @@
 
 import { useEffect, useState } from 'react';
 import { AnimatePresence, MotionConfig, motion } from 'motion/react';
-import { PageTab, Product, Article } from './types';
+import { PageTab, Product } from './types';
+import { SiteArticle } from './data/realSiteContent';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { FloatingActions } from './components/FloatingActions';
 import { AiChatBubble } from './components/AiChatBubble';
 import { ProductDetailModal } from './components/ProductDetailModal';
-import { ArticleDetailModal } from './components/ArticleDetailModal';
 import { ConsultationModal } from './components/ConsultationModal';
 import { RepairServiceModal } from './components/RepairServiceModal';
 import { SearchModal } from './components/SearchModal';
@@ -30,7 +30,7 @@ export default function App() {
 
   // Modal States
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
+  const [newsArticleId, setNewsArticleId] = useState<string>('');
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
   const [consultationProduct, setConsultationProduct] = useState<string>('');
   const [isRepairServiceOpen, setIsRepairServiceOpen] = useState(false);
@@ -54,6 +54,14 @@ export default function App() {
   const handleSelectTab = (tab: PageTab, cat?: string) => {
     setCurrentTab(tab);
     setCategoryFilter(cat || 'all');
+    setNewsArticleId('');
+  };
+
+  const handleOpenNewsArticle = (article: SiteArticle) => {
+    setCurrentTab('tin-tuc');
+    setCategoryFilter('all');
+    setNewsArticleId(article.id);
+    window.scrollTo({ top: 0 });
   };
 
   const handleOpenConsultation = (prefilledProd?: string) => {
@@ -91,7 +99,7 @@ export default function App() {
               {currentTab === 'trang-chu' && (
                 <HomeScreen
                   onSelectProduct={(p) => setSelectedProduct(p)}
-                  onSelectArticle={(a) => setSelectedArticle(a)}
+                  onSelectArticle={handleOpenNewsArticle}
                   onNavigateTab={handleSelectTab}
                   onOpenConsultation={handleOpenConsultation}
                   onOpenRepairService={handleOpenRepairService}
@@ -123,7 +131,7 @@ export default function App() {
                   initialCategory={categoryFilter}
                   onNavigateCategory={(cat) => handleSelectTab('tin-tuc', cat)}
                   onNavigateTab={handleSelectTab}
-                  onSelectArticle={(a) => setSelectedArticle(a)}
+                  initialArticleId={newsArticleId}
                 />
               )}
 
@@ -166,12 +174,6 @@ export default function App() {
           onRequestQuote={(prodName) => handleOpenConsultation(prodName)}
         />
 
-        <ArticleDetailModal
-          article={selectedArticle}
-          onClose={() => setSelectedArticle(null)}
-          onOpenConsultation={() => handleOpenConsultation()}
-        />
-
         <ConsultationModal
           isOpen={isConsultationOpen}
           onClose={() => setIsConsultationOpen(false)}
@@ -187,7 +189,7 @@ export default function App() {
           isOpen={isSearchOpen}
           onClose={() => setIsSearchOpen(false)}
           onSelectProduct={(p) => setSelectedProduct(p)}
-          onSelectArticle={(a) => setSelectedArticle(a)}
+          onSelectArticle={handleOpenNewsArticle}
         />
       </div>
     </MotionConfig>

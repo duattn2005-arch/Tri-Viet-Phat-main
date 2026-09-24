@@ -1,0 +1,89 @@
+{
+  "testimonials": [
+    {
+      "id": "kh-01",
+      "title": "TS. BS.",
+      "name": "Nguyễn Văn A",
+      "role": "Trưởng khoa Xét nghiệm",
+      "facility": "Bệnh viện Đa khoa (đang cập nhật)",
+      "location": "Hà Nội",
+      "avatarInitials": "NA",
+      "quote": "Đang thu thập nhận xét thực tế từ khách hàng. Nội dung sẽ được cập nhật sau khi hoàn tất khảo sát.",
+      "rating": 5,
+      "kpi": {
+        "label": "+140% năng suất",
+        "trend": "up"
+      },
+      "datePosted": "15/08/2025",
+      "isPlaceholder": true
+    },
+    {
+      "id": "kh-02",
+      "title": "CN.",
+      "name": "Trần Thị B",
+      "role": "Kỹ thuật viên trưởng",
+      "facility": "Trung tâm Y tế (đang cập nhật)",
+      "location": "TP.HCM",
+      "avatarInitials": "TB",
+      "quote": "Đang thu thập nhận xét thực tế từ khách hàng. Nội dung sẽ được cập nhật sau khi hoàn tất khảo sát.",
+      "rating": 5,
+      "kpi": {
+        "label": "-85% lỗi máy",
+        "trend": "down"
+      },
+      "datePosted": "02/09/2025",
+      "isPlaceholder": true
+    },
+    {
+      "id": "kh-03",
+      "title": "ThS. BS.",
+      "name": "Lê Văn C",
+      "role": "Giám đốc phòng khám",
+      "facility": "Phòng khám Đa khoa (đang cập nhật)",
+      "location": "Hà Nội",
+      "avatarInitials": "LC",
+      "quote": "Đang thu thập nhận xét thực tế từ khách hàng. Nội dung sẽ được cập nhật sau khi hoàn tất khảo sát.",
+      "rating": 5,
+      "kpi": {
+        "label": "+60% tốc độ trả kết quả",
+        "trend": "up"
+      },
+      "datePosted": "20/09/2025",
+      "isPlaceholder": true
+    },
+    {
+      "id": "kh-04",
+      "title": "CN.",
+      "name": "Phạm Thị D",
+      "role": "Quản lý phòng Lab",
+      "facility": "Bệnh viện (đang cập nhật)",
+      "location": "TP.HCM",
+      "avatarInitials": "PD",
+      "quote": "Đang thu thập nhận xét thực tế từ khách hàng. Nội dung sẽ được cập nhật sau khi hoàn tất khảo sát.",
+      "rating": 5,
+      "kpi": {
+        "label": "-30% thời gian chờ",
+        "trend": "down"
+      },
+      "datePosted": "05/10/2025",
+      "isPlaceholder": true
+    },
+    {
+      "id": "kh-05",
+      "title": "TS. BS.",
+      "name": "Hoàng Văn E",
+      "role": "Trưởng phòng Xét nghiệm",
+      "facility": "Trung tâm Y tế Dự phòng (đang cập nhật)",
+      "location": "Hà Nội",
+      "avatarInitials": "HE",
+      "quote": "Đang thu thập nhận xét thực tế từ khách hàng. Nội dung sẽ được cập nhật sau khi hoàn tất khảo sát.",
+      "rating": 5,
+      "kpi": {
+        "label": "+95% hài lòng khách hàng",
+        "trend": "up"
+      },
+      "datePosted": "18/10/2025",
+      "isPlaceholder": true
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "partners": [
+    {
+      "name": "DIRUI",
+      "logo": "/partners/dirui.png",
+      "url": "https://en.dirui.com.cn/"
+    },
+    {
+      "name": "CHEMA",
+      "logo": "/partners/chema.svg",
+      "url": "https://www.chema.com/"
+    },
+    {
+      "name": "Wondfo",
+      "logo": "/partners/wondfo.png",
+      "url": "https://en.wondfo.com/"
+    },
+    {
+      "name": "EKF",
+      "logo": "/partners/ekf.jpg",
+      "url": "https://www.ekfdiagnostics.com/"
+    },
+    {
+      "name": "Drawray",
+      "logo": "/partners/drawray.svg",
+      "url": "https://en.szdrawray.com/"
+    },
+    {
+      "name": "AUDICOM",
+      "logo": "/partners/audicom.png",
+      "url": "https://www.audicomivd.com/"
+    },
+    {
+      "name": "Convergent",
+      "logo": "/partners/convergent.svg",
+      "url": "https://convergent-technologies.de/"
+    },
+    {
+      "name": "dewei 德威",
+      "logo": "/partners/dewei.png",
+      "url": "https://www.deweilab.com/index-en.asp"
+    }
+  ]
+}

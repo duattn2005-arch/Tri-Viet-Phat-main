@@ -1,0 +1,59 @@
+{
+  "order": 19,
+  "name": "Máy xét nghiệm nước tiểu H-500",
+  "category": "may-xet-nghiem-nuoc-tieu",
+  "categoryLabel": "Máy xét nghiệm nước tiểu",
+  "image": "/h-500.png",
+  "alt": "Máy xét nghiệm nước tiểu H-500",
+  "shortDesc": "Thiết bị y tế chính hãng Máy xét nghiệm nước tiểu H-500 từ DIRUI INDUSTRIAL CO., LTD (Trung Quốc), đáp ứng hoàn hảo các yêu cầu xét nghiệm y khoa với độ chính xác cao, chuẩn CE & ISO 13485.",
+  "fullDesc": "Máy xét nghiệm nước tiểu H-500 được cung cấp và phân phối độc quyền bởi Công ty TNHH Thiết bị Y tế Trí Việt Phát. Sản phẩm sở hữu công nghệ tân tiến từ DIRUI INDUSTRIAL CO., LTD, mang lại giải pháp xét nghiệm toàn diện, vận hành tự động thông minh và tiết kiệm chi phí tối ưu cho phòng Lab và bệnh viện.",
+  "brand": "DIRUI INDUSTRIAL CO., LTD",
+  "origin": "Trung Quốc",
+  "model": "H-500",
+  "manufacturer": "DIRUI INDUSTRIAL CO., LTD",
+  "countryOfOrigin": "Trung Quốc",
+  "specs": [
+    {
+      "label": "Tốc độ cao",
+      "value": "514 que/ h, một xét nghiệm cho 11 thông số có thể  hoàn thành chỉ trong vòng 7 giây."
+    },
+    {
+      "label": "Loại que thử",
+      "value": "DIRUI H8, H10, H11 và H11 MA (N)"
+    },
+    {
+      "label": "Bộ nhớ",
+      "value": "2000 kết quả bệnh nhân"
+    }
+  ],
+  "features": [
+    "Tốc độ cao: 514 que/ h, một xét nghiệm cho 11 thông số có thể  hoàn thành chỉ trong vòng 7 giây.",
+    "Loại que thử: DIRUI H8, H10, H11 và H11 MA (N)",
+    "Bộ nhớ: 2000 kết quả bệnh nhân",
+    "Tự động điều chỉnh kết quả xét nghiệm bị ảnh hưởng bởi không đặc hiệu (non –specificity), pH, tỉ trọng và màu sắc.",
+    "Màn hình LCD rộng.",
+    "Tự động nhận diện các que thử đã sẵn sàng xét nghiệm, dễ dàng vận hành.",
+    "Máy in nhiệt tích hợp, tốc độ cao và độ ồn thấp; hoặc sử dụng máy in kết nối ngoài.",
+    "Có thể kết nối với máy đọc mã vạch bên ngoài (lựa chọn thêm)"
+  ],
+  "detailedFeatures": [
+    {
+      "title": "1. Đặc điểm sản phẩm",
+      "desc": "Máy dùng nguồn sáng lạnh độ sáng cao với 4 bước sóng, cải thiện độ nhạy, độ chính xác, và giảm thiểu sự can thiệp của nguồn sáng xung quanh."
+    }
+  ],
+  "benefits": [
+    "Nhà cung cấp uy tín thiết bị y tế ở Việt Nam",
+    "Thiết bị y tế đạt chất lượng giá cả hợp lý",
+    "Thời gian bảo hành 12 tháng, dịch vụ chuyên nghiệp",
+    "Hàng có sẵn kho có thể giao ngay",
+    "Ưu đãi khi mua hàng với số lượng lớn"
+  ],
+  "certifications": [
+    "CE Mark",
+    "ISO 13485",
+    "ISO 9001",
+    "Bộ Y tế cấp phép"
+  ],
+  "detailHtml": "**Máy xét nghiệm nước tiểu H-500**\n\n**1\\. Đặc điểm sản phẩm**\n\n- Tốc độ cao: 514 que/ h, một xét nghiệm cho 11 thông số có thể hoàn thành chỉ trong vòng 7 giây.\n- Loại que thử: DIRUI H8, H10, H11 và H11 MA (N)\n- Bộ nhớ: 2000 kết quả bệnh nhân\n- Máy dùng nguồn sáng lạnh độ sáng cao với 4 bước sóng, cải thiện độ nhạy, độ chính xác, và giảm thiểu sự can thiệp của nguồn sáng xung quanh.\n- Tự động điều chỉnh kết quả xét nghiệm bị ảnh hưởng bởi không đặc hiệu (non –specificity), pH, tỉ trọng và màu sắc.\n- Màn hình LCD rộng.\n- Tự động nhận diện các que thử đã sẵn sàng xét nghiệm, dễ dàng vận hành.\n- Máy in nhiệt tích hợp, tốc độ cao và độ ồn thấp; hoặc sử dụng máy in kết nối ngoài.\n- Có thể kết nối với máy đọc mã vạch bên ngoài (lựa chọn thêm)\n- Có thể kết nối với máy phân tích cặn nước tiểu.\n- Người dùng có thể tự mình cài đặt cờ báo giá trị bất thường.\n- Có hệ thống lấy nước tiểu thừa."
+}

@@ -1,0 +1,73 @@
+{
+  "order": 12,
+  "name": "Máy xét nghiệm huyết học BCC-3900",
+  "category": "may-xet-nghiem-huyet-hoc",
+  "categoryLabel": "Máy xét nghiệm huyết học",
+  "image": "/bcc-3900.png",
+  "alt": "Máy xét nghiệm huyết học BCC-3900",
+  "shortDesc": "Thiết bị y tế chính hãng Máy xét nghiệm huyết học BCC-3900 từ DIRUI INDUSTRIAL CO., LTD (Trung Quốc), đáp ứng hoàn hảo các yêu cầu xét nghiệm y khoa với độ chính xác cao, chuẩn CE & ISO 13485.",
+  "fullDesc": "Máy xét nghiệm huyết học BCC-3900 được cung cấp và phân phối độc quyền bởi Công ty TNHH Thiết bị Y tế Trí Việt Phát. Sản phẩm sở hữu công nghệ tân tiến từ DIRUI INDUSTRIAL CO., LTD, mang lại giải pháp xét nghiệm toàn diện, vận hành tự động thông minh và tiết kiệm chi phí tối ưu cho phòng Lab và bệnh viện.",
+  "brand": "DIRUI INDUSTRIAL CO., LTD",
+  "origin": "Trung Quốc",
+  "model": "BCC-3900",
+  "manufacturer": "DIRUI INDUSTRIAL CO., LTD",
+  "countryOfOrigin": "Trung Quốc",
+  "specs": [
+    {
+      "label": "Công suất",
+      "value": "70 xét nghiệm/h"
+    },
+    {
+      "label": "Chế độ lấy mẫu",
+      "value": "thủ công."
+    },
+    {
+      "label": "Bộ nhớ",
+      "value": "lưu được hơn 500.000 kết quả"
+    }
+  ],
+  "features": [
+    "Công suất: 70 xét nghiệm/h",
+    "Chế độ lấy mẫu: thủ công.",
+    "Bộ nhớ: lưu được hơn 500.000 kết quả",
+    "Cài đặt chế độ ngủ tự động.",
+    "Tự động phát hiện lượng hóa chất còn tồn.",
+    "Có thể kết nối hai chiều với LIS/HIS."
+  ],
+  "detailedFeatures": [
+    {
+      "title": "21 thông số và 3 biểu đồ WBC, RBC, PLT",
+      "desc": "Có cảnh báo bất thường về bệnh học và hình thái học."
+    },
+    {
+      "title": "2. Thông số kỹ thuật:",
+      "desc": "Được trang bị thêm máy đọc mã vạch."
+    },
+    {
+      "title": "3. Có khả năng truy vấn:",
+      "desc": "Thông tin về máy gốc, hóa chất, CQ và hiệu chuẩn đều có thể truy vấn."
+    },
+    {
+      "title": "L-J, X-B, X-R",
+      "desc": "3 cấp độ kiểm soát cho QC hàng ngày với biểu đồ Levey-Jenning."
+    },
+    {
+      "title": "Chỉ với 6ul cho 1 xét nghiệm với máu toàn phần",
+      "desc": "Hóa chất đo HGB không chứa xyanua độc hại."
+    }
+  ],
+  "benefits": [
+    "Nhà cung cấp uy tín thiết bị y tế ở Việt Nam",
+    "Thiết bị y tế đạt chất lượng giá cả hợp lý",
+    "Thời gian bảo hành 12 tháng, dịch vụ chuyên nghiệp",
+    "Hàng có sẵn kho có thể giao ngay",
+    "Ưu đãi khi mua hàng với số lượng lớn"
+  ],
+  "certifications": [
+    "CE Mark",
+    "ISO 13485",
+    "ISO 9001",
+    "Bộ Y tế cấp phép"
+  ],
+  "detailHtml": "**Máy xét nghiệm huyết học BCC-3900**\n\n**1\\. Kết quả chính xác với độ tin cậy cao:**\n\n- 21 thông số và 3 biểu đồ WBC, RBC, PLT\n- Có cảnh báo bất thường về bệnh học và hình thái học.\n\n**2\\. Thông số kỹ thuật:**\n\n- Công suất: 70 xét nghiệm/h\n- Chế độ lấy mẫu: thủ công.\n- Bộ nhớ: lưu được hơn 500.000 kết quả\n- Được trang bị thêm máy đọc mã vạch.\n- Cài đặt chế độ ngủ tự động.\n\n**3\\. Có khả năng truy vấn:**\n\n- Thông tin về máy gốc, hóa chất, CQ và hiệu chuẩn đều có thể truy vấn.\n\n**4\\. Lựa chọn hợp lý về kinh tế:**\n\n- Chi phí thấp nhưng lợi ích lớn\n- Tiêu thụ hóa chất thấp\n\n**5\\. Chức năng QC hoàn hảo:**\n\n- L-J, X-B, X-R\n- 3 cấp độ kiểm soát cho QC hàng ngày với biểu đồ Levey-Jenning.\n\n**6\\. Bộ nhớ và giao diện lớn**\n\n- Có khả năng lưu 500.000 kết quả\n- 4 cổng USB\n- Cổng RJ45 cho mạng LAN\n\n**7\\. Thiết kế thân thiện với người dùng:**\n\n- Chỉ với 6ul cho 1 xét nghiệm với máu toàn phần\n- Hóa chất đo HGB không chứa xyanua độc hại.\n- Tự động phát hiện lượng hóa chất còn tồn.\n- Có thể kết nối hai chiều với LIS/HIS."
+}

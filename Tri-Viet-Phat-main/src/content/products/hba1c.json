@@ -1,0 +1,75 @@
+{
+  "order": 15,
+  "name": "Máy xét nghiệm HbA1c",
+  "category": "may-xet-nghiem-hba1c",
+  "categoryLabel": "Máy xét nghiệm HbA1c Quo-Test",
+  "image": "/hba1c.png",
+  "alt": "Máy xét nghiệm HbA1c",
+  "shortDesc": "Thiết bị y tế chính hãng Máy xét nghiệm HbA1c từ EKF-Diagnostic GmbH (Đức), đáp ứng hoàn hảo các yêu cầu xét nghiệm y khoa với độ chính xác cao, chuẩn CE & ISO 13485.",
+  "fullDesc": "Máy xét nghiệm HbA1c được cung cấp và phân phối độc quyền bởi Công ty TNHH Thiết bị Y tế Trí Việt Phát. Sản phẩm sở hữu công nghệ tân tiến từ EKF-Diagnostic GmbH, mang lại giải pháp xét nghiệm toàn diện, vận hành tự động thông minh và tiết kiệm chi phí tối ưu cho phòng Lab và bệnh viện.",
+  "brand": "EKF-Diagnostic GmbH",
+  "origin": "Đức",
+  "model": "Quo-Test",
+  "manufacturer": "EKF-Diagnostic GmbH",
+  "countryOfOrigin": "Đức",
+  "specs": [
+    {
+      "label": "Máy chính",
+      "value": "01 chiếc"
+    },
+    {
+      "label": "Dây điện nguồn",
+      "value": "01 chiếc"
+    },
+    {
+      "label": "Máy quét mã vạch",
+      "value": "01 chiếc"
+    },
+    {
+      "label": "Kèm theo máy quét mã vạch",
+      "value": "Chỉ cần quét một lần cho cả lô cartridge."
+    },
+    {
+      "label": "Nhỏ gọn",
+      "value": "205 mm(cao) x 205 mm(rộng) x 135 mm(dài)"
+    },
+    {
+      "label": "Trọng lượng nhẹ",
+      "value": "1,3kg"
+    }
+  ],
+  "features": [
+    "Máy chính: 01 chiếc",
+    "Dây điện nguồn: 01 chiếc",
+    "Máy quét mã vạch: 01 chiếc",
+    "Menu đa ngôn ngữ.",
+    "Lượng mẫu nhỏ, chỉ 4µl máu từ ngón tay hoặc tĩnh mạch.",
+    "Kèm theo máy quét mã vạch: Chỉ cần quét một lần cho cả lô cartridge.",
+    "Người dùng có thể lựa chọn báo cáo kép. Có thể lựa chọn % DCCT, IFCC mmol/mol, eAG mg/dl hoặc eAG mmol/l.",
+    "Nhỏ gọn: 205 mm(cao) x 205 mm(rộng) x 135 mm(dài)"
+  ],
+  "detailedFeatures": [
+    {
+      "title": "3. Dễ dàng sử dụng",
+      "desc": "Giao diện trực quan và có hướng dẫn từng bước trên màn hình hiển thị nên giảm thiểu thời gian đào tạo."
+    },
+    {
+      "title": "4. Xử lý dữ liệu hiệu quả",
+      "desc": "Lưu trữ lên tới 7000 kết quả, góp phần quản lý dữ liệu bệnh nhân hiệu quả."
+    }
+  ],
+  "benefits": [
+    "Nhà cung cấp uy tín thiết bị y tế ở Việt Nam",
+    "Thiết bị y tế đạt chất lượng giá cả hợp lý",
+    "Thời gian bảo hành 12 tháng, dịch vụ chuyên nghiệp",
+    "Hàng có sẵn kho có thể giao ngay",
+    "Ưu đãi khi mua hàng với số lượng lớn"
+  ],
+  "certifications": [
+    "CE Mark",
+    "ISO 13485",
+    "ISO 9001",
+    "Bộ Y tế cấp phép"
+  ],
+  "detailHtml": "**Máy xét ngiệm HbA1c**\n\n**1\\. Cấu hình tiêu chuẩn:**\n\n- Máy chính: 01 chiếc\n- Dây điện nguồn: 01 chiếc\n- Máy quét mã vạch: 01 chiếc\n- Sách hướng dẫn sử dụng\n\n**2\\. Đặc điểm nổi bật:**\n\n- Tự động hoàn toàn\n- Cho kết quả nhanh và chính xác\n- Dễ dàng sử dụng\n- Kết quả chỉ trong vòng 4 phút\n\n**3\\. Dễ dàng sử dụng**\n\n- Giao diện trực quan và có hướng dẫn từng bước trên màn hình hiển thị nên giảm thiểu thời gian đào tạo.\n- Menu đa ngôn ngữ.\n- Lượng mẫu nhỏ, chỉ 4µl máu từ ngón tay hoặc tĩnh mạch.\n\n**4\\. Xử lý dữ liệu hiệu quả**\n\n- Kèm theo máy quét mã vạch: Chỉ cần quét một lần cho cả lô cartridge.\n- Lưu trữ lên tới 7000 kết quả, góp phần quản lý dữ liệu bệnh nhân hiệu quả.\n- Người dùng có thể lựa chọn báo cáo kép. Có thể lựa chọn % DCCT, IFCC mmol/mol, eAG mg/dl hoặc eAG mmol/l.\n- Cổng USB\n- Có máy in (lựa chọn thêm)\n\n**5\\. Thiết kế**\n\n- Nhỏ gọn: 205 mm(cao) x 205 mm(rộng) x 135 mm(dài)\n- Trọng lượng nhẹ: 1,3kg"
+}

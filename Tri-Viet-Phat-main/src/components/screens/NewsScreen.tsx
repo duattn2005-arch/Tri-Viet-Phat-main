@@ -9,14 +9,14 @@ interface NewsScreenProps {
   initialCategory?: string;
   onNavigateCategory?: (category: string) => void;
   onNavigateTab?: (tab: PageTab, cat?: string) => void;
-  onSelectArticle?: (article: SiteArticle) => void;
+  /** Article to open on arrival, e.g. picked on the home page or in search */
+  initialArticleId?: string;
 }
 
 interface NewsCategoryOption {
   key: string;
   label: string;
   icon: string;
-  articleIds: string[];
 }
 
 const NEWS_CATEGORIES: NewsCategoryOption[] = [
@@ -24,40 +24,27 @@ const NEWS_CATEGORIES: NewsCategoryOption[] = [
     key: 'all',
     label: 'Tất cả tin tức & sự kiện',
     icon: 'feed',
-    articleIds: [],
   },
   {
     key: 'kien-thuc-suc-khoe',
     label: 'Kiến thức sức khỏe',
     icon: 'health_and_safety',
-    articleIds: [
-      'cach-chon-vat-tu-tieu-hao-cho-phong-thi-nghiem-y-te',
-      'vat-tu-tieu-hao-y-te-la-gi',
-      'phan-biet-vat-tu-tieu-hao-y-te',
-    ],
   },
   {
     key: 'tin-y-te',
     label: 'Tin y tế',
     icon: 'medical_services',
-    articleIds: [
-      'mua-vat-tu-tieu-hao-y-te-o-dau-gia-tot',
-      'quy-dinh-ve-chat-luong-vat-tu-y-te',
-      'nhap-khau-vat-tu-tieu-hao-y-te',
-      'mua-thiet-bi-y-te-o-dau-tai-ha-noi',
-    ],
   },
   {
     key: 'tin-noi-bo',
     label: 'Tin nội bộ',
     icon: 'corporate_fare',
-    articleIds: [
-      'vat-tu-tieu-hao-y-te-2025',
-      'may-moc-thiet-bi-y-te-chinh-hang',
-      'dia-chi-cua-hang-thiet-bi-y-te',
-    ],
   },
 ];
+
+// Each article picks its category (categorySlug) in the CMS
+const countInCategory = (key: string) =>
+  key === 'all' ? REAL_NEWS_ARTICLES.length : REAL_NEWS_ARTICLES.filter((a) => a.categorySlug === key).length;
 
 const FALLBACK_THUMBNAIL =
   'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&q=80';
@@ -76,7 +63,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
   initialCategory = 'all',
   onNavigateCategory,
   onNavigateTab,
-  onSelectArticle,
+  initialArticleId,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory || 'all');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -91,6 +78,12 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
     setActiveArticle(null);
   }, [initialCategory]);
 
+  useEffect(() => {
+    if (!initialArticleId) return;
+    const art = REAL_NEWS_ARTICLES.find((a) => a.id === initialArticleId);
+    if (art) setActiveArticle(art);
+  }, [initialArticleId]);
+
   const handleCategoryChange = (key: string) => {
     setSelectedCategory(key);
     setActiveArticle(null);
@@ -101,9 +94,6 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
 
   const handleSelect = (art: SiteArticle) => {
     setActiveArticle(art);
-    if (onSelectArticle) {
-      onSelectArticle(art);
-    }
     window.scrollTo({ top: 320, behavior: 'smooth' });
   };
 
@@ -112,10 +102,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
     let list = REAL_NEWS_ARTICLES;
 
     if (selectedCategory && selectedCategory !== 'all') {
-      const catConfig = NEWS_CATEGORIES.find((c) => c.key === selectedCategory);
-      if (catConfig && catConfig.articleIds.length > 0) {
-        list = list.filter((art) => catConfig.articleIds.includes(art.id));
-      }
+      list = list.filter((art) => art.categorySlug === selectedCategory);
     }
 
     if (searchQuery.trim()) {
@@ -146,12 +133,8 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
   };
 
   const getArticleCategoryBadge = (articleId: string) => {
-    for (const cat of NEWS_CATEGORIES) {
-      if (cat.articleIds.includes(articleId)) {
-        return cat.label;
-      }
-    }
-    return 'Tin y tế';
+    const slug = REAL_NEWS_ARTICLES.find((a) => a.id === articleId)?.categorySlug;
+    return NEWS_CATEGORIES.find((c) => c.key !== 'all' && c.key === slug)?.label ?? 'Tin y tế';
   };
 
   const categoryTitle = getCategoryTitle();
@@ -254,10 +237,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                       className="w-full appearance-none pl-3.5 pr-10 py-3  border border-[#d4d4d4] bg-[#f3f7fb] text-[13.5px] font-bold text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#0a2540] cursor-pointer"
                     >
                       {NEWS_CATEGORIES.map((cat) => {
-                        const count =
-                          cat.key === 'all'
-                            ? REAL_NEWS_ARTICLES.length
-                            : cat.articleIds.length;
+                        const count = countInCategory(cat.key);
                         return (
                           <option key={cat.key} value={cat.key}>
                             {cat.label} ({count})
@@ -273,10 +253,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                   <div className="hidden sm:flex flex-wrap items-center gap-x-6 gap-y-2">
                     {NEWS_CATEGORIES.map((cat) => {
                       const isActive = selectedCategory === cat.key;
-                      const count =
-                        cat.key === 'all'
-                          ? REAL_NEWS_ARTICLES.length
-                          : cat.articleIds.length;
+                      const count = countInCategory(cat.key);
 
                       return (
                         <button

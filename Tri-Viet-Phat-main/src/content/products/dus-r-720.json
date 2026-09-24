@@ -1,0 +1,55 @@
+{
+  "order": 21,
+  "name": "Máy xét nghiệm nước tiểu DUS R-720",
+  "category": "may-xet-nghiem-nuoc-tieu",
+  "categoryLabel": "Máy xét nghiệm nước tiểu",
+  "image": "/dus-r-720.png",
+  "alt": "Máy xét nghiệm nước tiểu DUS R-720",
+  "shortDesc": "Thiết bị y tế chính hãng Máy xét nghiệm nước tiểu DUS R-720 từ DFI (Hàn Quốc), đáp ứng hoàn hảo các yêu cầu xét nghiệm y khoa với độ chính xác cao, chuẩn CE & ISO 13485.",
+  "fullDesc": "Máy xét nghiệm nước tiểu DUS R-720 được cung cấp và phân phối độc quyền bởi Công ty TNHH Thiết bị Y tế Trí Việt Phát. Sản phẩm sở hữu công nghệ tân tiến từ DFI, mang lại giải pháp xét nghiệm toàn diện, vận hành tự động thông minh và tiết kiệm chi phí tối ưu cho phòng Lab và bệnh viện.",
+  "brand": "DFI",
+  "origin": "Hàn Quốc",
+  "model": "DUS R-720",
+  "manufacturer": "DFI",
+  "countryOfOrigin": "Hàn Quốc",
+  "specs": [
+    {
+      "label": "Tốc độ",
+      "value": "720 tests/h"
+    },
+    {
+      "label": "Bộ nhớ",
+      "value": "2000 tests"
+    }
+  ],
+  "features": [
+    "Tốc độ: 720 tests/h",
+    "Bộ nhớ: 2000 tests",
+    "Cập nhật chương trình bằng bằng phần mềm download.",
+    "Tương thích với nhiều loại que thử DUS (bao gồm xét nghiệm Microalbumin)"
+  ],
+  "detailedFeatures": [
+    {
+      "title": "Máy xét nghiệm bán tự động dùng với đa que thử",
+      "desc": "Tự động phân tích sau khi đặt que."
+    },
+    {
+      "title": "Đa ngôn ngữ",
+      "desc": "Truy cập vào hệ thống thông tin phòng thí nghiệm (LIS) bằng máy tính."
+    }
+  ],
+  "benefits": [
+    "Nhà cung cấp uy tín thiết bị y tế ở Việt Nam",
+    "Thiết bị y tế đạt chất lượng giá cả hợp lý",
+    "Thời gian bảo hành 12 tháng, dịch vụ chuyên nghiệp",
+    "Hàng có sẵn kho có thể giao ngay",
+    "Ưu đãi khi mua hàng với số lượng lớn"
+  ],
+  "certifications": [
+    "CE Mark",
+    "ISO 13485",
+    "ISO 9001",
+    "Bộ Y tế cấp phép"
+  ],
+  "detailHtml": "**Máy xét nghiệm nước tiểu DUS R-720**\n\n**1\\. Đặc điểm sản phẩm**\n\n- Tốc độ: 720 tests/h\n- Bộ nhớ: 2000 tests\n- Máy xét nghiệm bán tự động dùng với đa que thử\n- Tự động phân tích sau khi đặt que.\n- Cập nhật chương trình bằng bằng phần mềm download.\n- Đa ngôn ngữ\n- Truy cập vào hệ thống thông tin phòng thí nghiệm (LIS) bằng máy tính.\n- Tương thích với nhiều loại que thử DUS (bao gồm xét nghiệm Microalbumin)"
+}

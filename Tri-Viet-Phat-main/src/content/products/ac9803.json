@@ -1,0 +1,67 @@
+{
+  "order": 24,
+  "name": "Máy xét nghiệm điện giải AC9803 gồm các chất NA, K, CL, CA/LI",
+  "category": "may-xet-nghiem-dien-giai",
+  "categoryLabel": "Máy xét nghiệm điện giải",
+  "image": "/ac9803.png",
+  "alt": "Máy xét nghiệm điện giải AC9803 gồm các chất NA, K, CL, CA/LI",
+  "shortDesc": "Thiết bị y tế chính hãng Máy xét nghiệm điện giải AC9803 gồm các chất NA, K, CL, CA/LI từ Jiangsu Audicom Medical Technology Co. Ltd. (Trung Quốc), đáp ứng hoàn hảo các yêu cầu xét nghiệm y khoa với độ chính xác cao, chuẩn CE & ISO 13485.",
+  "fullDesc": "Máy xét nghiệm điện giải AC9803 gồm các chất NA, K, CL, CA/LI được cung cấp và phân phối độc quyền bởi Công ty TNHH Thiết bị Y tế Trí Việt Phát. Sản phẩm sở hữu công nghệ tân tiến từ Jiangsu Audicom Medical Technology Co. Ltd., mang lại giải pháp xét nghiệm toàn diện, vận hành tự động thông minh và tiết kiệm chi phí tối ưu cho phòng Lab và bệnh viện.",
+  "brand": "Jiangsu Audicom Medical Technology Co. Ltd.",
+  "origin": "Trung Quốc",
+  "model": "AC9803",
+  "manufacturer": "Jiangsu Audicom Medical Technology Co. Ltd.",
+  "countryOfOrigin": "Trung Quốc",
+  "specs": [
+    {
+      "label": "Thông số đo",
+      "value": "K, Na, Cl, Ca, pH"
+    },
+    {
+      "label": "Thông số tính toán",
+      "value": "nCa, TCa"
+    },
+    {
+      "label": "Thời gian đo",
+      "value": "≤ 90s (thời gian lấy mẫu và xả)"
+    },
+    {
+      "label": "Thể tích mẫu",
+      "value": "160μl"
+    }
+  ],
+  "features": [
+    "Thông số đo: K, Na, Cl, Ca, pH",
+    "Thông số tính toán: nCa, TCa",
+    "Thời gian đo: ≤ 90s (thời gian lấy mẫu và xả)",
+    "Thể tích mẫu: 160μl"
+  ],
+  "detailedFeatures": [
+    {
+      "title": "Ống xét nghiệm ban đầu để lấy mẫu",
+      "desc": "Máy xét nghiệm có thể sử dụng ống xét nghiệm ban đầu để lấy mẫu trực tiếp để đơn giản hoá quá trình lấy mẫu hoặc có thể chọn sử dụng cốc mẫu lấy mẫu để đáp ứng các quy định xét nghiệm khác nhau."
+    },
+    {
+      "title": "Giao diện cho máy quét mã vạch",
+      "desc": "Người dùng có thể định cấu hình súng quét theo yêu cầu, lấy thông tin mẫu trực tiếp, giúp giảm khối lượng công việc nhập thủ công"
+    },
+    {
+      "title": "Nhiều vị trí mẫu",
+      "desc": "Vị trí mẫu được tăng lên 26 vị trí, sử dụng phạm vi rộng."
+    }
+  ],
+  "benefits": [
+    "Nhà cung cấp uy tín thiết bị y tế ở Việt Nam",
+    "Thiết bị y tế đạt chất lượng giá cả hợp lý",
+    "Thời gian bảo hành 12 tháng, dịch vụ chuyên nghiệp",
+    "Hàng có sẵn kho có thể giao ngay",
+    "Ưu đãi khi mua hàng với số lượng lớn"
+  ],
+  "certifications": [
+    "CE Mark",
+    "ISO 13485",
+    "ISO 9001",
+    "Bộ Y tế cấp phép"
+  ],
+  "detailHtml": "**1\\. Thông số kỹ thuật**\n\n\\- Thông số đo: K, Na, Cl, Ca, pH\n\n\\- Thông số tính toán: nCa, TCa\n\n\\- Thời gian đo: ≤ 90s (thời gian lấy mẫu và xả)\n\n\\- Thể tích mẫu: 160μl\n\n**2\\. Đặc điểm kỹ thuật**\n\n- **Ống xét nghiệm ban đầu để lấy mẫu**\n\nMáy xét nghiệm có thể sử dụng ống xét nghiệm ban đầu để lấy mẫu trực tiếp để đơn giản hoá quá trình lấy mẫu hoặc có thể chọn sử dụng cốc mẫu lấy mẫu để đáp ứng các quy định xét nghiệm khác nhau.\n\n- **Giao diện cho máy quét mã vạch**\n\nNgười dùng có thể định cấu hình súng quét theo yêu cầu, lấy thông tin mẫu trực tiếp, giúp giảm khối lượng công việc nhập thủ công\n\n- **Nhiều vị trí mẫu**\n\nVị trí mẫu được tăng lên 26 vị trí, sử dụng phạm vi rộng."
+}

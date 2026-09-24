@@ -1,0 +1,87 @@
+{
+  "order": 7,
+  "name": "Máy xét nghiệm sinh hóa tự động CS-1600",
+  "category": "may-xet-nghiem-sinh-hoa",
+  "categoryLabel": "Máy xét nghiệm sinh hóa",
+  "image": "/cs-1600.png",
+  "alt": "Máy xét nghiệm sinh hóa tự động CS-1600",
+  "shortDesc": "Thiết bị y tế chính hãng Máy xét nghiệm sinh hóa tự động CS-1600 từ DIRUI INDUSTRIAL CO., LTD (Trung Quốc) (Trung Quốc), đáp ứng hoàn hảo các yêu cầu xét nghiệm y khoa với độ chính xác cao, chuẩn CE & ISO 13485.",
+  "fullDesc": "Máy xét nghiệm sinh hóa tự động CS-1600 được cung cấp và phân phối độc quyền bởi Công ty TNHH Thiết bị Y tế Trí Việt Phát. Sản phẩm sở hữu công nghệ tân tiến từ DIRUI INDUSTRIAL CO., LTD (Trung Quốc), mang lại giải pháp xét nghiệm toàn diện, vận hành tự động thông minh và tiết kiệm chi phí tối ưu cho phòng Lab và bệnh viện.",
+  "brand": "DIRUI INDUSTRIAL CO., LTD (Trung Quốc)",
+  "origin": "Trung Quốc",
+  "model": "CS-",
+  "manufacturer": "DIRUI INDUSTRIAL CO., LTD (Trung Quốc)",
+  "countryOfOrigin": "Trung Quốc",
+  "specs": [
+    {
+      "label": "Tốc độ",
+      "value": "7.040 test/h (khi tích hợp 4 mô-đun cùng với ISE)"
+    },
+    {
+      "label": "Cuvette thuốc thử",
+      "value": "330 cuvette phản ứng cho mỗi mô-đun"
+    },
+    {
+      "label": "Quy luật QC",
+      "value": "Mặc định là các quy luật Westgard."
+    },
+    {
+      "label": "Biểu đồ QC",
+      "value": "Mô tả và in biểu đồ L-J tương ứng."
+    },
+    {
+      "label": "Chức năng giám sát",
+      "value": "Quá dải tuyến tính, quá dải tham chiếu, giảm chất nền (substrate depletion), kiểm tra prozone, kiểm tra tuyến tính enzym."
+    }
+  ],
+  "features": [
+    "Tốc độ: 7.040 test/h (khi tích hợp 4 mô-đun cùng với ISE)",
+    "Cuvette thuốc thử: 330 cuvette phản ứng cho mỗi mô-đun",
+    "Thiết kế dạng mô-đun thông minh, có thể nâng cấp từ 2 đến 4 mô-đun theo yêu cầu tốc độ khác nhau.",
+    "Tốc độ của một mô-đun đơn lên tới 160 xét nghiệm điện giải/giờ.",
+    "Tuổi thọ cao.",
+    "9 loại đường cong hiệu chuẩn để đáp ứng nhu cầu phân tích các xét nghiệm khác nhau.",
+    "Mỗi xét nghiệm hỗ trợ 10 chất hiệu chuẩn 10 mức khác nhau.",
+    "Chức năng truy vết hiệu chuẩn giúp giảm lỗi hệ thống."
+  ],
+  "detailedFeatures": [
+    {
+      "title": "1. Thông số kỹ thuật:",
+      "desc": "Mỗi mô-đun có tốc độ lên tới 1600 xét nghiệm/giờ, tốc độ tối đa có thể lên tới 1760 xét nghiệm/giờ (với bộ xét nghiệm ISE"
+    },
+    {
+      "title": "– lựa chọn thêm",
+      "desc": ")."
+    },
+    {
+      "title": ", Cl",
+      "desc": "-."
+    },
+    {
+      "title": "3. Hiệu chuẩn và QC:",
+      "desc": "Hiệu chuẩn tuyến tính và phi tuyến tính."
+    },
+    {
+      "title": "4. Phần mềm thân thiện:",
+      "desc": "Phần mềm bằng giao diện tiếng Anh, thân thiện người dùng."
+    },
+    {
+      "title": "5. Chức năng tính toán và giám sát tiên tiến:",
+      "desc": "Chức năng kiểm tra chỉ số huyết thanh để tránh ảnh hưởng bởi tán huyết (hemolysis), lipid máu cao (lipemic) và huyết thanh vàng (icteric)."
+    }
+  ],
+  "benefits": [
+    "Nhà cung cấp uy tín thiết bị y tế ở Việt Nam",
+    "Thiết bị y tế đạt chất lượng giá cả hợp lý",
+    "Thời gian bảo hành 12 tháng, dịch vụ chuyên nghiệp",
+    "Hàng có sẵn kho có thể giao ngay",
+    "Ưu đãi khi mua hàng với số lượng lớn"
+  ],
+  "certifications": [
+    "CE Mark",
+    "ISO 13485",
+    "ISO 9001",
+    "Bộ Y tế cấp phép"
+  ],
+  "detailHtml": "**Máy xét nghiệm sinh hóa tự động CS-1600**\n\n**1\\. Thông số kỹ thuật:**\n\n- Tốc độ: 7.040 test/h (khi tích hợp 4 mô-đun cùng với ISE)\n- Mỗi mô-đun có tốc độ lên tới 1600 xét nghiệm/giờ, tốc độ tối đa có thể lên tới 1760 xét nghiệm/giờ (với bộ xét nghiệm ISE **– lựa chọn thêm**).\n- Cuvette thuốc thử: 330 cuvette phản ứng cho mỗi mô-đun\n- Thiết kế dạng mô-đun thông minh, có thể nâng cấp từ 2 đến 4 mô-đun theo yêu cầu tốc độ khác nhau.\n\n**2\\. Bộ ISE tích hợp (lựa chọn thêm):**\n\n- Đo đồng thời gián tiếp K<sup>+,</sup> Na<sup>+</sup>, Cl<sup>-.</sup>\n- Tốc độ của một mô-đun đơn lên tới 160 xét nghiệm điện giải/giờ.\n- Tuổi thọ cao.\n\n**3\\. Hiệu chuẩn và QC:**\n\n- Hiệu chuẩn tuyến tính và phi tuyến tính.\n- 9 loại đường cong hiệu chuẩn để đáp ứng nhu cầu phân tích các xét nghiệm khác nhau.\n- Mỗi xét nghiệm hỗ trợ 10 chất hiệu chuẩn 10 mức khác nhau.\n- Chức năng truy vết hiệu chuẩn giúp giảm lỗi hệ thống.\n- QC hàng ngày, tháng tháng để đảm bảo độ ổn định và chính xác của kết quả.\n- Quy luật QC: Mặc định là các quy luật Westgard.\n- Biểu đồ QC: Mô tả và in biểu đồ L-J tương ứng.\n- Chức năng phân tích mất kiểm soát và lưu lại dữ liệu gốc.\n\n**4\\. Phần mềm thân thiện:**\n\n- Phần mềm bằng giao diện tiếng Anh, thân thiện người dùng.\n- Chức năng tự giám sát giúp làm thông minh hóa hệ thống phân tích.\n- Truy vấn đa dữ liệu, thống kê và in báo cáo.\n- Thông tin bệnh nhân có thể nhập bằng cách quét mã vạch hoặc nhập thủ công.\n- Hỗ trợ mẫu báo cáo do người dùng tự quyết định và có sẵn lựa chọn cho nhiều định dạng báo cáo.\n\n**5\\. Chức năng tính toán và giám sát tiên tiến:**\n\n- Chức năng giám sát: Quá dải tuyến tính, quá dải tham chiếu, giảm chất nền (substrate depletion), kiểm tra prozone, kiểm tra tuyến tính enzym.\n- Chức năng kiểm tra chỉ số huyết thanh để tránh ảnh hưởng bởi tán huyết (hemolysis), lipid máu cao (lipemic) và huyết thanh vàng (icteric).\n- Chương trình chống nhiễm chéo, ngăn ảnh hưởng từ các thuốc thử khác nhau.\n- Chức năng phản xạ có điều kiện có thể phát hiện và kiểm tra các xét nghiệm đã cài đặt trước một cách tự động một khi kết quả bị đánh giá lại.\n- Chức năng kiểm tra lại tự động giúp giảm gánh nặng cho người dùng.\n- Xử lý theo trình tự các cảnh báo phân tích và ưu tiên theo trình tự công việc.\n- Quản lý truy cập theo cấp độ giúp tăng cường an toàn cho hệ thống."
+}

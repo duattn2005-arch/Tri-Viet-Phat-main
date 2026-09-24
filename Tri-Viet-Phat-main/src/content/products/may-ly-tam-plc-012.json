@@ -1,0 +1,59 @@
+{
+  "order": 28,
+  "name": "Máy ly tâm PLC-012",
+  "category": "thiet-bi-khac",
+  "categoryLabel": "Thiết bị y tế khác",
+  "image": "/may-ly-tam-plc-012.png",
+  "alt": "Máy ly tâm PLC-012",
+  "shortDesc": "Thiết bị y tế chính hãng Máy ly tâm PLC-012 từ Sách hướng dẫn sử dụng (Đài Loan), đáp ứng hoàn hảo các yêu cầu xét nghiệm y khoa với độ chính xác cao, chuẩn CE & ISO 13485.",
+  "fullDesc": "Máy ly tâm PLC-012 được cung cấp và phân phối độc quyền bởi Công ty TNHH Thiết bị Y tế Trí Việt Phát. Sản phẩm sở hữu công nghệ tân tiến từ Sách hướng dẫn sử dụng, mang lại giải pháp xét nghiệm toàn diện, vận hành tự động thông minh và tiết kiệm chi phí tối ưu cho phòng Lab và bệnh viện.",
+  "brand": "Sách hướng dẫn sử dụng",
+  "origin": "Đài Loan",
+  "model": "PLC-012",
+  "manufacturer": "Sách hướng dẫn sử dụng",
+  "countryOfOrigin": "Đài Loan",
+  "specs": [
+    {
+      "label": "Đếm giờ",
+      "value": "60 phút (bằng cơ)"
+    },
+    {
+      "label": "Kiểm soát tốc độ",
+      "value": "Analog"
+    },
+    {
+      "label": "Tốc độ tối đa",
+      "value": "12.000 vòng/phút, có thể điều chỉnh"
+    },
+    {
+      "label": "Tốc độ tối đa RPM/RCF",
+      "value": "5.000 rpm/ 2.865 xg"
+    },
+    {
+      "label": "01 x máy chính, model",
+      "value": "PLC-012"
+    }
+  ],
+  "features": [
+    "Đếm giờ: 60 phút (bằng cơ)",
+    "Kiểm soát tốc độ: Analog",
+    "Tốc độ tối đa: 12.000 vòng/phút, có thể điều chỉnh",
+    "Tốc độ tối đa RPM/RCF: 5.000 rpm/ 2.865 xg",
+    "01 x máy chính, model: PLC-012"
+  ],
+  "detailedFeatures": [],
+  "benefits": [
+    "Nhà cung cấp uy tín thiết bị y tế ở Việt Nam",
+    "Thiết bị y tế đạt chất lượng giá cả hợp lý",
+    "Thời gian bảo hành 12 tháng, dịch vụ chuyên nghiệp",
+    "Hàng có sẵn kho có thể giao ngay",
+    "Ưu đãi khi mua hàng với số lượng lớn"
+  ],
+  "certifications": [
+    "CE Mark",
+    "ISO 13485",
+    "ISO 9001",
+    "Bộ Y tế cấp phép"
+  ],
+  "detailHtml": "**Máy ly tâm PLC-012**\n\n**1\\. Mô tả sản phẩm**\n\n- Đếm giờ: 60 phút (bằng cơ)\n- Kiểm soát tốc độ: Analog\n- Tốc độ tối đa:12.000 vòng/phút, có thể điều chỉnh\n\n**2\\. Thông số của Rotor A-2405:**\n\n- Ống 5ml x 24 vị trí\n- Tốc độ tối đa RPM/RCF : 5.000 rpm/ 2.865 xg\n\n**3\\. Cấu hình cung cấp**\n\n- 01 x máy chính, model: PLC-012\n- 01 x Rotor mã A-2405\n- Phụ kiện tiêu chuẩn của nhà sản xuất\n- Sách hướng dẫn sử dụng"
+}
