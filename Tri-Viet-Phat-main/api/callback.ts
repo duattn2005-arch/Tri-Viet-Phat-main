@@ -1,6 +1,7 @@
 // Step 2 of the Decap CMS GitHub login: trade GitHub's code for a token and hand it back to
 // the admin window through postMessage (the handshake Decap's GitHub backend expects).
-import { STATE_COOKIE } from './auth';
+// Same cookie name as api/auth.ts (kept local: Vercel runs these files as separate ESM modules)
+const STATE_COOKIE = 'decap_oauth_state';
 
 function reply(origin: string, status: 'success' | 'error', payload: object): Response {
   const message = `authorization:github:${status}:${JSON.stringify({ provider: 'github', ...payload })}`;

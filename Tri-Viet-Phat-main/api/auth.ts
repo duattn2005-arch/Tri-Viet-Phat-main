@@ -2,7 +2,7 @@
 // Needs GITHUB_CLIENT_ID / GITHUB_CLIENT_SECRET from a GitHub OAuth App whose callback URL is
 // https://<your-domain>/api/callback (set both in Vercel → Project → Settings → Environment Variables).
 
-export const STATE_COOKIE = 'decap_oauth_state';
+const STATE_COOKIE = 'decap_oauth_state';
 
 export function GET(request: Request): Response {
   const clientId = process.env.GITHUB_CLIENT_ID;
