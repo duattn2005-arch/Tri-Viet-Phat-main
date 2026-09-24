@@ -82,7 +82,7 @@ const TONE: Record<Tone, string> = {
   red: 'bg-[#fdecec] text-[#dc2626]',
 };
 
-const NEW_CUSTOMERS: {
+type CustomerRow = {
   initials: string;
   name: string;
   sub: string;
@@ -90,7 +90,9 @@ const NEW_CUSTOMERS: {
   need: string;
   date: string;
   status: [string, Tone];
-}[] = [
+};
+
+const NEW_CUSTOMERS: CustomerRow[] = [
   { initials: 'BN', name: 'Bệnh viện Đa khoa Nam Định', sub: 'namdinh-hospital.vn', type: ['Bệnh viện', 'blue'], need: 'Máy xét nghiệm', date: '24/09/2025', status: ['Mới', 'blue'] },
   { initials: 'AB', name: 'Phòng khám An Bình', sub: '0965.123.456', type: ['Phòng khám', 'green'], need: 'Máy siêu âm', date: '23/09/2025', status: ['Đang tư vấn', 'orange'] },
   { initials: 'GT', name: 'TTYT huyện Giao Thủy', sub: 'giaothuy.gov.vn', type: ['Trung tâm y tế', 'orange'], need: 'Sửa chữa máy X-quang', date: '22/09/2025', status: ['Đã gửi báo giá', 'amber'] },
@@ -286,6 +288,38 @@ export const CrmDashboard: React.FC = () => {
   const [activeNav, setActiveNav] = useState('CRM - Khách hàng');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [tasks, setTasks] = useState(INITIAL_TASKS);
+  const [customers, setCustomers] = useState<CustomerRow[]>(NEW_CUSTOMERS);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [isAddCustomerOpen, setIsAddCustomerOpen] = useState(false);
+  const [newCustomerName, setNewCustomerName] = useState('');
+  const [newCustomerNeed, setNewCustomerNeed] = useState('');
+
+  const visibleCustomers = customers.filter((customer) => {
+    const query = searchTerm.trim().toLowerCase();
+    if (!query) return true;
+    return `${customer.name} ${customer.sub} ${customer.need}`.toLowerCase().includes(query);
+  });
+
+  const addCustomer = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const name = newCustomerName.trim();
+    const need = newCustomerNeed.trim();
+    if (!name || !need) return;
+
+    const initials = name
+      .split(/\s+/)
+      .filter(Boolean)
+      .slice(-2)
+      .map((part) => part[0]?.toUpperCase())
+      .join('');
+    setCustomers((current) => [
+      { initials, name, sub: 'Khách hàng mới', type: ['Phòng khám', 'green'], need, date: '24/09/2025', status: ['Mới', 'blue'] },
+      ...current,
+    ]);
+    setNewCustomerName('');
+    setNewCustomerNeed('');
+    setIsAddCustomerOpen(false);
+  };
 
   const sidebar = (
     <aside className="flex h-full w-[205px] flex-col bg-white border-r border-[#e6ecf5]">
@@ -347,6 +381,8 @@ export const CrmDashboard: React.FC = () => {
             <Search size={16} />
             <input
               placeholder="Tìm kiếm khách hàng, thiết bị, phiếu sửa chữa..."
+              value={searchTerm}
+              onChange={(event) => setSearchTerm(event.target.value)}
               className="flex-1 bg-transparent text-[13px] text-[#0f1f3d] placeholder:text-[#6b7891] outline-none"
             />
           </label>
@@ -387,7 +423,10 @@ export const CrmDashboard: React.FC = () => {
                 01/09/2025 - 30/09/2025
                 <ChevronDown size={16} className="text-[#5b6780]" />
               </button>
-              <button className="flex items-center gap-2 h-[42px] px-4 rounded-lg bg-[#1a64d6] hover:bg-[#1557bd] text-white text-[13.5px] font-medium shadow-[0_8px_18px_-8px_rgba(26,100,214,0.9)] cursor-pointer">
+              <button
+                onClick={() => setIsAddCustomerOpen(true)}
+                className="flex items-center gap-2 h-[42px] px-4 rounded-lg bg-[#1a64d6] hover:bg-[#1557bd] text-white text-[13.5px] font-medium shadow-[0_8px_18px_-8px_rgba(26,100,214,0.9)] cursor-pointer"
+              >
                 <Plus size={18} />
                 Thêm khách hàng
                 <span className="ml-2 pl-2 border-l border-white/30">
@@ -500,7 +539,7 @@ export const CrmDashboard: React.FC = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {NEW_CUSTOMERS.map((c, i) => (
+                    {visibleCustomers.map((c, i) => (
                       <tr key={c.name} className="border-b border-[#eef2f8] last:border-0 hover:bg-[#f8fafd]">
                         <td className={TD}>{i + 1}</td>
                         <td className="px-2 py-2">
@@ -524,6 +563,13 @@ export const CrmDashboard: React.FC = () => {
                         </td>
                       </tr>
                     ))}
+                    {!visibleCustomers.length && (
+                      <tr>
+                        <td colSpan={6} className="px-3 py-8 text-center text-[13px] text-[#5b6780]">
+                          Không tìm thấy khách hàng phù hợp.
+                        </td>
+                      </tr>
+                    )}
                   </tbody>
                 </table>
               </div>
@@ -620,6 +666,55 @@ export const CrmDashboard: React.FC = () => {
           </div>
         </main>
       </div>
+
+      {isAddCustomerOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0f1f3d]/35 p-4" onMouseDown={() => setIsAddCustomerOpen(false)}>
+          <form
+            onSubmit={addCustomer}
+            onMouseDown={(event) => event.stopPropagation()}
+            className="w-full max-w-[460px] rounded-xl bg-white p-6 shadow-2xl"
+          >
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <h2 className="text-[20px] font-bold text-[#0f1f3d]">Thêm khách hàng</h2>
+                <p className="mt-1 text-[13px] text-[#5b6780]">Tạo nhanh một khách hàng mới trong CRM.</p>
+              </div>
+              <button type="button" onClick={() => setIsAddCustomerOpen(false)} aria-label="Đóng" className="text-2xl leading-none text-[#5b6780] cursor-pointer">
+                ×
+              </button>
+            </div>
+            <label className="mt-5 block text-[13px] font-medium text-[#27344d]">
+              Tên khách hàng
+              <input
+                autoFocus
+                required
+                value={newCustomerName}
+                onChange={(event) => setNewCustomerName(event.target.value)}
+                className="mt-1.5 h-10 w-full rounded-lg border border-[#dfe6f1] px-3 text-[13px] outline-none focus:border-[#1a64d6]"
+                placeholder="Ví dụ: Phòng khám Hồng Đức"
+              />
+            </label>
+            <label className="mt-4 block text-[13px] font-medium text-[#27344d]">
+              Nhu cầu
+              <input
+                required
+                value={newCustomerNeed}
+                onChange={(event) => setNewCustomerNeed(event.target.value)}
+                className="mt-1.5 h-10 w-full rounded-lg border border-[#dfe6f1] px-3 text-[13px] outline-none focus:border-[#1a64d6]"
+                placeholder="Ví dụ: Máy xét nghiệm"
+              />
+            </label>
+            <div className="mt-6 flex justify-end gap-2">
+              <button type="button" onClick={() => setIsAddCustomerOpen(false)} className="h-10 rounded-lg border border-[#dfe6f1] px-4 text-[13px] text-[#27344d] cursor-pointer">
+                Hủy
+              </button>
+              <button type="submit" className="h-10 rounded-lg bg-[#1a64d6] px-4 text-[13px] font-medium text-white cursor-pointer">
+                Lưu khách hàng
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
     </div>
   );
 };

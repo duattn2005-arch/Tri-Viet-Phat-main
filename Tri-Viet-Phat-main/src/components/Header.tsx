@@ -325,6 +325,16 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
             );
           })}
+          <a
+            href="/crm"
+            className="group relative h-12 px-4 xl:px-5 inline-flex items-center gap-1 font-semibold uppercase tracking-[0.06em] text-white/80 hover:text-white hover:bg-white/5 transition-colors duration-300"
+          >
+            CRM
+            <span
+              className="absolute left-0 right-0 bottom-0 h-[3px] bg-linear-to-r from-[#0a94dc] to-[#e11d2a] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+              aria-hidden="true"
+            />
+          </a>
         </nav>
       </div>
 
@@ -360,6 +370,15 @@ export const Header: React.FC<HeaderProps> = ({
                 </div>
               );
             })}
+            <div className="py-1">
+              <a
+                href="/crm"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block w-full py-2.5 text-[15px] font-medium text-[#0a2540] cursor-pointer"
+              >
+                CRM quản trị
+              </a>
+            </div>
           </nav>
 
           <div className="pt-4 pb-2 space-y-3 border-t border-[#e5e5e5]">
