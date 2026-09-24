@@ -5,6 +5,7 @@ export type PageTab =
   | 'tai-lieu' 
   | 'tin-tuc' 
   | 'tuyen-dung' 
+  | 'crm'
   | 'lien-he';
 
 export interface Product {

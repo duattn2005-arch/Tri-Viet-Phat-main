@@ -59,6 +59,7 @@ const NAV_ITEMS: NavItem[] = [
     ],
   },
   { tab: 'tuyen-dung', label: 'Tuyển dụng' },
+  { tab: 'crm', label: 'CRM' },
   { tab: 'lien-he', label: 'Liên hệ' },
 ];
 
