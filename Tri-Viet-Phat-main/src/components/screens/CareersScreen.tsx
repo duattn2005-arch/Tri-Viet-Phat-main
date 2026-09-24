@@ -95,25 +95,6 @@ export const CareersScreen: React.FC = () => {
                   dangerouslySetInnerHTML={{ __html: activeJob.contentHtml }}
                 />
 
-                {/* Contact for CV application */}
-                <div className="p-5 bg-[#f3f7fb] border border-[#e5e5e5] text-[#333333] space-y-2">
-                  <h4 className="font-bold text-[16px] flex items-center gap-2">
-                    <span className="material-symbols-outlined text-[20px] text-[#111111]">
-                      mark_email_read
-                    </span>
-                    <span>Liên hệ gửi hồ sơ ứng tuyển trực tiếp:</span>
-                  </h4>
-                  <p className="text-[14px]">
-                    - Vui lòng gửi CV qua email: <a href="mailto:dungtriduc@gmail.com" className="font-bold underline text-[#111111]">dungtriduc@gmail.com</a>
-                  </p>
-                  <p className="text-[14px]">
-                    - Điện thoại / Zalo phụ trách: <a href="tel:0979593888" className="font-bold underline text-[#111111]">0979.593.888 (Mr. Dũng)</a>
-                  </p>
-                  <p className="text-[13px] text-[#555555]">
-                    - Tiêu đề ứng tuyển: <strong>CV_Vị trí ứng tuyển_Họ tên</strong>
-                  </p>
-                </div>
-
                 {/* Inline Fast Application Form */}
                 <div className="mt-8 pt-8 border-t border-[#e5e5e5]">
                   <h3 className="text-[18px] font-bold text-[#111111] mb-4 flex items-center gap-2">
@@ -237,7 +218,7 @@ export const CareersScreen: React.FC = () => {
                     Môi trường làm việc năng động, chế độ đãi ngộ vượt trội, cơ hội đào tạo và phát triển bền vững cùng các hãng thiết bị y tế hàng đầu thế giới.
                   </p>
                   <div className="pt-2 text-[13px] text-[#111111]">
-                    <strong>Hotline:</strong> 0904.698.699 - 0979.593.888
+                    <strong>Hotline:</strong> 0904.698.699
                   </div>
                 </div>
               </div>
@@ -278,17 +259,6 @@ export const CareersScreen: React.FC = () => {
               ))}
             </ul>
 
-            <p className="mt-8 text-[14px] text-[#555555]">
-              Gửi CV về{' '}
-              <a href="mailto:dungtriduc@gmail.com" className="font-semibold text-[#111111] underline underline-offset-4">
-                dungtriduc@gmail.com
-              </a>{' '}
-              hoặc gọi{' '}
-              <a href="tel:0979593888" className="font-semibold text-[#111111] underline underline-offset-4">
-                0979.593.888
-              </a>{' '}
-              (Mr. Dũng).
-            </p>
           </div>
         )}
       </div>
