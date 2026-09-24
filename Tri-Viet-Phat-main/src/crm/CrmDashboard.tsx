@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ArrowRight,
   ArrowUp,
@@ -120,6 +120,11 @@ const INITIAL_TASKS: { task: string; customer: string; due: string; done: boolea
   { task: 'Theo dõi sau sửa chữa', customer: 'TTYT Giao Thủy', due: '25/09/2025', done: false },
   { task: 'Hẹn lịch bảo trì định kỳ', customer: 'BV Sản Nhi Hà Nội', due: '26/09/2025', done: false },
 ];
+
+const CRM_STORAGE_KEYS = {
+  customers: 'tri-viet-phat-crm-customers',
+  tasks: 'tri-viet-phat-crm-tasks',
+} as const;
 
 /* ------------------------------------------------------------ primitives */
 
@@ -293,6 +298,25 @@ export const CrmDashboard: React.FC = () => {
   const [isAddCustomerOpen, setIsAddCustomerOpen] = useState(false);
   const [newCustomerName, setNewCustomerName] = useState('');
   const [newCustomerNeed, setNewCustomerNeed] = useState('');
+
+  useEffect(() => {
+    try {
+      const storedCustomers = window.localStorage.getItem(CRM_STORAGE_KEYS.customers);
+      const storedTasks = window.localStorage.getItem(CRM_STORAGE_KEYS.tasks);
+      if (storedCustomers) setCustomers(JSON.parse(storedCustomers) as CustomerRow[]);
+      if (storedTasks) setTasks(JSON.parse(storedTasks) as typeof INITIAL_TASKS);
+    } catch {
+      // Ignore malformed browser data and continue with the demo defaults.
+    }
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem(CRM_STORAGE_KEYS.customers, JSON.stringify(customers));
+  }, [customers]);
+
+  useEffect(() => {
+    window.localStorage.setItem(CRM_STORAGE_KEYS.tasks, JSON.stringify(tasks));
+  }, [tasks]);
 
   const visibleCustomers = customers.filter((customer) => {
     const query = searchTerm.trim().toLowerCase();
