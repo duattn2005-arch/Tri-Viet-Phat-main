@@ -139,6 +139,115 @@ const MODULE_DESCRIPTIONS: Record<string, string> = {
   'Cài đặt': 'Cấu hình người dùng, thông báo và thiết lập CRM.',
 };
 
+const MODULE_RECORDS: Record<string, { columns: string[]; rows: string[][] }> = {
+  'Cơ hội kinh doanh': {
+    columns: ['Cơ hội', 'Khách hàng', 'Giá trị dự kiến', 'Giai đoạn', 'Người phụ trách'],
+    rows: [
+      ['Cung cấp máy xét nghiệm', 'Bệnh viện ĐK Nam Định', '680.000.000 đ', 'Đang tư vấn', 'Nguyễn Văn A'],
+      ['Gói hóa chất huyết học 2025', 'PK An Bình', '96.000.000 đ', 'Đã gửi báo giá', 'Trần Thị B'],
+      ['Hợp đồng bảo trì X-quang', 'TTYT Giao Thủy', '120.000.000 đ', 'Khách hàng tiềm năng', 'Lê Văn C'],
+    ],
+  },
+  'Báo giá': {
+    columns: ['Mã báo giá', 'Khách hàng', 'Nội dung', 'Tổng tiền', 'Trạng thái'],
+    rows: [
+      ['#BG-2025-128', 'PK An Bình', 'Máy siêu âm', '420.000.000 đ', 'Đã gửi'],
+      ['#BG-2025-127', 'BV Sản Nhi Hà Nội', 'Gói bảo trì định kỳ', '85.000.000 đ', 'Đang soạn'],
+      ['#BG-2025-126', 'TTYT Giao Thủy', 'Sửa chữa máy X-quang', '32.500.000 đ', 'Chờ phản hồi'],
+    ],
+  },
+  'Đơn hàng': {
+    columns: ['Mã đơn', 'Khách hàng', 'Sản phẩm', 'Ngày đặt', 'Trạng thái'],
+    rows: [
+      ['#DH-2025-084', 'BV Sản Nhi Hà Nội', 'Máy xét nghiệm HbA1c', '20/09/2025', 'Đang giao'],
+      ['#DH-2025-083', 'Phòng khám Minh Tâm', 'Máy điện tim', '18/09/2025', 'Đã hoàn thành'],
+      ['#DH-2025-082', 'PK An Bình', 'Hóa chất huyết học Dewei', '16/09/2025', 'Đang xử lý'],
+    ],
+  },
+  'Sửa chữa - Bảo trì': {
+    columns: ['Mã phiếu', 'Khách hàng', 'Thiết bị', 'Kỹ thuật viên', 'Trạng thái'],
+    rows: [
+      ['#SC-2025-056', 'TTYT Giao Thủy', 'Máy X-quang', 'Lê Văn C', 'Đang xử lý'],
+      ['#SC-2025-055', 'BV Sản Nhi Hà Nội', 'Máy thở', 'Phạm Văn D', 'Đã hoàn thành'],
+      ['#SC-2025-054', 'PK Minh Tâm', 'Máy điện tim', 'Nguyễn Văn E', 'Chờ tiếp nhận'],
+    ],
+  },
+  'Lịch hẹn kỹ thuật': {
+    columns: ['Thời gian', 'Khách hàng', 'Thiết bị', 'Địa điểm', 'Trạng thái'],
+    rows: APPOINTMENTS.map((appointment) => [appointment.time, appointment.customer, appointment.device, appointment.place, appointment.status[0]]),
+  },
+  'Hợp đồng': {
+    columns: ['Mã hợp đồng', 'Khách hàng', 'Loại hợp đồng', 'Hiệu lực đến', 'Trạng thái'],
+    rows: [
+      ['#HD-2025-031', 'BV Sản Nhi Hà Nội', 'Bảo trì thiết bị', '31/12/2026', 'Đang hiệu lực'],
+      ['#HD-2025-030', 'TTYT Giao Thủy', 'Cung cấp hóa chất', '30/06/2026', 'Đang hiệu lực'],
+      ['#HD-2025-029', 'PK Minh Tâm', 'Sửa chữa định kỳ', '30/09/2025', 'Sắp hết hạn'],
+    ],
+  },
+  'Chăm sóc khách hàng': {
+    columns: ['Ngày', 'Khách hàng', 'Nội dung', 'Nhân viên', 'Kết quả'],
+    rows: [
+      ['24/09/2025', 'PK An Bình', 'Gọi lại sau báo giá', 'Nguyễn Văn A', 'Đã liên hệ'],
+      ['23/09/2025', 'BV ĐK Nam Định', 'Gửi tài liệu kỹ thuật', 'Trần Thị B', 'Đã gửi'],
+      ['22/09/2025', 'TTYT Giao Thủy', 'Khảo sát sau sửa chữa', 'Lê Văn C', 'Hài lòng'],
+    ],
+  },
+  Marketing: {
+    columns: ['Chiến dịch', 'Kênh', 'Thời gian', 'Khách hàng tiềm năng', 'Trạng thái'],
+    rows: [
+      ['Máy xét nghiệm tháng 9', 'Website', '01/09 - 30/09/2025', '86', 'Đang chạy'],
+      ['Chăm sóc khách hàng cũ', 'Zalo', '15/09 - 30/09/2025', '42', 'Đang chạy'],
+      ['Giới thiệu bảo trì', 'Facebook', '01/08 - 31/08/2025', '28', 'Đã kết thúc'],
+    ],
+  },
+  'Báo cáo': {
+    columns: ['Báo cáo', 'Kỳ báo cáo', 'Người tạo', 'Cập nhật gần nhất', 'Trạng thái'],
+    rows: [
+      ['Doanh thu theo tháng', 'Tháng 9/2025', 'Nguyễn Văn A', '24/09/2025 09:30', 'Đã cập nhật'],
+      ['Hiệu quả nguồn khách hàng', 'Quý III/2025', 'Trần Thị B', '23/09/2025 16:20', 'Đã cập nhật'],
+      ['Tình trạng phiếu sửa chữa', 'Tháng 9/2025', 'Lê Văn C', '22/09/2025 14:10', 'Đã cập nhật'],
+    ],
+  },
+  'Cài đặt': {
+    columns: ['Thiết lập', 'Giá trị hiện tại', 'Mô tả', 'Trạng thái'],
+    rows: [
+      ['Thông báo lịch hẹn', 'Bật', 'Nhắc lịch trước 24 giờ', 'Đang hoạt động'],
+      ['Tự động lưu dữ liệu', 'Bật', 'Lưu trên trình duyệt hiện tại', 'Đang hoạt động'],
+      ['Định dạng tiền tệ', 'VND', 'Hiển thị giá trị bằng đồng Việt Nam', 'Đang hoạt động'],
+    ],
+  },
+};
+
+const ModuleWorkspace: React.FC<{ name: string }> = ({ name }) => {
+  const module = MODULE_RECORDS[name];
+  if (!module) return null;
+
+  return (
+    <>
+      <div>
+        <h1 className="text-[26px] font-bold leading-tight">{name}</h1>
+        <p className="mt-1 text-[14.5px] text-[#44526b]">{MODULE_DESCRIPTIONS[name]}</p>
+      </div>
+      <Card>
+        <div className="overflow-x-auto p-3">
+          <table className="w-full">
+            <thead className="bg-[#f4f7fc]">
+              <tr>{module.columns.map((column) => <th key={column} className={TH}>{column}</th>)}</tr>
+            </thead>
+            <tbody>
+              {module.rows.map((row, rowIndex) => (
+                <tr key={`${name}-${rowIndex}`} className="border-b border-[#eef2f8] last:border-0 hover:bg-[#f8fafd]">
+                  {row.map((cell, cellIndex) => <td key={`${rowIndex}-${cellIndex}`} className={cellIndex === 0 ? `${TD} font-medium text-[#1a64d6]` : TD}>{cell}</td>)}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Card>
+    </>
+  );
+};
+
 /* ------------------------------------------------------------ primitives */
 
 const Badge: React.FC<{ tone: Tone; children: React.ReactNode }> = ({ tone, children }) => (
@@ -491,18 +600,7 @@ export const CrmDashboard: React.FC = () => {
               </Card>
             </>
           ) : !isDashboard ? (
-            <div className="flex min-h-[420px] items-center justify-center">
-              <Card className="w-full max-w-[620px] px-6 py-10 text-center">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#e8f1fe] text-[#1a64d6]">
-                  <Settings size={26} />
-                </div>
-                <h1 className="mt-4 text-[24px] font-bold">{activeNav}</h1>
-                <p className="mx-auto mt-2 max-w-[480px] text-[14px] leading-6 text-[#5b6780]">
-                  {MODULE_DESCRIPTIONS[activeNav] || 'Quản lý nghiệp vụ CRM của Trí Việt Phát.'}
-                </p>
-                <p className="mt-5 text-[13px] text-[#8a96ab]">Module này đã được tách riêng để không còn hiển thị nhầm dashboard tổng quan.</p>
-              </Card>
-            </div>
+            <ModuleWorkspace name={activeNav} />
           ) : (
           <>
           {/* Title row */}
