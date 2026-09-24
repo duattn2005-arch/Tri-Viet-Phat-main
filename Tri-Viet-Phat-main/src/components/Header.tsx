@@ -254,7 +254,7 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Navigation bar (desktop): navy, uppercase, red underline on hover/active */}
       <div className="hidden lg:block bg-[#0a2540]">
-        <nav ref={navRef} className="max-w-[1760px] mx-auto px-4 sm:px-8 xl:px-12 flex items-center justify-between h-12 text-[14px]">
+        <nav ref={navRef} className="max-w-[1760px] mx-auto px-4 sm:px-8 xl:px-12 flex items-center justify-center gap-2 xl:gap-4 2xl:gap-6 h-12 text-[14px]">
           {NAV_ITEMS.map((item) => {
             const isActive = currentTab === item.tab;
             const baseClass = `group relative h-12 px-4 xl:px-5 inline-flex items-center gap-0.5 font-semibold uppercase tracking-[0.06em] transition-colors duration-300 cursor-pointer ${
