@@ -53,6 +53,8 @@ export interface Partner {
   name: string;
   /** Logo file in /public/partners, taken from thietbiytegroup.com */
   logo?: string;
+  /** Manufacturer's official website, opened in a new tab */
+  url?: string;
   subName?: string;
   highlight?: boolean;
   textColor?: string;

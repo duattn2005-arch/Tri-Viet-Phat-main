@@ -78,14 +78,14 @@ export const BUSINESS_AREAS = [
 export const PRODUCTS: Product[] = REAL_PRODUCTS;
 
 export const PARTNERS: Partner[] = [
-  { name: 'DIRUI', logo: '/partners/dirui.png', textColor: 'text-secondary', highlight: true },
-  { name: 'CHEMA', logo: '/partners/chema.svg', subName: 'DIAGNOSTICA', textColor: 'text-[#0b1c30]' },
-  { name: 'Wondfo', logo: '/partners/wondfo.png', textColor: 'text-primary', highlight: true },
-  { name: 'EKF', logo: '/partners/ekf.jpg', textColor: 'text-secondary', bgColor: 'bg-secondary-fixed' },
-  { name: 'Drawray', logo: '/partners/drawray.svg', textColor: 'text-primary' },
-  { name: 'AUDICOM', logo: '/partners/audicom.png', textColor: 'text-medical-blue-deep' },
-  { name: 'Convergent', logo: '/partners/convergent.svg', subName: 'Technologies', textColor: 'text-[#0b1c30]' },
-  { name: 'dewei 德威', logo: '/partners/dewei.png', textColor: 'text-primary' },
+  { name: 'DIRUI', logo: '/partners/dirui.png', url: 'https://en.dirui.com.cn/', textColor: 'text-secondary', highlight: true },
+  { name: 'CHEMA', logo: '/partners/chema.svg', url: 'https://www.chema.com/', subName: 'DIAGNOSTICA', textColor: 'text-[#0b1c30]' },
+  { name: 'Wondfo', logo: '/partners/wondfo.png', url: 'https://en.wondfo.com/', textColor: 'text-primary', highlight: true },
+  { name: 'EKF', logo: '/partners/ekf.jpg', url: 'https://www.ekfdiagnostics.com/', textColor: 'text-secondary', bgColor: 'bg-secondary-fixed' },
+  { name: 'Drawray', logo: '/partners/drawray.svg', url: 'https://en.szdrawray.com/', textColor: 'text-primary' },
+  { name: 'AUDICOM', logo: '/partners/audicom.png', url: 'https://www.audicomivd.com/', textColor: 'text-medical-blue-deep' },
+  { name: 'Convergent', logo: '/partners/convergent.svg', url: 'https://convergent-technologies.de/', subName: 'Technologies', textColor: 'text-[#0b1c30]' },
+  { name: 'dewei 德威', logo: '/partners/dewei.png', url: 'https://www.deweilab.com/index-en.asp', textColor: 'text-primary' },
 ];
 
 // DEMO/SEED DATA (isPlaceholder: true) — dùng để xem trước layout. Thay bằng testimonial thực

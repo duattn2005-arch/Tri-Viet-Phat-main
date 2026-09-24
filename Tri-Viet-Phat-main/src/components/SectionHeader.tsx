@@ -27,6 +27,15 @@ const PulseOrnament: React.FC = () => (
         viewport={{ once: true }}
         transition={{ duration: 1.4, ease: 'easeInOut' }}
       />
+      <path
+        d="M0 12h18l4-8 6 16 5-12 3 4h28"
+        pathLength={100}
+        className="ecg-blip"
+        stroke="#5cc4ff"
+        strokeWidth="2.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
     <span className="h-px w-16 sm:w-24 bg-linear-to-l from-transparent to-[#e11d2a]" />
   </div>

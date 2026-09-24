@@ -242,7 +242,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       </section>
 
       {/* Category word band on black — static, each word links to its product category */}
-      <section className="fx-spotlight relative w-full py-8 sm:py-10 bg-linear-to-r from-[#0a2540] via-[#0b3a66] to-[#0a2540]">
+      <section className="fx-spotlight fx-sweep relative overflow-hidden w-full py-8 sm:py-10 bg-linear-to-r from-[#0a2540] via-[#0b3a66] to-[#0a2540]">
         <RevealGroup className="max-w-[1320px] mx-auto px-4 sm:px-8 flex flex-wrap items-center justify-center gap-x-6 lg:gap-x-5 gap-y-3">
           {CATEGORY_WORDS.map((item, idx) => (
             <RevealItem key={item.cat} className="flex items-center gap-6 lg:gap-5">
@@ -378,18 +378,30 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   aria-hidden={idx >= PARTNERS.length}
                   className="w-[200px] sm:w-[250px] shrink-0 px-2.5 sm:px-3 py-4"
                 >
-                  <div className="h-24 sm:h-28 rounded-2xl bg-white border border-[#e3ebf3] shadow-[0_4px_14px_rgba(10,37,64,0.06)] flex items-center justify-center px-6 hover:-translate-y-1.5 hover:border-[#0a94dc]/40 hover:shadow-[0_18px_36px_-14px_rgba(10,37,64,0.3)] transition-[translate,border-color,box-shadow] duration-500">
+                  <a
+                    href={partner.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    tabIndex={idx >= PARTNERS.length ? -1 : undefined}
+                    title={`Truy cập website ${partner.name}`}
+                    className="partner-card fx-shine group/partner relative h-24 sm:h-28 rounded-2xl bg-white border border-[#e3ebf3] shadow-[0_4px_14px_rgba(10,37,64,0.06)] flex items-center justify-center px-6 hover:-translate-y-2 hover:scale-[1.03] hover:shadow-[0_22px_40px_-14px_rgba(10,148,220,0.45)] transition-[translate,scale,box-shadow] duration-500 cursor-pointer"
+                  >
                   {partner.logo ? (
                     <img
                       src={partner.logo}
                       alt={idx < PARTNERS.length ? partner.name : ''}
                       loading="lazy"
-                      className="max-h-11 sm:max-h-12 max-w-full object-contain mix-blend-multiply"
+                      className="max-h-11 sm:max-h-12 max-w-full object-contain mix-blend-multiply grayscale opacity-70 group-hover/partner:grayscale-0 group-hover/partner:opacity-100 group-hover/partner:-translate-y-2.5 transition-[filter,opacity,translate] duration-500"
                     />
                   ) : (
                     <span className="text-[18px] font-semibold text-[#999999]">{partner.name}</span>
                   )}
-                  </div>
+                    {/* "Visit website" label slides up from the bottom edge on hover */}
+                    <span className="absolute bottom-2 sm:bottom-2.5 left-0 right-0 flex items-center justify-center gap-1 text-[11px] font-bold uppercase tracking-[0.1em] text-[#0a94dc] opacity-0 translate-y-2 group-hover/partner:opacity-100 group-hover/partner:translate-y-0 transition-[opacity,translate] duration-500">
+                      Xem website
+                      <span className="material-symbols-outlined text-[14px]">north_east</span>
+                    </span>
+                  </a>
                 </li>
               ))}
             </ul>

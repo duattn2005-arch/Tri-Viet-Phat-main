@@ -122,6 +122,36 @@ export const Header: React.FC<HeaderProps> = ({
 
   const hotlineHref = (phone: string) => `tel:${phone.replace(/\./g, '')}`;
 
+  // Messages for the top-bar ticker; the duplicate copy is hidden from keyboard and screen readers.
+  const tickerItems = (duplicate: boolean) => {
+    const tab = duplicate ? -1 : undefined;
+    const icon = (name: string) => (
+      <span className="material-symbols-outlined text-[15px] text-[#5cc4ff]">{name}</span>
+    );
+    return [
+      <>
+        {icon('call')}Hotline{' '}
+        <a href={hotlineHref(COMPANY_INFO.hotline)} tabIndex={tab} className="font-semibold text-white fx-link">
+          {COMPANY_INFO.hotline}
+        </a>
+        {' · '}
+        <a href={hotlineHref(COMPANY_INFO.hotline2)} tabIndex={tab} className="font-semibold text-white fx-link">
+          {COMPANY_INFO.hotline2}
+        </a>
+      </>,
+      <>
+        {icon('mail')}
+        <a href={`mailto:${COMPANY_INFO.email}`} tabIndex={tab} className="hover:text-white transition-colors">
+          {COMPANY_INFO.email}
+        </a>
+      </>,
+      <>{icon('verified')}Nhà phân phối chính thức DIRUI · Wondfo · EKF · Dewei · Chema · Convergent</>,
+      <>{icon('science')}Hóa chất, thuốc thử {COMPANY_INFO.genuineReagents} chính hãng, đủ CO/CQ</>,
+      <>{icon('engineering')}Kỹ sư y sinh hỗ trợ lắp đặt, bảo trì, sửa chữa tận nơi</>,
+      <>{icon('local_shipping')}Giao hàng toàn quốc · {COMPANY_INFO.yearsOfExperience} năm kinh nghiệm</>,
+    ];
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 bg-white border-b border-[#e5e5e5] transition-[translate,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
@@ -136,28 +166,27 @@ export const Header: React.FC<HeaderProps> = ({
       {/* Top utility bar */}
       <div className="fx-gradient-flow text-white/70 text-[12px]">
         <div className="max-w-[1760px] mx-auto px-4 sm:px-8 xl:px-12 flex items-center justify-between h-8 sm:h-9">
-          <div className="flex items-center gap-4 min-w-0">
-            <span className="truncate">
-              Hotline{' '}
-              <a href={hotlineHref(COMPANY_INFO.hotline)} className="font-semibold text-white fx-link">
-                {COMPANY_INFO.hotline}
-              </a>
-              <span className="hidden sm:inline">
-                {' · '}
-                <a href={hotlineHref(COMPANY_INFO.hotline2)} className="font-semibold text-white fx-link">
-                  {COMPANY_INFO.hotline2}
-                </a>
-              </span>
-            </span>
-            <a
-              href={`mailto:${COMPANY_INFO.email}`}
-              className="hidden md:inline truncate hover:text-white transition-colors"
-            >
-              {COMPANY_INFO.email}
-            </a>
+          {/* Scrolling ticker: the message list is rendered twice and slid by -50%; hover pauses it */}
+          <div className="group/ticker flex-1 min-w-0 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)]">
+            <div className="ticker-track flex w-max group-hover/ticker:[animation-play-state:paused]">
+              {[0, 1].map((copy) => (
+                <div
+                  key={copy}
+                  aria-hidden={copy === 1}
+                  className="flex items-center shrink-0 whitespace-nowrap"
+                >
+                  {tickerItems(copy === 1).map((node, i) => (
+                    <span key={i} className="flex items-center">
+                      <span className="px-6 inline-flex items-center gap-1.5">{node}</span>
+                      <span className="w-1 h-1 rounded-full bg-[#e11d2a]" aria-hidden="true" />
+                    </span>
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
 
-          <div className="flex items-center gap-4 shrink-0">
+          <div className="flex items-center gap-4 shrink-0 pl-4">
             <a
               href={COMPANY_INFO.facebookUrl}
               target="_blank"
@@ -236,7 +265,7 @@ export const Header: React.FC<HeaderProps> = ({
 
           <button
             onClick={() => onOpenConsultation()}
-            className="hidden sm:inline-flex items-center btn-primary h-11 px-6 rounded-full text-[13px] font-semibold uppercase tracking-wide cursor-pointer"
+            className="fx-cta relative overflow-hidden hidden sm:inline-flex items-center btn-primary h-11 px-6 rounded-full text-[13px] font-semibold uppercase tracking-wide cursor-pointer"
           >
             Yêu cầu báo giá
           </button>
@@ -368,7 +397,7 @@ export const Header: React.FC<HeaderProps> = ({
                 setMobileMenuOpen(false);
                 onOpenConsultation();
               }}
-              className="btn-primary w-full h-11 text-[14px] font-semibold uppercase tracking-wide cursor-pointer"
+              className="fx-cta relative overflow-hidden btn-primary w-full h-11 text-[14px] font-semibold uppercase tracking-wide cursor-pointer"
             >
               Yêu cầu báo giá
             </button>

@@ -172,6 +172,102 @@ body {
   animation: marquee 40s linear infinite;
 }
 
+/* Header top-bar ticker: same technique, slower so the text stays readable */
+.ticker-track {
+  animation: marquee 45s linear infinite;
+}
+
+/* Partner cards: a blue→red border spins around the card on hover */
+@property --fx-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes fxSpin {
+  to { --fx-angle: 360deg; }
+}
+
+.partner-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 16;
+  border-radius: inherit;
+  padding: 2px;
+  pointer-events: none;
+  background: conic-gradient(from var(--fx-angle), #0a94dc, #e11d2a, #0a94dc);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  animation: fxSpin 3s linear infinite;
+}
+
+.partner-card:hover::before,
+.partner-card:focus-visible::before {
+  opacity: 1;
+}
+
+/* Heartbeat ornament: a glowing blip keeps travelling along the ECG line */
+@keyframes ecgBlip {
+  from { stroke-dashoffset: 100; }
+  to { stroke-dashoffset: 0; }
+}
+
+.ecg-blip {
+  stroke-dasharray: 14 86;
+  animation: ecgBlip 2.2s linear infinite;
+  filter: drop-shadow(0 0 3px rgba(10, 148, 220, 0.9));
+}
+
+/* Key call-to-action: a light glint crosses it every few seconds and a red ring pulses out */
+@keyframes ctaShine {
+  0%, 55% { transform: translateX(-150%) skewX(-20deg); }
+  85%, 100% { transform: translateX(350%) skewX(-20deg); }
+}
+
+@keyframes ctaPulse {
+  0% { box-shadow: 0 0 0 0 rgba(225, 29, 42, 0.5); }
+  70%, 100% { box-shadow: 0 0 0 12px rgba(225, 29, 42, 0); }
+}
+
+.fx-cta {
+  animation: ctaPulse 2.4s ease-out infinite;
+}
+
+.fx-cta::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 40%;
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  animation: ctaShine 3.6s ease-in-out infinite;
+}
+
+/* Dark bands: a soft beam of light sweeps across every few seconds */
+@keyframes bandSweep {
+  0% { transform: translateX(-100%) skewX(-20deg); }
+  60%, 100% { transform: translateX(260%) skewX(-20deg); }
+}
+
+.fx-sweep::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 35%;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(92, 196, 255, 0.16), transparent);
+  animation: bandSweep 6s ease-in-out infinite;
+}
+
 /* ---- Hover & colour effects ------------------------------------------- */
 
 /* Links: blue-to-red underline that sweeps in from the left */
@@ -286,6 +382,12 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .marquee-track,
+  .ticker-track,
+  .partner-card::before,
+  .ecg-blip,
+  .fx-cta,
+  .fx-cta::after,
+  .fx-sweep::after,
   .dropdown-in,
   .glow-drift,
   .glow-drift-reverse,
