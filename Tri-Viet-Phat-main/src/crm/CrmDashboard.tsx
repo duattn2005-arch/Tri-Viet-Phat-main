@@ -124,6 +124,7 @@ const INITIAL_TASKS: { task: string; customer: string; due: string; done: boolea
 const CRM_STORAGE_KEYS = {
   customers: 'tri-viet-phat-crm-customers',
   tasks: 'tri-viet-phat-crm-tasks',
+  modules: 'tri-viet-phat-crm-modules',
 } as const;
 
 const MODULE_DESCRIPTIONS: Record<string, string> = {
@@ -139,7 +140,9 @@ const MODULE_DESCRIPTIONS: Record<string, string> = {
   'Cài đặt': 'Cấu hình người dùng, thông báo và thiết lập CRM.',
 };
 
-const MODULE_RECORDS: Record<string, { columns: string[]; rows: string[][] }> = {
+type ModuleTable = { columns: string[]; rows: string[][] };
+
+const MODULE_RECORDS: Record<string, ModuleTable> = {
   'Cơ hội kinh doanh': {
     columns: ['Cơ hội', 'Khách hàng', 'Giá trị dự kiến', 'Giai đoạn', 'Người phụ trách'],
     rows: [
@@ -218,28 +221,50 @@ const MODULE_RECORDS: Record<string, { columns: string[]; rows: string[][] }> = 
   },
 };
 
-const ModuleWorkspace: React.FC<{ name: string }> = ({ name }) => {
-  const module = MODULE_RECORDS[name];
+const ModuleWorkspace: React.FC<{
+  name: string;
+  module: ModuleTable;
+  query: string;
+  onQueryChange: (value: string) => void;
+  onAdd: () => void;
+  onDelete: (rowIndex: number) => void;
+}> = ({ name, module, query, onQueryChange, onAdd, onDelete }) => {
   if (!module) return null;
+  const visibleRows = module.rows.filter((row) => row.join(' ').toLowerCase().includes(query.trim().toLowerCase()));
 
   return (
     <>
-      <div>
-        <h1 className="text-[26px] font-bold leading-tight">{name}</h1>
-        <p className="mt-1 text-[14.5px] text-[#44526b]">{MODULE_DESCRIPTIONS[name]}</p>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-[26px] font-bold leading-tight">{name}</h1>
+          <p className="mt-1 text-[14.5px] text-[#44526b]">{MODULE_DESCRIPTIONS[name]}</p>
+        </div>
+        <button onClick={onAdd} className="inline-flex items-center justify-center gap-2 h-[42px] px-4 rounded-lg bg-[#1a64d6] text-white text-[13.5px] font-medium cursor-pointer">
+          <Plus size={18} />
+          Thêm bản ghi
+        </button>
       </div>
       <Card>
+        <div className="flex items-center gap-2 p-3 border-b border-[#eef2f8]">
+          <Search size={16} className="text-[#6b7891]" />
+          <input value={query} onChange={(event) => onQueryChange(event.target.value)} placeholder={`Tìm trong ${name.toLowerCase()}...`} className="w-full bg-transparent text-[13px] outline-none" />
+        </div>
         <div className="overflow-x-auto p-3">
           <table className="w-full">
             <thead className="bg-[#f4f7fc]">
-              <tr>{module.columns.map((column) => <th key={column} className={TH}>{column}</th>)}</tr>
+              <tr>{module.columns.map((column) => <th key={column} className={TH}>{column}</th>)}<th className={TH}>Thao tác</th></tr>
             </thead>
             <tbody>
-              {module.rows.map((row, rowIndex) => (
+              {visibleRows.map((row) => {
+                const rowIndex = module.rows.indexOf(row);
+                return (
                 <tr key={`${name}-${rowIndex}`} className="border-b border-[#eef2f8] last:border-0 hover:bg-[#f8fafd]">
                   {row.map((cell, cellIndex) => <td key={`${rowIndex}-${cellIndex}`} className={cellIndex === 0 ? `${TD} font-medium text-[#1a64d6]` : TD}>{cell}</td>)}
+                  <td className={TD}><button onClick={() => onDelete(rowIndex)} className="text-[#dc2626] hover:underline cursor-pointer">Xóa</button></td>
                 </tr>
-              ))}
+                );
+              })}
+              {!visibleRows.length && <tr><td colSpan={module.columns.length + 1} className="px-3 py-8 text-center text-[13px] text-[#5b6780]">Chưa có dữ liệu phù hợp.</td></tr>}
             </tbody>
           </table>
         </div>
@@ -420,13 +445,19 @@ export const CrmDashboard: React.FC = () => {
   const [isAddCustomerOpen, setIsAddCustomerOpen] = useState(false);
   const [newCustomerName, setNewCustomerName] = useState('');
   const [newCustomerNeed, setNewCustomerNeed] = useState('');
+  const [moduleRecords, setModuleRecords] = useState<Record<string, ModuleTable>>(MODULE_RECORDS);
+  const [moduleQuery, setModuleQuery] = useState('');
+  const [isAddModuleOpen, setIsAddModuleOpen] = useState(false);
+  const [moduleDraft, setModuleDraft] = useState<string[]>([]);
 
   useEffect(() => {
     try {
       const storedCustomers = window.localStorage.getItem(CRM_STORAGE_KEYS.customers);
       const storedTasks = window.localStorage.getItem(CRM_STORAGE_KEYS.tasks);
+      const storedModules = window.localStorage.getItem(CRM_STORAGE_KEYS.modules);
       if (storedCustomers) setCustomers(JSON.parse(storedCustomers) as CustomerRow[]);
       if (storedTasks) setTasks(JSON.parse(storedTasks) as typeof INITIAL_TASKS);
+      if (storedModules) setModuleRecords(JSON.parse(storedModules) as Record<string, ModuleTable>);
     } catch {
       // Ignore malformed browser data and continue with the demo defaults.
     }
@@ -439,6 +470,14 @@ export const CrmDashboard: React.FC = () => {
   useEffect(() => {
     window.localStorage.setItem(CRM_STORAGE_KEYS.tasks, JSON.stringify(tasks));
   }, [tasks]);
+
+  useEffect(() => {
+    window.localStorage.setItem(CRM_STORAGE_KEYS.modules, JSON.stringify(moduleRecords));
+  }, [moduleRecords]);
+
+  useEffect(() => {
+    setModuleQuery('');
+  }, [activeNav]);
 
   const visibleCustomers = customers.filter((customer) => {
     const query = searchTerm.trim().toLowerCase();
@@ -467,7 +506,36 @@ export const CrmDashboard: React.FC = () => {
     setIsAddCustomerOpen(false);
   };
 
+  const deleteCustomer = (name: string) => {
+    if (!window.confirm(`Xóa khách hàng "${name}"?`)) return;
+    setCustomers((current) => current.filter((customer) => customer.name !== name));
+  };
+
   const isDashboard = activeNav === 'Tổng quan' || activeNav === 'CRM - Khách hàng';
+
+  const openModuleForm = () => {
+    setModuleDraft(new Array(moduleRecords[activeNav]?.columns.length || 0).fill(''));
+    setIsAddModuleOpen(true);
+  };
+
+  const addModuleRecord = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!moduleDraft.length || moduleDraft.some((value) => !value.trim())) return;
+    setModuleRecords((current) => ({
+      ...current,
+      [activeNav]: { ...current[activeNav], rows: [moduleDraft.map((value) => value.trim()), ...current[activeNav].rows] },
+    }));
+    setModuleDraft([]);
+    setIsAddModuleOpen(false);
+  };
+
+  const deleteModuleRecord = (rowIndex: number) => {
+    if (!window.confirm('Bạn có chắc muốn xóa bản ghi này không?')) return;
+    setModuleRecords((current) => ({
+      ...current,
+      [activeNav]: { ...current[activeNav], rows: current[activeNav].rows.filter((_, index) => index !== rowIndex) },
+    }));
+  };
 
   const sidebar = (
     <aside className="flex h-full w-[205px] flex-col bg-white border-r border-[#e6ecf5]">
@@ -581,6 +649,7 @@ export const CrmDashboard: React.FC = () => {
                         <th className={TH}>Nhu cầu</th>
                         <th className={TH}>Ngày tạo</th>
                         <th className={TH}>Trạng thái</th>
+                        <th className={TH}>Thao tác</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -592,6 +661,7 @@ export const CrmDashboard: React.FC = () => {
                           <td className={TD_WRAP}>{customer.need}</td>
                           <td className={TD}>{customer.date}</td>
                           <td className={TD}><Badge tone={customer.status[1]}>{customer.status[0]}</Badge></td>
+                          <td className={TD}><button onClick={() => deleteCustomer(customer.name)} className="text-[#dc2626] hover:underline cursor-pointer">Xóa</button></td>
                         </tr>
                       ))}
                     </tbody>
@@ -600,7 +670,14 @@ export const CrmDashboard: React.FC = () => {
               </Card>
             </>
           ) : !isDashboard ? (
-            <ModuleWorkspace name={activeNav} />
+            <ModuleWorkspace
+              name={activeNav}
+              module={moduleRecords[activeNav]}
+              query={moduleQuery}
+              onQueryChange={setModuleQuery}
+              onAdd={openModuleForm}
+              onDelete={deleteModuleRecord}
+            />
           ) : (
           <>
           {/* Title row */}
@@ -909,6 +986,37 @@ export const CrmDashboard: React.FC = () => {
               <button type="submit" className="h-10 rounded-lg bg-[#1a64d6] px-4 text-[13px] font-medium text-white cursor-pointer">
                 Lưu khách hàng
               </button>
+            </div>
+          </form>
+        </div>
+      )}
+
+      {isAddModuleOpen && moduleRecords[activeNav] && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0f1f3d]/35 p-4" onMouseDown={() => setIsAddModuleOpen(false)}>
+          <form onSubmit={addModuleRecord} onMouseDown={(event) => event.stopPropagation()} className="w-full max-w-[520px] rounded-xl bg-white p-6 shadow-2xl">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <h2 className="text-[20px] font-bold text-[#0f1f3d]">Thêm vào {activeNav}</h2>
+                <p className="mt-1 text-[13px] text-[#5b6780]">Nhập đủ các trường để lưu bản ghi mới.</p>
+              </div>
+              <button type="button" onClick={() => setIsAddModuleOpen(false)} aria-label="Đóng" className="text-2xl leading-none text-[#5b6780] cursor-pointer">×</button>
+            </div>
+            <div className="mt-4 max-h-[55vh] space-y-3 overflow-y-auto pr-1">
+              {moduleRecords[activeNav].columns.map((column, index) => (
+                <label key={column} className="block text-[13px] font-medium text-[#27344d]">
+                  {column}
+                  <input
+                    required
+                    value={moduleDraft[index] || ''}
+                    onChange={(event) => setModuleDraft((current) => current.map((value, draftIndex) => draftIndex === index ? event.target.value : value))}
+                    className="mt-1.5 h-10 w-full rounded-lg border border-[#dfe6f1] px-3 text-[13px] outline-none focus:border-[#1a64d6]"
+                  />
+                </label>
+              ))}
+            </div>
+            <div className="mt-6 flex justify-end gap-2">
+              <button type="button" onClick={() => setIsAddModuleOpen(false)} className="h-10 rounded-lg border border-[#dfe6f1] px-4 text-[13px] text-[#27344d] cursor-pointer">Hủy</button>
+              <button type="submit" className="h-10 rounded-lg bg-[#1a64d6] px-4 text-[13px] font-medium text-white cursor-pointer">Lưu bản ghi</button>
             </div>
           </form>
         </div>
