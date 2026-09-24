@@ -391,16 +391,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                       src={partner.logo}
                       alt={idx < PARTNERS.length ? partner.name : ''}
                       loading="lazy"
-                      className="max-h-11 sm:max-h-12 max-w-full object-contain mix-blend-multiply grayscale opacity-70 group-hover/partner:grayscale-0 group-hover/partner:opacity-100 group-hover/partner:-translate-y-2.5 transition-[filter,opacity,translate] duration-500"
+                      className="max-h-11 sm:max-h-12 max-w-full object-contain mix-blend-multiply"
                     />
                   ) : (
                     <span className="text-[18px] font-semibold text-[#999999]">{partner.name}</span>
                   )}
-                    {/* "Visit website" label slides up from the bottom edge on hover */}
-                    <span className="absolute bottom-2 sm:bottom-2.5 left-0 right-0 flex items-center justify-center gap-1 text-[11px] font-bold uppercase tracking-[0.1em] text-[#0a94dc] opacity-0 translate-y-2 group-hover/partner:opacity-100 group-hover/partner:translate-y-0 transition-[opacity,translate] duration-500">
-                      Xem website
-                      <span className="material-symbols-outlined text-[14px]">north_east</span>
-                    </span>
                   </a>
                 </li>
               ))}
