@@ -126,6 +126,19 @@ const CRM_STORAGE_KEYS = {
   tasks: 'tri-viet-phat-crm-tasks',
 } as const;
 
+const MODULE_DESCRIPTIONS: Record<string, string> = {
+  'Cơ hội kinh doanh': 'Theo dõi các cơ hội bán hàng và giai đoạn tư vấn.',
+  'Báo giá': 'Quản lý báo giá đã tạo, đã gửi và đang chờ phản hồi.',
+  'Đơn hàng': 'Theo dõi đơn hàng thiết bị và hóa chất của khách hàng.',
+  'Sửa chữa - Bảo trì': 'Tiếp nhận và theo dõi các phiếu sửa chữa, bảo trì.',
+  'Lịch hẹn kỹ thuật': 'Quản lý lịch kỹ thuật viên đến làm việc tại cơ sở.',
+  'Hợp đồng': 'Lưu trữ và theo dõi hợp đồng dịch vụ, bảo trì.',
+  'Chăm sóc khách hàng': 'Theo dõi lịch sử chăm sóc và phản hồi của khách hàng.',
+  Marketing: 'Quản lý các chiến dịch và nguồn khách hàng.',
+  'Báo cáo': 'Tổng hợp báo cáo kinh doanh và hiệu quả dịch vụ.',
+  'Cài đặt': 'Cấu hình người dùng, thông báo và thiết lập CRM.',
+};
+
 /* ------------------------------------------------------------ primitives */
 
 const Badge: React.FC<{ tone: Tone; children: React.ReactNode }> = ({ tone, children }) => (
@@ -345,6 +358,8 @@ export const CrmDashboard: React.FC = () => {
     setIsAddCustomerOpen(false);
   };
 
+  const isDashboard = activeNav === 'Tổng quan' || activeNav === 'CRM - Khách hàng';
+
   const sidebar = (
     <aside className="flex h-full w-[205px] flex-col bg-white border-r border-[#e6ecf5]">
       <a href="/" className="flex items-center gap-2 px-4 h-[60px] shrink-0" title="Về website Trí Việt Phát">
@@ -431,6 +446,65 @@ export const CrmDashboard: React.FC = () => {
         </header>
 
         <main className="p-4 sm:p-6 space-y-4">
+          {!isDashboard && activeNav === 'Khách hàng' ? (
+            <>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                  <h1 className="text-[26px] font-bold leading-tight">Khách hàng</h1>
+                  <p className="mt-1 text-[14.5px] text-[#44526b]">Danh sách khách hàng được lưu trên thiết bị này.</p>
+                </div>
+                <button
+                  onClick={() => setIsAddCustomerOpen(true)}
+                  className="inline-flex items-center justify-center gap-2 h-[42px] px-4 rounded-lg bg-[#1a64d6] text-white text-[13.5px] font-medium cursor-pointer"
+                >
+                  <Plus size={18} />
+                  Thêm khách hàng
+                </button>
+              </div>
+              <Card>
+                <div className="overflow-x-auto p-3">
+                  <table className="w-full">
+                    <thead className="bg-[#f4f7fc]">
+                      <tr>
+                        <th className={TH}>#</th>
+                        <th className={TH}>Khách hàng</th>
+                        <th className={TH}>Loại khách hàng</th>
+                        <th className={TH}>Nhu cầu</th>
+                        <th className={TH}>Ngày tạo</th>
+                        <th className={TH}>Trạng thái</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {visibleCustomers.map((customer, index) => (
+                        <tr key={customer.name} className="border-b border-[#eef2f8] last:border-0">
+                          <td className={TD}>{index + 1}</td>
+                          <td className={TD}>{customer.name}</td>
+                          <td className={TD}><Badge tone={customer.type[1]}>{customer.type[0]}</Badge></td>
+                          <td className={TD_WRAP}>{customer.need}</td>
+                          <td className={TD}>{customer.date}</td>
+                          <td className={TD}><Badge tone={customer.status[1]}>{customer.status[0]}</Badge></td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </Card>
+            </>
+          ) : !isDashboard ? (
+            <div className="flex min-h-[420px] items-center justify-center">
+              <Card className="w-full max-w-[620px] px-6 py-10 text-center">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#e8f1fe] text-[#1a64d6]">
+                  <Settings size={26} />
+                </div>
+                <h1 className="mt-4 text-[24px] font-bold">{activeNav}</h1>
+                <p className="mx-auto mt-2 max-w-[480px] text-[14px] leading-6 text-[#5b6780]">
+                  {MODULE_DESCRIPTIONS[activeNav] || 'Quản lý nghiệp vụ CRM của Trí Việt Phát.'}
+                </p>
+                <p className="mt-5 text-[13px] text-[#8a96ab]">Module này đã được tách riêng để không còn hiển thị nhầm dashboard tổng quan.</p>
+              </Card>
+            </div>
+          ) : (
+          <>
           {/* Title row */}
           <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4">
             <div>
@@ -688,6 +762,8 @@ export const CrmDashboard: React.FC = () => {
               </div>
             </Card>
           </div>
+          </>
+          )}
         </main>
       </div>
 
