@@ -81,7 +81,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenConsultation }) 
   return (
     <section
       ref={sectionRef}
-      className="relative w-full h-[560px] sm:h-[600px] lg:h-[calc(100vh-116px)] lg:min-h-[600px] lg:max-h-[780px] overflow-hidden bg-[#0a2540]"
+      className="relative w-full h-[560px] sm:h-[600px] lg:h-[calc(100vh-168px)] lg:min-h-[600px] lg:max-h-[780px] overflow-hidden bg-[#0a2540]"
       onTouchStart={(e) => (touchX.current = e.touches[0].clientX)}
       onTouchEnd={(e) => {
         if (touchX.current === null) return;

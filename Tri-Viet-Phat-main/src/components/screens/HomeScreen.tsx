@@ -138,35 +138,60 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       {/* 1. Hero */}
       <HeroSection onOpenConsultation={onOpenConsultation} />
 
-      {/* 2. Key facts — dark band, counters with an accent line that draws in */}
+      {/* 2. Key facts — photo-backed navy band, heading + glass counter cards */}
       <section className="fx-spotlight relative w-full overflow-hidden bg-[#0a2540] text-white">
+        <ParallaxImage src="/images/hero-engineers.jpg" className="opacity-25" />
+        <div className="absolute inset-0 bg-linear-to-br from-[#0a2540]/95 via-[#0a2540]/85 to-[#0b3a66]/80" aria-hidden="true" />
         <AmbientGlow />
-        <dl className="relative max-w-[1320px] mx-auto px-4 sm:px-8 py-12 sm:py-16 grid grid-cols-2 lg:grid-cols-4 gap-x-6 sm:gap-x-10 gap-y-12">
-          {FACTS.map((fact, idx) => (
-            <Reveal key={fact.label} delay={idx * 0.12} className="relative pt-6">
-              {/* Top rule: faint base with an accent segment that grows in */}
-              <span className="absolute top-0 inset-x-0 h-px bg-white/15" aria-hidden="true" />
-              <motion.span
-                className="absolute top-0 left-0 h-[2px] w-16 bg-[#e11d2a] origin-left"
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.9, delay: 0.3 + idx * 0.12, ease: [0.22, 1, 0.36, 1] }}
-                aria-hidden="true"
-              />
-              <dd className="text-[44px] sm:text-[56px] lg:text-[64px] font-bold leading-none tracking-tight tabular-nums">
-                <CountUp
-                  to={fact.to}
-                  prefix={fact.prefix}
-                  suffix={fact.suffix}
-                  suffixClassName="text-[#e11d2a] text-[0.6em] align-top ml-1"
+        <div className="relative max-w-[1320px] mx-auto px-4 sm:px-8 py-14 sm:py-20">
+          <Reveal className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-10 items-end mb-10 sm:mb-12">
+            <div className="lg:col-span-5">
+              <p className="flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.18em] text-[#5cc2ff]">
+                <span className="w-8 h-px bg-[#5cc2ff]" aria-hidden="true" />
+                Trí Việt Phát
+              </p>
+              <h2 className="mt-3 text-[26px] sm:text-[34px] font-bold leading-tight">
+                <MaskText text="Những con số ấn tượng" />
+              </h2>
+            </div>
+            <p className="lg:col-span-7 text-[15px] sm:text-[16px] text-white/70 leading-relaxed">
+              Nhiều năm đồng hành cùng các bệnh viện, trung tâm y tế và phòng khám: thiết bị chính hãng, hồ sơ pháp lý
+              đầy đủ và đội ngũ kỹ sư hỗ trợ tận nơi.
+            </p>
+          </Reveal>
+
+          <dl className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
+            {FACTS.map((fact, idx) => (
+              <Reveal
+                key={fact.label}
+                delay={idx * 0.12}
+                className="group relative overflow-hidden rounded-2xl bg-white/[0.06] border border-white/10 backdrop-blur-sm p-5 sm:p-7 hover:-translate-y-1.5 hover:bg-white/[0.1] hover:border-[#0a94dc]/60 hover:shadow-[0_20px_50px_-20px_rgba(10,148,220,0.7)] transition-[translate,background-color,border-color,box-shadow] duration-500"
+              >
+                {/* Accent line that draws in along the top edge */}
+                <motion.span
+                  className="absolute top-0 left-0 h-[3px] w-full bg-linear-to-r from-[#0a94dc] to-[#e11d2a] origin-left"
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.9, delay: 0.3 + idx * 0.12, ease: [0.22, 1, 0.36, 1] }}
+                  aria-hidden="true"
                 />
-              </dd>
-              <dt className="mt-4 text-[13px] font-semibold uppercase tracking-[0.14em] text-white">{fact.label}</dt>
-              <dd className="mt-2 text-[13px] sm:text-[14px] text-white/55 leading-snug">{fact.note}</dd>
-            </Reveal>
-          ))}
-        </dl>
+                <dd className="text-[40px] sm:text-[52px] lg:text-[58px] font-bold leading-none tracking-tight tabular-nums">
+                  <CountUp
+                    to={fact.to}
+                    prefix={fact.prefix}
+                    suffix={fact.suffix}
+                    suffixClassName="text-[#e11d2a] text-[0.6em] align-top ml-1"
+                  />
+                </dd>
+                <dt className="mt-4 text-[12px] sm:text-[13px] font-semibold uppercase tracking-[0.14em] text-white">
+                  {fact.label}
+                </dt>
+                <dd className="mt-1.5 text-[13px] sm:text-[14px] text-white/60 leading-snug">{fact.note}</dd>
+              </Reveal>
+            ))}
+          </dl>
+        </div>
       </section>
 
       {/* 3. Product categories */}
@@ -217,7 +242,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       </section>
 
       {/* Category word band on black — static, each word links to its product category */}
-      <section className="fx-spotlight w-full py-8 sm:py-10 bg-linear-to-r from-[#0a2540] via-[#0b3a66] to-[#0a2540]">
+      <section className="fx-spotlight relative w-full py-8 sm:py-10 bg-linear-to-r from-[#0a2540] via-[#0b3a66] to-[#0a2540]">
         <RevealGroup className="max-w-[1320px] mx-auto px-4 sm:px-8 flex flex-wrap items-center justify-center gap-x-6 lg:gap-x-5 gap-y-3">
           {CATEGORY_WORDS.map((item, idx) => (
             <RevealItem key={item.cat} className="flex items-center gap-6 lg:gap-5">
@@ -245,7 +270,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           <div className="lg:col-span-6 relative pb-16 sm:pb-20 pr-10 sm:pr-24">
             <Tilt max={5}>
               <WipeImage
-                wrapperClassName="bg-[#edf3f8] fx-shine"
+                wrapperClassName="relative bg-[#edf3f8] fx-shine"
                 className="w-full aspect-[4/5] object-cover"
                 alt="Kỹ thuật viên phòng xét nghiệm làm việc với kính hiển vi"
                 src={COMPANY_INFO.aboutImage}
@@ -339,9 +364,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       <section className="relative w-full overflow-hidden py-14 sm:py-20 bg-[#f3f7fb]">
         <AmbientGlow light />
         <div className="relative max-w-[1320px] mx-auto px-4 sm:px-8">
-          <Reveal>
-            <SectionHeader title="Đối tác của chúng tôi" description="Nhà phân phối chính thức sản phẩm của các hãng chẩn đoán IVD hàng đầu." />
-          </Reveal>
+          <SectionHeader
+            align="center"
+            title="Đối tác của chúng tôi"
+            description="Trí Việt Phát tự hào là nhà phân phối chính thức sản phẩm của các hãng chẩn đoán IVD hàng đầu thế giới."
+          />
           {/* Infinite marquee: the list is rendered twice and slid by -50% */}
           <div className="marquee group relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
             <ul className="marquee-track flex w-max group-hover:[animation-play-state:paused]">
@@ -349,18 +376,20 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 <li
                   key={`${partner.name}-${idx}`}
                   aria-hidden={idx >= PARTNERS.length}
-                  className="h-28 w-[190px] sm:w-[240px] shrink-0 flex items-center justify-center px-6"
+                  className="w-[200px] sm:w-[250px] shrink-0 px-2.5 sm:px-3 py-4"
                 >
+                  <div className="h-24 sm:h-28 rounded-2xl bg-white border border-[#e3ebf3] shadow-[0_4px_14px_rgba(10,37,64,0.06)] flex items-center justify-center px-6 hover:-translate-y-1.5 hover:border-[#0a94dc]/40 hover:shadow-[0_18px_36px_-14px_rgba(10,37,64,0.3)] transition-[translate,border-color,box-shadow] duration-500">
                   {partner.logo ? (
                     <img
                       src={partner.logo}
                       alt={idx < PARTNERS.length ? partner.name : ''}
                       loading="lazy"
-                      className="max-h-12 sm:max-h-14 max-w-full object-contain mix-blend-multiply hover:scale-110 transition-transform duration-500"
+                      className="max-h-11 sm:max-h-12 max-w-full object-contain mix-blend-multiply"
                     />
                   ) : (
                     <span className="text-[18px] font-semibold text-[#999999]">{partner.name}</span>
                   )}
+                  </div>
                 </li>
               ))}
             </ul>
@@ -373,7 +402,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
       {/* 8. Consultation form — dark band over a parallax lab photo; the white form card pops forward */}
       <section className="fx-spotlight relative w-full overflow-hidden py-16 sm:py-24 bg-[#0a2540] text-white" id="tu-van-form">
-        <ParallaxImage src="/images/hero-engineers.jpg" className="opacity-55" />
+        <ParallaxImage src="/images/hero-lab-analyzers.jpg" className="opacity-50" />
         <div className="absolute inset-0 bg-linear-to-r from-[#0a2540]/95 via-[#0a2540]/75 to-[#0a2540]/30" aria-hidden="true" />
         <div className="relative max-w-[1320px] mx-auto px-4 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <Reveal className="lg:col-span-5">
@@ -548,7 +577,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       {/* 9. News */}
       <section className="w-full py-12 sm:py-16 bg-white">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8">
-          <SectionHeader title="Tin tức và hướng dẫn kỹ thuật" />
+          <SectionHeader align="center" title="Tin tức và hướng dẫn kỹ thuật" description="Cập nhật kiến thức xét nghiệm, hướng dẫn vận hành và bảo trì thiết bị." />
 
           <RevealGroup className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {ARTICLES.slice(0, 3).map((art) => (
@@ -558,7 +587,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   onClick={() => onSelectArticle(art)}
                   className="group flex flex-col text-left cursor-pointer"
                 >
-                  <div className="fx-shine w-full aspect-[16/9] overflow-hidden bg-[#edf3f8]">
+                  <div className="relative fx-shine w-full aspect-[16/9] overflow-hidden bg-[#edf3f8]">
                     <img
                       className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
                       alt={art.alt}

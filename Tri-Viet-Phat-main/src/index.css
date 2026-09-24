@@ -190,8 +190,9 @@ body {
 }
 
 /* Images: a diagonal light streak crosses the picture on hover */
+/* Note: effect classes set no `position` — unlayered CSS would override Tailwind's
+   `absolute`; give the element `relative`/`absolute` with a utility instead. */
 .fx-shine {
-  position: relative;
   overflow: hidden;
 }
 
@@ -212,10 +213,6 @@ body {
 }
 
 /* Dark sections: a blue light follows the pointer (position set from App.tsx) */
-.fx-spotlight {
-  position: relative;
-}
-
 .fx-spotlight::before {
   content: '';
   position: absolute;
@@ -242,6 +239,23 @@ body {
   background: linear-gradient(90deg, #0a2540, #0b3a66, #0a4f86, #0b3a66, #0a2540);
   background-size: 200% 100%;
   animation: gradientFlow 14s linear infinite;
+}
+
+/* Subtle dotted pattern for light sections */
+.bg-dots {
+  background-image: radial-gradient(rgba(10, 37, 64, 0.09) 1px, transparent 1.2px);
+  background-size: 22px 22px;
+}
+
+/* Phone icon wiggle (header hotline, floating call button) */
+@keyframes phoneShake {
+  0%, 60%, 100% { transform: rotate(0); }
+  65%, 75%, 85% { transform: rotate(-14deg); }
+  70%, 80%, 90% { transform: rotate(14deg); }
+}
+
+.phone-shake {
+  animation: phoneShake 2.4s ease-in-out infinite;
 }
 
 /* Ambient glows in dark sections */
@@ -275,7 +289,8 @@ body {
   .dropdown-in,
   .glow-drift,
   .glow-drift-reverse,
-  .fx-gradient-flow {
+  .fx-gradient-flow,
+  .phone-shake {
     animation: none;
   }
   html,

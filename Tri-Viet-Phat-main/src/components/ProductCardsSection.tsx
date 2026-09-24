@@ -10,62 +10,77 @@ interface ProductCardsSectionProps {
 }
 
 const CORE_CATEGORIES = [
-  { key: 'may-xet-nghiem-huyet-hoc', title: 'Huyết học' },
-  { key: 'may-xet-nghiem-sinh-hoa', title: 'Sinh hóa' },
-  { key: 'may-xet-nghiem-nuoc-tieu', title: 'Nước tiểu' },
-  { key: 'may-xet-nghiem-dien-giai', title: 'Điện giải' },
-  { key: 'may-xet-nghiem-mien-dich', title: 'Miễn dịch' },
-  { key: 'hoa-chat-xet-nghiem', title: 'Hóa chất' },
+  { key: 'may-xet-nghiem-sinh-hoa', title: 'Máy xét nghiệm sinh hóa' },
+  { key: 'may-xet-nghiem-huyet-hoc', title: 'Máy xét nghiệm huyết học' },
+  { key: 'may-xet-nghiem-nuoc-tieu', title: 'Máy xét nghiệm nước tiểu' },
+  { key: 'may-xet-nghiem-dien-giai', title: 'Máy xét nghiệm điện giải' },
+  { key: 'may-xet-nghiem-mien-dich', title: 'Máy xét nghiệm miễn dịch' },
+  { key: 'may-phan-tich-dong-mau', title: 'Máy phân tích đông máu' },
+  { key: 'may-xet-nghiem-hba1c', title: 'Máy xét nghiệm HbA1c' },
+  { key: 'hoa-chat-xet-nghiem', title: 'Hóa chất xét nghiệm' },
 ];
 
-/** Image tiles, one per category, using the first product photo in that category. */
+/** Category cards (first product photo per category) with a frosted navy label bar. */
 export const ProductCardsSection: React.FC<ProductCardsSectionProps> = ({ onNavigateTab }) => {
   const tiles = useMemo(
     () =>
       CORE_CATEGORIES.map((cat) => {
         const inCategory = PRODUCTS.filter((p) => p.category === cat.key);
         return { ...cat, image: inCategory[0]?.image, count: inCategory.length };
-      }),
+      }).filter((t) => t.count > 0),
     []
   );
 
   return (
-    <section className="w-full py-12 sm:py-16 bg-white">
-      <div className="max-w-[1320px] mx-auto px-4 sm:px-8">
+    <section className="relative w-full py-14 sm:py-20 bg-white bg-dots">
+      <div className="relative max-w-[1320px] mx-auto px-4 sm:px-8">
         <SectionHeader
+          align="center"
           title="Danh mục sản phẩm"
-          actionLabel="Tất cả sản phẩm"
+          description="Hệ thống máy xét nghiệm và hóa chất IVD chính hãng cho mọi quy mô phòng xét nghiệm."
+          actionLabel="Xem tất cả sản phẩm"
           onAction={() => onNavigateTab('san-pham')}
         />
 
-        <RevealGroup className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+        <RevealGroup className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {tiles.map((tile) => (
             <RevealItem key={tile.key}>
-              <Tilt>
+              <Tilt className="rounded-2xl">
                 <button
                   type="button"
                   onClick={() => onNavigateTab('san-pham', tile.key)}
-                  className="group fx-shine relative w-full aspect-[3/4] overflow-hidden bg-[#edf3f8] hover:bg-[#e2ecf5] transition-colors duration-500 text-left cursor-pointer"
+                  className="group fx-shine relative w-full aspect-[4/5] overflow-hidden rounded-2xl bg-[#f3f7fb] border border-[#e3ebf3] shadow-[0_4px_16px_rgba(10,37,64,0.06)] hover:shadow-[0_24px_48px_-16px_rgba(10,37,64,0.35)] transition-shadow duration-500 text-left cursor-pointer"
                 >
                   {tile.image && (
                     <img
                       src={tile.image}
-                      alt={`Máy xét nghiệm ${tile.title.toLowerCase()}`}
+                      alt={tile.title}
                       loading="lazy"
-                      className="absolute inset-0 w-full h-full object-contain p-6 pb-16 mix-blend-multiply transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110 group-hover:-translate-y-2"
+                      className="absolute inset-0 w-full h-full object-contain p-6 sm:p-8 pb-20 sm:pb-24 mix-blend-multiply transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110 group-hover:-translate-y-2"
                     />
                   )}
-                  <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4 flex items-center justify-between gap-2">
-                    <span className="min-w-0">
-                      <span className="block text-[15px] sm:text-[16px] font-semibold text-[#111111] group-hover:text-[#0a94dc] transition-colors duration-300">{tile.title}</span>
-                      {tile.count > 0 && (
-                        <span className="block text-[12px] text-[#777777]">{tile.count} sản phẩm</span>
-                      )}
+
+                  {/* Count badge */}
+                  <span className="absolute right-3 top-3 z-10 px-2.5 py-1 rounded-full bg-white/90 text-[11px] sm:text-[12px] font-semibold text-[#0a2540] shadow-sm">
+                    {tile.count} sản phẩm
+                  </span>
+
+                  {/* Frosted label bar */}
+                  <span className="absolute inset-x-2.5 bottom-2.5 z-10 rounded-xl overflow-hidden">
+                    <span className="absolute inset-0 bg-[#0a2540]/85 backdrop-blur-sm" aria-hidden="true" />
+                    <span
+                      className="absolute inset-0 bg-linear-to-r from-[#0a94dc] to-[#e11d2a] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      aria-hidden="true"
+                    />
+                    <span className="relative flex items-center justify-between gap-2 px-3 sm:px-4 py-3">
+                      <span className="text-[12px] sm:text-[14px] font-bold uppercase tracking-wide text-white leading-tight">
+                        {tile.title}
+                      </span>
+                      <span className="material-symbols-outlined shrink-0 text-[20px] text-white transition-transform duration-500 group-hover:translate-x-1 group-hover:-rotate-45">
+                        arrow_forward
+                      </span>
                     </span>
-                    <span className="shrink-0 w-9 h-9 rounded-full bg-white text-[#111111] flex items-center justify-center group-hover:bg-linear-to-br group-hover:from-[#0a94dc] group-hover:to-[#e11d2a] group-hover:text-white transition-colors">
-                      <span className="material-symbols-outlined text-[20px] transition-transform duration-500 group-hover:-rotate-45">arrow_forward</span>
-                    </span>
-                  </div>
+                  </span>
                 </button>
               </Tilt>
             </RevealItem>

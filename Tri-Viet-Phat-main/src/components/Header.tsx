@@ -178,33 +178,91 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       </div>
 
-      {/* Main navbar */}
-      <div className="max-w-[1320px] mx-auto px-4 sm:px-8 flex items-center justify-between gap-4 h-16 sm:h-20">
+      {/* Brand row: logo · big search · hotline block · CTA */}
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-8 flex items-center justify-between gap-4 lg:gap-8 h-16 sm:h-20 lg:h-[84px]">
         <button
           onClick={() => handleNavClick('trang-chu')}
-          className="flex items-center gap-2.5 sm:gap-3 text-left cursor-pointer shrink-0"
+          className="group flex items-center gap-2.5 sm:gap-3 text-left cursor-pointer shrink-0"
         >
           <img
             alt="Logo Trí Việt Phát"
-            className="h-8 sm:h-10 w-auto object-contain"
+            className="h-8 sm:h-11 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
             src={COMPANY_INFO.logoUrl}
           />
           <span className="flex flex-col leading-tight">
-            <span className="text-[16px] sm:text-[18px] font-bold text-[#111111] tracking-tight">Trí Việt Phát</span>
-            <span className="text-[11px] sm:text-[12px] text-[#777777]">Thiết bị y tế</span>
+            <span className="text-[16px] sm:text-[19px] font-bold text-[#0a2540] tracking-tight">Trí Việt Phát</span>
+            <span className="text-[11px] sm:text-[12px] font-medium uppercase tracking-[0.12em] text-[#0a94dc]">
+              Thiết bị y tế
+            </span>
           </span>
         </button>
 
-        {/* Desktop navigation */}
-        <nav ref={navRef} className="hidden lg:flex flex-1 justify-center items-center gap-2 text-[15px] tracking-[0.03em]">
+        {/* Search (desktop): opens the search dialog */}
+        <button
+          type="button"
+          onClick={onOpenSearch}
+          className="group hidden lg:flex flex-1 max-w-[560px] h-12 items-center rounded-full border-2 border-[#dbe6f0] bg-[#f3f7fb] pl-5 pr-1.5 text-left text-[14px] text-[#777777] hover:border-[#0a94dc] hover:bg-white transition-colors cursor-text"
+        >
+          <span className="flex-1 truncate">Tìm máy xét nghiệm, hóa chất, vật tư…</span>
+          <span className="w-9 h-9 rounded-full bg-linear-to-br from-[#0a94dc] to-[#0a2540] text-white flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+            <span className="material-symbols-outlined text-[20px]">search</span>
+          </span>
+        </button>
+
+        <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+          {/* Hotline block (desktop) */}
+          <a href={hotlineHref(COMPANY_INFO.hotline)} className="group hidden xl:flex items-center gap-3">
+            <span className="relative w-11 h-11 shrink-0">
+              <span className="absolute inset-0 rounded-full bg-[#e11d2a]/25 animate-ping" aria-hidden="true" />
+              <span className="relative w-11 h-11 rounded-full bg-linear-to-br from-[#e11d2a] to-[#b3141f] text-white flex items-center justify-center shadow-[0_6px_18px_-6px_rgba(225,29,42,0.8)]">
+                <span className="material-symbols-outlined text-[22px] phone-shake">call</span>
+              </span>
+            </span>
+            <span className="leading-tight">
+              <span className="block text-[12px] text-[#777777]">Tư vấn 24/7</span>
+              <span className="block text-[19px] font-bold text-[#0a2540] group-hover:text-[#e11d2a] transition-colors tabular-nums">
+                {COMPANY_INFO.hotline}
+              </span>
+            </span>
+          </a>
+
+          <button
+            onClick={onOpenSearch}
+            aria-label="Tìm kiếm"
+            className="lg:hidden w-10 h-10 rounded-full flex items-center justify-center text-[#0a2540] hover:bg-[#edf3f8] transition-colors cursor-pointer"
+          >
+            <span className="material-symbols-outlined text-[22px]">search</span>
+          </button>
+
+          <button
+            onClick={() => onOpenConsultation()}
+            className="hidden sm:inline-flex items-center btn-primary h-11 px-6 rounded-full text-[13px] font-semibold uppercase tracking-wide cursor-pointer"
+          >
+            Yêu cầu báo giá
+          </button>
+
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Menu"
+            aria-expanded={mobileMenuOpen}
+            className="lg:hidden w-10 h-10 rounded-full flex items-center justify-center text-[#0a2540] hover:bg-[#edf3f8] transition-colors cursor-pointer"
+          >
+            <span className="material-symbols-outlined text-[24px]">{mobileMenuOpen ? 'close' : 'menu'}</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Navigation bar (desktop): navy, uppercase, red underline on hover/active */}
+      <div className="hidden lg:block bg-[#0a2540]">
+        <nav ref={navRef} className="max-w-[1320px] mx-auto px-4 sm:px-8 flex items-center h-12 text-[14px]">
           {NAV_ITEMS.map((item) => {
             const isActive = currentTab === item.tab;
-            const baseClass =
-              'group relative px-3 py-2 font-semibold text-[#111111] hover:text-[#0a94dc] transition-colors duration-300 cursor-pointer inline-flex items-center gap-0.5';
-            // Underline that slides in from the left on hover and stays for the active page
+            const baseClass = `group relative h-12 px-4 xl:px-5 inline-flex items-center gap-0.5 font-semibold uppercase tracking-[0.06em] transition-colors duration-300 cursor-pointer ${
+              isActive ? 'bg-white/10 text-white' : 'text-white/80 hover:text-white hover:bg-white/5'
+            }`;
             const activeBar = (
               <span
-                className={`absolute left-3 right-3 -bottom-[21px] h-0.5 bg-[#0a2540] origin-left transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                className={`absolute left-0 right-0 bottom-0 h-[3px] bg-linear-to-r from-[#0a94dc] to-[#e11d2a] origin-left transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                   isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                 }`}
                 aria-hidden="true"
@@ -237,7 +295,7 @@ export const Header: React.FC<HeaderProps> = ({
                 >
                   <span>{item.label}</span>
                   <span
-                    className={`material-symbols-outlined text-[18px] text-[#999999] transition-transform ${
+                    className={`material-symbols-outlined text-[18px] text-white/60 transition-transform ${
                       isOpen ? 'rotate-180' : ''
                     }`}
                   >
@@ -247,17 +305,18 @@ export const Header: React.FC<HeaderProps> = ({
                 </button>
 
                 {isOpen && (
-                  <div className="dropdown-in absolute left-0 top-full mt-2 w-72 bg-white border border-[#e5e5e5] shadow-[0_12px_32px_rgba(15,23,42,0.10)] py-2 z-50">
+                  <div className="dropdown-in absolute left-0 top-full w-72 bg-white rounded-b-lg border-t-[3px] border-[#0a94dc] shadow-[0_18px_40px_rgba(10,37,64,0.18)] py-2 z-50">
                     {item.children.map((child, idx) => (
                       <button
                         key={child.cat}
                         onClick={() => handleNavClick(item.tab, child.cat)}
-                        className={`w-full text-left px-4 py-2 text-[14px] hover:bg-[#f3f7fb] fx-link transition-colors cursor-pointer ${
+                        className={`group/item w-full text-left px-4 py-2.5 text-[14px] flex items-center gap-2 hover:bg-[#f3f7fb] hover:text-[#0a94dc] hover:pl-6 transition-all duration-300 cursor-pointer ${
                           idx === 0
-                            ? 'font-semibold text-[#111111] border-b border-[#f2f2f2] mb-1 pb-2.5'
+                            ? 'font-semibold text-[#0a2540] border-b border-[#edf3f8] mb-1 pb-3'
                             : 'text-[#555555]'
                         }`}
                       >
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#e11d2a] opacity-0 -ml-3.5 group-hover/item:opacity-100 transition-opacity" aria-hidden="true" />
                         {child.label}
                       </button>
                     ))}
@@ -267,38 +326,11 @@ export const Header: React.FC<HeaderProps> = ({
             );
           })}
         </nav>
-
-        {/* Actions */}
-        <div className="flex items-center gap-2 sm:gap-3">
-          <button
-            onClick={onOpenSearch}
-            aria-label="Tìm kiếm"
-            className="w-10 h-10  flex items-center justify-center text-[#555555] fx-link hover:bg-[#edf3f8] transition-colors cursor-pointer"
-          >
-            <span className="material-symbols-outlined text-[22px]">search</span>
-          </button>
-
-          <button
-            onClick={() => onOpenConsultation()}
-            className="hidden sm:inline-flex items-center btn-primary h-10 px-5 text-[13px] font-semibold uppercase tracking-wide cursor-pointer"
-          >
-            Yêu cầu báo giá
-          </button>
-
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Menu"
-            aria-expanded={mobileMenuOpen}
-            className="lg:hidden w-10 h-10  flex items-center justify-center text-[#333333] hover:bg-[#edf3f8] transition-colors cursor-pointer"
-          >
-            <span className="material-symbols-outlined text-[24px]">{mobileMenuOpen ? 'close' : 'menu'}</span>
-          </button>
-        </div>
       </div>
 
       {/* Mobile drawer */}
       {mobileMenuOpen && (
-        <div className="dropdown-in lg:hidden bg-white border-t border-[#e5e5e5] px-4 sm:px-8 py-3 max-h-[calc(100vh-96px)] overflow-y-auto overscroll-contain shadow-[0_12px_24px_rgba(15,23,42,0.08)]">
+        <div className="dropdown-in lg:hidden bg-white border-t border-[#e5e5e5] px-4 sm:px-8 py-3 max-h-[calc(100vh-116px)] overflow-y-auto overscroll-contain shadow-[0_12px_24px_rgba(15,23,42,0.08)]">
           <nav className="divide-y divide-[#f2f2f2]">
             {NAV_ITEMS.map((item) => {
               const isActive = currentTab === item.tab;

@@ -77,8 +77,8 @@ export default function App() {
           onOpenSearch={() => setIsSearchOpen(true)}
         />
 
-        {/* Main Content Body (with padding top for fixed header h-20 + topbar h-9 = 116px) */}
-        <main className="flex-1 pt-[116px] w-full max-w-full overflow-x-hidden">
+        {/* Offset for the fixed header: 96px phone, 116px tablet, 168px desktop (top bar + brand row + nav bar) */}
+        <main className="flex-1 pt-[96px] sm:pt-[116px] lg:pt-[168px] w-full max-w-full overflow-x-hidden">
           {/* Page transition: the incoming screen fades up after the outgoing one fades out */}
           <AnimatePresence mode="wait" initial={false}>
             <motion.div

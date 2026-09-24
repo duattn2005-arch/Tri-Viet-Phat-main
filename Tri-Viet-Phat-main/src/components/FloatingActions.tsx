@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion, useScroll } from 'motion/react';
 import { COMPANY_INFO } from '../data/mockData';
 
@@ -8,37 +8,30 @@ interface FloatingActionsProps {
   onNavigateContact?: () => void;
 }
 
-const CHANNELS = [
-  {
-    href: COMPANY_INFO.zaloUrl,
-    label: 'Zalo',
-    detail: COMPANY_INFO.hotline,
-    external: true,
-  },
-  {
-    href: COMPANY_INFO.facebookUrl,
-    label: 'Facebook Messenger',
-    detail: 'Nhắn tin với chuyên viên',
-    external: true,
-  },
-  {
-    href: `tel:${COMPANY_INFO.hotline.replace(/\./g, '')}`,
-    label: 'Hotline 1',
-    detail: COMPANY_INFO.hotline,
-    external: false,
-  },
-  {
-    href: `tel:${COMPANY_INFO.hotline2.replace(/\./g, '')}`,
-    label: 'Hotline 2',
-    detail: COMPANY_INFO.hotline2,
-    external: false,
-  },
-];
+/** Round floating button with a label that slides out on hover (desktop). */
+const FabLink: React.FC<{
+  href: string;
+  label: string;
+  className: string;
+  external?: boolean;
+  children: React.ReactNode;
+}> = ({ href, label, className, external, children }) => (
+  <a
+    href={href}
+    target={external ? '_blank' : undefined}
+    rel={external ? 'noopener noreferrer' : undefined}
+    aria-label={label}
+    className={`group relative w-12 h-12 rounded-full text-white flex items-center justify-center shadow-[0_10px_24px_-8px_rgba(0,0,0,0.45)] hover:scale-110 transition-transform duration-300 ${className}`}
+  >
+    {children}
+    <span className="pointer-events-none absolute right-full mr-3 hidden sm:block whitespace-nowrap rounded-full bg-[#0a2540] px-3 py-1.5 text-[12.5px] font-semibold text-white opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+      {label}
+    </span>
+  </a>
+);
 
 export const FloatingActions: React.FC<FloatingActionsProps> = ({ onToggleAiChat, isAiChatOpen }) => {
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-  const widgetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll();
 
   useEffect(() => {
@@ -47,27 +40,8 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({ onToggleAiChat
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close popup when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (widgetRef.current && !widgetRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-    if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isOpen]);
-
-  const secondaryButton =
-    'w-10 h-10 rounded-full bg-white border border-[#e5e5e5] text-[#555555] fx-link hover:border-[#d4d4d4] shadow-[0_2px_8px_rgba(15,23,42,0.08)] flex items-center justify-center cursor-pointer transition-colors';
-
   return (
-    <div
-      ref={widgetRef}
-      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-2.5"
-    >
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-3">
       <AnimatePresence>
         {showScrollTop && (
           <motion.button
@@ -77,7 +51,7 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({ onToggleAiChat
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             aria-label="Lên đầu trang"
             title="Lên đầu trang"
-            className={`relative ${secondaryButton}`}
+            className="relative w-11 h-11 rounded-full bg-white text-[#0a2540] shadow-[0_8px_20px_-8px_rgba(10,37,64,0.5)] flex items-center justify-center hover:scale-110 transition-transform cursor-pointer"
           >
             {/* Ring fills as the page is read */}
             <svg className="absolute inset-0 -rotate-90" viewBox="0 0 40 40" aria-hidden="true">
@@ -100,53 +74,33 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({ onToggleAiChat
         type="button"
         onClick={onToggleAiChat}
         aria-label={isAiChatOpen ? 'Đóng trợ lý AI' : 'Mở trợ lý AI Trí Việt Phát'}
-        title="Trợ lý AI"
-        className={secondaryButton}
+        className="group relative w-12 h-12 rounded-full bg-linear-to-br from-[#0a94dc] to-[#0a2540] text-white flex items-center justify-center shadow-[0_10px_24px_-8px_rgba(10,148,220,0.8)] hover:scale-110 transition-transform duration-300 cursor-pointer"
       >
-        <span className="material-symbols-outlined text-[20px]">{isAiChatOpen ? 'close' : 'smart_toy'}</span>
+        <span className="material-symbols-outlined text-[22px]">{isAiChatOpen ? 'close' : 'smart_toy'}</span>
+        <span className="pointer-events-none absolute right-full mr-3 hidden sm:block whitespace-nowrap rounded-full bg-[#0a2540] px-3 py-1.5 text-[12.5px] font-semibold text-white opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+          Trợ lý AI
+        </span>
       </button>
 
-      {isOpen && (
-        <div className="w-[calc(100vw-32px)] max-w-[300px] bg-white  border border-[#e5e5e5] shadow-[0_12px_32px_rgba(15,23,42,0.14)] overflow-hidden">
-          <div className="px-4 py-3 border-b border-[#f2f2f2] text-[14px] font-semibold text-[#111111]">
-            Liên hệ tư vấn
-          </div>
-          <ul className="py-1">
-            {CHANNELS.map((ch) => (
-              <li key={ch.label}>
-                <a
-                  href={ch.href}
-                  target={ch.external ? '_blank' : undefined}
-                  rel={ch.external ? 'noopener noreferrer' : undefined}
-                  onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-between gap-3 px-4 py-2.5 hover:bg-[#f3f7fb] transition-colors group"
-                >
-                  <span className="min-w-0">
-                    <span className="block text-[14px] font-medium text-[#111111] group-hover:text-[#0a94dc] transition-colors duration-300">
-                      {ch.label}
-                    </span>
-                    <span className="block text-[12.5px] text-[#777777] truncate">{ch.detail}</span>
-                  </span>
-                  <span className="material-symbols-outlined text-[18px] text-[#d4d4d4] group-hover:text-[#0a94dc] transition-colors duration-300">
-                    chevron_right
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      <FabLink href={COMPANY_INFO.facebookUrl} label="Nhắn tin Messenger" className="bg-[#1877f2]" external>
+        <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2C6.477 2 2 6.145 2 11.259c0 2.912 1.453 5.518 3.727 7.215V22l3.39-1.86c.928.257 1.91.396 2.924.396 5.523 0 10-4.145 10-9.259C22.041 6.145 17.523 2 12 2zm1.068 12.438l-2.613-2.79-5.1 2.79 5.61-5.955 2.678 2.79 5.035-2.79-5.61 5.955z" />
+        </svg>
+      </FabLink>
 
-      <button
-        type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label={isOpen ? 'Đóng liên hệ' : 'Liên hệ tư vấn'}
-        aria-expanded={isOpen}
-        title="Liên hệ tư vấn"
-        className="w-12 h-12 rounded-full btn-primary shadow-[0_4px_14px_rgba(0,97,148,0.30)] flex items-center justify-center cursor-pointer"
+      <FabLink href={COMPANY_INFO.zaloUrl} label="Chat Zalo" className="bg-[#0068ff]" external>
+        <span className="text-[13px] font-bold">Zalo</span>
+      </FabLink>
+
+      {/* Call: red, with a pulsing ring and a wiggling handset */}
+      <FabLink
+        href={`tel:${COMPANY_INFO.hotline.replace(/\./g, '')}`}
+        label={`Gọi ${COMPANY_INFO.hotline}`}
+        className="bg-linear-to-br from-[#e11d2a] to-[#b3141f] w-14 h-14"
       >
-        <span className="material-symbols-outlined text-[24px]">{isOpen ? 'close' : 'call'}</span>
-      </button>
+        <span className="absolute inset-0 rounded-full bg-[#e11d2a]/40 animate-ping" aria-hidden="true" />
+        <span className="material-symbols-outlined relative text-[26px] phone-shake">call</span>
+      </FabLink>
     </div>
   );
 };
