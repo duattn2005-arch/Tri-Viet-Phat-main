@@ -15,6 +15,13 @@
   <body>
     <script>
       CMS.init({ config: { backend: { base_url: window.location.origin } } });
+
+      // Login goes through /api/auth, which asks for the admin password; the GitHub wording would mislead.
+      new MutationObserver(function () {
+        document.querySelectorAll('button').forEach(function (b) {
+          if (b.textContent.trim() === 'Đăng nhập bằng GitHub') b.textContent = 'Đăng nhập';
+        });
+      }).observe(document.body, { childList: true, subtree: true });
     </script>
   </body>
 </html>
