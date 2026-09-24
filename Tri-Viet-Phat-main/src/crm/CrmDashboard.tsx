@@ -227,8 +227,9 @@ const ModuleWorkspace: React.FC<{
   query: string;
   onQueryChange: (value: string) => void;
   onAdd: () => void;
+  onEdit: (rowIndex: number) => void;
   onDelete: (rowIndex: number) => void;
-}> = ({ name, module, query, onQueryChange, onAdd, onDelete }) => {
+}> = ({ name, module, query, onQueryChange, onAdd, onEdit, onDelete }) => {
   if (!module) return null;
   const visibleRows = module.rows.filter((row) => row.join(' ').toLowerCase().includes(query.trim().toLowerCase()));
 
@@ -260,7 +261,7 @@ const ModuleWorkspace: React.FC<{
                 return (
                 <tr key={`${name}-${rowIndex}`} className="border-b border-[#eef2f8] last:border-0 hover:bg-[#f8fafd]">
                   {row.map((cell, cellIndex) => <td key={`${rowIndex}-${cellIndex}`} className={cellIndex === 0 ? `${TD} font-medium text-[#1a64d6]` : TD}>{cell}</td>)}
-                  <td className={TD}><button onClick={() => onDelete(rowIndex)} className="text-[#dc2626] hover:underline cursor-pointer">Xóa</button></td>
+                  <td className={`${TD} space-x-3`}><button onClick={() => onEdit(rowIndex)} className="text-[#1a64d6] hover:underline cursor-pointer">Sửa</button><button onClick={() => onDelete(rowIndex)} className="text-[#dc2626] hover:underline cursor-pointer">Xóa</button></td>
                 </tr>
                 );
               })}
@@ -449,6 +450,7 @@ export const CrmDashboard: React.FC = () => {
   const [moduleQuery, setModuleQuery] = useState('');
   const [isAddModuleOpen, setIsAddModuleOpen] = useState(false);
   const [moduleDraft, setModuleDraft] = useState<string[]>([]);
+  const [editingModuleRow, setEditingModuleRow] = useState<number | null>(null);
 
   useEffect(() => {
     try {
@@ -513,19 +515,23 @@ export const CrmDashboard: React.FC = () => {
 
   const isDashboard = activeNav === 'Tổng quan' || activeNav === 'CRM - Khách hàng';
 
-  const openModuleForm = () => {
-    setModuleDraft(new Array(moduleRecords[activeNav]?.columns.length || 0).fill(''));
+  const openModuleForm = (rowIndex?: number) => {
+    setEditingModuleRow(rowIndex ?? null);
+    setModuleDraft(rowIndex === undefined ? new Array(moduleRecords[activeNav]?.columns.length || 0).fill('') : [...moduleRecords[activeNav].rows[rowIndex]]);
     setIsAddModuleOpen(true);
   };
 
   const addModuleRecord = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!moduleDraft.length || moduleDraft.some((value) => !value.trim())) return;
-    setModuleRecords((current) => ({
-      ...current,
-      [activeNav]: { ...current[activeNav], rows: [moduleDraft.map((value) => value.trim()), ...current[activeNav].rows] },
-    }));
+    setModuleRecords((current) => {
+      const rows = [...current[activeNav].rows];
+      if (editingModuleRow === null) rows.unshift(moduleDraft.map((value) => value.trim()));
+      else rows[editingModuleRow] = moduleDraft.map((value) => value.trim());
+      return { ...current, [activeNav]: { ...current[activeNav], rows } };
+    });
     setModuleDraft([]);
+    setEditingModuleRow(null);
     setIsAddModuleOpen(false);
   };
 
@@ -676,6 +682,7 @@ export const CrmDashboard: React.FC = () => {
               query={moduleQuery}
               onQueryChange={setModuleQuery}
               onAdd={openModuleForm}
+              onEdit={openModuleForm}
               onDelete={deleteModuleRecord}
             />
           ) : (
@@ -996,7 +1003,7 @@ export const CrmDashboard: React.FC = () => {
           <form onSubmit={addModuleRecord} onMouseDown={(event) => event.stopPropagation()} className="w-full max-w-[520px] rounded-xl bg-white p-6 shadow-2xl">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <h2 className="text-[20px] font-bold text-[#0f1f3d]">Thêm vào {activeNav}</h2>
+                <h2 className="text-[20px] font-bold text-[#0f1f3d]">{editingModuleRow === null ? 'Thêm' : 'Sửa'} {activeNav}</h2>
                 <p className="mt-1 text-[13px] text-[#5b6780]">Nhập đủ các trường để lưu bản ghi mới.</p>
               </div>
               <button type="button" onClick={() => setIsAddModuleOpen(false)} aria-label="Đóng" className="text-2xl leading-none text-[#5b6780] cursor-pointer">×</button>
