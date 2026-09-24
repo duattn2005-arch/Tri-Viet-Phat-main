@@ -42,7 +42,7 @@ collections:
     identifier_field: name
     slug: '{{name}}'
     summary: '{{name}} — {{model}}'
-    sortable_fields: { fields: [order, name], default: { field: order, direction: ascending } }
+    sortable_fields: [order, name]
     fields:
       - { name: name, label: Tên sản phẩm, widget: string }
       - { name: order, label: Thứ tự hiển thị, widget: number, value_type: int, default: 0, hint: Số nhỏ hiện trước. }
@@ -102,7 +102,7 @@ collections:
     delete: true
     slug: '{{title}}'
     summary: '{{title}} ({{date}})'
-    sortable_fields: { fields: [order, title], default: { field: order, direction: ascending } }
+    sortable_fields: [order, title]
     fields:
       - { name: title, label: Tiêu đề, widget: string }
       - { name: order, label: Thứ tự hiển thị, widget: number, value_type: int, default: 0, hint: Số nhỏ hiện trước. Bài mới để 0 sẽ nằm trên cùng. }
@@ -129,7 +129,7 @@ collections:
     delete: true
     slug: '{{title}}'
     summary: '{{title}} ({{date}})'
-    sortable_fields: { fields: [order, title], default: { field: order, direction: ascending } }
+    sortable_fields: [order, title]
     fields:
       - { name: title, label: Tiêu đề, widget: string }
       - { name: order, label: Thứ tự hiển thị, widget: number, value_type: int, default: 0, hint: Số nhỏ hiện trước. }
@@ -149,7 +149,7 @@ collections:
     delete: true
     slug: '{{title}}'
     summary: '{{title}} ({{date}})'
-    sortable_fields: { fields: [order, title], default: { field: order, direction: ascending } }
+    sortable_fields: [order, title]
     fields:
       - { name: title, label: Vị trí tuyển dụng, widget: string }
       - { name: order, label: Thứ tự hiển thị, widget: number, value_type: int, default: 0, hint: Số nhỏ hiện trước. }
