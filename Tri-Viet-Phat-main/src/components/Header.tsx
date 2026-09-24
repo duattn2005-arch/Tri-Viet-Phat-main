@@ -135,7 +135,7 @@ export const Header: React.FC<HeaderProps> = ({
       />
       {/* Top utility bar */}
       <div className="fx-gradient-flow text-white/70 text-[12px]">
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-8 flex items-center justify-between h-8 sm:h-9">
+        <div className="max-w-[1760px] mx-auto px-4 sm:px-8 xl:px-12 flex items-center justify-between h-8 sm:h-9">
           <div className="flex items-center gap-4 min-w-0">
             <span className="truncate">
               Hotline{' '}
@@ -179,7 +179,7 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       {/* Brand row: logo · big search · hotline block · CTA */}
-      <div className="max-w-[1320px] mx-auto px-4 sm:px-8 flex items-center justify-between gap-4 lg:gap-8 h-16 sm:h-20 lg:h-[84px]">
+      <div className="max-w-[1760px] mx-auto px-4 sm:px-8 xl:px-12 flex items-center justify-between gap-4 lg:gap-8 h-16 sm:h-20 lg:h-[84px]">
         <button
           onClick={() => handleNavClick('trang-chu')}
           className="group flex items-center gap-2.5 sm:gap-3 text-left cursor-pointer shrink-0"
@@ -201,7 +201,7 @@ export const Header: React.FC<HeaderProps> = ({
         <button
           type="button"
           onClick={onOpenSearch}
-          className="group hidden lg:flex flex-1 max-w-[560px] h-12 items-center rounded-full border-2 border-[#dbe6f0] bg-[#f3f7fb] pl-5 pr-1.5 text-left text-[14px] text-[#777777] hover:border-[#0a94dc] hover:bg-white transition-colors cursor-text"
+          className="group hidden lg:flex flex-1 max-w-[720px] h-12 items-center rounded-full border-2 border-[#dbe6f0] bg-[#f3f7fb] pl-5 pr-1.5 text-left text-[14px] text-[#777777] hover:border-[#0a94dc] hover:bg-white transition-colors cursor-text"
         >
           <span className="flex-1 truncate">Tìm máy xét nghiệm, hóa chất, vật tư…</span>
           <span className="w-9 h-9 rounded-full bg-linear-to-br from-[#0a94dc] to-[#0a2540] text-white flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
@@ -254,7 +254,7 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Navigation bar (desktop): navy, uppercase, red underline on hover/active */}
       <div className="hidden lg:block bg-[#0a2540]">
-        <nav ref={navRef} className="max-w-[1320px] mx-auto px-4 sm:px-8 flex items-center h-12 text-[14px]">
+        <nav ref={navRef} className="max-w-[1760px] mx-auto px-4 sm:px-8 xl:px-12 flex items-center justify-between h-12 text-[14px]">
           {NAV_ITEMS.map((item) => {
             const isActive = currentTab === item.tab;
             const baseClass = `group relative h-12 px-4 xl:px-5 inline-flex items-center gap-0.5 font-semibold uppercase tracking-[0.06em] transition-colors duration-300 cursor-pointer ${
