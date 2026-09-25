@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { PageBanner } from '../PageBanner';
+import { sendLead } from '../../lib/sendLead';
 import { REAL_JOBS, JobItem } from '../../data/realSiteContent';
 
 export const CareersScreen: React.FC = () => {
@@ -11,14 +12,32 @@ export const CareersScreen: React.FC = () => {
   const [candidateEmail, setCandidateEmail] = useState('');
   const [candidateNote, setCandidateNote] = useState('');
   const [appliedSuccess, setAppliedSuccess] = useState(false);
+  const [applying, setApplying] = useState(false);
+  const [applyError, setApplyError] = useState('');
 
   const handleSelectJob = (job: JobItem) => {
     setActiveJob(job);
     window.scrollTo({ top: 320, behavior: 'smooth' });
   };
 
-  const handleApply = (e: React.FormEvent) => {
+  const handleApply = async (e: React.FormEvent) => {
     e.preventDefault();
+    setApplying(true);
+    setApplyError('');
+    try {
+      await sendLead('ung-tuyen', {
+        'Vị trí': activeJob?.title ?? '',
+        'Họ và tên': candidateName,
+        'Số điện thoại': candidatePhone,
+        Email: candidateEmail,
+        'Kinh nghiệm & ghi chú': candidateNote,
+      });
+    } catch (err) {
+      setApplyError((err as Error).message);
+      return;
+    } finally {
+      setApplying(false);
+    }
     setAppliedSuccess(true);
     setTimeout(() => {
       setAppliedSuccess(false);
@@ -170,11 +189,17 @@ export const CareersScreen: React.FC = () => {
                         />
                       </div>
 
+                      {applyError && (
+                        <p role="alert" className="text-[13px] font-semibold text-[#e11d2a]">
+                          {applyError}
+                        </p>
+                      )}
                       <button
                         type="submit"
-                        className="px-6 py-2.5  bg-[#0a2540] hover:bg-[#071a2e] text-white font-bold text-[14px]  transition-colors cursor-pointer"
+                        disabled={applying}
+                        className="px-6 py-2.5  bg-[#0a2540] hover:bg-[#071a2e] disabled:opacity-60 disabled:cursor-wait text-white font-bold text-[14px]  transition-colors cursor-pointer"
                       >
-                        Nộp hồ sơ ngay
+                        {applying ? 'Đang gửi...' : 'Nộp hồ sơ ngay'}
                       </button>
                     </form>
                   )}

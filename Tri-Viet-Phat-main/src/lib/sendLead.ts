@@ -6,7 +6,14 @@ const LEAD_ENDPOINT =
   import.meta.env.VITE_LEAD_ENDPOINT ||
   (window.location.hostname.endsWith('.vercel.app') ? '/api/lien-he' : '/api/lien-he.php');
 
-export type LeadKind = 'lien-he' | 'tu-van' | 'bao-gia' | 'sua-chua';
+export type LeadKind =
+  | 'lien-he'
+  | 'tu-van'
+  | 'bao-gia'
+  | 'sua-chua'
+  | 'san-pham'
+  | 'ung-tuyen'
+  | 'dang-ky-tin';
 
 export async function sendLead(kind: LeadKind, fields: Record<string, string>): Promise<void> {
   let res: Response;

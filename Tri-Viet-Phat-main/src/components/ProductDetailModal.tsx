@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Product } from '../types';
 import { ProvinceSelect } from './ProvinceSelect';
+import { sendLead } from '../lib/sendLead';
 
 interface ProductDetailModalProps {
   product: Product | null;
@@ -20,10 +21,12 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
     region: 'Toàn quốc',
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState('');
 
   if (!product) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.fullName.trim()) {
       alert('Vui lòng nhập họ tên/đơn vị để nhận tư vấn!');
@@ -33,12 +36,28 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
       alert('Vui lòng nhập số điện thoại để nhận tư vấn!');
       return;
     }
+    setSending(true);
+    setSendError('');
+    try {
+      await sendLead('san-pham', {
+        'Sản phẩm': product.name,
+        'Họ và tên': formData.fullName,
+        'Số điện thoại': formData.phone,
+        Email: formData.email,
+        'Khu vực': formData.region,
+      });
+    } catch (err) {
+      setSendError((err as Error).message);
+      return;
+    } finally {
+      setSending(false);
+    }
     setIsSubmitted(true);
     setTimeout(() => {
-      onRequestQuote(product.name);
       setIsSubmitted(false);
+      setFormData({ fullName: '', phone: '', email: '', region: 'Toàn quốc' });
       onClose();
-    }, 1500);
+    }, 3000);
   };
 
   const defaultBenefits = product.benefits || [
@@ -214,11 +233,17 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                     />
                   </div>
 
+                  {sendError && (
+                    <p role="alert" className="text-[13px] font-semibold text-[#ffb4ab]">
+                      {sendError}
+                    </p>
+                  )}
                   <button
                     type="submit"
-                    className="w-full mt-2 bg-[#e11d2a] hover:bg-[#e11d2a] active:scale-[0.98] text-white font-bold text-[13px] py-2.5 px-4   transition-all cursor-pointer"
+                    disabled={sending}
+                    className="w-full mt-2 bg-[#e11d2a] hover:bg-[#e11d2a] active:scale-[0.98] disabled:opacity-60 disabled:cursor-wait text-white font-bold text-[13px] py-2.5 px-4   transition-all cursor-pointer"
                   >
-                    GỬI YÊU CẦU
+                    {sending ? 'ĐANG GỬI...' : 'GỬI YÊU CẦU'}
                   </button>
                 </form>
               )}

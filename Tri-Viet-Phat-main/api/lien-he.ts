@@ -7,6 +7,9 @@ const TITLES: Record<string, string> = {
   'tu-van': '💬 YÊU CẦU TƯ VẤN / BÁO GIÁ',
   'bao-gia': '🧾 ĐĂNG KÝ HỢP TÁC / BÁO GIÁ',
   'sua-chua': '🛠 YÊU CẦU BẢO TRÌ / SỬA CHỮA',
+  'san-pham': '🛒 BÁO GIÁ SẢN PHẨM',
+  'ung-tuyen': '👔 HỒ SƠ ỨNG TUYỂN',
+  'dang-ky-tin': '📰 ĐĂNG KÝ NHẬN TIN',
 };
 
 const NOT_CONFIGURED = 'Hệ thống nhận yêu cầu chưa được cấu hình. Vui lòng gọi hotline để được hỗ trợ.';
@@ -43,19 +46,21 @@ export async function POST(request: Request): Promise<Response> {
   if (!TITLES[kind]) return reply(400, { error: 'Loại yêu cầu không hợp lệ.' });
   if (!Array.isArray(data.fields) || data.fields.length > 20) return reply(400, { error: 'Dữ liệu không hợp lệ.' });
 
-  let name = '';
   let phone = '';
+  let contact = '';
   const lines: string[] = [];
   for (const field of data.fields as { label?: unknown; value?: unknown }[]) {
     const label = String(field?.label ?? '').trim().slice(0, 60);
     const value = String(field?.value ?? '').trim().slice(0, 2000);
     if (!label || !value) continue;
-    if (label === 'Họ và tên') name = value;
+    if (label === 'Email' || label === 'Email / SĐT') contact = value;
     if (label === 'Số điện thoại') phone = value;
     lines.push(`<b>${escapeHtml(label)}:</b> ${escapeHtml(value)}`);
   }
-  if (!name || !/^[0-9 +().-]{8,20}$/.test(phone)) {
-    return reply(400, { error: 'Vui lòng nhập họ tên và số điện thoại hợp lệ.' });
+  // Every form needs a way to call back: a valid phone, or an email / phone in the newsletter box
+  const validPhone = /^[0-9 +().-]{8,20}$/.test(phone);
+  if ((phone && !validPhone) || (!phone && !contact)) {
+    return reply(400, { error: 'Vui lòng nhập số điện thoại hoặc email hợp lệ.' });
   }
 
   const ip = request.headers.get('x-forwarded-for')?.split(',')[0].trim() || 'unknown';

@@ -49,6 +49,9 @@ $titles = [
     'tu-van' => '💬 YÊU CẦU TƯ VẤN / BÁO GIÁ',
     'bao-gia' => '🧾 ĐĂNG KÝ HỢP TÁC / BÁO GIÁ',
     'sua-chua' => '🛠 YÊU CẦU BẢO TRÌ / SỬA CHỮA',
+    'san-pham' => '🛒 BÁO GIÁ SẢN PHẨM',
+    'ung-tuyen' => '👔 HỒ SƠ ỨNG TUYỂN',
+    'dang-ky-tin' => '📰 ĐĂNG KÝ NHẬN TIN',
 ];
 $kind = (string)($data['kind'] ?? '');
 if (!isset($titles[$kind])) {
@@ -61,7 +64,7 @@ if (!is_array($fields) || count($fields) > 20) {
 }
 
 $phone = '';
-$name = '';
+$contact = '';
 $lines = [];
 foreach ($fields as $field) {
     if (!is_array($field)) continue;
@@ -69,13 +72,15 @@ foreach ($fields as $field) {
     $value = mb_substr(trim((string)($field['value'] ?? '')), 0, 2000);
     if ($label === '' || $value === '') continue;
     if ($label === 'Số điện thoại') $phone = $value;
-    if ($label === 'Họ và tên') $name = $value;
+    if ($label === 'Email' || $label === 'Email / SĐT') $contact = $value;
     $lines[] = '<b>' . htmlspecialchars($label, ENT_QUOTES, 'UTF-8') . ':</b> '
         . htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
 }
 
-if ($name === '' || !preg_match('/^[0-9 +().-]{8,20}$/', $phone)) {
-    reply(400, ['error' => 'Vui lòng nhập họ tên và số điện thoại hợp lệ.']);
+// Every form needs a way to call back: a valid phone, or an email / phone in the newsletter box
+$validPhone = (bool)preg_match('/^[0-9 +().-]{8,20}$/', $phone);
+if (($phone !== '' && !$validPhone) || ($phone === '' && $contact === '')) {
+    reply(400, ['error' => 'Vui lòng nhập số điện thoại hoặc email hợp lệ.']);
 }
 
 // Basic rate limit: at most 5 requests per IP per 10 minutes

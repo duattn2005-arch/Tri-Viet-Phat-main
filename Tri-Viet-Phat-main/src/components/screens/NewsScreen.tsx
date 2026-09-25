@@ -4,6 +4,7 @@ import { SiteSidebar } from '../SiteSidebar';
 import { ArticleFullView } from '../ArticleFullView';
 import { REAL_NEWS_ARTICLES, SiteArticle } from '../../data/realSiteContent';
 import { PageTab } from '../../types';
+import { sendLead } from '../../lib/sendLead';
 
 interface NewsScreenProps {
   initialCategory?: string;
@@ -70,6 +71,24 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
   const [activeArticle, setActiveArticle] = useState<SiteArticle | null>(null);
   const [newsletterEmail, setNewsletterEmail] = useState<string>('');
   const [newsletterSubscribed, setNewsletterSubscribed] = useState<boolean>(false);
+  const [newsletterSending, setNewsletterSending] = useState(false);
+  const [newsletterError, setNewsletterError] = useState('');
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const contact = newsletterEmail.trim();
+    if (!contact) return;
+    setNewsletterSending(true);
+    setNewsletterError('');
+    try {
+      await sendLead('dang-ky-tin', { 'Email / SĐT': contact });
+      setNewsletterSubscribed(true);
+    } catch (err) {
+      setNewsletterError((err as Error).message);
+    } finally {
+      setNewsletterSending(false);
+    }
+  };
 
   // Sync state when initialCategory prop changes from Header dropdown
   useEffect(() => {
@@ -575,17 +594,10 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                       <span>Cảm ơn quý khách đã đăng ký!</span>
                     </div>
                   ) : (
-                    <form
-                      onSubmit={(e) => {
-                        e.preventDefault();
-                        if (newsletterEmail.trim()) {
-                          setNewsletterSubscribed(true);
-                        }
-                      }}
-                      className="flex gap-2"
-                    >
+                    <form onSubmit={handleNewsletterSubmit} className="space-y-2">
+                     <div className="flex gap-2">
                       <input
-                        type="email"
+                        type="text"
                         required
                         value={newsletterEmail}
                         onChange={(e) => setNewsletterEmail(e.target.value)}
@@ -594,10 +606,17 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                       />
                       <button
                         type="submit"
-                        className="px-4 py-2 bg-[#0a2540] hover:bg-[#071a2e] text-white font-bold text-[12.5px]  transition-colors shrink-0 cursor-pointer"
+                        disabled={newsletterSending}
+                        className="px-4 py-2 bg-[#0a2540] hover:bg-[#071a2e] disabled:opacity-60 disabled:cursor-wait text-white font-bold text-[12.5px]  transition-colors shrink-0 cursor-pointer"
                       >
-                        Gửi
+                        {newsletterSending ? '...' : 'Gửi'}
                       </button>
+                     </div>
+                      {newsletterError && (
+                        <p role="alert" className="text-[13px] font-semibold text-[#ffd7d4]">
+                          {newsletterError}
+                        </p>
+                      )}
                     </form>
                   )}
                 </div>
