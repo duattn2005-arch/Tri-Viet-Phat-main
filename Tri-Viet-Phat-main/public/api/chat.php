@@ -57,22 +57,27 @@ function has(string $haystack, string $needle): bool
 function catalogue_reply(string $message, array $knowledge, string $hotline): string
 {
     $q = mb_strtolower($message);
-    $qPlain = str_replace([' ', '-'], '', $q);
-    $matches = [];
+    // Join model codes however they are typed ("cs-t240", "cs t240" → "cst240"), keep word breaks elsewhere
+    $qPlain = preg_replace('/([a-z]{1,5})[\s-]+(?=[a-z]?\d)/u', '$1', $q);
+    // A model code the customer typed (cs-t240, h-500, ac9803…) beats a brand or category match
+    $byModel = [];
+    $byTopic = [];
     foreach ($knowledge['products'] ?? [] as $p) {
         $name = mb_strtolower($p['name']);
-        // Model codes (cs-600b, h-500, ac9803…) and brand names are what customers type
-        preg_match_all('/[a-z]{1,5}[\s-]?\d{2,5}[a-z]?/u', $name, $codes);
-        $hit = has($q, mb_strtolower((string)($p['brand'] ?? ''))) || has($q, mb_strtolower((string)($p['category'] ?? '')));
+        preg_match_all('/[a-z]{1,5}[\s-]?[a-z]?\d{2,5}[a-z]?/u', $name, $codes);
         foreach ($codes[0] as $code) {
-            if (has($qPlain, str_replace([' ', '-'], '', $code))) {
-                $hit = true;
+            $plain = str_replace([' ', '-'], '', $code);
+            // whole code only: "cs-t240" must not match "cs-t2400"
+            if ($plain !== '' && preg_match('/(^|[^a-z0-9])' . preg_quote($plain, '/') . '($|[^a-z0-9])/u', $qPlain)) {
+                $byModel[] = $p;
+                continue 2;
             }
         }
-        if ($hit) {
-            $matches[] = $p;
+        if (has($q, mb_strtolower((string)($p['brand'] ?? ''))) || has($q, mb_strtolower((string)($p['category'] ?? '')))) {
+            $byTopic[] = $p;
         }
     }
+    $matches = $byModel ?: $byTopic;
 
     if (count($matches) === 1) {
         $p = $matches[0];
