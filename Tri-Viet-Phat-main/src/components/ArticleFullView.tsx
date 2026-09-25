@@ -36,7 +36,7 @@ export const ArticleFullView: React.FC<ArticleFullViewProps> = ({
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Main Article Content */}
-        <article className="lg:col-span-8 xl:col-span-9 bg-white  border border-[#e5e5e5] p-6 sm:p-8 md:p-10 ">
+        <article className="lg:col-span-8 xl:col-span-9 fx-panel p-6 sm:p-8 md:p-10 ">
           {/* Header */}
           <div className="border-b border-[#f2f2f2] pb-6 mb-6">
             <h1 className="text-[22px] sm:text-[28px] md:text-[32px] font-bold text-[#111111] leading-tight mb-4">

@@ -26,7 +26,7 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
   return (
     <aside className={`w-full space-y-6 ${className}`}>
       {/* Widget 1: Hỗ trợ mua hàng */}
-      <div className="bg-white  border border-[#e5e5e5] overflow-hidden ">
+      <div className="fx-panel overflow-hidden ">
         <h3 className="px-4 py-3 border-b border-[#e5e5e5] text-[16px] font-bold text-[#111111]">Hỗ trợ mua hàng</h3>
         <div className="p-4 space-y-3.5">
           <div className="space-y-2 text-[13px]">
@@ -71,7 +71,7 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
       </div>
 
       {/* Widget 2: Các bài viết mới nhất */}
-      <div className="bg-white  border border-[#e5e5e5] overflow-hidden ">
+      <div className="fx-panel overflow-hidden ">
         <h3 className="px-4 py-3 border-b border-[#e5e5e5] text-[16px] font-bold text-[#111111]">Các bài viết mới nhất</h3>
         <div className="p-3.5 space-y-3.5">
           {latestArticles.map((art) => (
@@ -109,7 +109,7 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
 
       {/* Widget 3: Danh mục */}
       {!hideCategories && (
-        <div className="bg-white  border border-[#e5e5e5] overflow-hidden ">
+        <div className="fx-panel overflow-hidden ">
           <h3 className="px-4 py-3 border-b border-[#e5e5e5] text-[16px] font-bold text-[#111111]">Danh mục</h3>
           <ul className="p-2.5 divide-y divide-[#f2f2f2] text-[13px]">
             {SIDEBAR_CATEGORIES.map((cat, idx) => (
@@ -135,7 +135,7 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
       )}
 
       {/* Widget 4: Liên kết website */}
-      <div className="bg-white  border border-[#e5e5e5] overflow-hidden ">
+      <div className="fx-panel overflow-hidden ">
         <h3 className="px-4 py-3 border-b border-[#e5e5e5] text-[16px] font-bold text-[#111111]">Liên kết website</h3>
         <div className="p-3.5">
           <div className="flex flex-wrap gap-2 text-[12.5px] text-[#555555]">

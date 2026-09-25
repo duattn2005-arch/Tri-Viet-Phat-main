@@ -74,32 +74,119 @@ body {
  * Design system — restrained, flat, B2B medical.
  * Brand palette taken from the logo: navy #0a2540 for dark surfaces and
  * primary buttons, logo blue #0a94dc and red #e11d2a as accents, cool
- * blue-grey light surfaces. Body text stays near-black #111. No gradients, glows or lift-on-hover.
+ * blue-grey light surfaces. Body text stays near-black #111. Cards (fx-card / fx-panel)
+ * are rounded with soft shadows; interactive ones lift with a blue→red accent bar.
  * The legacy class names (card-3d, btn-3d-*) are kept so every screen that
  * still uses them inherits the flat look.
  * ------------------------------------------------------------------------- */
 
 .bg-medical-grid-3d {
-  background-color: #f7f7f7;
+  background-color: #f1f5fa;
 }
 
 .bg-hero-3d-scene {
   background-color: #ffffff;
 }
 
-.card-3d,
+/* ---- Surfaces ----------------------------------------------------------- */
+
+/* Page background: soft blue/red colour washes over a faint dot grid */
+.fx-page-bg {
+  background-color: #f1f5fa;
+  background-image:
+    radial-gradient(900px 520px at 0% 0%, rgba(10, 148, 220, 0.13), transparent 60%),
+    radial-gradient(760px 480px at 100% 12%, rgba(225, 29, 42, 0.07), transparent 60%),
+    radial-gradient(900px 600px at 50% 100%, rgba(10, 37, 64, 0.08), transparent 65%),
+    radial-gradient(rgba(10, 37, 64, 0.07) 1px, transparent 1.2px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 22px 22px;
+  background-attachment: fixed;
+}
+
+/* Light section variant (home page bands) */
+.fx-section-soft {
+  position: relative;
+  background-color: #ffffff;
+  background-image:
+    radial-gradient(700px 380px at 10% 0%, rgba(10, 148, 220, 0.09), transparent 60%),
+    radial-gradient(640px 360px at 95% 100%, rgba(225, 29, 42, 0.06), transparent 60%),
+    linear-gradient(180deg, #ffffff 0%, #f4f8fc 100%);
+}
+
+/* Static framed box: sidebars, toolbars, article bodies */
+.fx-panel,
+.card-3d {
+  position: relative;
+  background-color: #ffffff;
+  border: 1px solid #e3e9f0;
+  border-radius: 14px;
+  box-shadow: 0 1px 2px rgba(10, 37, 64, 0.04), 0 8px 24px -12px rgba(10, 37, 64, 0.12);
+  overflow: hidden;
+}
+
+/* Interactive card: lifts, gains a deeper shadow and a blue→red accent bar */
+.fx-card,
 .card-3d-subtle {
   position: relative;
   background-color: #ffffff;
-  border: 1px solid #e5e5e5;
-  box-shadow: none;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  border: 1px solid #e3e9f0;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(10, 37, 64, 0.04), 0 8px 24px -14px rgba(10, 37, 64, 0.14);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease;
 }
 
-.card-3d:hover,
+.fx-card::before,
+.card-3d-subtle::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  z-index: 20;
+  pointer-events: none;
+  background: linear-gradient(90deg, #0a94dc, #0a2540 55%, #e11d2a);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fx-card:hover,
 .card-3d-subtle:hover {
-  border-color: #d4d4d4;
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 12px rgba(15, 23, 42, 0.04);
+  transform: translateY(-6px);
+  border-color: rgba(10, 148, 220, 0.35);
+  box-shadow: 0 2px 4px rgba(10, 37, 64, 0.05), 0 24px 48px -18px rgba(10, 37, 64, 0.32);
+}
+
+.fx-card:hover::before,
+.card-3d-subtle:hover::before {
+  transform: scaleX(1);
+}
+
+/* Icon tile that fills with brand gradient when its card is hovered */
+.fx-icon {
+  background: linear-gradient(135deg, #e6f3fb, #eef2f7);
+  color: #0a2540;
+  border-radius: 12px;
+  transition: background 0.4s ease, color 0.4s ease, transform 0.4s ease;
+}
+
+.group:hover .fx-icon,
+.fx-card:hover .fx-icon,
+.card-3d-subtle:hover .fx-icon,
+.card-3d:hover .fx-icon {
+  background: linear-gradient(135deg, #0a94dc, #0a2540);
+  color: #ffffff;
+  transform: rotate(-6deg) scale(1.06);
+}
+
+/* Small uppercase label with gradient text */
+.fx-kicker {
+  background: linear-gradient(90deg, #0a94dc, #e11d2a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .badge-3d {
@@ -394,6 +481,15 @@ body {
   .fx-gradient-flow,
   .phone-shake {
     animation: none;
+  }
+  .fx-card,
+  .card-3d-subtle,
+  .fx-icon {
+    transition: none;
+  }
+  .fx-card:hover,
+  .card-3d-subtle:hover {
+    transform: none;
   }
   html,
   body {

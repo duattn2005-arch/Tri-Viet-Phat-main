@@ -178,7 +178,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
   }, [featuredArticle, filteredArticles]);
 
   return (
-    <div className="w-full bg-[#f3f7fb] min-h-screen">
+    <div className="w-full fx-page-bg min-h-screen">
       {/* Banner */}
       <PageBanner
         title={activeArticle ? activeArticle.title : categoryTitle}
@@ -226,7 +226,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
             {/* Left Column: Rich, balanced news content */}
             <div className="lg:col-span-8 xl:col-span-9 space-y-6">
               {/* Category Filter Pills & Search Bar */}
-              <div className="bg-white border border-[#e5e5e5] px-4 py-3 sm:px-5 sm:py-4">
+              <div className="fx-panel px-4 py-3 sm:px-5 sm:py-4">
                 <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
                   {/* Category Filter - dropdown select on mobile, pills from sm+ */}
                   <div className="relative sm:hidden">
@@ -304,7 +304,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
 
               {/* Featured Hero Article (when on All view) */}
               {featuredArticle && (
-                <div className="bg-white  border border-[#e5e5e5] overflow-hidden   transition-all group">
+                <div className="fx-card group">
                   <div className="grid grid-cols-1 md:grid-cols-12">
                     <div
                       onClick={() => handleSelect(featuredArticle)}
@@ -385,7 +385,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                     {gridArticles.map((art) => (
                       <div
                         key={art.id}
-                        className="bg-white  border border-[#e5e5e5] overflow-hidden   hover:border-[#0a2540]/40 transition-all group flex flex-col justify-between"
+                        className="fx-card group flex flex-col justify-between"
                       >
                         <div>
                           {/* Thumbnail */}
@@ -446,7 +446,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                     ))}
                   </div>
                 ) : (
-                  <div className="bg-white  border border-[#e5e5e5] p-10 text-center text-[#777777]">
+                  <div className="fx-panel p-10 text-center text-[#777777]">
                     <span className="material-symbols-outlined text-[48px] text-[#999999] mb-2">
                       search_off
                     </span>
@@ -468,7 +468,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
 
               {/* Other Articles Section (When filtered, ensures no empty space) */}
               {otherArticles.length > 0 && (
-                <div className="bg-white  border border-[#e5e5e5] p-5 sm:p-6 ">
+                <div className="fx-panel p-5 sm:p-6 ">
                   <div className="flex items-center justify-between mb-4 border-b border-[#f2f2f2] pb-3">
                     <div className="flex items-center gap-2">
                       <span className="material-symbols-outlined text-[#111111] text-[20px]">
@@ -526,7 +526,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
               {/* Trending Topics & Newsletter Box */}
               <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
                 {/* Trending Tags */}
-                <div className="md:col-span-6 bg-white  border border-[#e5e5e5] p-5 ">
+                <div className="md:col-span-6 fx-panel p-5 ">
                   <div className="flex items-center gap-2 mb-3 border-b border-[#f2f2f2] pb-2">
                     <span className="material-symbols-outlined text-[#777777] text-[20px]">
                       local_fire_department

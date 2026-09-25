@@ -60,7 +60,7 @@ export const CareersScreen: React.FC = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               {/* Job Content Column */}
-              <div className="lg:col-span-8 bg-white  border border-[#e5e5e5] p-6 sm:p-8 md:p-10  space-y-6">
+              <div className="lg:col-span-8 fx-panel p-6 sm:p-8 md:p-10  space-y-6">
                 <div className="border-b border-[#f2f2f2] pb-6">
                   <h1 className="text-[24px] sm:text-[30px] font-bold text-[#111111] leading-tight mb-3">
                     {activeJob.title}
@@ -183,7 +183,7 @@ export const CareersScreen: React.FC = () => {
 
               {/* Other Jobs Sidebar */}
               <div className="lg:col-span-4 space-y-6">
-                <div className="bg-white  border border-[#e5e5e5] overflow-hidden ">
+                <div className="fx-panel overflow-hidden ">
                   <h3 className="px-4 py-3 border-b border-[#e5e5e5] text-[16px] font-bold text-[#111111]">
                     Các vị trí đang tuyển
                   </h3>
@@ -210,7 +210,7 @@ export const CareersScreen: React.FC = () => {
                 </div>
 
                 {/* Company Support Card */}
-                <div className="bg-white  border border-[#e5e5e5] p-5  text-[13.5px] space-y-3">
+                <div className="fx-panel p-5  text-[13.5px] space-y-3">
                   <div className="font-bold text-[#111111] text-[15px] border-b border-[#f2f2f2] pb-2">
                     Công ty Thiết Bị Y Tế Trí Việt Phát
                   </div>

@@ -15,16 +15,16 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onOpenConsultation }) 
       image="/images/hero-engineers.jpg"
       breadcrumbs={[{ label: 'Trang chủ' }, { label: 'Giới thiệu' }]}
     />
-    <div className="w-full bg-medical-grid-3d py-10 sm:py-14">
+    <div className="w-full fx-page-bg py-10 sm:py-14">
       <div className="max-w-[1320px] mx-auto px-4 sm:px-8 xl:px-12 space-y-6">
 
         {/* Story Section */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-          <div className="lg:col-span-6  overflow-hidden card-3d p-2 bg-white border border-[#d4d4d4]">
+          <div className="lg:col-span-6  overflow-hidden card-3d p-2 bg-white">
             <img
               src={COMPANY_INFO.aboutImage}
               alt="Đội ngũ chuyên gia Trí Việt Phát"
-              className="w-full h-[320px] sm:h-[360px] object-cover "
+              className="w-full h-[320px] sm:h-[360px] object-cover rounded-[10px]"
             />
           </div>
           <div className="lg:col-span-6 space-y-4">
@@ -47,7 +47,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onOpenConsultation }) 
             </div>
 
             <div className="grid grid-cols-2 gap-3.5">
-              <div className="bg-white p-4  card-3d-subtle border border-[#e5e5e5]">
+              <div className="bg-white p-4  card-3d-subtle">
                 <div className="flex items-center gap-1.5 text-[#111111] mb-1">
                   <span className="material-symbols-outlined text-[22px]">workspace_premium</span>
                   <span className="text-[24px] font-bold">16+ Năm</span>
@@ -56,7 +56,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onOpenConsultation }) 
                   Kinh nghiệm phân phối và chuyển giao công nghệ
                 </span>
               </div>
-              <div className="bg-white p-4  card-3d-subtle border border-[#e5e5e5]">
+              <div className="bg-white p-4  card-3d-subtle">
                 <div className="flex items-center gap-1.5 text-[#111111] mb-1">
                   <span className="material-symbols-outlined text-[22px]">verified</span>
                   <span className="text-[24px] font-bold">100%</span>
@@ -71,8 +71,8 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onOpenConsultation }) 
 
         {/* Mission, Vision, Core Values */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-          <div className="bg-white p-6  card-3d flex flex-col h-full space-y-3">
-            <div className="w-12 h-12  bg-[#edf3f8] text-[#555555] flex items-center justify-center shrink-0 ">
+          <div className="bg-white p-6  card-3d-subtle flex flex-col h-full space-y-3">
+            <div className="w-12 h-12 fx-icon flex items-center justify-center shrink-0 ">
               <span className="material-symbols-outlined text-[28px]">visibility</span>
             </div>
             <h3 className="text-[18px] font-bold text-[#111111]">Tầm nhìn chiến lược</h3>
@@ -81,8 +81,8 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onOpenConsultation }) 
             </p>
           </div>
 
-          <div className="bg-white p-6  card-3d flex flex-col h-full space-y-3">
-            <div className="w-12 h-12  bg-[#edf3f8] text-[#555555] flex items-center justify-center shrink-0 ">
+          <div className="bg-white p-6  card-3d-subtle flex flex-col h-full space-y-3">
+            <div className="w-12 h-12 fx-icon flex items-center justify-center shrink-0 ">
               <span className="material-symbols-outlined text-[28px]">flag</span>
             </div>
             <h3 className="text-[18px] font-bold text-[#111111]">Sứ mệnh cao cả</h3>
@@ -91,8 +91,8 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onOpenConsultation }) 
             </p>
           </div>
 
-          <div className="bg-white p-6  card-3d flex flex-col h-full space-y-3">
-            <div className="w-12 h-12  bg-[#edf3f8] text-[#555555] flex items-center justify-center shrink-0 ">
+          <div className="bg-white p-6  card-3d-subtle flex flex-col h-full space-y-3">
+            <div className="w-12 h-12 fx-icon flex items-center justify-center shrink-0 ">
               <span className="material-symbols-outlined text-[28px]">military_tech</span>
             </div>
             <h3 className="text-[18px] font-bold text-[#111111]">Giá trị cốt lõi</h3>
@@ -116,7 +116,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onOpenConsultation }) 
             {BUSINESS_AREAS.map((area, idx) => (
               <div
                 key={idx}
-                className="p-4  card-3d-subtle bg-white hover:bg-[#edf3f8]/30 transition-colors h-full flex flex-col justify-start"
+                className="p-4  card-3d-subtle bg-white h-full flex flex-col justify-start"
               >
                 <div className="flex items-center gap-2 mb-1.5">
                   <span className="material-symbols-outlined text-[#111111] text-[18px] shrink-0">

@@ -226,7 +226,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
   };
 
   return (
-    <div className="w-full bg-[#f3f7fb] min-h-screen">
+    <div className="w-full fx-page-bg min-h-screen">
       {/* Banner */}
       <PageBanner
         title={activeDoc ? activeDoc.title : categoryTitle}
@@ -277,7 +277,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
             {/* Left Column: Rich, balanced content area */}
             <div className="lg:col-span-8 xl:col-span-9 space-y-6">
               {/* Toolbar: Category Tabs & Search Bar */}
-              <div className="bg-white border border-[#e5e5e5] px-4 py-3 sm:px-5 sm:py-4">
+              <div className="fx-panel px-4 py-3 sm:px-5 sm:py-4">
                 <div className="flex flex-col gap-3">
                   {/* Category Filter - dropdown select on mobile, pills from sm+ */}
                   <div className="relative sm:hidden">
@@ -382,7 +382,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                       return (
                         <div
                           key={doc.id}
-                          className="bg-white  border border-[#e5e5e5] overflow-hidden   hover:border-[#0a2540]/40 transition-all group flex flex-col justify-between"
+                          className="fx-card group flex flex-col justify-between"
                         >
                           <div>
                             {/* Card Image */}
@@ -459,7 +459,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                     })}
                   </div>
                 ) : (
-                  <div className="bg-white  border border-[#e5e5e5] p-10 text-center text-[#777777]">
+                  <div className="fx-panel p-10 text-center text-[#777777]">
                     <span className="material-symbols-outlined text-[48px] text-[#999999] mb-2">
                       search_off
                     </span>
@@ -484,7 +484,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
 
               {/* Section 2: Other Technical Documents (When filtered, ensures no empty void) */}
               {otherDocs.length > 0 && (
-                <div className="bg-white  border border-[#e5e5e5] p-4 sm:p-5 ">
+                <div className="fx-panel p-4 sm:p-5 ">
                   <div className="flex items-center justify-between mb-4 border-b border-[#f2f2f2] pb-3">
                     <div className="flex items-center gap-2">
                       <span className="material-symbols-outlined text-[#111111] text-[20px]">
@@ -544,7 +544,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
               )}
 
               {/* Section 3: Technical Download Center (Catalogs & Specs PDF) */}
-              <div className="bg-white  border border-[#e5e5e5] p-5 sm:p-6 ">
+              <div className="fx-panel p-5 sm:p-6 ">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-5 border-b border-[#f2f2f2] pb-4">
                   <div>
                     <div className="flex items-center gap-2">
@@ -570,7 +570,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                   {DOWNLOADABLE_DOCS.map((file) => (
                     <div
                       key={file.id}
-                      className="p-4  border border-[#e5e5e5] hover:border-[#0a2540] transition-all bg-[#f3f7fb] hover:bg-white flex flex-col justify-between group"
+                      className="fx-card p-4 flex flex-col justify-between group"
                     >
                       <div>
                         <div className="flex items-start justify-between gap-3 mb-2">
@@ -627,7 +627,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
               </div>
 
               {/* Section 4: 4-Step Technical Maintenance Process */}
-              <div className="bg-white  border border-[#e5e5e5] p-5 sm:p-6 ">
+              <div className="fx-panel p-5 sm:p-6 ">
                 <div className="mb-5 border-b border-[#f2f2f2] pb-3">
                   <span className="text-[12px] font-bold text-[#111111]">
                     Dịch vụ sau bán hàng chuyên nghiệp
@@ -689,7 +689,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
               </div>
 
               {/* Section 5: Technical FAQs (Accordion) */}
-              <div className="bg-white  border border-[#e5e5e5] p-5 sm:p-6 ">
+              <div className="fx-panel p-5 sm:p-6 ">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="material-symbols-outlined text-[#111111] text-[22px]">
                     help
@@ -737,7 +737,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
               </div>
 
               {/* Section 6: Related News Articles to bridge content */}
-              <div className="bg-white  border border-[#e5e5e5] p-5 sm:p-6 ">
+              <div className="fx-panel p-5 sm:p-6 ">
                 <div className="flex items-center justify-between mb-4 border-b border-[#f2f2f2] pb-3">
                   <div className="flex items-center gap-2">
                     <span className="material-symbols-outlined text-[#777777] text-[20px]">

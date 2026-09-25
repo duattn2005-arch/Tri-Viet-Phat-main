@@ -26,7 +26,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
   };
 
   return (
-    <div className="w-full bg-[#f3f7fb] min-h-screen">
+    <div className="w-full fx-page-bg min-h-screen">
       {/* Banner */}
       <PageBanner
         title="Liên hệ"
@@ -72,7 +72,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
         {/* 2-Column Section */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
           {/* Left: Contact Form */}
-          <div className="lg:col-span-6 bg-white  border border-[#e5e5e5] p-5 sm:p-6  flex flex-col justify-between">
+          <div className="lg:col-span-6 fx-panel p-5 sm:p-6  flex flex-col justify-between">
             <div>
               <h3 className="pb-3 border-b border-[#e5e5e5] text-[18px] font-bold text-[#111111] mb-5">Liên hệ gửi yêu cầu</h3>
 
@@ -159,7 +159,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
           </div>
 
           {/* Right: Company Info - Exactly 100% clone of thietbiytegroup.com */}
-          <div className="lg:col-span-6 bg-white  border border-[#e5e5e5] p-5 sm:p-6  flex flex-col justify-between">
+          <div className="lg:col-span-6 fx-panel p-5 sm:p-6  flex flex-col justify-between">
             <div className="space-y-4">
               <h3 className="pb-3 border-b border-[#e5e5e5] text-[18px] font-bold text-[#111111]">Thông tin công ty</h3>
 
@@ -238,7 +238,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
         </div>
 
         {/* Full-width Google Map from original site */}
-        <div className="bg-white  border border-[#e5e5e5] overflow-hidden ">
+        <div className="fx-panel overflow-hidden ">
           <div className="p-3.5 bg-[#f3f7fb] border-b border-[#e5e5e5] flex items-center justify-between">
             <div className="flex items-center gap-2 text-[13.5px] font-bold text-[#111111]">
               <span className="material-symbols-outlined text-[#777777] text-[18px]">map</span>

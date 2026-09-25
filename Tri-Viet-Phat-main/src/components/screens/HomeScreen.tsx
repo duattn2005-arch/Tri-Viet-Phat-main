@@ -199,7 +199,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       <ProductCardsSection onNavigateTab={onNavigateTab} />
 
       {/* 4. Featured products — tabs double as the section heading */}
-      <section className="relative w-full overflow-hidden py-12 sm:py-16 bg-[#f3f7fb]" id="featured-products">
+      <section className="relative w-full overflow-hidden py-12 sm:py-16 fx-page-bg" id="featured-products">
         <AmbientGlow light />
         <div className="relative max-w-[1320px] mx-auto px-4 sm:px-8">
           <div
@@ -362,7 +362,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       </section>
 
       {/* 6. Partners */}
-      <section className="relative w-full overflow-hidden py-14 sm:py-20 bg-[#f3f7fb]">
+      <section className="relative w-full overflow-hidden py-14 sm:py-20 fx-page-bg">
         <AmbientGlow light />
         <div className="relative max-w-[1320px] mx-auto px-4 sm:px-8">
           <SectionHeader
@@ -583,17 +583,17 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       </section>
 
       {/* 9. News */}
-      <section className="w-full py-12 sm:py-16 bg-white">
+      <section className="w-full py-12 sm:py-16 fx-section-soft">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8">
           <SectionHeader align="center" title="Tin tức và hướng dẫn kỹ thuật" description="Cập nhật kiến thức xét nghiệm, hướng dẫn vận hành và bảo trì thiết bị." />
 
           <RevealGroup className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {REAL_NEWS_ARTICLES.slice(0, 3).map((art) => (
-              <RevealItem key={art.id}>
+              <RevealItem key={art.id} className="h-full">
                 <button
                   type="button"
                   onClick={() => onSelectArticle(art)}
-                  className="group flex flex-col text-left cursor-pointer"
+                  className="fx-card group flex flex-col h-full w-full text-left cursor-pointer"
                 >
                   <div className="relative fx-shine w-full aspect-[16/9] overflow-hidden bg-[#edf3f8]">
                     <img
@@ -603,13 +603,22 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                       loading="lazy"
                     />
                   </div>
-                  <div className="mt-4 text-[12px] font-medium uppercase tracking-wide text-[#777777]">
-                    {NEWS_CATEGORY_LABELS[art.categorySlug ?? ''] ?? 'Tin y tế'} · {art.date}
+                  <div className="flex flex-col flex-1 p-5 sm:p-6">
+                    <div className="flex items-center gap-2 text-[12px] font-semibold uppercase tracking-wide">
+                      <span className="px-2.5 py-1 rounded-full bg-[#e6f3fb] text-[#0a2540]">
+                        {NEWS_CATEGORY_LABELS[art.categorySlug ?? ''] ?? 'Tin y tế'}
+                      </span>
+                      <span className="text-[#6b7280] normal-case tracking-normal font-medium">{art.date}</span>
+                    </div>
+                    <h3 className="mt-3 text-[17px] font-bold text-[#111111] group-hover:text-[#0a94dc] transition-colors duration-300 leading-snug line-clamp-2">
+                      {art.title}
+                    </h3>
+                    <p className="mt-2 text-[14px] text-[#4b5563] leading-relaxed line-clamp-3 flex-1">{art.excerpt}</p>
+                    <span className="mt-5 pt-4 border-t border-[#eef2f6] inline-flex items-center gap-1.5 text-[13.5px] font-bold text-[#0a2540] group-hover:text-[#e11d2a] transition-colors">
+                      Đọc tiếp
+                      <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                    </span>
                   </div>
-                  <h3 className="mt-2 text-[17px] font-semibold text-[#111111] group-hover:text-[#0a94dc] transition-colors duration-300 transition-colors leading-snug line-clamp-2">
-                    {art.title}
-                  </h3>
-                  <p className="mt-2 text-[14px] text-[#555555] leading-relaxed line-clamp-3">{art.excerpt}</p>
                 </button>
               </RevealItem>
             ))}
