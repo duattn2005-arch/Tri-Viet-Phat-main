@@ -160,7 +160,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
       {/* 2. Key facts — photo-backed navy band, heading + glass counter cards */}
       <section className="fx-spotlight relative w-full overflow-hidden bg-[#0a2540] text-white">
-        <ParallaxImage src="/images/hero-engineers.jpg" className="opacity-25" />
+        <ParallaxImage src="/images/hero-engineers.jpg" alt="Kỹ sư Trí Việt Phát trong phòng thí nghiệm" className="opacity-25" />
         <div className="absolute inset-0 bg-linear-to-br from-[#0a2540]/95 via-[#0a2540]/85 to-[#0b3a66]/80" aria-hidden="true" />
         <AmbientGlow />
         <div className="relative max-w-[1320px] mx-auto px-4 sm:px-8 py-14 sm:py-20">
@@ -429,7 +429,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
       {/* 8. Consultation form — dark band over a parallax lab photo; the white form card pops forward */}
       <section className="fx-spotlight relative w-full overflow-hidden py-16 sm:py-24 bg-[#0a2540] text-white" id="tu-van-form">
-        <ParallaxImage src="/images/hero-lab-analyzers.jpg" className="opacity-50" />
+        <ParallaxImage src="/images/hero-lab-analyzers.jpg" alt="Dãy máy phân tích xét nghiệm tự động" className="opacity-50" />
         <div className="absolute inset-0 bg-linear-to-r from-[#0a2540]/95 via-[#0a2540]/75 to-[#0a2540]/30" aria-hidden="true" />
         <div className="relative max-w-[1320px] mx-auto px-4 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <Reveal className="lg:col-span-5">

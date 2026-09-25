@@ -247,12 +247,12 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({
         {/* Listing */}
         <section className="flex-1 min-w-0">
           <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
-            <h1 className="flex items-baseline gap-3 text-[#111]">
+            <h2 className="flex items-baseline gap-3 text-[#111]">
               <span className="text-[20px] sm:text-[22px] font-bold leading-tight">{categoryLabel}</span>
               <span className="text-[15px] sm:text-[16px]">
                 <strong className="font-bold">{filteredProducts.length}</strong> sản phẩm
               </span>
-            </h1>
+            </h2>
 
             <div className="flex items-center gap-3 w-full sm:w-auto">
               <button

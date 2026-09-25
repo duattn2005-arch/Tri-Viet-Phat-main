@@ -100,9 +100,9 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
             {/* Center: Details & Benefits */}
             <div className="lg:col-span-5 space-y-3.5">
-              <h1 className="text-[20px] sm:text-[22px] font-bold text-[#111111] leading-snug">
+              <h2 className="text-[20px] sm:text-[22px] font-bold text-[#111111] leading-snug">
                 {product.name}
-              </h1>
+              </h2>
 
               <div className="space-y-1.5 text-[14px] text-[#333333]">
                 {product.model && (

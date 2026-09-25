@@ -1,6 +1,8 @@
 import React from 'react';
 import { PageTab } from '../types';
 import { COMPANY_INFO } from '../data/mockData';
+import { navLink } from '../seo/navLink';
+import type { Route } from '../seo/routes';
 
 interface FooterProps {
   onSelectTab: (tab: PageTab, categoryFilter?: string) => void;
@@ -45,16 +47,20 @@ const ColumnHeading: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 );
 
 /** Footer link with a chevron that slides right on hover. */
-const FooterLink: React.FC<{ onClick: () => void; children: React.ReactNode }> = ({ onClick, children }) => (
-  <button
-    onClick={onClick}
+const FooterLink: React.FC<{ route: Route; onClick: () => void; children: React.ReactNode }> = ({
+  route,
+  onClick,
+  children,
+}) => (
+  <a
+    {...navLink(route, onClick)}
     className="group inline-flex items-center gap-1.5 text-left hover:text-white hover:translate-x-1 transition-[color,translate] duration-300 cursor-pointer"
   >
     <span className="material-symbols-outlined text-[16px] text-[#0a94dc] group-hover:text-[#e11d2a] transition-colors">
       chevron_right
     </span>
     {children}
-  </button>
+  </a>
 );
 
 export const Footer: React.FC<FooterProps> = ({ onSelectTab, onOpenConsultation }) => {
@@ -148,7 +154,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab, onOpenConsultation 
             <ul className="space-y-3">
               {EXPLORE_LINKS.map((item) => (
                 <li key={item.tab}>
-                  <FooterLink onClick={() => handleNav(item.tab)}>{item.label}</FooterLink>
+                  <FooterLink route={{ tab: item.tab }} onClick={() => handleNav(item.tab)}>{item.label}</FooterLink>
                 </li>
               ))}
             </ul>
@@ -159,7 +165,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab, onOpenConsultation 
             <ul className="space-y-3">
               {PRODUCT_LINKS.map((item) => (
                 <li key={item.cat}>
-                  <FooterLink onClick={() => handleNav('san-pham', item.cat)}>{item.label}</FooterLink>
+                  <FooterLink route={{ tab: 'san-pham', cat: item.cat }} onClick={() => handleNav('san-pham', item.cat)}>{item.label}</FooterLink>
                 </li>
               ))}
             </ul>

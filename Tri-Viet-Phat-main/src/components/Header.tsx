@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useSpring } from 'motion/react';
 import { PageTab } from '../types';
 import { COMPANY_INFO } from '../data/mockData';
+import { navLink } from '../seo/navLink';
 
 interface HeaderProps {
   currentTab: PageTab;
@@ -209,8 +210,9 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Brand row: logo · big search · hotline block · CTA */}
       <div className="max-w-[1760px] mx-auto px-4 sm:px-8 xl:px-12 flex items-center justify-between gap-4 lg:gap-8 h-16 sm:h-20 lg:h-[84px]">
-        <button
-          onClick={() => handleNavClick('trang-chu')}
+        <a
+          {...navLink({ tab: 'trang-chu' }, () => handleNavClick('trang-chu'))}
+          aria-label="Trí Việt Phát – Trang chủ"
           className="group flex items-center gap-2.5 sm:gap-3 text-left cursor-pointer shrink-0"
         >
           <img
@@ -224,7 +226,7 @@ export const Header: React.FC<HeaderProps> = ({
               Thiết bị y tế
             </span>
           </span>
-        </button>
+        </a>
 
         {/* Search (desktop): opens the search dialog */}
         <button
@@ -300,15 +302,15 @@ export const Header: React.FC<HeaderProps> = ({
 
             if (!item.children) {
               return (
-                <button
+                <a
                   key={item.tab}
-                  onClick={() => handleNavClick(item.tab)}
+                  {...navLink({ tab: item.tab }, () => handleNavClick(item.tab))}
                   className={baseClass}
                   aria-current={isActive ? 'page' : undefined}
                 >
                   {item.label}
                   {activeBar}
-                </button>
+                </a>
               );
             }
 
@@ -336,9 +338,9 @@ export const Header: React.FC<HeaderProps> = ({
                 {isOpen && (
                   <div className="dropdown-in absolute left-0 top-full w-72 bg-white rounded-b-lg border-t-[3px] border-[#0a94dc] shadow-[0_18px_40px_rgba(10,37,64,0.18)] py-2 z-50">
                     {item.children.map((child, idx) => (
-                      <button
+                      <a
                         key={child.cat}
-                        onClick={() => handleNavClick(item.tab, child.cat)}
+                        {...navLink({ tab: item.tab, cat: child.cat }, () => handleNavClick(item.tab, child.cat))}
                         className={`group/item w-full text-left px-4 py-2.5 text-[14px] flex items-center gap-2 hover:bg-[#f3f7fb] hover:text-[#0a94dc] hover:pl-6 transition-all duration-300 cursor-pointer ${
                           idx === 0
                             ? 'font-semibold text-[#0a2540] border-b border-[#edf3f8] mb-1 pb-3'
@@ -347,7 +349,7 @@ export const Header: React.FC<HeaderProps> = ({
                       >
                         <span className="w-1.5 h-1.5 rounded-full bg-[#e11d2a] opacity-0 -ml-3.5 group-hover/item:opacity-100 transition-opacity" aria-hidden="true" />
                         {child.label}
-                      </button>
+                      </a>
                     ))}
                   </div>
                 )}
@@ -365,24 +367,24 @@ export const Header: React.FC<HeaderProps> = ({
               const isActive = currentTab === item.tab;
               return (
                 <div key={item.tab} className="py-1">
-                  <button
-                    onClick={() => handleNavClick(item.tab)}
-                    className={`w-full text-left py-2.5 text-[15px] font-medium cursor-pointer ${
+                  <a
+                    {...navLink({ tab: item.tab }, () => handleNavClick(item.tab))}
+                    className={`block w-full text-left py-2.5 text-[15px] font-medium cursor-pointer ${
                       isActive ? 'text-[#111111]' : 'text-[#111111]'
                     }`}
                   >
                     {item.label}
-                  </button>
+                  </a>
                   {item.children && item.tab !== 'san-pham' && (
                     <div className="pb-2 pl-4 space-y-0.5">
                       {item.children.slice(1).map((child) => (
-                        <button
+                        <a
                           key={child.cat}
-                          onClick={() => handleNavClick(item.tab, child.cat)}
+                          {...navLink({ tab: item.tab, cat: child.cat }, () => handleNavClick(item.tab, child.cat))}
                           className="block w-full text-left py-1.5 text-[14px] text-[#777777] fx-link cursor-pointer"
                         >
                           {child.label}
-                        </button>
+                        </a>
                       ))}
                     </div>
                   )}

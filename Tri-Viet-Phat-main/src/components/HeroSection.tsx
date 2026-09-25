@@ -98,7 +98,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenConsultation }) 
           <motion.img
             key={s.image}
             src={s.image}
-            alt={i === active ? s.alt : ''}
+            alt={s.alt}
             aria-hidden={i !== active}
             className="absolute inset-0 w-full h-full object-cover"
             initial={false}

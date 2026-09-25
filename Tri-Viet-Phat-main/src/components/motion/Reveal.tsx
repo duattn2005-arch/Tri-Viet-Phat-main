@@ -166,8 +166,9 @@ export const MaskText: React.FC<{ text: string; delay?: number }> = ({ text, del
  * Full-bleed background photo that drifts slower than the page (parallax).
  * Place inside a `relative overflow-hidden` section.
  */
-export const ParallaxImage: React.FC<{ src: string; className?: string; strength?: number }> = ({
+export const ParallaxImage: React.FC<{ src: string; alt?: string; className?: string; strength?: number }> = ({
   src,
+  alt = 'Phòng xét nghiệm y khoa – Trí Việt Phát',
   className = '',
   strength = 14,
 }) => {
@@ -179,7 +180,7 @@ export const ParallaxImage: React.FC<{ src: string; className?: string; strength
     <div ref={ref} className="absolute inset-0 overflow-hidden" aria-hidden="true">
       <motion.img
         src={src}
-        alt=""
+        alt={alt}
         loading="lazy"
         style={{ y }}
         className={`absolute inset-x-0 -top-[20%] h-[140%] w-full object-cover ${className}`}

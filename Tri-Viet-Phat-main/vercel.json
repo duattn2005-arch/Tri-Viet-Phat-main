@@ -2,6 +2,7 @@
   "framework": "vite",
   "buildCommand": "vite build",
   "outputDirectory": "dist",
+  "cleanUrls": true,
   "redirects": [{ "source": "/admin", "destination": "/admin/", "permanent": true }],
   "rewrites": [{ "source": "/((?!api/|admin/|uploads/).*)", "destination": "/index.html" }]
 }

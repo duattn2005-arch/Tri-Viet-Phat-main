@@ -81,9 +81,9 @@ export const CareersScreen: React.FC = () => {
               {/* Job Content Column */}
               <div className="lg:col-span-8 fx-panel p-6 sm:p-8 md:p-10  space-y-6">
                 <div className="border-b border-[#f2f2f2] pb-6">
-                  <h1 className="text-[24px] sm:text-[30px] font-bold text-[#111111] leading-tight mb-3">
+                  <h2 className="text-[24px] sm:text-[30px] font-bold text-[#111111] leading-tight mb-3">
                     {activeJob.title}
-                  </h1>
+                  </h2>
                   <div className="flex flex-wrap items-center gap-4 text-[13px] text-[#777777]">
                     <span className="flex items-center gap-1.5">
                       <span className="material-symbols-outlined text-[16px] text-[#777777]">

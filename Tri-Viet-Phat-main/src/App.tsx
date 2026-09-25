@@ -3,10 +3,13 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, MotionConfig, motion } from 'motion/react';
 import { PageTab, Product } from './types';
-import { SiteArticle } from './data/realSiteContent';
+import { SiteArticle, REAL_NEWS_ARTICLES } from './data/realSiteContent';
+import { PRODUCTS } from './data/mockData';
+import { parseRoute, routePath, seoFor, type Route, type SeoLookups } from './seo/routes';
+import { applySeo } from './seo/head';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { FloatingActions } from './components/FloatingActions';
@@ -24,13 +27,24 @@ import { NewsScreen } from './components/screens/NewsScreen';
 import { CareersScreen } from './components/screens/CareersScreen';
 import { ContactScreen } from './components/screens/ContactScreen';
 
+const SITE_URL = import.meta.env.VITE_SITE_URL || window.location.origin;
+
+const SEO_LOOKUPS: SeoLookups = {
+  article: (id) => REAL_NEWS_ARTICLES.find((a) => a.id === id),
+  product: (id) => PRODUCTS.find((p) => p.id === id),
+};
+
+const findProduct = (id?: string) => (id ? PRODUCTS.find((p) => p.id === id) ?? null : null);
+
 export default function App() {
-  const [currentTab, setCurrentTab] = useState<PageTab>('trang-chu');
-  const [categoryFilter, setCategoryFilter] = useState<string>('all');
+  // Each page has its own URL (see src/seo/routes.ts); the first render follows the address bar.
+  const [initialRoute] = useState(() => parseRoute(window.location.pathname));
+  const [currentTab, setCurrentTab] = useState<PageTab>(initialRoute.tab);
+  const [categoryFilter, setCategoryFilter] = useState<string>(initialRoute.cat || 'all');
 
   // Modal States
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [newsArticleId, setNewsArticleId] = useState<string>('');
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(() => findProduct(initialRoute.productId));
+  const [newsArticleId, setNewsArticleId] = useState<string>(initialRoute.articleId || '');
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
   const [consultationProduct, setConsultationProduct] = useState<string>('');
   const [isRepairServiceOpen, setIsRepairServiceOpen] = useState(false);
@@ -49,6 +63,39 @@ export default function App() {
     };
     window.addEventListener('pointermove', onMove, { passive: true });
     return () => window.removeEventListener('pointermove', onMove);
+  }, []);
+
+  // Keep the address bar, page title and meta tags in step with what is on screen
+  const route: Route = {
+    tab: currentTab,
+    cat: categoryFilter,
+    articleId: currentTab === 'tin-tuc' ? newsArticleId || undefined : undefined,
+    productId: selectedProduct?.id,
+  };
+  const path = routePath(route);
+  const firstSync = useRef(true);
+  useEffect(() => {
+    if (window.location.pathname !== path) {
+      // The first sync only normalises the address (e.g. an unknown path), so it replaces instead of adding history
+      window.history[firstSync.current ? 'replaceState' : 'pushState'](null, '', path);
+    }
+    firstSync.current = false;
+    applySeo(seoFor(route, SEO_LOOKUPS), SITE_URL);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [path]);
+
+  // Browser back / forward
+  useEffect(() => {
+    const onPopState = () => {
+      const next = parseRoute(window.location.pathname);
+      setSelectedProduct(findProduct(next.productId));
+      if (next.productId) return;
+      setCurrentTab(next.tab);
+      setCategoryFilter(next.cat || 'all');
+      setNewsArticleId(next.articleId || '');
+    };
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
   }, []);
 
   const handleSelectTab = (tab: PageTab, cat?: string) => {
@@ -132,6 +179,7 @@ export default function App() {
                   onNavigateCategory={(cat) => handleSelectTab('tin-tuc', cat)}
                   onNavigateTab={handleSelectTab}
                   initialArticleId={newsArticleId}
+                  onArticleChange={(id) => setNewsArticleId(id)}
                 />
               )}
 

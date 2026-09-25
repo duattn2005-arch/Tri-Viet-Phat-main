@@ -24,7 +24,7 @@ export const PageBanner: React.FC<PageBannerProps> = ({
 }) => {
   return (
     <div className="fx-spotlight relative w-full overflow-hidden bg-[#0a2540] text-white">
-      <ParallaxImage src={image} className="opacity-30" strength={10} />
+      <ParallaxImage src={image} alt={`${title} – Trí Việt Phát`} className="opacity-30" strength={10} />
       <div
         className="absolute inset-0 bg-linear-to-r from-[#0a2540] via-[#0a2540]/85 to-[#0b3a66]/60"
         aria-hidden="true"

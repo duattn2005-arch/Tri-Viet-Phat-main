@@ -39,9 +39,9 @@ export const ArticleFullView: React.FC<ArticleFullViewProps> = ({
         <article className="lg:col-span-8 xl:col-span-9 fx-panel p-6 sm:p-8 md:p-10 ">
           {/* Header */}
           <div className="border-b border-[#f2f2f2] pb-6 mb-6">
-            <h1 className="text-[22px] sm:text-[28px] md:text-[32px] font-bold text-[#111111] leading-tight mb-4">
+            <h2 className="text-[22px] sm:text-[28px] md:text-[32px] font-bold text-[#111111] leading-tight mb-4">
               {article.title}
-            </h1>
+            </h2>
             <div className="flex flex-wrap items-center gap-4 text-[13px] text-[#777777]">
               <span className="flex items-center gap-1.5">
                 <span className="material-symbols-outlined text-[16px] text-[#777777]">

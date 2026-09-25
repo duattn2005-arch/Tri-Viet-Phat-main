@@ -12,6 +12,8 @@ interface NewsScreenProps {
   onNavigateTab?: (tab: PageTab, cat?: string) => void;
   /** Article to open on arrival, e.g. picked on the home page or in search */
   initialArticleId?: string;
+  /** Reports the open article ('' for the list) so the URL can follow it */
+  onArticleChange?: (articleId: string) => void;
 }
 
 interface NewsCategoryOption {
@@ -65,10 +67,13 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
   onNavigateCategory,
   onNavigateTab,
   initialArticleId,
+  onArticleChange,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory || 'all');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [activeArticle, setActiveArticle] = useState<SiteArticle | null>(null);
+  const [activeArticle, setActiveArticle] = useState<SiteArticle | null>(
+    () => REAL_NEWS_ARTICLES.find((a) => a.id === initialArticleId) ?? null
+  );
   const [newsletterEmail, setNewsletterEmail] = useState<string>('');
   const [newsletterSubscribed, setNewsletterSubscribed] = useState<boolean>(false);
   const [newsletterSending, setNewsletterSending] = useState(false);
@@ -98,10 +103,13 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
   }, [initialCategory]);
 
   useEffect(() => {
-    if (!initialArticleId) return;
-    const art = REAL_NEWS_ARTICLES.find((a) => a.id === initialArticleId);
-    if (art) setActiveArticle(art);
+    setActiveArticle(REAL_NEWS_ARTICLES.find((a) => a.id === initialArticleId) ?? null);
   }, [initialArticleId]);
+
+  useEffect(() => {
+    onArticleChange?.(activeArticle?.id ?? '');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeArticle]);
 
   const handleCategoryChange = (key: string) => {
     setSelectedCategory(key);
