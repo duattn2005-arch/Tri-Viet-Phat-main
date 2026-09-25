@@ -3,10 +3,11 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import {defineConfig} from 'vite';
 import {seoPlugin, SITE_URL} from './seo-plugin';
+import {newsIndexPlugin} from './news-index-plugin';
 
 export default defineConfig(() => {
   return {
-    plugins: [react(), tailwindcss(), seoPlugin()],
+    plugins: [react(), tailwindcss(), newsIndexPlugin(), seoPlugin()],
     // Canonical/Open Graph URLs use the same domain at runtime as the build-time sitemap
     define: {
       'import.meta.env.VITE_SITE_URL': JSON.stringify(SITE_URL),

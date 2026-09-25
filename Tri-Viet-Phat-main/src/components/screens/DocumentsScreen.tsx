@@ -230,7 +230,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
       {/* Banner */}
       <PageBanner
         title={activeDoc ? activeDoc.title : categoryTitle}
-        backgroundImage="https://thietbiytegroup.com/wp-content/uploads/2024/09/banner-anh-hop-tac.jpg"
+        backgroundImage="/uploads/wp/2024/09/banner-anh-hop-tac.jpg"
         breadcrumbs={
           activeDoc
             ? [

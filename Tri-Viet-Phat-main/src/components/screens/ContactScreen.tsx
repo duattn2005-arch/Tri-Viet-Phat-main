@@ -48,7 +48,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
       {/* Banner */}
       <PageBanner
         title="Liên hệ"
-        backgroundImage="https://thietbiytegroup.com/wp-content/uploads/2024/09/lien-he-mua-hang.png"
+        backgroundImage="/uploads/wp/2024/09/lien-he-mua-hang.png"
         breadcrumbs={[{ label: 'Trang chủ' }, { label: 'Liên hệ' }]}
       />
 

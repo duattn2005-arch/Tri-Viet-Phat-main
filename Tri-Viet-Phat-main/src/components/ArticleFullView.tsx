@@ -1,5 +1,5 @@
-import React from 'react';
-import { SiteArticle } from '../data/realSiteContent';
+import React, { useEffect, useState } from 'react';
+import { SiteArticle, loadNewsHtml } from '../data/realSiteContent';
 import { SiteSidebar } from './SiteSidebar';
 
 interface ArticleFullViewProps {
@@ -17,6 +17,18 @@ export const ArticleFullView: React.FC<ArticleFullViewProps> = ({
   onBack,
   onSelectArticle,
 }) => {
+  // News bodies are loaded on demand; documents already carry their HTML
+  const [bodyHtml, setBodyHtml] = useState(article.contentHtml);
+  useEffect(() => {
+    setBodyHtml(article.contentHtml);
+    if (article.contentHtml) return;
+    let current = true;
+    loadNewsHtml(article.id).then((html) => current && setBodyHtml(html || `<p>${article.excerpt}</p>`));
+    return () => {
+      current = false;
+    };
+  }, [article]);
+
   return (
     <div className="w-full">
       {/* Return back button */}
@@ -81,7 +93,7 @@ export const ArticleFullView: React.FC<ArticleFullViewProps> = ({
           {/* Article HTML Content */}
           <div
             className="article-rendered-body space-y-4 text-[#333333] text-[15px] sm:text-[16px] leading-relaxed [&>h2]:text-[20px] [&>h2]:font-bold [&>h2]:text-[#111111] [&>h2]:mt-6 [&>h2]:mb-3 [&>h3]:text-[17px] [&>h3]:font-bold [&>h3]:text-[#111111] [&>h3]:mt-5 [&>h3]:mb-2 [&>p]:mb-4 [&>p]:leading-relaxed [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:space-y-1.5 [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:space-y-1.5 [&>table]:w-full [&>table]:my-6 [&>table]:border-collapse [&_th]:border [&_th]:border-[#d4d4d4] [&_th]:p-2.5 [&_th]:bg-[#edf3f8] [&_td]:border [&_td]:border-[#d4d4d4] [&_td]:p-2.5 [&_img]:mx-auto [&_img]:my-4 [&_a]:text-[#111111] [&_a]:underline"
-            dangerouslySetInnerHTML={{ __html: article.contentHtml }}
+            dangerouslySetInnerHTML={{ __html: bodyHtml || '<p>Đang tải nội dung…</p>' }}
           />
 
           {/* Related Articles */}

@@ -53,7 +53,7 @@ export const CareersScreen: React.FC = () => {
       {/* Banner */}
       <PageBanner
         title={activeJob ? activeJob.title : 'Tin tuyển dụng'}
-        backgroundImage="https://thietbiytegroup.com/wp-content/uploads/2024/09/tin-tuyen-dung.png"
+        backgroundImage="/uploads/wp/2024/09/tin-tuyen-dung.png"
         breadcrumbs={
           activeJob
             ? [

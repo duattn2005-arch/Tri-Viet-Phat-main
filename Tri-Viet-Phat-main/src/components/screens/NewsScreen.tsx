@@ -204,12 +204,17 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
     return filteredArticles;
   }, [featuredArticle, filteredArticles]);
 
+  // Show the list a page at a time; start over when the category or search changes
+  const PAGE_SIZE = 12;
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  useEffect(() => setVisibleCount(PAGE_SIZE), [selectedCategory, searchQuery]);
+
   return (
     <div className="w-full fx-page-bg min-h-screen">
       {/* Banner */}
       <PageBanner
         title={activeArticle ? activeArticle.title : categoryTitle}
-        backgroundImage="https://thietbiytegroup.com/wp-content/uploads/2024/09/hop-tac-cong-ty-y-te.jpg"
+        backgroundImage="/uploads/wp/2024/09/hop-tac-cong-ty-y-te.jpg"
         breadcrumbs={
           activeArticle
             ? [
@@ -408,8 +413,9 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                 </div>
 
                 {gridArticles.length > 0 ? (
+                  <>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
-                    {gridArticles.map((art) => (
+                    {gridArticles.slice(0, visibleCount).map((art) => (
                       <div
                         key={art.id}
                         className="fx-card group flex flex-col justify-between"
@@ -472,6 +478,18 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                       </div>
                     ))}
                   </div>
+                  {visibleCount < gridArticles.length && (
+                    <div className="mt-6 text-center">
+                      <button
+                        type="button"
+                        onClick={() => setVisibleCount((n) => n + PAGE_SIZE)}
+                        className="btn-primary h-11 px-8 rounded-full text-[14px] font-semibold cursor-pointer"
+                      >
+                        Xem thêm bài viết ({gridArticles.length - visibleCount})
+                      </button>
+                    </div>
+                  )}
+                  </>
                 ) : (
                   <div className="fx-panel p-10 text-center text-[#777777]">
                     <span className="material-symbols-outlined text-[48px] text-[#999999] mb-2">

@@ -26,7 +26,7 @@ import { headTagsHtml } from './src/seo/head';
 import { BRANDS, brandBySlug, brandOf } from './src/seo/brands';
 import { demoteH1 } from './src/content/load';
 
-export const SITE_URL = (process.env.SITE_URL || process.env.VITE_SITE_URL || 'https://trivp.vercel.app').replace(/\/$/, '');
+export const SITE_URL = (process.env.SITE_URL || process.env.VITE_SITE_URL || 'https://thietbiytegroup.com').replace(/\/$/, '');
 
 const CONTENT_DIR = path.resolve(__dirname, 'src/content');
 const START = '<!--seo:start-->';
@@ -205,7 +205,7 @@ function fallbackBody(route: Route, content: Content): string {
       `<h2>Danh mục máy xét nghiệm</h2>${list(categoryLinks)}`,
       `<h2>Thương hiệu phân phối</h2>${list(brandLinks)}`,
       `<h2>Sản phẩm</h2>${list(products.map(productItem))}`,
-      `<h2>Tin tức</h2>${list(news.map((a) => link({ tab: 'tin-tuc', articleId: a.id }, a.title)))}`,
+      `<h2>Tin tức mới</h2>${list(news.slice(0, 20).map((a) => link({ tab: 'tin-tuc', articleId: a.id }, a.title)))}`,
     ].join('\n');
   } else {
     main = `<h1>${esc(meta.title.replace(` | ${SITE_NAME}`, ''))}</h1><p>${esc(meta.description)}</p>`;
