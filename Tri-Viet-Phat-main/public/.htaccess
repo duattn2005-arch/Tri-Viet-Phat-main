@@ -8,7 +8,7 @@ DirectoryIndex index.html
 RewriteEngine On
 
 # Secrets written at deploy time (readable by PHP only) and the FTP deploy's sync state
-<FilesMatch "^((telegram|cms)-config(\.example)?\.php|\.ftp-deploy-sync-state\.json)$">
+<FilesMatch "^((telegram|cms|email)-config(\.example)?\.php|\.ftp-deploy-sync-state\.json)$">
   <IfModule mod_authz_core.c>
     Require all denied
   </IfModule>
