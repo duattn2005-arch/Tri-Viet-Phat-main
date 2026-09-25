@@ -24,7 +24,18 @@ import {
   type SeoLookups,
 } from './src/seo/routes';
 import { headTagsHtml } from './src/seo/head';
-import { BRANDS, brandBySlug, brandFaq, brandOf, brandSubject, type Brand, type BrandFaq } from './src/seo/brands';
+import { CATEGORY_BLURBS, CATEGORY_GUIDES, categoryFaq } from './src/seo/guides';
+import {
+  BRANDS,
+  brandBySlug,
+  brandFaq,
+  brandOf,
+  brandSubject,
+  productDisplayName,
+  productKeySpec,
+  type Brand,
+  type BrandFaq,
+} from './src/seo/brands';
 import { demoteH1 } from './src/content/load';
 
 export const SITE_URL = (process.env.SITE_URL || process.env.VITE_SITE_URL || 'https://thietbiytegroup.com').replace(/\/$/, '');
@@ -134,18 +145,11 @@ const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replac
 const link = (route: Route, text: string) => `<a href="${routePath(route)}">${esc(text)}</a>`;
 const list = (items: string[]) => (items.length ? `<ul>${items.map((i) => `<li>${i}</li>`).join('')}</ul>` : '');
 
-/** Product name with its brand, as people search for it ("… CS-600B Dirui"). */
-function productTitle(p: ProductEntry): string {
-  const brand = brandOf(p.brand);
-  return brand && !p.name.toLowerCase().includes(brand.name.toLowerCase()) ? `${p.name} ${brand.name}` : p.name;
-}
+/** Product name with its brand before the model, as people search for it ("… tự động Dirui CS-T240"). */
+const productTitle = (p: ProductEntry) => productDisplayName(p.name, p.brand);
 
-/** Same comparison spec as BrandGuide in the app: throughput first, otherwise the first listed spec. */
-function keySpec(p: ProductEntry): string {
-  const specs = p.specs ?? [];
-  const spec = specs.find((s) => /tốc độ|công suất|test\/h|mẫu\/giờ/i.test(`${s.label} ${s.value}`)) ?? specs[0];
-  return spec ? `${spec.label}: ${spec.value}` : p.shortDesc;
-}
+/** Same comparison spec as BrandGuide in the app. */
+const keySpec = (p: ProductEntry) => productKeySpec(p.specs, p.shortDesc);
 
 function brandGroups<T extends ProductEntry>(items: T[]): Record<string, T[]> {
   const groups: Record<string, T[]> = {};
@@ -161,6 +165,15 @@ function brandFaqFor(brand: Brand, items: ProductEntry[], hotline: string): Bran
     Object.entries(brandGroups(items)).map(([label, list]) => [label, list.map((p) => p.model || p.name)])
   );
   return brandFaq(brand, byCategory, hotline);
+}
+
+/** Same FAQ as CategoryGuide in the app: the guide's own questions plus catalogue / price questions. */
+function guideFaqFor(category: string, products: ProductEntry[], hotline: string): BrandFaq[] {
+  const own = CATEGORY_GUIDES[category]?.faq ?? [];
+  const label = PRODUCT_CATEGORY_LABELS[category];
+  if (!label) return own;
+  const models = products.filter((p) => p.category === category).map(productTitle);
+  return models.length ? [...own, ...categoryFaq(label, models, hotline)] : own;
 }
 
 /** FAQPage structured data for a brand page (Google can quote these answers). */
@@ -237,10 +250,23 @@ function fallbackBody(route: Route, content: Content): string {
   } else if (route.tab === 'san-pham') {
     const items = route.cat ? products.filter((p) => p.category === route.cat) : products;
     const heading = route.cat ? PRODUCT_CATEGORY_LABELS[route.cat] : 'Máy xét nghiệm và hóa chất xét nghiệm chính hãng';
+    const guide = CATEGORY_GUIDES[route.cat || 'all'];
+    const overview = route.cat
+      ? ''
+      : list(
+          Object.entries(CATEGORY_BLURBS).map(
+            ([cat, blurb]) => `${link({ tab: 'san-pham', cat }, PRODUCT_CATEGORY_LABELS[cat])}: ${esc(blurb)}`
+          )
+        );
+    const faq = guideFaqFor(route.cat || 'all', products, content.company.hotline)
+      .map((f) => `<h3>${esc(f.q)}</h3><p>${esc(f.a)}</p>`)
+      .join('');
     main = [
       `<h1>${esc(heading)}</h1>`,
       `<p>${esc(meta.description)}</p>`,
       list(items.map(productItem)),
+      guide ? `<h2>${esc(guide.heading)}</h2>${guide.intro.map((p) => `<p>${esc(p)}</p>`).join('')}${overview}` : '',
+      faq ? `<h2>Câu hỏi thường gặp</h2>${faq}` : '',
       `<h2>Danh mục sản phẩm</h2>${list(categoryLinks)}`,
       `<h2>Thương hiệu</h2>${list(brandLinks)}`,
     ].join('\n');
@@ -328,7 +354,13 @@ export function seoPlugin(): Plugin {
         const body = after.replace(ROOT, `<div id="root">${fallbackBody(route, content)}</div>`);
         const brand = brandBySlug(route.brand);
         const brandItems = brand ? products.filter((p) => brandOf(p.brand)?.slug === brand.slug) : [];
-        const extraLd = brand && brandItems.length ? `\n    ${faqLd(brandFaqFor(brand, brandItems, content.company.hotline))}` : '';
+        const pageFaq =
+          brand && brandItems.length
+            ? brandFaqFor(brand, brandItems, content.company.hotline)
+            : route.tab === 'san-pham' && !route.productId && !route.brand
+              ? guideFaqFor(route.cat || 'all', products, content.company.hotline)
+              : [];
+        const extraLd = pageFaq.length ? `\n    ${faqLd(pageFaq)}` : '';
         const html = `${before}${START}\n    ${headTagsHtml(seoFor(route, lookups), SITE_URL)}${extraLd}\n    ${END}${body}`;
         const file = url === '/' ? path.join(outDir, 'index.html') : path.join(outDir, `${url.slice(1)}.html`);
         fs.mkdirSync(path.dirname(file), { recursive: true });

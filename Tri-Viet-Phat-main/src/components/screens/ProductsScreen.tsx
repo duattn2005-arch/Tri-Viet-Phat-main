@@ -7,6 +7,8 @@ import { RevealGroup, RevealItem } from '../motion/Reveal';
 import { Product } from '../../types';
 import { brandBySlug } from '../../seo/brands';
 import { BrandGuide } from '../BrandGuide';
+import { CategoryGuide } from '../CategoryGuide';
+import { PRODUCT_CATEGORY_LABELS } from '../../seo/routes';
 
 interface ProductsScreenProps {
   initialCategory?: string;
@@ -154,7 +156,7 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({
   return (
     <div className="w-full bg-white">
       <PageBanner
-        title={brand ? brand.heading : categoryLabel}
+        title={brand ? brand.heading : PRODUCT_CATEGORY_LABELS[selectedCategory] ?? 'Máy xét nghiệm & hóa chất xét nghiệm'}
         subtitle={brand ? brand.intro : 'Thiết bị xét nghiệm và hóa chất IVD chính hãng, đủ CO/CQ, giao và lắp đặt toàn quốc.'}
         image="/images/hero-pipette.jpg"
         breadcrumbs={
@@ -325,7 +327,11 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({
             </RevealGroup>
           )}
 
-          {brand && <BrandGuide brand={brand} products={PRODUCTS} onSelectProduct={onSelectProduct} />}
+          {brand ? (
+            <BrandGuide brand={brand} products={PRODUCTS} onSelectProduct={onSelectProduct} />
+          ) : (
+            <CategoryGuide category={selectedCategory} products={PRODUCTS} onSelectCategory={selectCategory} />
+          )}
         </section>
       </div>
     </div>

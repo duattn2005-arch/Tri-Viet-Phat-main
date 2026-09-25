@@ -1,15 +1,10 @@
 import React from 'react';
 import { Product } from '../types';
 import { COMPANY_INFO } from '../data/mockData';
-import { Brand, brandFaq, brandOf, brandSubject } from '../seo/brands';
+import { Brand, brandFaq, brandOf, brandSubject, productKeySpec } from '../seo/brands';
 import { PRODUCT_CATEGORY_LABELS } from '../seo/routes';
 
-/** Main spec to compare models on: throughput first, otherwise the first listed spec. */
-function keySpec(product: Product): string {
-  const speed = product.specs.find((s) => /tốc độ|công suất|test\/h|mẫu\/giờ/i.test(`${s.label} ${s.value}`));
-  const spec = speed ?? product.specs[0];
-  return spec ? `${spec.label}: ${spec.value}` : product.shortDesc;
-}
+const keySpec = (product: Product) => productKeySpec(product.specs, product.shortDesc);
 
 /** Product names grouped by category label, as used in the comparison table and the FAQ. */
 export function groupByCategory(products: Product[]): Record<string, Product[]> {

@@ -78,6 +78,33 @@ export function brandOf(rawBrand: string | undefined): Brand | undefined {
 
 export const brandBySlug = (slug: string | undefined) => BRANDS.find((b) => b.slug === slug);
 
+/**
+ * Product name as people search for it: the brand goes right before the model code
+ * ("Máy xét nghiệm sinh hóa tự động CS-T240" → "… tự động Dirui CS-T240"), or at the end when the name has
+ * no model code. Names that already mention the brand are left alone.
+ */
+export function productDisplayName(name: string, rawBrand: string | undefined): string {
+  // Tidy scraped model codes: "CS –T240" / "CS - 1200" → "CS-T240" / "CS-1200"
+  const clean = name
+    .replace(/\s+/g, ' ')
+    .replace(/([A-Z])\s*[–-]\s*([A-Z0-9])/g, '$1-$2')
+    .trim();
+  const brand = brandOf(rawBrand);
+  if (!brand || clean.toLowerCase().includes(brand.name.toLowerCase())) return clean;
+  // A model code, optionally led by an all-caps series name ("DUS R-300", "BCC-3900", "AC9803")
+  const code = clean.match(/(^|\s)((?:[A-Z]{2,5} )?[A-Z]{1,4}-?[A-Z]?\d{2,5}[A-Z]?)(?=\s|$)/);
+  if (!code || code.index === undefined) return `${clean} ${brand.name}`;
+  const at = code.index + code[1].length;
+  return `${clean.slice(0, at)}${brand.name} ${clean.slice(at)}`;
+}
+
+/** The spec buyers compare models on: throughput first, otherwise the first listed spec. */
+export function productKeySpec(specs: { label: string; value: string }[] | undefined, fallback = ''): string {
+  const list = specs ?? [];
+  const spec = list.find((s) => /tốc độ|công suất|test\/h|mẫu\/giờ/i.test(`${s.label} ${s.value}`)) ?? list[0];
+  return spec ? `${spec.label}: ${spec.value}`.replace(/[\s.;,]+$/, '') : fallback;
+}
+
 /** "Máy xét nghiệm Dirui chính hãng" → "máy xét nghiệm Dirui", for use inside a sentence (brand name kept). */
 export function brandSubject(brand: Brand): string {
   const subject = brand.heading.replace(/ chính hãng$/, '');

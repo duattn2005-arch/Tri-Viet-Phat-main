@@ -1,7 +1,7 @@
 // URL scheme and per-page SEO data. Plain TypeScript with no Vite-only APIs, so the same code runs in
 // the browser (App.tsx) and at build time (seo-plugin.ts, which writes sitemap.xml and per-page HTML).
 import type { PageTab } from '../types';
-import { brandBySlug, brandOf, BRANDS } from './brands';
+import { brandBySlug, BRANDS, productDisplayName, productKeySpec } from './brands';
 
 export const SITE_NAME = 'Trí Việt Phát';
 export const DEFAULT_IMAGE = '/images/hero-lab-analyzers.jpg';
@@ -91,7 +91,11 @@ export interface SeoMeta {
 
 export interface SeoLookups {
   article?: (id: string) => { title: string; excerpt: string; image: string; date: string } | undefined;
-  product?: (id: string) => { name: string; shortDesc: string; image: string; brand?: string; categoryLabel?: string; origin?: string } | undefined;
+  product?: (
+    id: string
+  ) =>
+    | { name: string; shortDesc: string; image: string; brand?: string; categoryLabel?: string; origin?: string; specs?: { label: string; value: string }[] }
+    | undefined;
 }
 
 /** Google shows about 60 title characters and 160 description characters. */
@@ -156,15 +160,15 @@ function seoCore(route: Route, lookups: SeoLookups): SeoMeta {
   if (route.productId) {
     const p = lookups.product?.(route.productId);
     if (p) {
-      // Put the manufacturer in the title ("… CS-600B Dirui") since people search by brand
-      const brand = brandOf(p.brand);
-      const name = p.name.replace(/\s+/g, ' ').trim();
-      const title = brand && !name.toLowerCase().includes(brand.name.toLowerCase()) ? `${name} ${brand.name}` : name;
+      // Brand before the model ("… tự động Dirui CS-T240") and the headline spec first in the snippet,
+      // the way the top results for "máy xét nghiệm dirui" read
+      const title = productDisplayName(p.name, p.brand);
       const origin = p.origin ? ` (${p.origin})` : '';
-      const description = `${title} chính hãng${origin}, đủ CO/CQ, bảo hành 12 tháng, lắp đặt tận nơi. Báo giá nhanh: ${HOTLINE}.`;
+      const spec = productKeySpec(p.specs);
+      const description = `${title}${spec ? ` – ${spec}` : ''}. Chính hãng${origin}, CO/CQ, bảo hành 12 tháng, lắp đặt tận nơi. Hotline ${HOTLINE}.`;
       return {
         title: withBrand(title),
-        description: clip(description.length >= 110 ? description : `${description} ${p.shortDesc}`, 160),
+        description: clip(description, 160),
         path,
         image: p.image || DEFAULT_IMAGE,
         type: 'product',
