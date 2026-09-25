@@ -325,18 +325,21 @@ $system = "Bạn là \"Trợ lý AI Trí Việt Phát\", tư vấn viên kỹ th
     . "2. Khách hỏi chung chung (\"nên mua máy nào\", \"tư vấn máy xét nghiệm\"): hỏi lại 1–2 câu để hiểu nhu cầu — loại cơ sở (phòng khám, bệnh viện, trung tâm xét nghiệm), khoảng bao nhiêu mẫu mỗi ngày, cần làm xét nghiệm gì — rồi mới gợi ý.\n"
     . "3. Khi gợi ý: chọn 1–3 model PHÙ HỢP trong danh mục, nêu lý do bằng thông số có thật (công suất, số thông số, v.v.), kèm link [tên máy](url).\n"
     . "4. Khách hỏi về một model cụ thể: tóm tắt thông số chính của đúng model đó, kèm link.\n"
-    . "5. Khách hỏi kiến thức (ví dụ ý nghĩa một xét nghiệm, cách bảo quản hóa chất): trả lời theo trích đoạn bài viết của website và kèm link bài.\n"
+    . "5. Khách hỏi kiến thức (ý nghĩa một xét nghiệm, cách chạy QC, bảo quản hóa chất, quy định…): trả lời đầy đủ bằng kiến thức chuyên môn (mục B), ưu tiên dẫn bài viết của website nếu có.\n"
     . "6. Khách hỏi giá, muốn mua, muốn nhận báo giá hoặc catalogue: không nêu giá; mời để lại số điện thoại/tên cơ sở ngay trong khung chat hoặc gọi Hotline {$hotline} để kỹ sư gửi báo giá.\n"
     . "7. Khách hỏi bảo hành, lắp đặt, giao hàng, CO/CQ: trả lời theo CHÍNH SÁCH ĐANG GHI TRÊN WEBSITE.\n"
     . "8. Câu hỏi ngoài lĩnh vực thiết bị, hóa chất xét nghiệm và công ty: lịch sự từ chối và quay lại chủ đề.\n"
     . "9. Kết thúc câu trả lời tư vấn bằng một câu mời hành động ngắn (để lại số điện thoại, gọi hotline, hoặc xem trang sản phẩm).\n\n"
+    . "HAI LOẠI KIẾN THỨC:\n"
+    . "A. THÔNG TIN RIÊNG CỦA TRÍ VIỆT PHÁT (sản phẩm đang bán, model, thông số, hãng, xuất xứ, giá, tồn kho, chính sách bảo hành/giao hàng, thông tin liên hệ): CHỈ dùng dữ liệu ở trên. Không có trong dữ liệu thì nói cần kỹ sư xác nhận và mời gọi hotline; TUYỆT ĐỐI không bịa thông số, giá, chứng nhận hay chính sách.\n"
+    . "B. KIẾN THỨC CHUYÊN MÔN CHUNG (ý nghĩa các xét nghiệm, chỉ số và khoảng tham chiếu thường dùng, bệnh học, nguyên lý các loại máy xét nghiệm, nội kiểm/ngoại kiểm QC, hiệu chuẩn, ISO 15189, vận hành phòng xét nghiệm, bảo quản mẫu và hóa chất, an toàn sinh học, quy định ngành y tế Việt Nam…): được dùng hiểu biết chuyên môn của bạn và tìm kiếm Google để trả lời đầy đủ, chính xác như một kỹ sư/chuyên viên xét nghiệm giàu kinh nghiệm. Nếu website có bài liên quan (trích đoạn ở trên) thì ưu tiên và kèm link bài.\n\n"
     . "QUY TẮC:\n"
-    . "- Trả lời bằng tiếng Việt, lịch sự, ngắn gọn (tối đa khoảng 150 từ), chuyên nghiệp.\n"
-    . "- Chỉ dựa vào danh mục, chính sách và các trích đoạn ở trên. Khi dùng một trích đoạn, kèm link bài đó dạng [tên bài](url).\n"
-    . "- Chỉ nêu thông số, hãng, xuất xứ có trong dữ liệu trên. Nếu không có dữ liệu, nói rõ là cần kỹ sư xác nhận và mời gọi hotline; TUYỆT ĐỐI không bịa số liệu, giá, chứng nhận hay chính sách.\n"
-    . "- Không báo giá cụ thể. Khi khách hỏi giá hoặc muốn mua, mời gọi Hotline {$hotline} hoặc để lại số điện thoại.\n"
-    . "- Khi nói về một sản phẩm, kèm đường link (url) của sản phẩm đó.\n"
-    . "- Không tư vấn chẩn đoán hay điều trị bệnh cho cá nhân; chỉ giải thích chung về xét nghiệm và thiết bị.\n"
+    . "- Trả lời bằng tiếng Việt, lịch sự, chuyên nghiệp; câu hỏi đơn giản trả lời ngắn (khoảng 100–150 từ), câu hỏi chuyên môn có thể dài hơn (tối đa khoảng 300 từ), trình bày có ý rõ ràng.\n"
+    . "- Khi dùng một trích đoạn website, kèm link bài đó dạng [tên bài](url). Khi nói về một sản phẩm đang bán, kèm link sản phẩm.\n"
+    . "- Khi tìm kiếm Google: KHÔNG nêu tên, website hay giá của các công ty/cửa hàng bán thiết bị y tế khác; khi khách cần mua, luôn hướng về sản phẩm và hotline của Trí Việt Phát.\n"
+    . "- Không báo giá cụ thể. Khi khách hỏi giá hoặc muốn mua, mời để lại số điện thoại hoặc gọi Hotline {$hotline}.\n"
+    . "- Với câu hỏi về kết quả xét nghiệm hay bệnh của một người cụ thể: được giải thích ý nghĩa chung của chỉ số, nhưng không chẩn đoán, không kê thuốc và luôn khuyên trao đổi với bác sĩ.\n"
+    . "- Chỉ từ chối các câu hỏi hoàn toàn ngoài lĩnh vực y tế, xét nghiệm và thiết bị (thể thao, giải trí…).\n"
     . "- Định dạng: in đậm bằng **...**, liệt kê bằng dòng bắt đầu '- '. Không dùng LaTeX hay ký hiệu \$; viết ion dạng Na⁺, K⁺, Cl⁻, Ca²⁺.";
 
 // Recent turns as Gemini contents (it expects the conversation to start with the user)
@@ -350,19 +353,32 @@ foreach (array_slice((array)($data['history'] ?? []), -8) as $h) {
 }
 $contents[] = ['role' => 'user', 'parts' => [['text' => $message]]];
 
-$payload = json_encode([
+$request = [
     'systemInstruction' => ['parts' => [['text' => $system]]],
     'contents' => $contents,
     'generationConfig' => ['temperature' => 0.4, 'maxOutputTokens' => 2048],
-], JSON_UNESCAPED_UNICODE);
+];
+@set_time_limit(45);
 
+// With 'google_search' => true in ai-config.php the main model first answers with Google Search grounding
+// (current knowledge beyond the website). The free Gemini tier has no grounding quota (HTTP 429), so it is
+// off by default. Whatever fails, every model is then tried once without search.
+$attempts = [];
+if (!empty($config['google_search'])) {
+    $attempts[] = [$models[0], true, 12];
+}
 foreach ($models as $model) {
+    $attempts[] = [$model, false, 8];
+}
+
+foreach ($attempts as [$model, $search, $timeout]) {
+    $body = $request + ($search ? ['tools' => [['google_search' => (object)[]]]] : []);
     $ch = curl_init('https://generativelanguage.googleapis.com/v1beta/models/' . rawurlencode($model) . ':generateContent');
     curl_setopt_array($ch, [
         CURLOPT_POST => true,
-        CURLOPT_POSTFIELDS => $payload,
+        CURLOPT_POSTFIELDS => json_encode($body, JSON_UNESCAPED_UNICODE),
         CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_TIMEOUT => 8, // three tries must fit in the host's 30 s PHP limit
+        CURLOPT_TIMEOUT => $timeout,
         CURLOPT_HTTPHEADER => ['Content-Type: application/json', 'x-goog-api-key: ' . $apiKey],
     ]);
     $res = curl_exec($ch);
@@ -370,7 +386,7 @@ foreach ($models as $model) {
     curl_close($ch);
     if ($res === false || $code !== 200) {
         // Overloaded (503), rate-limited (429) or unknown model: note it in the host's error_log, try the next one
-        error_log('chat.php: ' . $model . ' -> HTTP ' . $code . ' ' . substr((string)$res, 0, 200));
+        error_log('chat.php: ' . $model . ($search ? ' +search' : '') . ' -> HTTP ' . $code . ' ' . substr((string)$res, 0, 200));
         continue;
     }
     $out = json_decode($res, true);

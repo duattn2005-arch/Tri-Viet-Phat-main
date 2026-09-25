@@ -5,4 +5,6 @@ return [
     'gemini_api_key' => '',
     // Tried in order; the "-latest" aliases follow Google's current Flash models
     'models' => ['gemini-flash-lite-latest', 'gemini-3.8-flash', 'gemini-2.5-flash-lite'],
+    // Google Search grounding for up-to-date answers; needs a paid Gemini plan (free tier returns 429)
+    'google_search' => false,
 ];

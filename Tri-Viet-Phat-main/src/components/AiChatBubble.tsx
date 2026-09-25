@@ -241,6 +241,16 @@ export const AiChatBubble: React.FC<AiChatBubbleProps> = ({
         return <p key={idx} className="h-1.5" />;
       }
 
+      // Markdown heading from the model: "### 1. Title"
+      const heading = trimmed.match(/^#{1,6}\s+(.*)$/);
+      if (heading) {
+        return (
+          <p key={idx} className="mt-2.5 mb-1 text-[13.5px] font-bold text-[#0a2540] leading-snug">
+            {renderInlineFormatted(heading[1].replace(/^\*\*(.*)\*\*$/, '$1'))}
+          </p>
+        );
+      }
+
       // Quoted passage from a page of the website: "> text"
       if (trimmed.startsWith('> ')) {
         return (
