@@ -6,7 +6,8 @@ backend:
   name: github
   repo: duattn2005-arch/Tri-Viet-Phat-main
   branch: main
-  # base_url được gán theo tên miền hiện tại trong admin/index.html
+  # Cửa sổ đăng nhập: https://thietbiytegroup.com/api/auth.php
+  base_url: https://thietbiytegroup.com
   auth_endpoint: api/auth.php
   commit_messages:
     create: 'cms: thêm {{collection}} "{{slug}}"'

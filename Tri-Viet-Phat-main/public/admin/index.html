@@ -6,16 +6,10 @@
     <meta name="robots" content="noindex" />
     <title>Quản trị nội dung · Trí Việt Phát</title>
     <link rel="icon" type="image/jpeg" href="/tri-viet-phat1.jpg" />
-    <script>
-      // config.yml is still loaded; this only points the login popup at /api/auth.php on this domain.
-      window.CMS_MANUAL_INIT = true;
-    </script>
     <script src="https://unpkg.com/decap-cms@^3.8.0/dist/decap-cms.js"></script>
   </head>
   <body>
     <script>
-      CMS.init({ config: { backend: { base_url: window.location.origin } } });
-
       // Login goes through /api/auth.php, which asks for the admin password; the GitHub wording would mislead.
       new MutationObserver(function () {
         document.querySelectorAll('button').forEach(function (b) {
