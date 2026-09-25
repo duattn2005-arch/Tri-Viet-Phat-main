@@ -185,7 +185,7 @@ function catalogue_reply(string $message, array $knowledge, string $hotline): st
         return "Trí Việt Phát đang phân phối các sản phẩm phù hợp:\n" . implode("\n", $lines)
             . "\n\nQuý khách cần tư vấn model nào, vui lòng gọi **Hotline {$hotline}** ạ.";
     }
-    if (preg_match('/giá|báo giá|bao nhiêu|chi phí/u', $q)) {
+    if (preg_match('/giá|chi phí|bao nhiêu tiền|bao nhiêu triệu/u', $q)) {
         return "Để nhận báo giá chi tiết và chiết khấu tốt nhất, Quý khách vui lòng gọi **Hotline {$hotline}** hoặc để lại số điện thoại ở mục Liên hệ, kỹ sư Trí Việt Phát sẽ gọi lại ngay ạ.";
     }
     // Anything else the website covers (news, guides, documents…): quote the best passage and link the pages
@@ -207,6 +207,29 @@ function catalogue_reply(string $message, array $knowledge, string $hotline): st
     }
     return "Dạ, câu hỏi này em chưa có thông tin chính xác để trả lời. Để được kỹ sư tư vấn đúng nhất, Quý khách vui lòng gọi **Hotline {$hotline}** hoặc để lại số điện thoại ở mục Liên hệ, bên em sẽ gọi lại ngay ạ.\n\n"
         . "Quý khách cũng có thể hỏi em về một model cụ thể (ví dụ: *CS-600B*, *BCC-3900*, *AC9803*) để xem thông số.";
+}
+
+/** "Website có 28 sản phẩm: 10 Máy xét nghiệm sinh hóa (Dirui CS-T180, …); …; theo hãng: Dirui 17, …" */
+function catalogue_summary(array $knowledge): string
+{
+    $products = $knowledge['products'] ?? [];
+    $byCategory = [];
+    $byBrand = [];
+    foreach ($products as $p) {
+        $byCategory[$p['category'] ?? 'Khác'][] = $p['name'];
+        $byBrand[$p['brand'] ?? 'Khác'] = ($byBrand[$p['brand'] ?? 'Khác'] ?? 0) + 1;
+    }
+    arsort($byBrand);
+    $lines = ['Website đang giới thiệu tổng cộng ' . count($products) . ' sản phẩm (máy xét nghiệm, hóa chất, thiết bị phụ trợ):'];
+    foreach ($byCategory as $category => $names) {
+        $lines[] = '- ' . $category . ': ' . count($names) . ' (' . implode('; ', $names) . ')';
+    }
+    $brands = [];
+    foreach ($byBrand as $brand => $n) {
+        $brands[] = "{$brand} {$n}";
+    }
+    $lines[] = 'Theo hãng: ' . implode(', ', $brands) . '.';
+    return implode("\n", $lines);
 }
 
 /** Answers to the questions visitors ask most, or null when the message is about something else. */
@@ -237,6 +260,9 @@ function intent_reply(string $q, array $knowledge, string $hotline): ?string
         return "Toàn bộ máy và hóa chất Trí Việt Phát cung cấp là **hàng chính hãng, có đầy đủ CO/CQ**. Xuất xứ của từng model ghi trong trang sản phẩm.\n\n"
             . "Quý khách cần bộ hồ sơ kỹ thuật cho model nào, vui lòng gọi **Hotline {$hotline}** ạ.";
     }
+    if ($is('bao nhiêu (máy|sản phẩm|loại|dòng|model|thiết bị)|có (những|các) (máy|sản phẩm|loại|dòng)|danh sách (máy|sản phẩm)|bán (những )?(máy|sản phẩm) (gì|nào)')) {
+        return catalogue_summary($knowledge) . "\n\nXem toàn bộ tại {$site}/san-pham. Quý khách quan tâm loại máy nào để em tư vấn chi tiết ạ?";
+    }
     if ($is('tuyển dụng|tuyen dung|việc làm|ứng tuyển|nộp hồ sơ|cv')) {
         return "Các vị trí đang tuyển của Trí Việt Phát có tại {$site}/tuyen-dung. Quý khách có thể nộp hồ sơ trực tuyến ngay trên trang đó ạ.";
     }
@@ -260,7 +286,7 @@ function clean_reply(string $text): string
 $configFile = __DIR__ . '/ai-config.php';
 $config = is_file($configFile) ? require $configFile : [];
 $apiKey = trim((string)($config['gemini_api_key'] ?? ''));
-$models = array_slice(array_values(array_filter((array)($config['models'] ?? ['gemini-flash-lite-latest', 'gemini-3.8-flash']))), 0, 2);
+$models = array_slice(array_values(array_filter((array)($config['models'] ?? ['gemini-flash-lite-latest', 'gemini-3.8-flash', 'gemini-2.5-flash-lite']))), 0, 3);
 
 if ($apiKey === '') {
     reply(200, ['reply' => catalogue_reply($message, $knowledge, $hotline)]);
@@ -282,15 +308,19 @@ if ($siteContext === '') {
     $siteContext = "(không có trích đoạn phù hợp)\n";
 }
 
+$catalogueSummary = catalogue_summary($knowledge);
+
 $system = "Bạn là \"Trợ lý AI Trí Việt Phát\", tư vấn viên kỹ thuật của " . ($company['name'] ?? 'Trí Việt Phát')
     . ", nhà phân phối thiết bị và hóa chất xét nghiệm y khoa tại Hà Nội.\n\n"
     . "THÔNG TIN CÔNG TY (chỉ dùng đúng các thông tin này):\n" . json_encode($company, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n\n"
+    . "TỔNG QUAN DANH MỤC (dùng để trả lời các câu hỏi đếm, liệt kê):\n" . $catalogueSummary . "\n\n"
     . "DANH MỤC SẢN PHẨM ĐANG BÁN (nguồn sự thật duy nhất về sản phẩm, hãng và thông số):\n"
     . json_encode($knowledge['products'] ?? [], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n\n"
     . "THƯƠNG HIỆU:\n" . json_encode($knowledge['brands'] ?? [], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n\n"
     . "CHÍNH SÁCH ĐANG GHI TRÊN WEBSITE: hàng chính hãng có CO/CQ; bảo hành 12 tháng; giao hàng, lắp đặt, hướng dẫn sử dụng trên toàn quốc; bảo trì định kỳ và cung cấp hóa chất, vật tư.\n\n"
     . "TRÍCH ĐOẠN TỪ WEBSITE LIÊN QUAN ĐẾN CÂU HỎI (bài viết, tài liệu, hướng dẫn, tuyển dụng…):\n" . $siteContext . "\n\n"
     . "KỊCH BẢN TƯ VẤN:\n"
+    . "0. Câu hỏi dữ kiện (có bao nhiêu, những loại nào, hãng nào, model nào, địa chỉ…): TRẢ LỜI THẲNG con số / danh sách ngay câu đầu, dựa trên TỔNG QUAN DANH MỤC, rồi mới gợi ý thêm.\n"
     . "1. Xưng \"em\", gọi khách là \"Quý khách\" hoặc \"anh/chị\". Mở đầu ngắn gọn, đi thẳng vào câu hỏi.\n"
     . "2. Khách hỏi chung chung (\"nên mua máy nào\", \"tư vấn máy xét nghiệm\"): hỏi lại 1–2 câu để hiểu nhu cầu — loại cơ sở (phòng khám, bệnh viện, trung tâm xét nghiệm), khoảng bao nhiêu mẫu mỗi ngày, cần làm xét nghiệm gì — rồi mới gợi ý.\n"
     . "3. Khi gợi ý: chọn 1–3 model PHÙ HỢP trong danh mục, nêu lý do bằng thông số có thật (công suất, số thông số, v.v.), kèm link [tên máy](url).\n"
@@ -332,14 +362,16 @@ foreach ($models as $model) {
         CURLOPT_POST => true,
         CURLOPT_POSTFIELDS => $payload,
         CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_TIMEOUT => 12, // two tries must fit in the host's 30 s PHP limit
+        CURLOPT_TIMEOUT => 8, // three tries must fit in the host's 30 s PHP limit
         CURLOPT_HTTPHEADER => ['Content-Type: application/json', 'x-goog-api-key: ' . $apiKey],
     ]);
     $res = curl_exec($ch);
     $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
     if ($res === false || $code !== 200) {
-        continue; // overloaded, rate-limited or unknown model: try the next one
+        // Overloaded (503), rate-limited (429) or unknown model: note it in the host's error_log, try the next one
+        error_log('chat.php: ' . $model . ' -> HTTP ' . $code . ' ' . substr((string)$res, 0, 200));
+        continue;
     }
     $out = json_decode($res, true);
     $text = '';
