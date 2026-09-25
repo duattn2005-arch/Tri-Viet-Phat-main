@@ -7,6 +7,9 @@ DirectorySlash Off
 DirectoryIndex index.html
 RewriteEngine On
 
+# Decap CMS (manually initialised in admin/index.html) ignores admin/config.yml unless it is served as YAML
+AddType text/yaml .yml .yaml
+
 # Secrets written at deploy time (readable by PHP only) and the FTP deploy's sync state
 <FilesMatch "^((telegram|cms|email|ai)-config(\.example)?\.php|\.ftp-deploy-sync-state\.json)$">
   <IfModule mod_authz_core.c>
