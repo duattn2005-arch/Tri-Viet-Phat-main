@@ -4,6 +4,7 @@ import { COMPANY_INFO, PRODUCTS, PARTNERS, TESTIMONIALS } from '../../data/mockD
 import { REAL_NEWS_ARTICLES, NEWS_CATEGORY_LABELS, SiteArticle } from '../../data/realSiteContent';
 import { Product, PageTab } from '../../types';
 import { ProvinceSelect } from '../ProvinceSelect';
+import { sendLead } from '../../lib/sendLead';
 import { TestimonialsCarousel } from '../TestimonialsCarousel';
 import { HeroSection } from '../HeroSection';
 import { ProductCardsSection } from '../ProductCardsSection';
@@ -101,9 +102,27 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   const [formProvince, setFormProvince] = useState('Hà Nội');
   const [formNote, setFormNote] = useState('');
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formSending, setFormSending] = useState(false);
+  const [formError, setFormError] = useState('');
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setFormSending(true);
+    setFormError('');
+    try {
+      await sendLead('tu-van', {
+        'Họ và tên': formName,
+        'Số điện thoại': formPhone,
+        Email: formEmail,
+        'Tỉnh/Thành': formProvince,
+        'Nội dung': formNote,
+      });
+    } catch (err) {
+      setFormError((err as Error).message);
+      return;
+    } finally {
+      setFormSending(false);
+    }
     setFormSubmitted(true);
     setTimeout(() => {
       setFormSubmitted(false);
@@ -569,11 +588,17 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                     ></textarea>
                   </div>
 
+                  {formError && (
+                    <p role="alert" className="text-[13.5px] font-semibold text-[#e11d2a]">
+                      {formError}
+                    </p>
+                  )}
                   <button
-                    className="btn-primary w-full sm:w-auto h-12 px-10 text-[14px] font-semibold uppercase tracking-wide cursor-pointer"
+                    className="btn-primary w-full sm:w-auto h-12 px-10 text-[14px] font-semibold uppercase tracking-wide cursor-pointer disabled:opacity-60 disabled:cursor-wait"
                     type="submit"
+                    disabled={formSending}
                   >
-                    Gửi yêu cầu
+                    {formSending ? 'Đang gửi...' : 'Gửi yêu cầu'}
                   </button>
                 </form>
               )}

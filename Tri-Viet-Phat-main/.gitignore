@@ -6,3 +6,6 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Telegram bot secrets for the PHP lead endpoint
+public/api/telegram-config.php

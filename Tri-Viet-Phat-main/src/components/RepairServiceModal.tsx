@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { COMPANY_INFO } from '../data/mockData';
+import { sendLead } from '../lib/sendLead';
 
 interface RepairServiceModalProps {
   isOpen: boolean;
@@ -35,32 +36,19 @@ export const RepairServiceModal: React.FC<RepairServiceModalProps> = ({ isOpen, 
     setErrorMessage('');
 
     try {
-      const res = await fetch('/api/repair-request', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          fullName,
-          phone,
-          email,
-          deviceName,
-          brand,
-          address,
-          urgency,
-          issueDescription,
-        }),
+      await sendLead('sua-chua', {
+        'Họ và tên': fullName,
+        'Số điện thoại': phone,
+        Email: email,
+        'Thiết bị': deviceName,
+        'Hãng': brand,
+        'Địa chỉ': address,
+        'Mức độ': urgency,
+        'Mô tả sự cố': issueDescription,
       });
-
-      const data = await res.json().catch(() => ({}));
-
-      if (!res.ok) {
-        setErrorMessage(data.error || 'Gửi yêu cầu thất bại. Vui lòng thử lại.');
-        setSubmitState('error');
-        return;
-      }
-
       setSubmitState('success');
-    } catch {
-      setErrorMessage('Không thể kết nối đến hệ thống. Vui lòng kiểm tra lại kết nối mạng và thử lại.');
+    } catch (err) {
+      setErrorMessage((err as Error).message);
       setSubmitState('error');
     }
   };

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { PageBanner } from '../PageBanner';
+import { sendLead } from '../../lib/sendLead';
 
 interface ContactScreenProps {
   onOpenConsultation?: () => void;
@@ -12,9 +13,26 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSending(true);
+    setSendError('');
+    try {
+      await sendLead('lien-he', {
+        'Họ và tên': fullName,
+        'Số điện thoại': phone,
+        Email: email,
+        'Lời nhắn': message,
+      });
+    } catch (err) {
+      setSendError((err as Error).message);
+      return;
+    } finally {
+      setSending(false);
+    }
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
@@ -144,13 +162,19 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
                     />
                   </div>
 
+                  {sendError && (
+                    <p role="alert" className="text-[13.5px] font-semibold text-[#e11d2a]">
+                      {sendError}
+                    </p>
+                  )}
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="px-7 py-3  bg-[#0a2540] hover:bg-[#071a2e] text-white font-bold text-[14px]   transition-all cursor-pointer flex items-center gap-2"
+                      disabled={sending}
+                      className="px-7 py-3  bg-[#0a2540] hover:bg-[#071a2e] disabled:opacity-60 disabled:cursor-wait text-white font-bold text-[14px]   transition-all cursor-pointer flex items-center gap-2"
                     >
                       <span className="material-symbols-outlined text-[18px]">send</span>
-                      <span>Gửi yêu cầu</span>
+                      <span>{sending ? 'Đang gửi...' : 'Gửi yêu cầu'}</span>
                     </button>
                   </div>
                 </form>

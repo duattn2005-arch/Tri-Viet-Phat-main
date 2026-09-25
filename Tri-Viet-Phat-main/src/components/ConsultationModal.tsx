@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { COMPANY_INFO } from '../data/mockData';
 import { ProvinceSelect } from './ProvinceSelect';
+import { sendLead } from '../lib/sendLead';
 
 interface ConsultationModalProps {
   isOpen: boolean;
@@ -21,10 +22,13 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, on
   const [province, setProvince] = useState('Hà Nội');
   const [note, setNote] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState('');
 
   useEffect(() => {
     setNote(prefilledProduct ? `Tôi cần báo giá thiết bị: ${prefilledProduct}` : '');
     setSubmitted(false);
+    setSendError('');
   }, [prefilledProduct, isOpen]);
 
   useEffect(() => {
@@ -36,8 +40,24 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, on
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSending(true);
+    setSendError('');
+    try {
+      await sendLead('bao-gia', {
+        'Họ và tên': fullName,
+        'Số điện thoại': phone,
+        Email: email,
+        'Tỉnh/Thành': province,
+        'Nội dung': note,
+      });
+    } catch (err) {
+      setSendError((err as Error).message);
+      return;
+    } finally {
+      setSending(false);
+    }
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
@@ -169,11 +189,17 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, on
                 ></textarea>
               </div>
 
+              {sendError && (
+                <p role="alert" className="text-[13.5px] font-semibold text-[#e11d2a]">
+                  {sendError}
+                </p>
+              )}
               <button
                 type="submit"
-                className="btn-primary w-full h-12 text-[14px] font-semibold uppercase tracking-wide cursor-pointer"
+                disabled={sending}
+                className="btn-primary w-full h-12 text-[14px] font-semibold uppercase tracking-wide cursor-pointer disabled:opacity-60 disabled:cursor-wait"
               >
-                Gửi yêu cầu báo giá
+                {sending ? 'Đang gửi...' : 'Gửi yêu cầu báo giá'}
               </button>
 
               <div className="pt-4 border-t border-[#e5e5e5] flex flex-wrap items-center justify-between gap-2 text-[13px] text-[#555555]">
