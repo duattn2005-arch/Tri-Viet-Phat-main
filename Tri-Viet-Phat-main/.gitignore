@@ -9,3 +9,5 @@ coverage/
 
 # Telegram bot secrets for the PHP lead endpoint
 public/api/telegram-config.php
+# Admin login secrets for the PHP CMS login
+public/api/cms-config.php

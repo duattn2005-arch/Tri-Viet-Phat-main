@@ -1,0 +1,76 @@
+# Builds the site and uploads it to the thietbiytegroup.com hosting over FTP on every push to main,
+# including the commits the CMS (/admin) makes when content is published.
+#
+# Repository secrets (GitHub → Settings → Secrets and variables → Actions):
+#   FTP_SERVER, FTP_USERNAME, FTP_PASSWORD   hosting FTP account
+#   FTP_SERVER_DIR                           folder of the site on the FTP account, ending in "/"
+#   FTP_PROTOCOL (optional)                  "ftps" (default) or "ftp"
+#   TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_IDS    form notifications (chat ids comma-separated)
+#   ADMIN_USERNAME, ADMIN_PASSWORD           /admin login
+#   CMS_GITHUB_TOKEN                         fine-grained token, this repo only, Contents: read and write
+name: Deploy to hosting
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-hosting
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      # Until the FTP secrets are added the site is still built (to catch errors) but not uploaded
+      HAS_FTP: ${{ secrets.FTP_SERVER != '' }}
+    defaults:
+      run:
+        working-directory: Tri-Viet-Phat-main
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: Tri-Viet-Phat-main/package-lock.json
+
+      - run: npm ci
+
+      - name: Write server-side secrets for the PHP endpoints
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_IDS: ${{ secrets.TELEGRAM_CHAT_IDS }}
+          ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
+          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+          CMS_GITHUB_TOKEN: ${{ secrets.CMS_GITHUB_TOKEN }}
+        run: |
+          node -e '
+            const fs = require("fs");
+            const php = (v) => "\x27" + String(v ?? "").replace(/\\/g, "\\\\").replace(/\x27/g, "\\\x27") + "\x27";
+            const ids = (process.env.TELEGRAM_CHAT_IDS || "").split(",").map((s) => s.trim()).filter(Boolean);
+            fs.writeFileSync("public/api/telegram-config.php",
+              "<?php\nreturn [\n    \x27bot_token\x27 => " + php(process.env.TELEGRAM_BOT_TOKEN) +
+              ",\n    \x27chat_ids\x27 => [" + ids.map(php).join(", ") + "],\n];\n");
+            fs.writeFileSync("public/api/cms-config.php",
+              "<?php\nreturn [\n    \x27admin_username\x27 => " + php(process.env.ADMIN_USERNAME) +
+              ",\n    \x27admin_password\x27 => " + php(process.env.ADMIN_PASSWORD) +
+              ",\n    \x27github_token\x27 => " + php(process.env.CMS_GITHUB_TOKEN) + ",\n];\n");
+          '
+
+      - run: npm run build
+        env:
+          SITE_URL: https://thietbiytegroup.com
+
+      - name: Upload to hosting
+        if: env.HAS_FTP == 'true'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ${{ secrets.FTP_PROTOCOL || 'ftps' }}
+          local-dir: Tri-Viet-Phat-main/dist/
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}

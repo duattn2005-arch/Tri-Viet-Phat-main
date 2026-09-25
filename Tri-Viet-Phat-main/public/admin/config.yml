@@ -1,5 +1,5 @@
 # Decap CMS — trang quản trị nội dung tại /admin
-# Mỗi lần bấm "Xuất bản", nội dung được commit lên GitHub và Vercel tự build lại web (1–2 phút).
+# Mỗi lần bấm "Xuất bản", nội dung được commit lên GitHub; GitHub Actions tự build và tải web lên hosting (2–4 phút).
 # Đường dẫn tính từ gốc repo, nên có tiền tố "Tri-Viet-Phat-main/".
 
 backend:
@@ -7,7 +7,7 @@ backend:
   repo: duattn2005-arch/Tri-Viet-Phat-main
   branch: main
   # base_url được gán theo tên miền hiện tại trong admin/index.html
-  auth_endpoint: api/auth
+  auth_endpoint: api/auth.php
   commit_messages:
     create: 'cms: thêm {{collection}} "{{slug}}"'
     update: 'cms: sửa {{collection}} "{{slug}}"'
