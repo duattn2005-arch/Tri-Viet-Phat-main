@@ -25,6 +25,7 @@ import {
 } from './src/seo/routes';
 import { headTagsHtml } from './src/seo/head';
 import { CATEGORY_BLURBS, CATEGORY_GUIDES, categoryFaq } from './src/seo/guides';
+import { buildAiIndex, htmlToText, readJsonFolder } from './ai-index';
 import {
   BRANDS,
   brandBySlug,
@@ -408,6 +409,64 @@ export function seoPlugin(): Plugin {
       };
       fs.mkdirSync(path.join(outDir, 'api'), { recursive: true });
       fs.writeFileSync(path.join(outDir, 'api', 'ai-knowledge.json'), JSON.stringify(knowledge));
+
+      // Everything the website says, as searchable passages for the AI chat
+      const company = content.company;
+      const abs = (route: Route) => `${SITE_URL}${routePath(route)}`;
+      const qa = (faq: BrandFaq[]) => faq.map((f) => `${f.q}\n${f.a}`).join('\n');
+      const about = JSON.parse(fs.readFileSync(path.join(CONTENT_DIR, 'settings/about.json'), 'utf-8')) as {
+        businessAreas?: { title: string; desc: string }[];
+      };
+      const pages = [
+        {
+          title: `Giới thiệu ${company.name}`,
+          url: abs({ tab: 'gioi-thieu' }),
+          text: [
+            `${company.name}, giấy phép kinh doanh số ${company.licenseNo} do ${company.licensedBy} cấp, hơn ${company.yearsOfExperience} năm kinh nghiệm phân phối thiết bị và hóa chất xét nghiệm.`,
+            `Địa chỉ: ${company.address}. Hotline: ${company.hotline}. Email: ${company.email}.`,
+            ...(about.businessAreas ?? []).map((a) => `${a.title}: ${a.desc}`),
+          ].join('\n'),
+        },
+        ...products.map((p) => ({
+          title: productTitle(p),
+          url: abs({ tab: 'san-pham', productId: p.id }),
+          text: [
+            p.shortDesc,
+            p.fullDesc ?? '',
+            ...(p.specs ?? []).map((s) => `${s.label}: ${s.value}`),
+            ...(p.features ?? []),
+            p.origin ? `Xuất xứ: ${p.origin}` : '',
+          ]
+            .filter(Boolean)
+            .join('\n'),
+        })),
+        ...Object.entries(CATEGORY_GUIDES).map(([cat, guide]) => ({
+          title: guide.heading,
+          url: cat === 'all' ? abs({ tab: 'san-pham' }) : abs({ tab: 'san-pham', cat }),
+          text: [...guide.intro, qa(guideFaqFor(cat, products, company.hotline))].join('\n'),
+        })),
+        ...BRANDS.map((b) => ({
+          title: b.heading,
+          url: abs({ tab: 'san-pham', brand: b.slug }),
+          text: [b.intro, qa(brandFaqFor(b, products.filter((p) => brandOf(p.brand)?.slug === b.slug), company.hotline))].join('\n'),
+        })),
+        ...news.map((a) => ({ title: a.title, url: abs({ tab: 'tin-tuc', articleId: a.id }), text: htmlToText(a.content || a.excerpt) })),
+        ...readJsonFolder<{ title: string; content?: string }>(path.join(CONTENT_DIR, 'documents')).map((d) => ({
+          title: d.title,
+          url: abs({ tab: 'tai-lieu' }),
+          text: htmlToText(d.content ?? ''),
+        })),
+        ...readJsonFolder<{ title: string; content?: string; location?: string; quantity?: string }>(path.join(CONTENT_DIR, 'jobs')).map(
+          (j) => ({
+            title: `Tuyển dụng: ${j.title}`,
+            url: abs({ tab: 'tuyen-dung' }),
+            text: [j.location ? `Nơi làm việc: ${j.location}` : '', j.quantity ? `Số lượng: ${j.quantity}` : '', htmlToText(j.content ?? '')]
+              .filter(Boolean)
+              .join('\n'),
+          })
+        ),
+      ];
+      fs.writeFileSync(path.join(outDir, 'api', 'ai-docs.json'), JSON.stringify(buildAiIndex(pages)));
     },
   };
 }

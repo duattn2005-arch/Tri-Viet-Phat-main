@@ -180,10 +180,39 @@ export const AiChatBubble: React.FC<AiChatBubbleProps> = ({
     return str;
   };
 
-  const renderInlineFormatted = (content: string) => {
+  // Links from the assistant: [title](url) or a bare https:// URL. Pages of this site open in the same tab.
+  const renderLink = (href: string, label: string, key: string) => {
+    const internal = href.startsWith(window.location.origin);
+    return (
+      <a
+        key={key}
+        href={href}
+        {...(internal ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
+        className="font-semibold text-[#0a94dc] underline underline-offset-2 break-words hover:text-[#0a2540]"
+      >
+        {label}
+      </a>
+    );
+  };
+
+  const renderInlineFormatted = (content: string): React.ReactNode[] => {
+    const parts = content.split(/(\[[^\]]+\]\(https?:\/\/[^)\s]+\)|https?:\/\/[^\s)]+)/g);
+    return parts.flatMap((part, pIdx) => {
+      const md = part.match(/^\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)$/);
+      if (md) return [renderLink(md[2], md[1], `l${pIdx}`)];
+      if (/^https?:\/\//.test(part)) {
+        const label = part.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+        return [renderLink(part, label, `l${pIdx}`)];
+      }
+      return renderBoldItalic(part, `t${pIdx}`);
+    });
+  };
+
+  const renderBoldItalic = (content: string, keyPrefix: string) => {
     // Splits by **bold** or *italic*
     const tokens = content.split(/(\*\*.*?\*\*|\*[^*\n]+?\*)/g);
-    return tokens.map((tok, tIdx) => {
+    return tokens.map((tok, i) => {
+      const tIdx = `${keyPrefix}-${i}`;
       if (tok.startsWith('**') && tok.endsWith('**') && tok.length >= 4) {
         return (
           <strong key={tIdx} className="font-bold text-[#111111]">
@@ -210,6 +239,18 @@ export const AiChatBubble: React.FC<AiChatBubbleProps> = ({
       const trimmed = line.trim();
       if (!trimmed) {
         return <p key={idx} className="h-1.5" />;
+      }
+
+      // Quoted passage from a page of the website: "> text"
+      if (trimmed.startsWith('> ')) {
+        return (
+          <blockquote
+            key={idx}
+            className="my-1.5 border-l-2 border-[#0a94dc] bg-[#f3f7fb] pl-2.5 pr-1.5 py-1.5 text-[12.5px] italic leading-relaxed text-[#374151]"
+          >
+            {renderInlineFormatted(trimmed.slice(2))}
+          </blockquote>
+        );
       }
 
       // Check if line is a bullet item: starts with "* ", "- ", "• "

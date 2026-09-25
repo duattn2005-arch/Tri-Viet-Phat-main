@@ -47,6 +47,92 @@ if (count($hits) >= 20) {
 $hits[] = $now;
 @file_put_contents($rateFile, json_encode(array_values($hits)));
 
+// ---------------------------------------------------------------------------------------------
+// Site search (ai-docs.json, built from every page of the website by ai-index.ts). Keep tokenize()
+// in step with tokenize() in ai-index.ts.
+const STOPWORDS = ['và', 'của', 'là', 'có', 'các', 'cho', 'được', 'trong', 'với', 'những', 'một', 'này', 'để', 'khi',
+    'từ', 'không', 'thì', 'đã', 'như', 'về', 'nên', 'sẽ', 'cũng', 'đến', 'bạn', 'ra', 'tại', 'theo', 'hay', 'hoặc', 'mà',
+    'nhiều', 'vào', 'rất', 'bị', 'còn', 'do', 'lên', 'nhất', 'ạ', 'ơi', 'gì', 'nào', 'đó', 'đây', 'nếu', 'vì', 'trên',
+    'dưới', 'sau', 'trước', 'giữa', 'cùng', 'hơn', 'chỉ', 'the', 'and', 'of', 'to', 'in', 'for', 'is', 'on'];
+
+function tokenize(string $text): array
+{
+    $words = preg_split('/[^\p{L}\p{N}]+/u', mb_strtolower($text), -1, PREG_SPLIT_NO_EMPTY) ?: [];
+    return array_values(array_filter($words, fn($w) => !in_array($w, STOPWORDS, true)));
+}
+
+/** Unigrams plus adjacent-word bigrams, like terms() in ai-index.ts. */
+function query_terms(string $text): array
+{
+    $words = tokenize($text);
+    $out = $words;
+    for ($i = 0; $i + 1 < count($words); $i++) {
+        $out[] = $words[$i] . ' ' . $words[$i + 1];
+    }
+    return array_values(array_unique($out));
+}
+
+/** Best-matching passages of the website for a question (BM25), at most two per page. */
+function search_site(string $question, int $limit = 5): array
+{
+    static $index = null;
+    if ($index === null) {
+        $index = json_decode((string)@file_get_contents(__DIR__ . '/ai-docs.json'), true) ?: ['n' => 0];
+    }
+    if (empty($index['n'])) {
+        return [];
+    }
+    $n = $index['n'];
+    $avg = max(1, $index['avg']);
+    $k1 = 1.2;
+    $b = 0.75;
+    $scores = [];
+    foreach (query_terms($question) as $term) {
+        $postings = $index['idx'][$term] ?? null;
+        if (!$postings) continue;
+        $df = count($postings) / 2;
+        $idf = log(1 + ($n - $df + 0.5) / ($df + 0.5)) * (strpos($term, ' ') !== false ? 1.5 : 1.0);
+        for ($j = 0; $j < count($postings); $j += 2) {
+            $doc = $postings[$j];
+            $tf = $postings[$j + 1];
+            $norm = $tf + $k1 * (1 - $b + $b * $index['len'][$doc] / $avg);
+            $scores[$doc] = ($scores[$doc] ?? 0) + $idf * $tf * ($k1 + 1) / $norm;
+        }
+    }
+    arsort($scores);
+    $picked = [];
+    $perPage = [];
+    foreach ($scores as $doc => $score) {
+        $d = $index['docs'][$doc];
+        if (($perPage[$d['u']] ?? 0) >= 2) continue;
+        $perPage[$d['u']] = ($perPage[$d['u']] ?? 0) + 1;
+        $picked[] = $d + ['score' => $score];
+        if (count($picked) >= $limit) break;
+    }
+    return $picked;
+}
+
+/**
+ * Whether a passage really answers the question: every content word of the question appears in it.
+ * Keyword scores alone let off-topic questions ("thời tiết hôm nay") through on shared common words.
+ */
+function covers(array $passage, string $question): bool
+{
+    $chatter = ['em', 'anh', 'chị', 'mình', 'tôi', 'hỏi', 'muốn', 'biết', 'xin', 'vui', 'lòng', 'giúp', 'cần', 'tìm',
+        'hiểu', 'thế', 'sao', 'ai', 'đâu', 'bao', 'nhiêu', 'khác', 'nhau', 'giải', 'thích', 'shop', 'ad', 'admin'];
+    $words = array_unique(array_diff(tokenize($question), $chatter));
+    if (!$words) {
+        return false;
+    }
+    $have = array_flip(tokenize($passage['t'] . ' ' . $passage['x']));
+    foreach ($words as $w) {
+        if (!isset($have[$w])) {
+            return false;
+        }
+    }
+    return true;
+}
+
 /** True when $needle is non-empty and occurs in $haystack (works on PHP 7.4 too). */
 function has(string $haystack, string $needle): bool
 {
@@ -101,6 +187,19 @@ function catalogue_reply(string $message, array $knowledge, string $hotline): st
     }
     if (preg_match('/giá|báo giá|bao nhiêu|chi phí/u', $q)) {
         return "Để nhận báo giá chi tiết và chiết khấu tốt nhất, Quý khách vui lòng gọi **Hotline {$hotline}** hoặc để lại số điện thoại ở mục Liên hệ, kỹ sư Trí Việt Phát sẽ gọi lại ngay ạ.";
+    }
+    // Anything else the website covers (news, guides, documents…): quote the best passage and link the pages
+    $passages = search_site($message, 4);
+    if ($passages && covers($passages[0], $message)) {
+        $best = $passages[0];
+        $excerpt = mb_substr(preg_replace('/\s+/u', ' ', $best['x']), 0, 420);
+        $links = [];
+        foreach ($passages as $p) {
+            $links[$p['u']] = "- [{$p['t']}]({$p['u']})";
+        }
+        return "Theo bài **{$best['t']}** trên website Trí Việt Phát:\n\n> {$excerpt}…\n\n**Xem thêm:**\n"
+            . implode("\n", array_slice(array_values($links), 0, 3))
+            . "\n\nCần tư vấn cụ thể, Quý khách gọi **Hotline {$hotline}** ạ.";
     }
     if (preg_match('/^(xin )?(chào|chao|hello|hi|alo)\b|^(xin chào|chào bạn|chào em|chào shop)/u', trim($q))) {
         return "Xin chào Quý khách! **Trí Việt Phát** phân phối chính hãng máy xét nghiệm Dirui (sinh hóa, nước tiểu, huyết học), máy điện giải, HbA1c, miễn dịch, đông máu và hóa chất xét nghiệm.\n\n"
@@ -167,15 +266,34 @@ if ($apiKey === '') {
     reply(200, ['reply' => catalogue_reply($message, $knowledge, $hotline)]);
 }
 
+// Passages of the website that match this question (and the previous one, for follow-ups like "còn máy kia?")
+$lastUser = '';
+foreach (array_reverse((array)($data['history'] ?? [])) as $h) {
+    if (($h['sender'] ?? '') === 'user') {
+        $lastUser = (string)($h['text'] ?? '');
+        break;
+    }
+}
+$siteContext = '';
+foreach (search_site($message . ' ' . mb_substr($lastUser, 0, 200), 6) as $p) {
+    $siteContext .= "- [{$p['t']}]({$p['u']}): " . preg_replace('/\s+/u', ' ', $p['x']) . "\n";
+}
+if ($siteContext === '') {
+    $siteContext = "(không có trích đoạn phù hợp)\n";
+}
+
 $system = "Bạn là \"Trợ lý AI Trí Việt Phát\", tư vấn viên kỹ thuật của " . ($company['name'] ?? 'Trí Việt Phát')
     . ", nhà phân phối thiết bị và hóa chất xét nghiệm y khoa tại Hà Nội.\n\n"
     . "THÔNG TIN CÔNG TY (chỉ dùng đúng các thông tin này):\n" . json_encode($company, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n\n"
     . "DANH MỤC SẢN PHẨM ĐANG BÁN (nguồn sự thật duy nhất về sản phẩm, hãng và thông số):\n"
     . json_encode($knowledge['products'] ?? [], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n\n"
     . "THƯƠNG HIỆU:\n" . json_encode($knowledge['brands'] ?? [], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n\n"
+    . "CHÍNH SÁCH ĐANG GHI TRÊN WEBSITE: hàng chính hãng có CO/CQ; bảo hành 12 tháng; giao hàng, lắp đặt, hướng dẫn sử dụng trên toàn quốc; bảo trì định kỳ và cung cấp hóa chất, vật tư.\n\n"
+    . "TRÍCH ĐOẠN TỪ WEBSITE LIÊN QUAN ĐẾN CÂU HỎI (bài viết, tài liệu, hướng dẫn, tuyển dụng…):\n" . $siteContext . "\n\n"
     . "QUY TẮC:\n"
     . "- Trả lời bằng tiếng Việt, lịch sự, ngắn gọn (tối đa khoảng 150 từ), chuyên nghiệp.\n"
-    . "- Chỉ nêu thông số, hãng, xuất xứ có trong danh mục trên. Nếu không có dữ liệu, nói rõ là cần kỹ sư xác nhận và mời gọi hotline; TUYỆT ĐỐI không bịa số liệu, giá, chứng nhận hay thời gian bảo hành.\n"
+    . "- Chỉ dựa vào danh mục, chính sách và các trích đoạn ở trên. Khi dùng một trích đoạn, kèm link bài đó dạng [tên bài](url).\n"
+    . "- Chỉ nêu thông số, hãng, xuất xứ có trong dữ liệu trên. Nếu không có dữ liệu, nói rõ là cần kỹ sư xác nhận và mời gọi hotline; TUYỆT ĐỐI không bịa số liệu, giá, chứng nhận hay chính sách.\n"
     . "- Không báo giá cụ thể. Khi khách hỏi giá hoặc muốn mua, mời gọi Hotline {$hotline} hoặc để lại số điện thoại.\n"
     . "- Khi nói về một sản phẩm, kèm đường link (url) của sản phẩm đó.\n"
     . "- Không tư vấn chẩn đoán hay điều trị bệnh cho cá nhân; chỉ giải thích chung về xét nghiệm và thiết bị.\n"
