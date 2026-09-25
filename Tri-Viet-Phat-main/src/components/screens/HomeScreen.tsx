@@ -4,6 +4,8 @@ import { COMPANY_INFO, PRODUCTS, PARTNERS, TESTIMONIALS } from '../../data/mockD
 import { REAL_NEWS_ARTICLES, NEWS_CATEGORY_LABELS, SiteArticle } from '../../data/realSiteContent';
 import { Product, PageTab } from '../../types';
 import { ProvinceSelect } from '../ProvinceSelect';
+import { brandOf } from '../../seo/brands';
+import { navLink } from '../../seo/navLink';
 import { sendLead } from '../../lib/sendLead';
 import { TestimonialsCarousel } from '../TestimonialsCarousel';
 import { HeroSection } from '../HeroSection';
@@ -17,6 +19,7 @@ interface HomeScreenProps {
   onSelectProduct: (product: Product) => void;
   onSelectArticle: (article: SiteArticle) => void;
   onNavigateTab: (tab: PageTab, categoryFilter?: string) => void;
+  onSelectBrand: (slug: string) => void;
   onOpenConsultation: (prefilledProduct?: string) => void;
   onOpenRepairService: () => void;
 }
@@ -90,10 +93,20 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   onSelectProduct,
   onSelectArticle,
   onNavigateTab,
+  onSelectBrand,
   onOpenConsultation,
   onOpenRepairService,
 }) => {
   const [featuredCategory, setFeaturedCategory] = useState('all');
+
+  // Brands we sell link to their page on this site; the rest open the manufacturer's website
+  const partnerLink = (partner: { name: string; url?: string }) => {
+    const brand = brandOf(partner.name);
+    if (brand) {
+      return { ...navLink({ tab: 'san-pham', brand: brand.slug }, () => onSelectBrand(brand.slug)), title: brand.heading };
+    }
+    return { href: partner.url, target: '_blank', rel: 'noopener noreferrer', title: `Truy cập website ${partner.name}` };
+  };
 
   // Home Consultation Form State
   const [formName, setFormName] = useState('');
@@ -399,17 +412,14 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   className="w-[200px] sm:w-[250px] shrink-0 px-2.5 sm:px-3 py-4"
                 >
                   <a
-                    href={partner.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    {...partnerLink(partner)}
                     tabIndex={idx >= PARTNERS.length ? -1 : undefined}
-                    title={`Truy cập website ${partner.name}`}
                     className="partner-card fx-shine group/partner relative h-24 sm:h-28 rounded-2xl bg-white border border-[#e3ebf3] shadow-[0_4px_14px_rgba(10,37,64,0.06)] flex items-center justify-center px-6 hover:-translate-y-2 hover:scale-[1.03] hover:shadow-[0_22px_40px_-14px_rgba(10,148,220,0.45)] transition-[translate,scale,box-shadow] duration-500 cursor-pointer"
                   >
                   {partner.logo ? (
                     <img
                       src={partner.logo}
-                      alt={idx < PARTNERS.length ? partner.name : ''}
+                      alt={`Logo ${partner.name}`}
                       loading="lazy"
                       className="max-h-11 sm:max-h-12 max-w-full object-contain mix-blend-multiply"
                     />

@@ -16,7 +16,12 @@ export function fromFolder<T extends Ordered>(modules: Record<string, T>): (T & 
 
 /** CMS body fields are Markdown; older entries are plain HTML, which Markdown passes through unchanged. */
 export function renderRich(source = ''): string {
-  return marked.parse(source, { async: false });
+  // The page title is the only <h1>; headings inside the body start at <h2>
+  return demoteH1(marked.parse(source, { async: false }));
+}
+
+export function demoteH1(html: string): string {
+  return html.replace(/<(\/?)h1\b/gi, '<$1h2');
 }
 
 export function toPlainText(html: string): string {

@@ -6,33 +6,36 @@ function absolute(siteUrl: string, pathOrUrl: string): string {
   return /^https?:\/\//.test(pathOrUrl) ? pathOrUrl : `${siteUrl.replace(/\/$/, '')}${pathOrUrl}`;
 }
 
-function jsonLd(meta: SeoMeta, siteUrl: string): Record<string, unknown> | null {
+function jsonLd(meta: SeoMeta, siteUrl: string): Record<string, unknown>[] {
   const url = absolute(siteUrl, meta.path);
-  const image = absolute(siteUrl, meta.image);
+  const items: Record<string, unknown>[] = [];
+  if (meta.breadcrumbs?.length) {
+    items.push({
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: meta.breadcrumbs.map((b, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: b.name,
+        item: absolute(siteUrl, b.path),
+      })),
+    });
+  }
   if (meta.type === 'article') {
-    return {
+    items.push({
       '@context': 'https://schema.org',
       '@type': 'Article',
       headline: meta.title,
       description: meta.description,
-      image,
+      image: absolute(siteUrl, meta.image),
       url,
       ...(meta.published ? { datePublished: meta.published } : {}),
+      author: { '@type': 'Organization', name: SITE_NAME, url: siteUrl },
       publisher: { '@type': 'Organization', name: SITE_NAME, logo: absolute(siteUrl, '/tri-viet-phat1.jpg') },
-    };
+    });
   }
-  if (meta.type === 'product') {
-    return {
-      '@context': 'https://schema.org',
-      '@type': 'Product',
-      name: meta.title.replace(` | ${SITE_NAME}`, ''),
-      description: meta.description,
-      image,
-      url,
-      brand: { '@type': 'Organization', name: SITE_NAME },
-    };
-  }
-  return null;
+  // Products are not marked up as schema.org/Product: without a price (offers) Google reports them as invalid.
+  return items;
 }
 
 interface Tag {
@@ -75,7 +78,7 @@ export function headTagsHtml(meta: SeoMeta, siteUrl: string): string {
     else lines.push(`<meta property="${t.key}" content="${escapeAttr(t.value)}" />`);
   }
   const ld = jsonLd(meta, siteUrl);
-  if (ld) lines.push(`<script type="application/ld+json" id="ld-page">${JSON.stringify(ld).replace(/</g, '\\u003c')}</script>`);
+  if (ld.length) lines.push(`<script type="application/ld+json" id="ld-page">${JSON.stringify(ld).replace(/</g, '\\u003c')}</script>`);
   return lines.join('\n    ');
 }
 
@@ -101,7 +104,7 @@ export function applySeo(meta: SeoMeta, siteUrl: string): void {
 
   const ld = jsonLd(meta, siteUrl);
   let script = document.getElementById('ld-page');
-  if (!ld) {
+  if (!ld.length) {
     script?.remove();
     return;
   }

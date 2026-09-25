@@ -10,9 +10,9 @@ const SLIDES = [
   {
     image: '/images/hero-lab-analyzers.jpg',
     alt: 'Phòng xét nghiệm với dãy máy phân tích tự động',
-    eyebrow: 'Thiết bị xét nghiệm IVD chính hãng',
-    title: 'Giải pháp trọn gói cho phòng xét nghiệm',
-    desc: 'Máy huyết học, sinh hóa, nước tiểu, điện giải và hóa chất chính hãng cho bệnh viện, phòng khám toàn quốc.',
+    eyebrow: 'Giải pháp trọn gói cho phòng xét nghiệm',
+    title: 'Máy xét nghiệm Dirui chính hãng',
+    desc: 'Máy xét nghiệm sinh hóa, nước tiểu, huyết học Dirui, máy điện giải và hóa chất xét nghiệm chính hãng cho bệnh viện, phòng khám toàn quốc.',
   },
   {
     image: '/images/hero-pipette.jpg',

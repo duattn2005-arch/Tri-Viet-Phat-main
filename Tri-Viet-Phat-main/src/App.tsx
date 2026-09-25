@@ -40,7 +40,11 @@ export default function App() {
   // Each page has its own URL (see src/seo/routes.ts); the first render follows the address bar.
   const [initialRoute] = useState(() => parseRoute(window.location.pathname));
   const [currentTab, setCurrentTab] = useState<PageTab>(initialRoute.tab);
-  const [categoryFilter, setCategoryFilter] = useState<string>(initialRoute.cat || 'all');
+  // A product link opens the product over its own category page
+  const [categoryFilter, setCategoryFilter] = useState<string>(
+    initialRoute.cat || findProduct(initialRoute.productId)?.category || 'all'
+  );
+  const [brandFilter, setBrandFilter] = useState<string>(initialRoute.brand || '');
 
   // Modal States
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(() => findProduct(initialRoute.productId));
@@ -71,6 +75,7 @@ export default function App() {
     cat: categoryFilter,
     articleId: currentTab === 'tin-tuc' ? newsArticleId || undefined : undefined,
     productId: selectedProduct?.id,
+    brand: currentTab === 'san-pham' ? brandFilter || undefined : undefined,
   };
   const path = routePath(route);
   const firstSync = useRef(true);
@@ -92,6 +97,7 @@ export default function App() {
       if (next.productId) return;
       setCurrentTab(next.tab);
       setCategoryFilter(next.cat || 'all');
+      setBrandFilter(next.brand || '');
       setNewsArticleId(next.articleId || '');
     };
     window.addEventListener('popstate', onPopState);
@@ -101,7 +107,17 @@ export default function App() {
   const handleSelectTab = (tab: PageTab, cat?: string) => {
     setCurrentTab(tab);
     setCategoryFilter(cat || 'all');
+    setBrandFilter('');
     setNewsArticleId('');
+  };
+
+  // Brand landing page, e.g. /thuong-hieu/dirui
+  const handleSelectBrand = (slug: string) => {
+    setCurrentTab('san-pham');
+    setCategoryFilter('all');
+    setBrandFilter(slug);
+    setNewsArticleId('');
+    window.scrollTo({ top: 0 });
   };
 
   const handleOpenNewsArticle = (article: SiteArticle) => {
@@ -148,6 +164,7 @@ export default function App() {
                   onSelectProduct={(p) => setSelectedProduct(p)}
                   onSelectArticle={handleOpenNewsArticle}
                   onNavigateTab={handleSelectTab}
+                  onSelectBrand={handleSelectBrand}
                   onOpenConsultation={handleOpenConsultation}
                   onOpenRepairService={handleOpenRepairService}
                 />
@@ -160,6 +177,8 @@ export default function App() {
               {currentTab === 'san-pham' && (
                 <ProductsScreen
                   initialCategory={categoryFilter}
+                  initialBrand={brandFilter}
+                  onNavigateCategory={(cat) => handleSelectTab('san-pham', cat)}
                   onSelectProduct={(p) => setSelectedProduct(p)}
                   onOpenConsultation={handleOpenConsultation}
                 />
@@ -198,6 +217,7 @@ export default function App() {
         {/* Global Footer */}
         <Footer
           onSelectTab={handleSelectTab}
+          onSelectBrand={handleSelectBrand}
           onOpenConsultation={handleOpenConsultation}
         />
 

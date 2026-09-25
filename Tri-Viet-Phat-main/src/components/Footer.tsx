@@ -2,10 +2,12 @@ import React from 'react';
 import { PageTab } from '../types';
 import { COMPANY_INFO } from '../data/mockData';
 import { navLink } from '../seo/navLink';
+import { BRANDS } from '../seo/brands';
 import type { Route } from '../seo/routes';
 
 interface FooterProps {
   onSelectTab: (tab: PageTab, categoryFilter?: string) => void;
+  onSelectBrand: (slug: string) => void;
   onOpenConsultation: (prefilledProduct?: string) => void;
 }
 
@@ -63,7 +65,7 @@ const FooterLink: React.FC<{ route: Route; onClick: () => void; children: React.
   </a>
 );
 
-export const Footer: React.FC<FooterProps> = ({ onSelectTab, onOpenConsultation }) => {
+export const Footer: React.FC<FooterProps> = ({ onSelectTab, onSelectBrand, onOpenConsultation }) => {
   const handleNav = (tab: PageTab, cat?: string) => {
     onSelectTab(tab, cat);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -166,6 +168,20 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab, onOpenConsultation 
               {PRODUCT_LINKS.map((item) => (
                 <li key={item.cat}>
                   <FooterLink route={{ tab: 'san-pham', cat: item.cat }} onClick={() => handleNav('san-pham', item.cat)}>{item.label}</FooterLink>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-5 mb-2 text-[12px] font-semibold uppercase tracking-[0.08em] text-white/80">Thương hiệu</p>
+            <ul className="flex flex-wrap gap-x-4 gap-y-2">
+              {BRANDS.map((brand) => (
+                <li key={brand.slug}>
+                  <a
+                    {...navLink({ tab: 'san-pham', brand: brand.slug }, () => onSelectBrand(brand.slug))}
+                    title={brand.heading}
+                    className="hover:text-white fx-link"
+                  >
+                    {brand.name}
+                  </a>
                 </li>
               ))}
             </ul>

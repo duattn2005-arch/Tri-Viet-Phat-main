@@ -5,9 +5,14 @@ import { ProductCard } from '../ProductCard';
 import { PageBanner } from '../PageBanner';
 import { RevealGroup, RevealItem } from '../motion/Reveal';
 import { Product } from '../../types';
+import { brandBySlug } from '../../seo/brands';
 
 interface ProductsScreenProps {
   initialCategory?: string;
+  /** Brand slug for the /thuong-hieu/<slug> landing page */
+  initialBrand?: string;
+  /** Lets the address bar follow category picks made inside this screen */
+  onNavigateCategory?: (category: string) => void;
   onSelectProduct: (product: Product) => void;
   onOpenConsultation: (prefilledProduct?: string) => void;
 }
@@ -82,9 +87,12 @@ const CheckRow: React.FC<{ label: string; count: number; checked: boolean; onCha
 
 export const ProductsScreen: React.FC<ProductsScreenProps> = ({
   initialCategory = 'all',
+  initialBrand = '',
+  onNavigateCategory,
   onSelectProduct,
   onOpenConsultation,
 }) => {
+  const brand = brandBySlug(initialBrand);
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [selectedOrigins, setSelectedOrigins] = useState<string[]>([]);
@@ -94,7 +102,8 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({
 
   useEffect(() => {
     setSelectedCategory(initialCategory || 'all');
-  }, [initialCategory]);
+    setSelectedBrands(brand ? [brand.name] : []);
+  }, [initialCategory, brand]);
 
   const inCategory = useMemo(
     () => PRODUCTS.filter((p) => selectedCategory === 'all' || p.category === selectedCategory),
@@ -130,6 +139,7 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({
     setSelectedBrands([]);
     setSelectedOrigins([]);
     setMobileFiltersOpen(false);
+    onNavigateCategory?.(key);
   };
 
   const resetAll = () => {
@@ -143,11 +153,13 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({
   return (
     <div className="w-full bg-white">
       <PageBanner
-        title={categoryLabel}
-        subtitle="Thiết bị xét nghiệm và hóa chất IVD chính hãng, đủ CO/CQ, giao và lắp đặt toàn quốc."
+        title={brand ? brand.heading : categoryLabel}
+        subtitle={brand ? brand.intro : 'Thiết bị xét nghiệm và hóa chất IVD chính hãng, đủ CO/CQ, giao và lắp đặt toàn quốc.'}
         image="/images/hero-pipette.jpg"
         breadcrumbs={
-          selectedCategory === 'all'
+          brand
+            ? [{ label: 'Trang chủ' }, { label: 'Sản phẩm', onClick: () => selectCategory('all') }, { label: brand.name }]
+            : selectedCategory === 'all'
             ? [{ label: 'Trang chủ' }, { label: 'Sản phẩm' }]
             : [{ label: 'Trang chủ' }, { label: 'Sản phẩm', onClick: () => selectCategory('all') }, { label: categoryLabel }]
         }
