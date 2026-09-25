@@ -1,6 +1,10 @@
-// Sends a form submission to the PHP endpoint on the hosting, which forwards it to Telegram.
-// Override the URL with VITE_LEAD_ENDPOINT if the site is served from a sub-folder.
-const LEAD_ENDPOINT = import.meta.env.VITE_LEAD_ENDPOINT || '/api/lien-he.php';
+// Sends a form submission to the server, which forwards it to Telegram.
+// On the PHP hosting that is public/api/lien-he.php; while the site still runs on Vercel
+// (*.vercel.app) it is the temporary function api/lien-he.ts.
+// VITE_LEAD_ENDPOINT overrides both, e.g. when the site is served from a sub-folder.
+const LEAD_ENDPOINT =
+  import.meta.env.VITE_LEAD_ENDPOINT ||
+  (window.location.hostname.endsWith('.vercel.app') ? '/api/lien-he' : '/api/lien-he.php');
 
 export type LeadKind = 'lien-he' | 'tu-van' | 'bao-gia' | 'sua-chua';
 
