@@ -77,6 +77,13 @@ function catalogue_reply(string $message, array $knowledge, string $hotline): st
             $byTopic[] = $p;
         }
     }
+    // A named model wins; otherwise answer the common questions before listing products by topic
+    if (!$byModel) {
+        $intent = intent_reply($q, $knowledge, $hotline);
+        if ($intent !== null) {
+            return $intent;
+        }
+    }
     $matches = $byModel ?: $byTopic;
 
     if (count($matches) === 1) {
@@ -95,10 +102,53 @@ function catalogue_reply(string $message, array $knowledge, string $hotline): st
     if (preg_match('/giá|báo giá|bao nhiêu|chi phí/u', $q)) {
         return "Để nhận báo giá chi tiết và chiết khấu tốt nhất, Quý khách vui lòng gọi **Hotline {$hotline}** hoặc để lại số điện thoại ở mục Liên hệ, kỹ sư Trí Việt Phát sẽ gọi lại ngay ạ.";
     }
+    if (preg_match('/^(xin )?(chào|chao|hello|hi|alo)\b|^(xin chào|chào bạn|chào em|chào shop)/u', trim($q))) {
+        return "Xin chào Quý khách! **Trí Việt Phát** phân phối chính hãng máy xét nghiệm Dirui (sinh hóa, nước tiểu, huyết học), máy điện giải, HbA1c, miễn dịch, đông máu và hóa chất xét nghiệm.\n\n"
+            . "Quý khách cho biết model hoặc loại máy đang quan tâm (ví dụ: *máy sinh hóa CS-T240*, *máy nước tiểu H-500*) để được tư vấn chi tiết ạ.";
+    }
+    return "Dạ, câu hỏi này em chưa có thông tin chính xác để trả lời. Để được kỹ sư tư vấn đúng nhất, Quý khách vui lòng gọi **Hotline {$hotline}** hoặc để lại số điện thoại ở mục Liên hệ, bên em sẽ gọi lại ngay ạ.\n\n"
+        . "Quý khách cũng có thể hỏi em về một model cụ thể (ví dụ: *CS-600B*, *BCC-3900*, *AC9803*) để xem thông số.";
+}
+
+/** Answers to the questions visitors ask most, or null when the message is about something else. */
+function intent_reply(string $q, array $knowledge, string $hotline): ?string
+{
     $c = $knowledge['company'] ?? [];
-    return "Xin chào Quý khách! **Trí Việt Phát** phân phối chính hãng máy xét nghiệm Dirui (sinh hóa, nước tiểu, huyết học), máy điện giải, HbA1c, miễn dịch, đông máu và hóa chất xét nghiệm.\n"
-        . "- Hotline: **{$hotline}**\n- Email: " . ($c['email'] ?? '') . "\n- Địa chỉ: " . ($c['address'] ?? '')
-        . "\n\nQuý khách cho biết model hoặc loại máy đang quan tâm để được tư vấn chi tiết ạ.";
+    $site = rtrim($c['website'] ?? '', '/');
+    $is = fn(string $pattern) => (bool)preg_match('/' . $pattern . '/u', $q);
+
+    if ($is('bảo hành|bao hanh|bảo trì|bảo dưỡng|sửa chữa|sua chua|hỏng|lỗi máy|kỹ thuật viên|kỹ sư')) {
+        return "**Bảo hành & bảo trì tại Trí Việt Phát:**\n"
+            . "- Máy chính hãng được **bảo hành 12 tháng**.\n"
+            . "- Kỹ sư lắp đặt tận nơi, chạy mẫu, hướng dẫn sử dụng; sau bảo hành vẫn hỗ trợ bảo trì định kỳ và sửa chữa.\n"
+            . "- Cần sửa máy: gọi **Hotline {$hotline}** hoặc gửi yêu cầu tại {$site}/lien-he, kỹ sư sẽ liên hệ lại ngay.";
+    }
+    if ($is('địa chỉ|dia chi|ở đâu|văn phòng|trụ sở|showroom|liên hệ|lien he|số điện thoại|sđt|hotline|email|zalo')) {
+        return "**Thông tin liên hệ Trí Việt Phát:**\n"
+            . "- Địa chỉ: " . ($c['address'] ?? '') . "\n"
+            . "- Hotline: **{$hotline}**\n"
+            . "- Email: " . ($c['email'] ?? '') . "\n"
+            . "- Website: {$site}";
+    }
+    if ($is('giao hàng|vận chuyển|ship|tỉnh|toàn quốc|lắp đặt|lap dat|cài đặt|đào tạo|hướng dẫn sử dụng')) {
+        return "Trí Việt Phát **giao hàng và lắp đặt trên toàn quốc**. Kỹ sư lắp đặt tận nơi, chạy mẫu kiểm tra và hướng dẫn kỹ thuật viên sử dụng máy.\n\n"
+            . "Quý khách cho biết địa điểm và model cần lắp, hoặc gọi **Hotline {$hotline}** để được sắp lịch ạ.";
+    }
+    if ($is('co\/cq|co cq|chính hãng|chinh hang|nguồn gốc|xuất xứ|giấy tờ|chứng nhận')) {
+        return "Toàn bộ máy và hóa chất Trí Việt Phát cung cấp là **hàng chính hãng, có đầy đủ CO/CQ**. Xuất xứ của từng model ghi trong trang sản phẩm.\n\n"
+            . "Quý khách cần bộ hồ sơ kỹ thuật cho model nào, vui lòng gọi **Hotline {$hotline}** ạ.";
+    }
+    if ($is('tuyển dụng|tuyen dung|việc làm|ứng tuyển|nộp hồ sơ|cv')) {
+        return "Các vị trí đang tuyển của Trí Việt Phát có tại {$site}/tuyen-dung. Quý khách có thể nộp hồ sơ trực tuyến ngay trên trang đó ạ.";
+    }
+    if ($is('hóa chất|hoa chat|thuốc thử|thuoc thu|que thử|vật tư')) {
+        $chem = array_filter($knowledge['products'] ?? [], fn($p) => has(mb_strtolower((string)($p['category'] ?? '')), 'hóa chất'));
+        $lines = array_map(fn($p) => "- **{$p['name']}** – {$p['url']}", array_slice(array_values($chem), 0, 5));
+        return "Trí Việt Phát cung cấp hóa chất, thuốc thử và vật tư xét nghiệm chính hãng, sẵn kho tại Hà Nội"
+            . ($lines ? ":\n" . implode("\n", $lines) : '.')
+            . "\n\nQuý khách cho biết đang dùng máy nào để được tư vấn hóa chất tương thích, hoặc gọi **Hotline {$hotline}** ạ.";
+    }
+    return null;
 }
 
 /** Gemini sometimes writes ions in LaTeX ($Na^+$); show them as plain Unicode. */
