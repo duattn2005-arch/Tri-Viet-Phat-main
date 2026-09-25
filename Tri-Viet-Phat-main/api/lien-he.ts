@@ -1,5 +1,5 @@
-// Temporary Vercel twin of public/api/lien-he.php: forwards website form submissions to Telegram
-// until the site moves to its own PHP hosting. Needs Vercel environment variables
+// Forwards website form submissions to Telegram (public/api/lien-he.php is the same thing for a PHP host).
+// Needs Vercel environment variables
 // TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_IDS (comma-separated).
 
 const TITLES: Record<string, string> = {
