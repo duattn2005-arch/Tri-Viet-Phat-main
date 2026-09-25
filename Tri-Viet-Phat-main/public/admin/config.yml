@@ -90,7 +90,7 @@ collections:
           - { name: desc, label: Mô tả, widget: text }
       - { name: benefits, label: Lợi ích, label_singular: lợi ích, widget: list, required: false, field: { name: item, label: Lợi ích, widget: string } }
       - { name: certifications, label: Chứng nhận, label_singular: chứng nhận, widget: list, required: false, field: { name: item, label: Chứng nhận, widget: string } }
-      - { name: detailHtml, label: Bài giới thiệu chi tiết, widget: markdown, required: false, hint: Nếu có, nội dung này thay cho phần đặc điểm kỹ thuật. }
+      - { name: detailHtml, label: Bài giới thiệu chi tiết, widget: html, required: false, hint: Nếu có, nội dung này thay cho phần đặc điểm kỹ thuật. }
 
   # ---------- Tin tức ----------
   - name: news
@@ -117,7 +117,7 @@ collections:
           - { label: Tin nội bộ, value: tin-noi-bo }
       - { name: image, label: Ảnh đại diện, widget: image }
       - { name: excerpt, label: Tóm tắt, widget: text }
-      - { name: content, label: Nội dung, widget: markdown }
+      - { name: content, label: Nội dung, widget: html }
 
   # ---------- Tài liệu ----------
   - name: documents
@@ -137,7 +137,7 @@ collections:
       - { name: date, label: Ngày đăng, widget: string, pattern: ['^\d{2}/\d{2}/\d{4}$', 'Nhập theo dạng ngày/tháng/năm, ví dụ 25/09/2026'] }
       - { name: image, label: Ảnh đại diện, widget: image }
       - { name: excerpt, label: Tóm tắt, widget: text }
-      - { name: content, label: Nội dung, widget: markdown }
+      - { name: content, label: Nội dung, widget: html }
 
   # ---------- Tuyển dụng ----------
   - name: jobs
@@ -159,7 +159,7 @@ collections:
       - { name: location, label: Nơi làm việc, widget: string, hint: 'Ví dụ: Hà Nội' }
       - { name: image, label: Ảnh đại diện, widget: image }
       - { name: excerpt, label: Tóm tắt, widget: text }
-      - { name: content, label: Mô tả công việc, widget: markdown }
+      - { name: content, label: Mô tả công việc, widget: html }
 
   # ---------- Chữ và ảnh của từng trang (src/content/pages.ts) ----------
   - name: pages

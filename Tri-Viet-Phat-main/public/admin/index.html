@@ -6,10 +6,15 @@
     <meta name="robots" content="noindex" />
     <title>Quản trị nội dung · Trí Việt Phát</title>
     <link rel="icon" type="image/jpeg" href="/tri-viet-phat1.jpg" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jodit@4.15.14/es2021/jodit.fat.min.css" />
   </head>
   <body>
     <!-- In <body>: Decap starts as soon as it loads and mounts into document.body -->
     <script src="https://unpkg.com/decap-cms@^3.8.0/dist/decap-cms.js"></script>
+    <!-- Word-like editor for article bodies (widget: html) -->
+    <script src="https://cdn.jsdelivr.net/npm/jodit@4.15.14/es2021/jodit.fat.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js"></script>
+    <script src="html-widget.js"></script>
     <script>
       // Login goes through /api/auth.php, which asks for the admin password; the GitHub wording would mislead.
       new MutationObserver(function () {
