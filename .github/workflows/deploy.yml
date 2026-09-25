@@ -2,9 +2,9 @@
 # including the commits the CMS (/admin) makes when content is published.
 #
 # Repository secrets (GitHub → Settings → Secrets and variables → Actions):
-#   FTP_SERVER, FTP_USERNAME, FTP_PASSWORD   hosting FTP account; FTP_SERVER is the hosting server's own name
-#                                            (e.g. xxx.azdigihost.com), which its FTPS certificate is issued for
-#   FTP_SERVER_DIR (optional)                folder of the site on the FTP account, ending in "/"; default public_html/
+#   FTP_USERNAME, FTP_PASSWORD               hosting FTP account whose root is the site folder (deploy@thietbiytegroup.com)
+#   FTP_SERVER (optional)                    default ghf54-22361-nvme.azdigihost.com, the name its FTPS certificate covers
+#   FTP_SERVER_DIR (optional)                folder of the site on the FTP account, ending in "/"; default ./
 #   FTP_PROTOCOL (optional)                  "ftps" (default) or "ftp"
 #   TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_IDS    form notifications (chat ids comma-separated)
 #   ADMIN_USERNAME, ADMIN_PASSWORD           /admin login
@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # Until the FTP secrets are added the site is still built (to catch errors) but not uploaded
-      HAS_FTP: ${{ secrets.FTP_SERVER != '' }}
+      HAS_FTP: ${{ secrets.FTP_PASSWORD != '' }}
     defaults:
       run:
         working-directory: Tri-Viet-Phat-main
@@ -75,9 +75,9 @@ jobs:
         if: env.HAS_FTP == 'true'
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_SERVER }}
+          server: ${{ secrets.FTP_SERVER || 'ghf54-22361-nvme.azdigihost.com' }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ${{ secrets.FTP_PROTOCOL || 'ftps' }}
           local-dir: Tri-Viet-Phat-main/dist/
-          server-dir: ${{ secrets.FTP_SERVER_DIR || 'public_html/' }}
+          server-dir: ${{ secrets.FTP_SERVER_DIR || './' }}
