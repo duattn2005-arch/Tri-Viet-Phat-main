@@ -1,0 +1,73 @@
+{
+  "downloadsTitle": "Trung tâm Tải về Tài liệu Kỹ thuật & Catalog (PDF)",
+  "downloadsDesc": "Tải về tài liệu thông số kỹ thuật, hồ sơ thiết bị y tế và bảng hướng dẫn vận hành chuẩn ISO",
+  "downloads": [
+    {
+      "title": "Catalog Tổng hợp Thiết bị Xét nghiệm & Vật tư Y tế Trí Việt Phát 2025",
+      "code": "CAT-TVP-2025",
+      "fileSize": "4.8 MB",
+      "pages": 48,
+      "description": "Tổng hợp chi tiết danh mục máy xét nghiệm huyết học, sinh hóa, nước tiểu, hóa chất tiêu hao và vật tư y sinh đạt chuẩn ISO/CE.",
+      "file": ""
+    },
+    {
+      "title": "Quy trình kiểm chuẩn & Bảo dưỡng định kỳ máy xét nghiệm sinh hóa",
+      "code": "SOP-MAINT-02",
+      "fileSize": "2.4 MB",
+      "pages": 24,
+      "description": "Hướng dẫn kỹ thuật viên phòng Lab thực hiện vệ sinh đường ống, kiểm tra quang học, cân chỉnh pipette và hiệu chuẩn chuẩn độ.",
+      "file": ""
+    },
+    {
+      "title": "Sổ tay tiêu chuẩn an toàn vận hành phòng xét nghiệm y sinh ISO 15189",
+      "code": "ISO-15189-LAB",
+      "fileSize": "3.6 MB",
+      "pages": 36,
+      "description": "Các quy tắc bắt buộc về an toàn sinh học, xử lý mẫu máu, bảo quản hóa chất nhạy sáng và kiểm soát nhiễm khuẩn buồng xét nghiệm.",
+      "file": ""
+    },
+    {
+      "title": "Phiếu yêu cầu khảo sát, bảo trì & hỗ trợ kỹ thuật thiết bị khẩn cấp",
+      "code": "FORM-REQ-SRV",
+      "fileSize": "680 KB",
+      "pages": 4,
+      "description": "Mẫu biên bản tiếp nhận sự cố, chẩn đoán lỗi phần cứng máy xét nghiệm và đăng ký linh kiện thay thế chính hãng.",
+      "file": ""
+    }
+  ],
+  "processEyebrow": "Dịch vụ sau bán hàng chuyên nghiệp",
+  "processTitle": "Quy trình Bảo trì & Hỗ trợ Kỹ thuật Thiết bị Y tế 4 Bước",
+  "processSteps": [
+    {
+      "title": "Tiếp nhận sự cố 24/7",
+      "desc": "Tiếp nhận thông tin qua hotline, chẩn đoán sơ bộ mã lỗi máy xét nghiệm qua video/ảnh chụp."
+    },
+    {
+      "title": "Khảo sát trong 2 - 4h",
+      "desc": "Kỹ sư chuyên ngành có mặt trực tiếp tại cơ sở y tế với đầy đủ thiết bị đo kiểm và linh kiện."
+    },
+    {
+      "title": "Sửa chữa & Thay thế",
+      "desc": "100% linh kiện chính hãng, vệ sinh hệ thống cơ điện tử và căn chỉnh quang học chính xác."
+    },
+    {
+      "title": "Kiểm định & Bàn giao",
+      "desc": "Chạy mẫu nghiệm thu QC, lập biên bản kiểm chuẩn và dán tem bảo hành kỹ thuật Trí Việt Phát."
+    }
+  ],
+  "faqTitle": "Câu hỏi thường gặp về Bảo trì & Sử dụng Thiết bị Y tế",
+  "faqs": [
+    {
+      "q": "Tần suất bảo dưỡng định kỳ khuyến nghị cho máy xét nghiệm là bao lâu?",
+      "a": "Đối với các dòng máy xét nghiệm huyết học và sinh hóa tự động, khuyến nghị bảo dưỡng kiểm chuẩn kỹ thuật chuyên sâu tối thiểu 3 - 6 tháng/lần. Hàng ngày, kỹ thuật viên cần chạy chương trình rửa ống và kiểm tra QC trước ca làm việc."
+    },
+    {
+      "q": "Thời gian kỹ sư Trí Việt Phát có mặt khi thiết bị gặp sự cố khẩn cấp?",
+      "a": "Tại khu vực Hà Nội và các tỉnh lân cận, đội ngũ kỹ sư chuyên môn của Trí Việt Phát cam kết tiếp nhận và có mặt xử lý trực tiếp trong vòng 2 - 4 giờ làm việc. Đối với các tỉnh xa, chúng tôi hỗ trợ chẩn đoán từ xa 24/7 và điều phối kỹ sư trong 12h."
+    },
+    {
+      "q": "Linh kiện thay thế có đảm bảo chính hãng và có chế độ bảo hành không?",
+      "a": "100% linh kiện thay thế (bơm nhu động, van solenoid, bóng đèn quang phổ, sensor...) do Trí Việt Phát cung cấp đều được nhập khẩu chính hãng, có CO/CQ đầy đủ và được bảo hành từ 6 đến 12 tháng theo tiêu chuẩn của nhà sản xuất."
+    }
+  ]
+}

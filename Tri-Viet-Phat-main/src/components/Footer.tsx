@@ -1,6 +1,7 @@
 import React from 'react';
 import { PageTab } from '../types';
 import { COMPANY_INFO } from '../data/mockData';
+import { FOOTER_CONTENT } from '../content/pages';
 import { navLink } from '../seo/navLink';
 import { BRANDS } from '../seo/brands';
 import type { Route } from '../seo/routes';
@@ -83,9 +84,9 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab, onSelectBrand, onOp
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8 py-8 sm:py-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div>
             <p className="text-[20px] sm:text-[24px] font-bold text-white leading-tight">
-              Cần tư vấn thiết bị cho phòng xét nghiệm?
+              {FOOTER_CONTENT.ctaTitle}
             </p>
-            <p className="mt-1.5 text-white/60">Kỹ sư Trí Việt Phát phản hồi báo giá và cấu hình trong ngày làm việc.</p>
+            <p className="mt-1.5 text-white/60">{FOOTER_CONTENT.ctaDesc}</p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3">
             <a
@@ -193,7 +194,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab, onSelectBrand, onOp
 
           <div className="lg:col-span-3">
             <ColumnHeading>Kết nối với chúng tôi</ColumnHeading>
-            <p className="leading-relaxed">Nhắn tin hoặc gọi trực tiếp để được tư vấn cấu hình và báo giá.</p>
+            <p className="leading-relaxed">{FOOTER_CONTENT.connectText}</p>
             <div className="mt-5 flex gap-3">
               {SOCIALS.map((s) => (
                 <a
@@ -231,7 +232,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab, onSelectBrand, onOp
           <p>
             © {new Date().getFullYear()} {COMPANY_INFO.name}
           </p>
-          <p>Thiết bị có giấy phép lưu hành của Bộ Y tế</p>
+          <p>{FOOTER_CONTENT.bottomNote}</p>
         </div>
       </div>
     </footer>

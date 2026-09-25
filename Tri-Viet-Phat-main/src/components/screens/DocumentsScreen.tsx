@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { PageBanner } from '../PageBanner';
+import { COMPANY_INFO } from '../../data/mockData';
+import { DOCUMENTS_PAGE } from '../../content/pages';
 import { SiteSidebar } from '../SiteSidebar';
 import { ArticleFullView } from '../ArticleFullView';
 import { REAL_DOCUMENTS, REAL_NEWS_ARTICLES, SiteArticle } from '../../data/realSiteContent';
@@ -29,72 +31,20 @@ const FALLBACK_THUMBNAIL =
 
 // Downloadable PDF catalogs & technical specs
 interface DownloadableDoc {
-  id: string;
   title: string;
   code: string;
   fileSize: string;
   format: string;
   pages: number;
   description: string;
+  /** Uploaded PDF; without one the button asks the visitor to call for the document */
+  file?: string;
 }
 
-const DOWNLOADABLE_DOCS: DownloadableDoc[] = [
-  {
-    id: 'catalog-tvp-2025',
-    title: 'Catalog Tổng hợp Thiết bị Xét nghiệm & Vật tư Y tế Trí Việt Phát 2025',
-    code: 'CAT-TVP-2025',
-    fileSize: '4.8 MB',
-    format: 'PDF',
-    pages: 48,
-    description:
-      'Tổng hợp chi tiết danh mục máy xét nghiệm huyết học, sinh hóa, nước tiểu, hóa chất tiêu hao và vật tư y sinh đạt chuẩn ISO/CE.',
-  },
-  {
-    id: 'quy-trinh-bao-duong-dinh-ky',
-    title: 'Quy trình kiểm chuẩn & Bảo dưỡng định kỳ máy xét nghiệm sinh hóa',
-    code: 'SOP-MAINT-02',
-    fileSize: '2.4 MB',
-    format: 'PDF',
-    pages: 24,
-    description:
-      'Hướng dẫn kỹ thuật viên phòng Lab thực hiện vệ sinh đường ống, kiểm tra quang học, cân chỉnh pipette và hiệu chuẩn chuẩn độ.',
-  },
-  {
-    id: 'tieu-chuan-phong-xet-nghiem',
-    title: 'Sổ tay tiêu chuẩn an toàn vận hành phòng xét nghiệm y sinh ISO 15189',
-    code: 'ISO-15189-LAB',
-    fileSize: '3.6 MB',
-    format: 'PDF',
-    pages: 36,
-    description:
-      'Các quy tắc bắt buộc về an toàn sinh học, xử lý mẫu máu, bảo quản hóa chất nhạy sáng và kiểm soát nhiễm khuẩn buồng xét nghiệm.',
-  },
-  {
-    id: 'bieu-mau-yeu-cau-ky-thuat',
-    title: 'Phiếu yêu cầu khảo sát, bảo trì & hỗ trợ kỹ thuật thiết bị khẩn cấp',
-    code: 'FORM-REQ-SRV',
-    fileSize: '680 KB',
-    format: 'PDF',
-    pages: 4,
-    description:
-      'Mẫu biên bản tiếp nhận sự cố, chẩn đoán lỗi phần cứng máy xét nghiệm và đăng ký linh kiện thay thế chính hãng.',
-  },
-];
+// Edited in the CMS: "Nội dung các trang" → "Trang Tài liệu"
+const DOWNLOADABLE_DOCS: DownloadableDoc[] = DOCUMENTS_PAGE.downloads.map((d) => ({ ...d, format: 'PDF' }));
 
-const TECHNICAL_FAQS = [
-  {
-    q: 'Tần suất bảo dưỡng định kỳ khuyến nghị cho máy xét nghiệm là bao lâu?',
-    a: 'Đối với các dòng máy xét nghiệm huyết học và sinh hóa tự động, khuyến nghị bảo dưỡng kiểm chuẩn kỹ thuật chuyên sâu tối thiểu 3 - 6 tháng/lần. Hàng ngày, kỹ thuật viên cần chạy chương trình rửa ống và kiểm tra QC trước ca làm việc.',
-  },
-  {
-    q: 'Thời gian kỹ sư Trí Việt Phát có mặt khi thiết bị gặp sự cố khẩn cấp?',
-    a: 'Tại khu vực Hà Nội và các tỉnh lân cận, đội ngũ kỹ sư chuyên môn của Trí Việt Phát cam kết tiếp nhận và có mặt xử lý trực tiếp trong vòng 2 - 4 giờ làm việc. Đối với các tỉnh xa, chúng tôi hỗ trợ chẩn đoán từ xa 24/7 và điều phối kỹ sư trong 12h.',
-  },
-  {
-    q: 'Linh kiện thay thế có đảm bảo chính hãng và có chế độ bảo hành không?',
-    a: '100% linh kiện thay thế (bơm nhu động, van solenoid, bóng đèn quang phổ, sensor...) do Trí Việt Phát cung cấp đều được nhập khẩu chính hãng, có CO/CQ đầy đủ và được bảo hành từ 6 đến 12 tháng theo tiêu chuẩn của nhà sản xuất.',
-  },
-];
+const TECHNICAL_FAQS = DOCUMENTS_PAGE.faqs;
 
 export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
   initialCategory = 'all',
@@ -552,11 +502,11 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                         cloud_download
                       </span>
                       <h3 className="text-[17px] sm:text-[18px] font-bold text-[#111111]">
-                        Trung tâm Tải về Tài liệu Kỹ thuật & Catalog (PDF)
+                        {DOCUMENTS_PAGE.downloadsTitle}
                       </h3>
                     </div>
                     <p className="text-[13px] text-[#777777] mt-1">
-                      Tải về tài liệu thông số kỹ thuật, hồ sơ thiết bị y tế và bảng hướng dẫn vận hành chuẩn ISO
+                      {DOCUMENTS_PAGE.downloadsDesc}
                     </p>
                   </div>
 
@@ -567,9 +517,9 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {DOWNLOADABLE_DOCS.map((file) => (
+                  {DOWNLOADABLE_DOCS.map((file, idx) => (
                     <div
-                      key={file.id}
+                      key={idx}
                       className="fx-card p-4 flex flex-col justify-between group"
                     >
                       <div>
@@ -609,17 +559,30 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                           <span>Xem tóm tắt</span>
                         </button>
 
-                        <button
-                          onClick={() => {
-                            alert(
-                              `Đang chuẩn bị tải xuống: ${file.title} (${file.fileSize}). Quý khách cũng có thể liên hệ Hotline 0392.123.688 để nhận trọn bộ tài liệu gốc có đóng dấu Trí Việt Phát.`
-                            );
-                          }}
-                          className="px-3 py-1.5  bg-[#0a2540] text-white hover:bg-[#071a2e] text-[12px] font-bold transition-colors inline-flex items-center gap-1.5 cursor-pointer "
-                        >
-                          <span className="material-symbols-outlined text-[15px]">download</span>
-                          <span>Tải PDF</span>
-                        </button>
+                        {file.file ? (
+                          <a
+                            href={file.file}
+                            target="_blank"
+                            rel="noopener"
+                            download
+                            className="px-3 py-1.5  bg-[#0a2540] text-white hover:bg-[#071a2e] text-[12px] font-bold transition-colors inline-flex items-center gap-1.5 cursor-pointer "
+                          >
+                            <span className="material-symbols-outlined text-[15px]">download</span>
+                            <span>Tải PDF</span>
+                          </a>
+                        ) : (
+                          <button
+                            onClick={() => {
+                              alert(
+                                `Quý khách vui lòng liên hệ Hotline ${COMPANY_INFO.hotline} để nhận tài liệu: ${file.title}.`
+                              );
+                            }}
+                            className="px-3 py-1.5  bg-[#0a2540] text-white hover:bg-[#071a2e] text-[12px] font-bold transition-colors inline-flex items-center gap-1.5 cursor-pointer "
+                          >
+                            <span className="material-symbols-outlined text-[15px]">download</span>
+                            <span>Tải PDF</span>
+                          </button>
+                        )}
                       </div>
                     </div>
                   ))}
@@ -630,61 +593,23 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
               <div className="fx-panel p-5 sm:p-6 ">
                 <div className="mb-5 border-b border-[#f2f2f2] pb-3">
                   <span className="text-[12px] font-bold text-[#111111]">
-                    Dịch vụ sau bán hàng chuyên nghiệp
+                    {DOCUMENTS_PAGE.processEyebrow}
                   </span>
                   <h3 className="text-[17px] sm:text-[18px] font-bold text-[#111111] mt-0.5">
-                    Quy trình Bảo trì & Hỗ trợ Kỹ thuật Thiết bị Y tế 4 Bước
+                    {DOCUMENTS_PAGE.processTitle}
                   </h3>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                  <div className="p-4  bg-[#f3f7fb] border border-[#e5e5e5] relative">
-                    <span className="w-7 h-7 rounded-full bg-[#0a2540] text-white flex items-center justify-center text-[12px] font-bold mb-3">
-                      1
-                    </span>
-                    <h4 className="text-[13.5px] font-bold text-[#111111] mb-1.5">
-                      Tiếp nhận sự cố 24/7
-                    </h4>
-                    <p className="text-[12px] text-[#777777] leading-relaxed">
-                      Tiếp nhận thông tin qua hotline, chẩn đoán sơ bộ mã lỗi máy xét nghiệm qua video/ảnh chụp.
-                    </p>
-                  </div>
-
-                  <div className="p-4  bg-[#f3f7fb] border border-[#e5e5e5] relative">
-                    <span className="w-7 h-7 rounded-full bg-[#0a2540] text-white flex items-center justify-center text-[12px] font-bold mb-3">
-                      2
-                    </span>
-                    <h4 className="text-[13.5px] font-bold text-[#111111] mb-1.5">
-                      Khảo sát trong 2 - 4h
-                    </h4>
-                    <p className="text-[12px] text-[#777777] leading-relaxed">
-                      Kỹ sư chuyên ngành có mặt trực tiếp tại cơ sở y tế với đầy đủ thiết bị đo kiểm và linh kiện.
-                    </p>
-                  </div>
-
-                  <div className="p-4  bg-[#f3f7fb] border border-[#e5e5e5] relative">
-                    <span className="w-7 h-7 rounded-full bg-[#0a2540] text-white flex items-center justify-center text-[12px] font-bold mb-3">
-                      3
-                    </span>
-                    <h4 className="text-[13.5px] font-bold text-[#111111] mb-1.5">
-                      Sửa chữa & Thay thế
-                    </h4>
-                    <p className="text-[12px] text-[#777777] leading-relaxed">
-                      100% linh kiện chính hãng, vệ sinh hệ thống cơ điện tử và căn chỉnh quang học chính xác.
-                    </p>
-                  </div>
-
-                  <div className="p-4  bg-[#f3f7fb] border border-[#e5e5e5] relative">
-                    <span className="w-7 h-7 rounded-full bg-[#0a2540] text-white flex items-center justify-center text-[12px] font-bold mb-3">
-                      4
-                    </span>
-                    <h4 className="text-[13.5px] font-bold text-[#111111] mb-1.5">
-                      Kiểm định & Bàn giao
-                    </h4>
-                    <p className="text-[12px] text-[#777777] leading-relaxed">
-                      Chạy mẫu nghiệm thu QC, lập biên bản kiểm chuẩn và dán tem bảo hành kỹ thuật Trí Việt Phát.
-                    </p>
-                  </div>
+                  {DOCUMENTS_PAGE.processSteps.map((step, idx) => (
+                    <div key={idx} className="p-4  bg-[#f3f7fb] border border-[#e5e5e5] relative">
+                      <span className="w-7 h-7 rounded-full bg-[#0a2540] text-white flex items-center justify-center text-[12px] font-bold mb-3">
+                        {idx + 1}
+                      </span>
+                      <h4 className="text-[13.5px] font-bold text-[#111111] mb-1.5">{step.title}</h4>
+                      <p className="text-[12px] text-[#777777] leading-relaxed">{step.desc}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -695,7 +620,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                     help
                   </span>
                   <h3 className="text-[17px] sm:text-[18px] font-bold text-[#111111]">
-                    Câu hỏi thường gặp về Bảo trì & Sử dụng Thiết bị Y tế
+                    {DOCUMENTS_PAGE.faqTitle}
                   </h3>
                 </div>
 
@@ -867,7 +792,8 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
               </button>
               <button
                 onClick={() => {
-                  alert(`Bắt đầu tải xuống file: ${previewPdf.title}`);
+                  if (previewPdf.file) window.open(previewPdf.file, '_blank', 'noopener');
+                  else alert(`Quý khách vui lòng liên hệ Hotline ${COMPANY_INFO.hotline} để nhận tài liệu: ${previewPdf.title}.`);
                   setPreviewPdf(null);
                 }}
                 className="px-5 py-2  bg-[#0a2540] text-white hover:bg-[#071a2e] text-[13px] font-bold transition-colors inline-flex items-center gap-2 cursor-pointer "

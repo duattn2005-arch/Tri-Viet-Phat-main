@@ -161,6 +161,186 @@ collections:
       - { name: excerpt, label: Tóm tắt, widget: text }
       - { name: content, label: Mô tả công việc, widget: markdown }
 
+  # ---------- Chữ và ảnh của từng trang (src/content/pages.ts) ----------
+  - name: pages
+    label: Nội dung các trang
+    editor: { preview: false }
+    files:
+      - name: trang-chu
+        label: Trang chủ
+        file: Tri-Viet-Phat-main/src/content/pages/trang-chu.json
+        fields:
+          - name: heroSlides
+            label: Ảnh bìa chạy (đầu trang)
+            label_singular: ảnh bìa
+            widget: list
+            summary: '{{fields.title}}'
+            fields:
+              - { name: image, label: Ảnh (ngang, rộng tối thiểu 1600px), widget: image }
+              - { name: alt, label: Mô tả ảnh (cho Google), widget: string }
+              - { name: eyebrow, label: Dòng nhỏ phía trên, widget: string }
+              - { name: title, label: Tiêu đề lớn, widget: string }
+              - { name: desc, label: Mô tả, widget: text }
+          - { name: heroButton, label: Chữ trên nút ở ảnh bìa, widget: string }
+          - { name: factsImage, label: 'Khối "Những con số" — ảnh nền', widget: image }
+          - { name: factsEyebrow, label: 'Khối "Những con số" — dòng nhỏ', widget: string }
+          - { name: factsTitle, label: 'Khối "Những con số" — tiêu đề', widget: string }
+          - { name: factsIntro, label: 'Khối "Những con số" — mô tả', widget: text }
+          - name: facts
+            label: Các con số
+            label_singular: con số
+            widget: list
+            summary: '{{fields.value}} {{fields.label}}'
+            fields:
+              - { name: value, label: Con số, widget: string, hint: 'Ví dụ: 16+, 34, 100%, 2–4h' }
+              - { name: label, label: Tên, widget: string }
+              - { name: note, label: Ghi chú, widget: string }
+          - { name: categoriesTitle, label: 'Khối "Danh mục sản phẩm" — tiêu đề', widget: string }
+          - { name: categoriesDesc, label: 'Khối "Danh mục sản phẩm" — mô tả', widget: text }
+          - { name: featuredTitle, label: 'Tiêu đề "Sản phẩm nổi bật"', widget: string }
+          - { name: aboutImage2, label: 'Khối "Về Trí Việt Phát" — ảnh nhỏ', widget: image, hint: 'Ảnh lớn lấy từ Cài đặt chung → Thông tin công ty → Ảnh trang Giới thiệu' }
+          - { name: aboutBadge, label: 'Khối "Về Trí Việt Phát" — chữ dưới số năm', widget: string }
+          - { name: aboutEyebrow, label: 'Khối "Về Trí Việt Phát" — dòng nhỏ', widget: string }
+          - { name: aboutTitle, label: 'Khối "Về Trí Việt Phát" — tiêu đề', widget: string }
+          - { name: aboutText, label: 'Khối "Về Trí Việt Phát" — đoạn giới thiệu', widget: text }
+          - name: capabilities
+            label: 'Khối "Về Trí Việt Phát" — các thế mạnh'
+            label_singular: thế mạnh
+            widget: list
+            summary: '{{fields.title}}'
+            fields:
+              - { name: title, label: Tiêu đề, widget: string }
+              - { name: desc, label: Mô tả, widget: text }
+          - { name: partnersTitle, label: 'Khối "Đối tác" — tiêu đề', widget: string }
+          - { name: partnersDesc, label: 'Khối "Đối tác" — mô tả', widget: text }
+          - { name: formImage, label: 'Khối "Yêu cầu tư vấn" — ảnh nền', widget: image }
+          - { name: formEyebrow, label: 'Khối "Yêu cầu tư vấn" — dòng nhỏ', widget: string }
+          - { name: formTitle, label: 'Khối "Yêu cầu tư vấn" — tiêu đề', widget: string }
+          - { name: formIntro, label: 'Khối "Yêu cầu tư vấn" — mô tả', widget: text }
+          - { name: formAssurances, label: 'Khối "Yêu cầu tư vấn" — các cam kết', widget: list, field: { name: item, label: Cam kết, widget: string } }
+          - { name: quickChips, label: 'Khối "Yêu cầu tư vấn" — nút chọn nhanh', widget: list, field: { name: item, label: Nội dung, widget: string } }
+          - { name: newsTitle, label: 'Khối "Tin tức" — tiêu đề', widget: string }
+          - { name: newsDesc, label: 'Khối "Tin tức" — mô tả', widget: text }
+
+      - name: gioi-thieu
+        label: Trang Giới thiệu
+        file: Tri-Viet-Phat-main/src/content/pages/gioi-thieu.json
+        fields:
+          - { name: bannerTitle, label: Tiêu đề trang, widget: string }
+          - { name: bannerSubtitle, label: Dòng mô tả dưới tiêu đề, widget: text }
+          - { name: bannerImage, label: Ảnh nền đầu trang, widget: image }
+          - { name: storyTag, label: Dòng nhỏ phía trên câu chuyện, widget: string }
+          - { name: storyTitle, label: Tiêu đề câu chuyện, widget: string }
+          - { name: storyText, label: Nội dung câu chuyện, widget: text, hint: 'Cách một dòng trống để sang đoạn mới. Viết **chữ đậm** bằng hai dấu sao.' }
+          - name: stats
+            label: Ô số liệu
+            label_singular: ô
+            widget: list
+            summary: '{{fields.value}}'
+            fields:
+              - { name: icon, label: Biểu tượng, widget: string, hint: 'Tên biểu tượng Google Material Symbols, ví dụ verified' }
+              - { name: value, label: Con số, widget: string }
+              - { name: label, label: Mô tả, widget: string }
+          - name: pillars
+            label: Tầm nhìn / Sứ mệnh / Giá trị
+            label_singular: mục
+            widget: list
+            summary: '{{fields.title}}'
+            fields:
+              - { name: icon, label: Biểu tượng, widget: string, hint: 'Tên biểu tượng Google Material Symbols, ví dụ flag' }
+              - { name: title, label: Tiêu đề, widget: string }
+              - { name: desc, label: Nội dung, widget: text }
+          - { name: areasTitle, label: 'Khối "Lĩnh vực hoạt động" — tiêu đề', widget: string, hint: 'Danh sách lĩnh vực nằm ở Cài đặt chung → Lĩnh vực kinh doanh' }
+          - { name: areasDesc, label: 'Khối "Lĩnh vực hoạt động" — mô tả', widget: string }
+          - { name: ctaTitle, label: Khối cuối trang — tiêu đề, widget: string }
+          - { name: ctaDesc, label: Khối cuối trang — mô tả, widget: text }
+          - { name: ctaButton, label: Khối cuối trang — chữ trên nút, widget: string }
+
+      - name: san-pham
+        label: Trang Sản phẩm
+        file: Tri-Viet-Phat-main/src/content/pages/san-pham.json
+        fields:
+          - { name: bannerTitle, label: Tiêu đề trang, widget: string }
+          - { name: bannerSubtitle, label: Dòng mô tả dưới tiêu đề, widget: text }
+          - { name: bannerImage, label: Ảnh nền đầu trang, widget: image }
+
+      - name: tai-lieu
+        label: Trang Tài liệu
+        file: Tri-Viet-Phat-main/src/content/pages/tai-lieu.json
+        fields:
+          - { name: downloadsTitle, label: 'Khối "Tải về" — tiêu đề', widget: string }
+          - { name: downloadsDesc, label: 'Khối "Tải về" — mô tả', widget: text }
+          - name: downloads
+            label: Tài liệu tải về (PDF)
+            label_singular: tài liệu
+            widget: list
+            summary: '{{fields.title}}'
+            fields:
+              - { name: title, label: Tên tài liệu, widget: string }
+              - { name: file, label: File PDF, widget: file, required: false, hint: 'Chưa tải file lên thì nút "Tải PDF" sẽ nhắc khách gọi hotline.' }
+              - { name: code, label: Mã tài liệu, widget: string }
+              - { name: fileSize, label: Dung lượng, widget: string, hint: 'Ví dụ: 2.4 MB' }
+              - { name: pages, label: Số trang, widget: number, value_type: int, min: 1 }
+              - { name: description, label: Mô tả, widget: text }
+          - { name: processEyebrow, label: 'Khối "Quy trình bảo trì" — dòng nhỏ', widget: string }
+          - { name: processTitle, label: 'Khối "Quy trình bảo trì" — tiêu đề', widget: string }
+          - name: processSteps
+            label: Các bước bảo trì
+            label_singular: bước
+            widget: list
+            summary: '{{fields.title}}'
+            fields:
+              - { name: title, label: Tên bước, widget: string }
+              - { name: desc, label: Mô tả, widget: text }
+          - { name: faqTitle, label: 'Khối "Câu hỏi thường gặp" — tiêu đề', widget: string }
+          - name: faqs
+            label: Câu hỏi thường gặp
+            label_singular: câu hỏi
+            widget: list
+            summary: '{{fields.q}}'
+            fields:
+              - { name: q, label: Câu hỏi, widget: string }
+              - { name: a, label: Trả lời, widget: text }
+
+      - name: tuyen-dung
+        label: Trang Tuyển dụng
+        file: Tri-Viet-Phat-main/src/content/pages/tuyen-dung.json
+        fields:
+          - { name: bannerTitle, label: Tiêu đề trang, widget: string }
+          - { name: companyTitle, label: Khung giới thiệu công ty — tiêu đề, widget: string }
+          - { name: companyDesc, label: Khung giới thiệu công ty — nội dung, widget: text }
+
+      - name: lien-he
+        label: Trang Liên hệ
+        file: Tri-Viet-Phat-main/src/content/pages/lien-he.json
+        fields:
+          - { name: bannerTitle, label: Tiêu đề trang, widget: string }
+          - { name: slogan, label: Câu khẩu hiệu, widget: text }
+          - { name: repairTitle, label: 'Khối "Sửa chữa" — tiêu đề', widget: string }
+          - { name: repairDesc, label: 'Khối "Sửa chữa" — mô tả', widget: string }
+          - { name: formTitle, label: Tiêu đề khung gửi yêu cầu, widget: string }
+
+      - name: chan-trang
+        label: Chân trang (cuối mọi trang)
+        file: Tri-Viet-Phat-main/src/content/pages/chan-trang.json
+        fields:
+          - { name: ctaTitle, label: Dải kêu gọi — tiêu đề, widget: string }
+          - { name: ctaDesc, label: Dải kêu gọi — mô tả, widget: string }
+          - { name: connectText, label: 'Cột "Kết nối" — mô tả', widget: text }
+          - { name: bottomNote, label: Dòng cuối cùng, widget: string }
+
+      - name: seo
+        label: SEO (tiêu đề và mô tả trên Google)
+        file: Tri-Viet-Phat-main/src/content/pages/seo.json
+        fields:
+          - { name: trang-chu, label: Trang chủ, widget: object, collapsed: true, fields: [{ name: title, label: 'Tiêu đề (tối đa ~60 ký tự, viết đầy đủ kể cả tên công ty)', widget: string }, { name: description, label: Mô tả (tối đa ~160 ký tự), widget: text }] }
+          - { name: gioi-thieu, label: Giới thiệu, widget: object, collapsed: true, fields: [{ name: title, label: 'Tiêu đề (web tự thêm " | Trí Việt Phát")', widget: string }, { name: description, label: Mô tả (tối đa ~160 ký tự), widget: text }] }
+          - { name: san-pham, label: Sản phẩm, widget: object, collapsed: true, fields: [{ name: title, label: 'Tiêu đề (web tự thêm " | Trí Việt Phát")', widget: string }, { name: description, label: Mô tả (tối đa ~160 ký tự), widget: text }] }
+          - { name: tai-lieu, label: Tài liệu, widget: object, collapsed: true, fields: [{ name: title, label: 'Tiêu đề (web tự thêm " | Trí Việt Phát")', widget: string }, { name: description, label: Mô tả (tối đa ~160 ký tự), widget: text }] }
+          - { name: tin-tuc, label: Tin tức, widget: object, collapsed: true, fields: [{ name: title, label: 'Tiêu đề (web tự thêm " | Trí Việt Phát")', widget: string }, { name: description, label: Mô tả (tối đa ~160 ký tự), widget: text }] }
+          - { name: tuyen-dung, label: Tuyển dụng, widget: object, collapsed: true, fields: [{ name: title, label: 'Tiêu đề (web tự thêm " | Trí Việt Phát")', widget: string }, { name: description, label: Mô tả (tối đa ~160 ký tự), widget: text }] }
+          - { name: lien-he, label: Liên hệ, widget: object, collapsed: true, fields: [{ name: title, label: 'Tiêu đề (web tự thêm " | Trí Việt Phát")', widget: string }, { name: description, label: Mô tả (tối đa ~160 ký tự), widget: text }] }
+
   # ---------- Cài đặt chung ----------
   - name: settings
     label: Cài đặt chung

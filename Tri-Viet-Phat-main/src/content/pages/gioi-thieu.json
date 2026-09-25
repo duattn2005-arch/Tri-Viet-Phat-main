@@ -1,0 +1,42 @@
+{
+  "bannerTitle": "Giới thiệu Trí Việt Phát",
+  "bannerSubtitle": "Hơn 16 năm cung ứng thiết bị và hóa chất xét nghiệm cho bệnh viện, phòng khám trên toàn quốc.",
+  "bannerImage": "/images/hero-engineers.jpg",
+  "storyTag": "Hành Trình 16+ Năm",
+  "storyTitle": "Xây Dựng Niềm Tin & Chuẩn Hóa Y Tế",
+  "storyText": "Được thành lập theo Giấy phép ĐKKD số **0105558779** do Sở Kế hoạch và Đầu tư Hà Nội, **Công ty TNHH Thương mại Dịch vụ Trí Việt Phát** đã có hơn 16 năm liên tục phát triển trong ngành cung ứng trang thiết bị y tế và hóa chất xét nghiệm chẩn đoán in vitro (IVD).\n\nVới tôn chỉ “Chất lượng là nền tảng - Uy tín là tài sản”, chúng tôi là cầu nối tin cậy giữa các hãng thiết bị y tế hàng đầu thế giới (DIRUI, Wondfo, EKF, Dewei, Drawray, Audicom) và hệ thống các bệnh viện, phòng khám đa khoa, trung tâm xét nghiệm trên toàn quốc.",
+  "stats": [
+    {
+      "icon": "workspace_premium",
+      "value": "16+ Năm",
+      "label": "Kinh nghiệm phân phối và chuyển giao công nghệ"
+    },
+    {
+      "icon": "verified",
+      "value": "100%",
+      "label": "Hóa chất & máy móc chính hãng có CO/CQ, CFS"
+    }
+  ],
+  "pillars": [
+    {
+      "icon": "visibility",
+      "title": "Tầm nhìn chiến lược",
+      "desc": "Trở thành thương hiệu hàng đầu Việt Nam về cung cấp giải pháp trọn gói phòng xét nghiệm y khoa, chuẩn hóa quy trình chẩn đoán lâm sàng theo tiêu chuẩn quốc tế ISO 15189."
+    },
+    {
+      "icon": "flag",
+      "title": "Sứ mệnh cao cả",
+      "desc": "Cung cấp trang thiết bị chuẩn xác, an toàn, hỗ trợ tối đa các y bác sĩ đưa ra quyết định điều trị kịp thời, chính xác cho hàng triệu bệnh nhân mỗi năm."
+    },
+    {
+      "icon": "military_tech",
+      "title": "Giá trị cốt lõi",
+      "desc": "Chất lượng tối ưu - Uy tín tuyệt đối - Đồng hành dài lâu. Mọi hoạt động của công ty luôn đặt sự an toàn của người bệnh lên hàng đầu."
+    }
+  ],
+  "areasTitle": "Lĩnh Vực Hoạt Động Chuyên Môn",
+  "areasDesc": "Danh mục các sản phẩm và dịch vụ thế mạnh của Trí Việt Phát",
+  "ctaTitle": "Hợp tác cùng Trí Việt Phát",
+  "ctaDesc": "Liên hệ ngay để nhận catalog chi tiết, bảng báo giá dự toán và chính sách ưu đãi dành riêng cho cơ sở y tế của bạn.",
+  "ctaButton": "Đăng ký hợp tác / Báo giá"
+}

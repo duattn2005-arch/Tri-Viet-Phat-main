@@ -1,0 +1,99 @@
+{
+  "heroSlides": [
+    {
+      "image": "/images/hero-lab-analyzers.jpg",
+      "alt": "Phòng xét nghiệm với dãy máy phân tích tự động",
+      "eyebrow": "Giải pháp trọn gói cho phòng xét nghiệm",
+      "title": "Máy xét nghiệm Dirui chính hãng",
+      "desc": "Máy xét nghiệm sinh hóa, nước tiểu, huyết học Dirui, máy điện giải và hóa chất xét nghiệm chính hãng cho bệnh viện, phòng khám toàn quốc."
+    },
+    {
+      "image": "/images/hero-pipette.jpg",
+      "alt": "Kỹ thuật viên thao tác pipet với ống mẫu xét nghiệm",
+      "eyebrow": "Hóa chất và vật tư",
+      "title": "Hóa chất chuẩn, sẵn kho tại Hà Nội",
+      "desc": "Hóa chất huyết học Dewei, thuốc thử sinh hóa và vật tư tiêu hao, giao nhanh cho phòng xét nghiệm trên toàn quốc."
+    },
+    {
+      "image": "/images/hero-engineers.jpg",
+      "alt": "Đội kỹ sư làm việc trong phòng thí nghiệm",
+      "eyebrow": "Lắp đặt và bảo trì",
+      "title": "Kỹ sư có mặt tận nơi trong 2–4 giờ",
+      "desc": "Kỹ sư y sinh được hãng đào tạo: lắp đặt, chạy mẫu đối chứng, chuyển giao và bảo trì định kỳ tại cơ sở."
+    }
+  ],
+  "heroButton": "Yêu cầu báo giá",
+  "factsImage": "/images/hero-engineers.jpg",
+  "factsEyebrow": "Trí Việt Phát",
+  "factsTitle": "Những con số ấn tượng",
+  "factsIntro": "Nhiều năm đồng hành cùng các bệnh viện, trung tâm y tế và phòng khám: thiết bị chính hãng, hồ sơ pháp lý đầy đủ và đội ngũ kỹ sư hỗ trợ tận nơi.",
+  "facts": [
+    {
+      "value": "16+",
+      "label": "Năm kinh nghiệm",
+      "note": "trong ngành thiết bị y tế"
+    },
+    {
+      "value": "34",
+      "label": "Tỉnh thành",
+      "note": "có bệnh viện, phòng khám sử dụng"
+    },
+    {
+      "value": "100%",
+      "label": "Chính hãng",
+      "note": "đủ CO/CQ, giấy phép lưu hành"
+    },
+    {
+      "value": "2–4h",
+      "label": "Có mặt kỹ thuật",
+      "note": "tại Hà Nội và tỉnh lân cận"
+    }
+  ],
+  "categoriesTitle": "Danh mục sản phẩm",
+  "categoriesDesc": "Hệ thống máy xét nghiệm và hóa chất IVD chính hãng cho mọi quy mô phòng xét nghiệm.",
+  "featuredTitle": "Sản phẩm nổi bật",
+  "aboutImage2": "/images/hero-pipette.jpg",
+  "aboutBadge": "Năm kinh nghiệm",
+  "aboutEyebrow": "Về Trí Việt Phát",
+  "aboutTitle": "Đối tác tin cậy của phòng xét nghiệm Việt Nam",
+  "aboutText": "Công ty TNHH Thương mại Dịch vụ Trí Việt Phát được thành lập theo giấy phép số 0105558779 của Sở Kế hoạch và Đầu tư Hà Nội. Hơn 16 năm qua, chúng tôi cung ứng thiết bị và hóa chất xét nghiệm cho các bệnh viện đa khoa, trung tâm y tế và phòng khám trên toàn quốc.",
+  "capabilities": [
+    {
+      "title": "Kỹ sư y sinh được hãng đào tạo",
+      "desc": "Kỹ sư được đào tạo trực tiếp từ nhà sản xuất, có chứng chỉ bảo trì hệ thống IVD."
+    },
+    {
+      "title": "Hồ sơ pháp lý đầy đủ",
+      "desc": "Thiết bị và hóa chất có giấy phép nhập khẩu, phân loại và công bố tiêu chuẩn Bộ Y tế."
+    },
+    {
+      "title": "Lắp đặt và chuyển giao tận nơi",
+      "desc": "Lắp đặt, chạy mẫu đối chứng và hướng dẫn kỹ thuật viên vận hành thành thạo."
+    },
+    {
+      "title": "Bảo trì và hỗ trợ 24/7",
+      "desc": "Sẵn linh kiện thay thế và hóa chất dự phòng để phòng xét nghiệm không bị gián đoạn."
+    }
+  ],
+  "partnersTitle": "Đối tác của chúng tôi",
+  "partnersDesc": "Trí Việt Phát tự hào là nhà phân phối chính thức sản phẩm của các hãng chẩn đoán IVD hàng đầu thế giới.",
+  "formImage": "/images/hero-lab-analyzers.jpg",
+  "formEyebrow": "Tư vấn miễn phí",
+  "formTitle": "Yêu cầu tư vấn và báo giá",
+  "formIntro": "Bệnh viện, phòng khám hoặc đơn vị dự thầu vui lòng gửi thông tin. Kỹ sư phụ trách khu vực sẽ liên hệ lại với báo giá và cấu hình phù hợp.",
+  "formAssurances": [
+    "Phản hồi và gửi cấu hình kỹ thuật trong 15 phút làm việc",
+    "Báo giá trực tiếp từ đại diện phân phối chính hãng",
+    "Hỗ trợ hồ sơ pháp lý, catalog và thông số dự thầu"
+  ],
+  "quickChips": [
+    "Máy xét nghiệm huyết học",
+    "Máy xét nghiệm sinh hóa",
+    "Máy phân tích nước tiểu",
+    "Máy đo điện giải đồ",
+    "Hóa chất huyết học Dewei",
+    "Cấu hình hồ sơ thầu"
+  ],
+  "newsTitle": "Tin tức và hướng dẫn kỹ thuật",
+  "newsDesc": "Cập nhật kiến thức xét nghiệm, hướng dẫn vận hành và bảo trì thiết bị."
+}

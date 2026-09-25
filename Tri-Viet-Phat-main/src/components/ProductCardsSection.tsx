@@ -4,6 +4,7 @@ import { PRODUCTS } from '../data/mockData';
 import { SectionHeader } from './SectionHeader';
 import { RevealGroup, RevealItem } from './motion/Reveal';
 import { Tilt } from './motion/Tilt';
+import { HOME_PAGE } from '../content/pages';
 
 interface ProductCardsSectionProps {
   onNavigateTab: (tab: PageTab, categoryFilter?: string) => void;
@@ -36,8 +37,8 @@ export const ProductCardsSection: React.FC<ProductCardsSectionProps> = ({ onNavi
       <div className="relative max-w-[1320px] mx-auto px-4 sm:px-8">
         <SectionHeader
           align="center"
-          title="Danh mục sản phẩm"
-          description="Hệ thống máy xét nghiệm và hóa chất IVD chính hãng cho mọi quy mô phòng xét nghiệm."
+          title={HOME_PAGE.categoriesTitle}
+          description={HOME_PAGE.categoriesDesc}
           actionLabel="Xem tất cả sản phẩm"
           onAction={() => onNavigateTab('san-pham')}
         />

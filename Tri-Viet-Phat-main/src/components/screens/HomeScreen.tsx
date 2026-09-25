@@ -14,6 +14,7 @@ import { SectionHeader, ViewAllButton } from '../SectionHeader';
 import { ProductCard } from '../ProductCard';
 import { Tilt } from '../motion/Tilt';
 import { Reveal, RevealGroup, RevealItem, WipeImage, CountUp, MaskText, ParallaxImage, AmbientGlow } from '../motion/Reveal';
+import { HOME_PAGE, splitCount } from '../../content/pages';
 
 interface HomeScreenProps {
   onSelectProduct: (product: Product) => void;
@@ -33,21 +34,9 @@ const CATEGORY_FILTERS = [
   { key: 'hoa-chat-xet-nghiem', label: 'Hóa chất' },
 ];
 
-const CONSULTATION_QUICK_CHIPS = [
-  'Máy xét nghiệm huyết học',
-  'Máy xét nghiệm sinh hóa',
-  'Máy phân tích nước tiểu',
-  'Máy đo điện giải đồ',
-  'Hóa chất huyết học Dewei',
-  'Cấu hình hồ sơ thầu',
-];
+const CONSULTATION_QUICK_CHIPS = HOME_PAGE.quickChips;
 
-const FACTS = [
-  { to: parseInt(COMPANY_INFO.yearsOfExperience, 10), suffix: '+', label: 'Năm kinh nghiệm', note: 'trong ngành thiết bị y tế' },
-  { to: parseInt(COMPANY_INFO.provincesCovered, 10), suffix: '', label: 'Tỉnh thành', note: 'có bệnh viện, phòng khám sử dụng' },
-  { to: parseInt(COMPANY_INFO.genuineReagents, 10), suffix: '%', label: 'Chính hãng', note: 'đủ CO/CQ, giấy phép lưu hành' },
-  { to: 4, prefix: '2–', suffix: 'h', label: 'Có mặt kỹ thuật', note: 'tại Hà Nội và tỉnh lân cận' },
-];
+const FACTS = HOME_PAGE.facts;
 
 const CATEGORY_WORDS = [
   { label: 'Huyết học', cat: 'may-xet-nghiem-huyet-hoc' },
@@ -59,30 +48,9 @@ const CATEGORY_WORDS = [
   { label: 'Hóa chất IVD', cat: 'hoa-chat-xet-nghiem' },
 ];
 
-const CAPABILITIES = [
-  {
-    title: 'Kỹ sư y sinh được hãng đào tạo',
-    desc: 'Kỹ sư được đào tạo trực tiếp từ nhà sản xuất, có chứng chỉ bảo trì hệ thống IVD.',
-  },
-  {
-    title: 'Hồ sơ pháp lý đầy đủ',
-    desc: 'Thiết bị và hóa chất có giấy phép nhập khẩu, phân loại và công bố tiêu chuẩn Bộ Y tế.',
-  },
-  {
-    title: 'Lắp đặt và chuyển giao tận nơi',
-    desc: 'Lắp đặt, chạy mẫu đối chứng và hướng dẫn kỹ thuật viên vận hành thành thạo.',
-  },
-  {
-    title: 'Bảo trì và hỗ trợ 24/7',
-    desc: 'Sẵn linh kiện thay thế và hóa chất dự phòng để phòng xét nghiệm không bị gián đoạn.',
-  },
-];
+const CAPABILITIES = HOME_PAGE.capabilities;
 
-const FORM_ASSURANCES = [
-  'Phản hồi và gửi cấu hình kỹ thuật trong 15 phút làm việc',
-  'Báo giá trực tiếp từ đại diện phân phối chính hãng',
-  'Hỗ trợ hồ sơ pháp lý, catalog và thông số dự thầu',
-];
+const FORM_ASSURANCES = HOME_PAGE.formAssurances;
 
 const INPUT_CLASS =
   'w-full px-3.5 py-2.5 bg-white border border-[#d4d4d4] text-[14px] text-[#111111] placeholder:text-[#999999] focus:outline-none focus:border-[#0a2540] focus:ring-1 focus:ring-[#0a2540]';
@@ -173,7 +141,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
       {/* 2. Key facts — photo-backed navy band, heading + glass counter cards */}
       <section className="fx-spotlight relative w-full overflow-hidden bg-[#0a2540] text-white">
-        <ParallaxImage src="/images/hero-engineers.jpg" alt="Kỹ sư Trí Việt Phát trong phòng thí nghiệm" className="opacity-25" />
+        <ParallaxImage src={HOME_PAGE.factsImage} alt="Kỹ sư Trí Việt Phát trong phòng thí nghiệm" className="opacity-25" />
         <div className="absolute inset-0 bg-linear-to-br from-[#0a2540]/95 via-[#0a2540]/85 to-[#0b3a66]/80" aria-hidden="true" />
         <AmbientGlow />
         <div className="relative max-w-[1320px] mx-auto px-4 sm:px-8 py-14 sm:py-20">
@@ -181,22 +149,23 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             <div className="lg:col-span-5">
               <p className="flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.18em] text-[#5cc2ff]">
                 <span className="w-8 h-px bg-[#5cc2ff]" aria-hidden="true" />
-                Trí Việt Phát
+                {HOME_PAGE.factsEyebrow}
               </p>
               <h2 className="mt-3 text-[26px] sm:text-[34px] font-bold leading-tight">
-                <MaskText text="Những con số ấn tượng" />
+                <MaskText text={HOME_PAGE.factsTitle} />
               </h2>
             </div>
             <p className="lg:col-span-7 text-[15px] sm:text-[16px] text-white/70 leading-relaxed">
-              Nhiều năm đồng hành cùng các bệnh viện, trung tâm y tế và phòng khám: thiết bị chính hãng, hồ sơ pháp lý
-              đầy đủ và đội ngũ kỹ sư hỗ trợ tận nơi.
+              {HOME_PAGE.factsIntro}
             </p>
           </Reveal>
 
           <dl className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
-            {FACTS.map((fact, idx) => (
+            {FACTS.map((fact, idx) => {
+              const count = splitCount(fact.value);
+              return (
               <Reveal
-                key={fact.label}
+                key={idx}
                 delay={idx * 0.12}
                 className="group relative overflow-hidden rounded-2xl bg-white/[0.06] border border-white/10 backdrop-blur-sm p-5 sm:p-7 hover:-translate-y-1.5 hover:bg-white/[0.1] hover:border-[#0a94dc]/60 hover:shadow-[0_20px_50px_-20px_rgba(10,148,220,0.7)] transition-[translate,background-color,border-color,box-shadow] duration-500"
               >
@@ -210,19 +179,24 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   aria-hidden="true"
                 />
                 <dd className="text-[40px] sm:text-[52px] lg:text-[58px] font-bold leading-none tracking-tight tabular-nums">
-                  <CountUp
-                    to={fact.to}
-                    prefix={fact.prefix}
-                    suffix={fact.suffix}
-                    suffixClassName="text-[#e11d2a] text-[0.6em] align-top ml-1"
-                  />
+                  {count ? (
+                    <CountUp
+                      to={count.to}
+                      prefix={count.prefix}
+                      suffix={count.suffix}
+                      suffixClassName="text-[#e11d2a] text-[0.6em] align-top ml-1"
+                    />
+                  ) : (
+                    fact.value
+                  )}
                 </dd>
                 <dt className="mt-4 text-[12px] sm:text-[13px] font-semibold uppercase tracking-[0.14em] text-white">
                   {fact.label}
                 </dt>
                 <dd className="mt-1.5 text-[13px] sm:text-[14px] text-white/60 leading-snug">{fact.note}</dd>
               </Reveal>
-            ))}
+              );
+            })}
           </dl>
         </div>
       </section>
@@ -253,7 +227,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                       : 'border-transparent text-[#999999] hover:text-[#555555]'
                   }`}
                 >
-                  {cat.key === 'all' ? 'Sản phẩm nổi bật' : cat.label}
+                  {cat.key === 'all' ? HOME_PAGE.featuredTitle : cat.label}
                 </button>
               );
             })}
@@ -313,7 +287,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             {/* Secondary photo overlapping the bottom-right corner */}
             <Reveal delay={0.35} y={40} className="absolute right-0 bottom-0 w-[46%] border-[6px] sm:border-8 border-white fx-shine group">
               <img
-                src="/images/hero-pipette.jpg"
+                src={HOME_PAGE.aboutImage2}
                 alt="Thao tác pipet với ống mẫu xét nghiệm"
                 loading="lazy"
                 className="w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-110"
@@ -333,7 +307,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 />
               </div>
               <div className="mt-2 text-[12px] sm:text-[13px] font-semibold uppercase tracking-[0.14em] text-white/80">
-                Năm kinh nghiệm
+                {HOME_PAGE.aboutBadge}
               </div>
             </Reveal>
           </div>
@@ -342,21 +316,18 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           <Reveal className="lg:col-span-6" delay={0.15}>
             <p className="flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.18em] text-[#e11d2a]">
               <span className="w-8 h-px bg-[#e11d2a]" aria-hidden="true" />
-              Về Trí Việt Phát
+              {HOME_PAGE.aboutEyebrow}
             </p>
             <h2 className="mt-4 text-[30px] sm:text-[40px] font-bold text-[#111111] leading-[1.15] tracking-tight">
-              <MaskText text="Đối tác tin cậy của phòng xét nghiệm Việt Nam" />
+              <MaskText text={HOME_PAGE.aboutTitle} />
             </h2>
             <p className="mt-6 text-[16px] sm:text-[17px] text-[#555555] leading-relaxed">
-              {COMPANY_INFO.name} được thành lập theo giấy phép số {COMPANY_INFO.licenseNo} của{' '}
-              {COMPANY_INFO.licensedBy}. Hơn {COMPANY_INFO.yearsOfExperience.replace('+', '')} năm qua, chúng tôi
-              cung ứng thiết bị và hóa chất xét nghiệm cho các bệnh viện đa khoa, trung tâm y tế và phòng khám trên
-              toàn quốc.
+              {HOME_PAGE.aboutText}
             </p>
 
             <ol className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8">
               {CAPABILITIES.map((cap, idx) => (
-                <li key={cap.title} className="group flex gap-4">
+                <li key={idx} className="group flex gap-4">
                   <span className="shrink-0 text-[14px] font-bold text-[#e11d2a] tabular-nums pt-0.5">
                     {String(idx + 1).padStart(2, '0')}
                   </span>
@@ -399,8 +370,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         <div className="relative max-w-[1320px] mx-auto px-4 sm:px-8">
           <SectionHeader
             align="center"
-            title="Đối tác của chúng tôi"
-            description="Trí Việt Phát tự hào là nhà phân phối chính thức sản phẩm của các hãng chẩn đoán IVD hàng đầu thế giới."
+            title={HOME_PAGE.partnersTitle}
+            description={HOME_PAGE.partnersDesc}
           />
           {/* Infinite marquee: the list is rendered twice and slid by -50% */}
           <div className="marquee group relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
@@ -439,20 +410,19 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
       {/* 8. Consultation form — dark band over a parallax lab photo; the white form card pops forward */}
       <section className="fx-spotlight relative w-full overflow-hidden py-16 sm:py-24 bg-[#0a2540] text-white" id="tu-van-form">
-        <ParallaxImage src="/images/hero-lab-analyzers.jpg" alt="Dãy máy phân tích xét nghiệm tự động" className="opacity-50" />
+        <ParallaxImage src={HOME_PAGE.formImage} alt="Dãy máy phân tích xét nghiệm tự động" className="opacity-50" />
         <div className="absolute inset-0 bg-linear-to-r from-[#0a2540]/95 via-[#0a2540]/75 to-[#0a2540]/30" aria-hidden="true" />
         <div className="relative max-w-[1320px] mx-auto px-4 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <Reveal className="lg:col-span-5">
             <p className="flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.18em] text-[#e11d2a]">
               <span className="w-8 h-px bg-[#e11d2a]" aria-hidden="true" />
-              Tư vấn miễn phí
+              {HOME_PAGE.formEyebrow}
             </p>
             <h2 className="mt-4 text-[30px] sm:text-[40px] font-bold leading-[1.15] tracking-tight">
-              <MaskText text="Yêu cầu tư vấn và báo giá" />
+              <MaskText text={HOME_PAGE.formTitle} />
             </h2>
             <p className="mt-5 text-[16px] text-white/70 leading-relaxed">
-              Bệnh viện, phòng khám hoặc đơn vị dự thầu vui lòng gửi thông tin. Kỹ sư phụ trách khu vực sẽ liên hệ lại
-              với báo giá và cấu hình phù hợp.
+              {HOME_PAGE.formIntro}
             </p>
 
             <ul className="mt-7 space-y-3.5">
@@ -622,7 +592,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       {/* 9. News */}
       <section className="w-full py-12 sm:py-16 fx-section-soft">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-8">
-          <SectionHeader align="center" title="Tin tức và hướng dẫn kỹ thuật" description="Cập nhật kiến thức xét nghiệm, hướng dẫn vận hành và bảo trì thiết bị." />
+          <SectionHeader align="center" title={HOME_PAGE.newsTitle} description={HOME_PAGE.newsDesc} />
 
           <RevealGroup className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {REAL_NEWS_ARTICLES.slice(0, 3).map((art) => (

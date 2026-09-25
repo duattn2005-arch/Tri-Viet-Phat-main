@@ -1,34 +1,13 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
 import { COMPANY_INFO } from '../data/mockData';
+import { HOME_PAGE } from '../content/pages';
 
 interface HeroSectionProps {
   onOpenConsultation: (prefilledProduct?: string) => void;
 }
 
-const SLIDES = [
-  {
-    image: '/images/hero-lab-analyzers.jpg',
-    alt: 'Phòng xét nghiệm với dãy máy phân tích tự động',
-    eyebrow: 'Giải pháp trọn gói cho phòng xét nghiệm',
-    title: 'Máy xét nghiệm Dirui chính hãng',
-    desc: 'Máy xét nghiệm sinh hóa, nước tiểu, huyết học Dirui, máy điện giải và hóa chất xét nghiệm chính hãng cho bệnh viện, phòng khám toàn quốc.',
-  },
-  {
-    image: '/images/hero-pipette.jpg',
-    alt: 'Kỹ thuật viên thao tác pipet với ống mẫu xét nghiệm',
-    eyebrow: 'Hóa chất và vật tư',
-    title: 'Hóa chất chuẩn, sẵn kho tại Hà Nội',
-    desc: 'Hóa chất huyết học Dewei, thuốc thử sinh hóa và vật tư tiêu hao, giao nhanh cho phòng xét nghiệm trên toàn quốc.',
-  },
-  {
-    image: '/images/hero-engineers.jpg',
-    alt: 'Đội kỹ sư làm việc trong phòng thí nghiệm',
-    eyebrow: 'Lắp đặt và bảo trì',
-    title: 'Kỹ sư có mặt tận nơi trong 2–4 giờ',
-    desc: 'Kỹ sư y sinh được hãng đào tạo: lắp đặt, chạy mẫu đối chứng, chuyển giao và bảo trì định kỳ tại cơ sở.',
-  },
-];
+const SLIDES = HOME_PAGE.heroSlides;
 
 const SLIDE_MS = 7000;
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -96,7 +75,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenConsultation }) 
       <motion.div className="absolute inset-0" style={{ y: imageY }}>
         {SLIDES.map((s, i) => (
           <motion.img
-            key={s.image}
+            key={i}
             src={s.image}
             alt={s.alt}
             aria-hidden={i !== active}
@@ -156,7 +135,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenConsultation }) 
             >
               {/* Fill sweeps in from the left on hover */}
               <span className="absolute inset-0 bg-[#0a2540] -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
-              <span className="relative group-hover:text-white transition-colors duration-500">Yêu cầu báo giá</span>
+              <span className="relative group-hover:text-white transition-colors duration-500">{HOME_PAGE.heroButton}</span>
             </button>
             <a href={`tel:${hotlineDigits}`} className="group text-[15px] text-white/85 hover:text-white">
               Hotline{' '}

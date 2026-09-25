@@ -3,6 +3,7 @@ import { PRODUCTS } from '../../data/mockData';
 import { brandName, originName } from '../../data/productMeta';
 import { ProductCard } from '../ProductCard';
 import { PageBanner } from '../PageBanner';
+import { PRODUCTS_PAGE } from '../../content/pages';
 import { RevealGroup, RevealItem } from '../motion/Reveal';
 import { Product } from '../../types';
 import { brandBySlug } from '../../seo/brands';
@@ -156,9 +157,9 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({
   return (
     <div className="w-full bg-white">
       <PageBanner
-        title={brand ? brand.heading : PRODUCT_CATEGORY_LABELS[selectedCategory] ?? 'Máy xét nghiệm & hóa chất xét nghiệm'}
-        subtitle={brand ? brand.intro : 'Thiết bị xét nghiệm và hóa chất IVD chính hãng, đủ CO/CQ, giao và lắp đặt toàn quốc.'}
-        image="/images/hero-pipette.jpg"
+        title={brand ? brand.heading : PRODUCT_CATEGORY_LABELS[selectedCategory] ?? PRODUCTS_PAGE.bannerTitle}
+        subtitle={brand ? brand.intro : PRODUCTS_PAGE.bannerSubtitle}
+        image={PRODUCTS_PAGE.bannerImage}
         breadcrumbs={
           brand
             ? [{ label: 'Trang chủ' }, { label: 'Sản phẩm', onClick: () => selectCategory('all') }, { label: brand.name }]

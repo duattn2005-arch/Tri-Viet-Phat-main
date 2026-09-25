@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { PageBanner } from '../PageBanner';
+import { COMPANY_INFO } from '../../data/mockData';
+import { CAREERS_PAGE } from '../../content/pages';
 import { sendLead } from '../../lib/sendLead';
 import { REAL_JOBS, JobItem } from '../../data/realSiteContent';
 
@@ -52,7 +54,7 @@ export const CareersScreen: React.FC = () => {
     <div className="w-full bg-white">
       {/* Banner */}
       <PageBanner
-        title={activeJob ? activeJob.title : 'Tin tuyển dụng'}
+        title={activeJob ? activeJob.title : CAREERS_PAGE.bannerTitle}
         backgroundImage="/uploads/wp/2024/09/tin-tuyen-dung.png"
         breadcrumbs={
           activeJob
@@ -237,13 +239,13 @@ export const CareersScreen: React.FC = () => {
                 {/* Company Support Card */}
                 <div className="fx-panel p-5  text-[13.5px] space-y-3">
                   <div className="font-bold text-[#111111] text-[15px] border-b border-[#f2f2f2] pb-2">
-                    Công ty Thiết Bị Y Tế Trí Việt Phát
+                    {CAREERS_PAGE.companyTitle}
                   </div>
                   <p className="text-[#777777]">
-                    Môi trường làm việc năng động, chế độ đãi ngộ vượt trội, cơ hội đào tạo và phát triển bền vững cùng các hãng thiết bị y tế hàng đầu thế giới.
+                    {CAREERS_PAGE.companyDesc}
                   </p>
                   <div className="pt-2 text-[13px] text-[#111111]">
-                    <strong>Hotline:</strong> 0392.123.688
+                    <strong>Hotline:</strong> {COMPANY_INFO.hotline}
                   </div>
                 </div>
               </div>

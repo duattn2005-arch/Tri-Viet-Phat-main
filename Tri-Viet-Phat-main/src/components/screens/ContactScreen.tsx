@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { PageBanner } from '../PageBanner';
+import { CONTACT_PAGE } from '../../content/pages';
 import { sendLead } from '../../lib/sendLead';
 
 interface ContactScreenProps {
@@ -47,7 +48,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
     <div className="w-full fx-page-bg min-h-screen">
       {/* Banner */}
       <PageBanner
-        title="Liên hệ"
+        title={CONTACT_PAGE.bannerTitle}
         backgroundImage="/uploads/wp/2024/09/lien-he-mua-hang.png"
         breadcrumbs={[{ label: 'Trang chủ' }, { label: 'Liên hệ' }]}
       />
@@ -56,7 +57,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
         {/* Slogan */}
         <div className="text-center max-w-3xl mx-auto">
           <p className="text-[15px] sm:text-[16.5px] text-[#111111] font-medium leading-relaxed italic">
-            "Trí Việt Phát luôn tiên phong nghiên cứu, phát triển và cung cấp cho thị trường các loại thiết bị, sản phẩm với chất lượng tốt nhất."
+            {CONTACT_PAGE.slogan}
           </p>
         </div>
 
@@ -69,10 +70,10 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
               </div>
               <div>
                 <h3 className="text-[16px] sm:text-[17px] font-bold">
-                  Thiết bị gặp sự cố cần sửa chữa?
+                  {CONTACT_PAGE.repairTitle}
                 </h3>
                 <p className="text-[13px] text-[#e5e5e5] [text-wrap:balance]">
-                  Đăng ký dịch vụ sửa chữa để kỹ sư kỹ thuật liên hệ và xử lý nhanh nhất.
+                  {CONTACT_PAGE.repairDesc}
                 </p>
               </div>
             </div>
@@ -92,7 +93,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
           {/* Left: Contact Form */}
           <div className="lg:col-span-6 fx-panel p-5 sm:p-6  flex flex-col justify-between">
             <div>
-              <h3 className="pb-3 border-b border-[#e5e5e5] text-[18px] font-bold text-[#111111] mb-5">Liên hệ gửi yêu cầu</h3>
+              <h3 className="pb-3 border-b border-[#e5e5e5] text-[18px] font-bold text-[#111111] mb-5">{CONTACT_PAGE.formTitle}</h3>
 
               {submitted ? (
                 <div className="p-5  bg-[#edf3f8] border border-[#e5e5e5] text-[#111111] space-y-2">

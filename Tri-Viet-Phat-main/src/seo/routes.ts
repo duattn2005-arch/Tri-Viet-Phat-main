@@ -2,6 +2,7 @@
 // the browser (App.tsx) and at build time (seo-plugin.ts, which writes sitemap.xml and per-page HTML).
 import type { PageTab } from '../types';
 import { brandBySlug, BRANDS, productDisplayName, productKeySpec } from './brands';
+import seoPages from '../content/pages/seo.json';
 
 export const SITE_NAME = 'Trí Việt Phát';
 export const DEFAULT_IMAGE = '/images/hero-lab-analyzers.jpg';
@@ -117,42 +118,16 @@ function isoDate(date: string): string | undefined {
   return m ? `${m[3]}-${m[2].padStart(2, '0')}-${m[1].padStart(2, '0')}` : undefined;
 }
 
-const PAGES: Record<PageTab, { title: string; description: string }> = {
-  'trang-chu': {
-    title: 'Máy xét nghiệm Dirui, hóa chất xét nghiệm | Trí Việt Phát',
-    description: DEFAULT_DESCRIPTION,
-  },
-  'gioi-thieu': {
-    title: withBrand('Giới thiệu công ty'),
-    description:
-      'Hơn 16 năm cung ứng thiết bị và hóa chất xét nghiệm IVD chính hãng cho bệnh viện, phòng khám trên toàn quốc. Tầm nhìn, sứ mệnh và năng lực của Trí Việt Phát.',
-  },
-  'san-pham': {
-    title: withBrand('Máy xét nghiệm, hóa chất xét nghiệm'),
-    description:
-      'Máy xét nghiệm sinh hóa, nước tiểu, huyết học Dirui, máy điện giải, HbA1c, miễn dịch, đông máu và hóa chất xét nghiệm chính hãng, có CO/CQ. Báo giá nhanh.',
-  },
-  'tai-lieu': {
-    title: withBrand('Tài liệu kỹ thuật & video hướng dẫn'),
-    description:
-      'Catalog, tài liệu kỹ thuật, video hướng dẫn sử dụng và cẩm nang bảo trì máy xét nghiệm y khoa do kỹ sư Trí Việt Phát biên soạn.',
-  },
-  'tin-tuc': {
-    title: withBrand('Tin tức & kiến thức xét nghiệm'),
-    description:
-      'Tin y tế, kiến thức sức khỏe và kinh nghiệm vận hành phòng xét nghiệm, cập nhật bởi đội ngũ kỹ sư Trí Việt Phát.',
-  },
-  'tuyen-dung': {
-    title: withBrand('Tuyển dụng'),
-    description:
-      'Cơ hội việc làm tại Trí Việt Phát: kỹ sư thiết bị y tế, nhân viên kinh doanh và các vị trí khác. Nộp hồ sơ trực tuyến nhanh chóng.',
-  },
-  'lien-he': {
-    title: withBrand('Liên hệ báo giá & tư vấn'),
-    description:
-      'Liên hệ Trí Việt Phát để nhận báo giá thiết bị, hóa chất xét nghiệm và hỗ trợ kỹ thuật. Hotline 0392.123.688, văn phòng tại Hoàng Mai, Hà Nội.',
-  },
-};
+// Edited in the CMS: "Nội dung các trang" → "SEO". The home title is used as written; the others get " | Trí Việt Phát".
+const PAGES = Object.fromEntries(
+  (Object.entries(seoPages) as [PageTab, { title: string; description: string }][]).map(([tab, page]) => [
+    tab,
+    {
+      title: tab === 'trang-chu' ? page.title : withBrand(page.title),
+      description: clip(page.description || DEFAULT_DESCRIPTION, 160),
+    },
+  ])
+) as Record<PageTab, { title: string; description: string }>;
 
 function seoCore(route: Route, lookups: SeoLookups): SeoMeta {
   const path = routePath(route);
