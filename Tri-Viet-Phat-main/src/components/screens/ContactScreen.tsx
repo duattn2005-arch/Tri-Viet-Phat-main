@@ -199,24 +199,12 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
               <div className="space-y-3 pt-1 text-[13.5px]">
                 <div className="flex items-start gap-3">
                   <div className="w-9 h-9  bg-[#edf3f8] text-[#555555] flex items-center justify-center shrink-0">
-                    <span className="material-symbols-outlined text-[20px]">phone</span>
-                  </div>
-                  <div>
-                    <span className="text-[#777777] text-[12px] block font-semibold">Điện thoại bàn:</span>
-                    <a href="tel:0392123688" className="font-bold text-[#111111] text-[15px] fx-link">
-                      0392.123.688
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="w-9 h-9  bg-[#edf3f8] text-[#555555] flex items-center justify-center shrink-0">
                     <span className="material-symbols-outlined text-[20px]">phone_in_talk</span>
                   </div>
                   <div>
                     <span className="text-[#777777] text-[12px] block font-semibold">Hotline tư vấn 24/7:</span>
-                    <a href="tel:0904698699" className="font-bold text-[#111111] text-[15px] fx-link">
-                      0904.698.699
+                    <a href="tel:0392123688" className="font-bold text-[#111111] text-[15px] fx-link">
+                      0392.123.688
                     </a>
                   </div>
                 </div>

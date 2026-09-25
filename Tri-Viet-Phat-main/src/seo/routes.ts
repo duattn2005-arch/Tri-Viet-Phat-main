@@ -7,7 +7,7 @@ export const SITE_NAME = 'Trí Việt Phát';
 export const DEFAULT_IMAGE = '/images/hero-lab-analyzers.jpg';
 const DEFAULT_DESCRIPTION =
   'Phân phối chính hãng máy xét nghiệm Dirui (sinh hóa, nước tiểu, huyết học), hóa chất xét nghiệm Dewei, máy điện giải, HbA1c. Lắp đặt, bảo hành toàn quốc.';
-export const HOTLINE = '0904.698.699';
+export const HOTLINE = '0392.123.688';
 
 export interface Route {
   tab: PageTab;
@@ -146,7 +146,7 @@ const PAGES: Record<PageTab, { title: string; description: string }> = {
   'lien-he': {
     title: withBrand('Liên hệ báo giá & tư vấn'),
     description:
-      'Liên hệ Trí Việt Phát để nhận báo giá thiết bị, hóa chất xét nghiệm và hỗ trợ kỹ thuật. Hotline 0904.698.699, văn phòng tại Hoàng Mai, Hà Nội.',
+      'Liên hệ Trí Việt Phát để nhận báo giá thiết bị, hóa chất xét nghiệm và hỗ trợ kỹ thuật. Hotline 0392.123.688, văn phòng tại Hoàng Mai, Hà Nội.',
   },
 };
 

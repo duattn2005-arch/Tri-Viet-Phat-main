@@ -476,12 +476,14 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   >
                     {COMPANY_INFO.hotline}
                   </a>
-                  <a
-                    href={`tel:${COMPANY_INFO.hotline2.replace(/\./g, '')}`}
-                    className="block text-[18px] font-bold text-white hover:text-[#e11d2a] transition-colors"
-                  >
-                    {COMPANY_INFO.hotline2}
-                  </a>
+                  {COMPANY_INFO.hotline2 && (
+                    <a
+                      href={`tel:${COMPANY_INFO.hotline2.replace(/\./g, '')}`}
+                      className="block text-[18px] font-bold text-white hover:text-[#e11d2a] transition-colors"
+                    >
+                      {COMPANY_INFO.hotline2}
+                    </a>
+                  )}
                 </dd>
               </div>
               <div className="min-w-0">

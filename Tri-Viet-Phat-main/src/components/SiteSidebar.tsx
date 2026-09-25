@@ -32,21 +32,9 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
           <div className="space-y-2 text-[13px]">
             <div className="flex items-center gap-2.5">
               <span className="material-symbols-outlined text-[#777777] text-[19px]">
-                call
-              </span>
-              <span className="text-[#777777]">Hotline 1:</span>
-              <a
-                href="tel:0904698699"
-                className="font-bold text-[#111111] fx-link"
-              >
-                0904.698.699
-              </a>
-            </div>
-            <div className="flex items-center gap-2.5">
-              <span className="material-symbols-outlined text-[#777777] text-[19px]">
                 phone_in_talk
               </span>
-              <span className="text-[#777777]">Hotline 2:</span>
+              <span className="text-[#777777]">Hotline:</span>
               <a
                 href="tel:0392123688"
                 className="font-bold text-[#111111] fx-link"

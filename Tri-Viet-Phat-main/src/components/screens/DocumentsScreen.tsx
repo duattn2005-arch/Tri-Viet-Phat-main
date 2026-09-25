@@ -612,7 +612,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                         <button
                           onClick={() => {
                             alert(
-                              `Đang chuẩn bị tải xuống: ${file.title} (${file.fileSize}). Quý khách cũng có thể liên hệ Hotline 0904.698.699 để nhận trọn bộ tài liệu gốc có đóng dấu Trí Việt Phát.`
+                              `Đang chuẩn bị tải xuống: ${file.title} (${file.fileSize}). Quý khách cũng có thể liên hệ Hotline 0392.123.688 để nhận trọn bộ tài liệu gốc có đóng dấu Trí Việt Phát.`
                             );
                           }}
                           className="px-3 py-1.5  bg-[#0a2540] text-white hover:bg-[#071a2e] text-[12px] font-bold transition-colors inline-flex items-center gap-1.5 cursor-pointer "

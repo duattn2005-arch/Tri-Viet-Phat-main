@@ -136,10 +136,14 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab, onSelectBrand, onOp
                   <a href={tel(COMPANY_INFO.hotline)} className="font-semibold text-white fx-link">
                     {COMPANY_INFO.hotline}
                   </a>
-                  {' · '}
-                  <a href={tel(COMPANY_INFO.hotline2)} className="font-semibold text-white fx-link">
-                    {COMPANY_INFO.hotline2}
-                  </a>
+                  {COMPANY_INFO.hotline2 && (
+                    <>
+                      {' · '}
+                      <a href={tel(COMPANY_INFO.hotline2)} className="font-semibold text-white fx-link">
+                        {COMPANY_INFO.hotline2}
+                      </a>
+                    </>
+                  )}
                 </span>
               </li>
               <li className="flex gap-2.5">

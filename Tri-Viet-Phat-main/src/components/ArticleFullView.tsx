@@ -132,10 +132,10 @@ export const ArticleFullView: React.FC<ArticleFullViewProps> = ({
               <span className="font-semibold text-[#111111]">Cần tư vấn thiết bị?</span>
               <span>Liên hệ hotline:</span>
               <a
-                href="tel:0904698699"
+                href="tel:0392123688"
                 className="text-[#111111] font-bold fx-link text-[15px]"
               >
-                0904.698.699
+                0392.123.688
               </a>
             </div>
 

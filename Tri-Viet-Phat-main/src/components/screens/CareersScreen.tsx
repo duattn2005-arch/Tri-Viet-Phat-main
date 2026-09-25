@@ -243,7 +243,7 @@ export const CareersScreen: React.FC = () => {
                     Môi trường làm việc năng động, chế độ đãi ngộ vượt trội, cơ hội đào tạo và phát triển bền vững cùng các hãng thiết bị y tế hàng đầu thế giới.
                   </p>
                   <div className="pt-2 text-[13px] text-[#111111]">
-                    <strong>Hotline:</strong> 0904.698.699
+                    <strong>Hotline:</strong> 0392.123.688
                   </div>
                 </div>
               </div>

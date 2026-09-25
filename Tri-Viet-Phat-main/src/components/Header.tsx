@@ -135,10 +135,14 @@ export const Header: React.FC<HeaderProps> = ({
         <a href={hotlineHref(COMPANY_INFO.hotline)} tabIndex={tab} className="font-semibold text-white fx-link">
           {COMPANY_INFO.hotline}
         </a>
-        {' · '}
-        <a href={hotlineHref(COMPANY_INFO.hotline2)} tabIndex={tab} className="font-semibold text-white fx-link">
-          {COMPANY_INFO.hotline2}
-        </a>
+        {COMPANY_INFO.hotline2 && (
+          <>
+            {' · '}
+            <a href={hotlineHref(COMPANY_INFO.hotline2)} tabIndex={tab} className="font-semibold text-white fx-link">
+              {COMPANY_INFO.hotline2}
+            </a>
+          </>
+        )}
       </>,
       <>
         {icon('mail')}
