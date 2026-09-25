@@ -262,13 +262,13 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                           className={`inline-flex items-center gap-2 h-9 px-4 rounded-full text-[14px] font-semibold transition-colors cursor-pointer ${
                             isActive
                               ? 'bg-[#0a2540] text-white'
-                              : 'bg-[#f3f5f8] text-[#4a5563] hover:bg-[#e6ebf1] hover:text-[#111111]'
+                              : 'bg-[#f3f5f8] text-[#374151] hover:bg-[#e6ebf1] hover:text-[#111111]'
                           }`}
                         >
                           <span>{cat.key === 'all' ? 'Tất cả' : cat.label}</span>
                           <span
                             className={`min-w-[20px] h-5 px-1.5 rounded-full text-[11.5px] font-bold leading-5 text-center ${
-                              isActive ? 'bg-white/20 text-white' : 'bg-white text-[#6b7280]'
+                              isActive ? 'bg-white/20 text-white' : 'bg-white text-[#4b5563]'
                             }`}
                           >
                             {count}
@@ -280,7 +280,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
 
                   {/* Search input */}
                   <div className="relative w-full md:w-64 shrink-0">
-                    <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-[#9aa3ad]">
+                    <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-[#6b7280]">
                       search
                     </span>
                     <input
@@ -288,7 +288,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       placeholder="Tìm bài viết..."
-                      className="w-full h-9 pl-9 pr-8 rounded-full border border-[#e1e5ea] bg-[#f8fafc] text-[13.5px] placeholder:text-[#9aa3ad] focus:outline-none focus:border-[#0a2540] focus:bg-white transition-colors"
+                      className="w-full h-9 pl-9 pr-8 rounded-full border border-[#e1e5ea] bg-[#f8fafc] text-[13.5px] placeholder:text-[#6b7280] text-[#111111] focus:outline-none focus:border-[#0a2540] focus:bg-white transition-colors"
                     />
                     {searchQuery && (
                       <button

@@ -277,8 +277,8 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
             {/* Left Column: Rich, balanced content area */}
             <div className="lg:col-span-8 xl:col-span-9 space-y-6">
               {/* Toolbar: Category Tabs & Search Bar */}
-              <div className="bg-white  border border-[#e5e5e5] p-4 sm:p-5 ">
-                <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+              <div className="bg-white border border-[#e5e5e5] px-4 py-3 sm:px-5 sm:py-4">
+                <div className="flex flex-col gap-3">
                   {/* Category Filter - dropdown select on mobile, pills from sm+ */}
                   <div className="relative sm:hidden">
                     <select
@@ -304,7 +304,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                     </span>
                   </div>
 
-                  <div className="hidden sm:flex flex-wrap items-center gap-x-6 gap-y-2">
+                  <div className="hidden sm:flex flex-wrap items-center gap-2">
                     {DOCUMENT_CATEGORIES.map((cat) => {
                       const isActive = selectedCategory === cat.key;
                       const count =
@@ -316,14 +316,18 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                         <button
                           key={cat.key}
                           onClick={() => handleCategoryChange(cat.key)}
-                          className={`inline-flex items-center gap-1.5 pb-2 border-b-2 text-[15px] font-semibold transition-colors cursor-pointer ${
+                          className={`inline-flex items-center gap-2 h-9 px-4 rounded-full text-[14px] font-semibold transition-colors cursor-pointer ${
                             isActive
-                              ? 'border-[#0a2540] text-[#111111]'
-                              : 'border-transparent text-[#999999] hover:text-[#333333]'
+                              ? 'bg-[#0a2540] text-white'
+                              : 'bg-[#f3f5f8] text-[#374151] hover:bg-[#e6ebf1] hover:text-[#111111]'
                           }`}
                         >
-                          <span>{cat.label}</span>
-                          <span className="text-[13px] font-medium text-[#999999]">
+                          <span>{cat.key === 'all' ? 'Tất cả' : cat.label}</span>
+                          <span
+                            className={`min-w-[20px] h-5 px-1.5 rounded-full text-[11.5px] font-bold leading-5 text-center ${
+                              isActive ? 'bg-white/20 text-white' : 'bg-white text-[#4b5563]'
+                            }`}
+                          >
                             {count}
                           </span>
                         </button>
@@ -332,8 +336,8 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                   </div>
 
                   {/* Search input */}
-                  <div className="relative w-full md:w-72 shrink-0">
-                    <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-[#999999]">
+                  <div className="relative w-full">
+                    <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-[#6b7280]">
                       search
                     </span>
                     <input
@@ -341,7 +345,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       placeholder="Tìm tài liệu, video..."
-                      className="w-full pl-9 pr-8 py-2  border border-[#d4d4d4] text-[13px] focus:outline-none focus:border-[#0a2540] bg-white"
+                      className="w-full h-10 pl-9 pr-8 rounded-full border border-[#d1d5db] bg-[#f8fafc] text-[14px] text-[#111111] placeholder:text-[#6b7280] focus:outline-none focus:border-[#0a2540] focus:bg-white transition-colors"
                     />
                     {searchQuery && (
                       <button
