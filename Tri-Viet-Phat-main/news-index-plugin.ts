@@ -4,11 +4,13 @@
 // main bundle stays small however many posts the CMS holds.
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import type { Plugin } from 'vite';
 
+const ROOT_DIR = fileURLToPath(new URL('.', import.meta.url));
 const ID = 'virtual:news-index';
 const RESOLVED = '\0' + ID;
-const NEWS_DIR = path.resolve(__dirname, 'src/content/news');
+const NEWS_DIR = path.resolve(ROOT_DIR, 'src/content/news');
 
 interface NewsEntry {
   order?: number;
@@ -48,7 +50,10 @@ export function newsIndexPlugin(): Plugin {
     load(id) {
       if (id !== RESOLVED) return;
       this.addWatchFile(NEWS_DIR);
-      return `export default ${JSON.stringify(buildIndex())};`;
+      const serializedIndex = JSON.stringify(buildIndex())
+        .replace(/\u2028/g, '\\u2028')
+        .replace(/\u2029/g, '\\u2029');
+      return `export default ${serializedIndex};`;
     },
     handleHotUpdate({ file, server }) {
       if (path.resolve(file).startsWith(NEWS_DIR)) {

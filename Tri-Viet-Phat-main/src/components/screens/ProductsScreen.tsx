@@ -6,6 +6,7 @@ import { PageBanner } from '../PageBanner';
 import { RevealGroup, RevealItem } from '../motion/Reveal';
 import { Product } from '../../types';
 import { brandBySlug } from '../../seo/brands';
+import { BrandGuide } from '../BrandGuide';
 
 interface ProductsScreenProps {
   initialCategory?: string;
@@ -260,7 +261,9 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({
         <section className="flex-1 min-w-0">
           <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
             <h2 className="flex items-baseline gap-3 text-[#111]">
-              <span className="text-[20px] sm:text-[22px] font-bold leading-tight">{categoryLabel}</span>
+              <span className="text-[20px] sm:text-[22px] font-bold leading-tight">
+                {brand && selectedCategory === 'all' ? `Sản phẩm ${brand.name}` : categoryLabel}
+              </span>
               <span className="text-[15px] sm:text-[16px]">
                 <strong className="font-bold">{filteredProducts.length}</strong> sản phẩm
               </span>
@@ -321,6 +324,8 @@ export const ProductsScreen: React.FC<ProductsScreenProps> = ({
               ))}
             </RevealGroup>
           )}
+
+          {brand && <BrandGuide brand={brand} products={PRODUCTS} onSelectProduct={onSelectProduct} />}
         </section>
       </div>
     </div>

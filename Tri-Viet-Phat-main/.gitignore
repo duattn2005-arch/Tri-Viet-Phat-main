@@ -11,3 +11,5 @@ coverage/
 public/api/telegram-config.php
 # Admin login secrets for the PHP CMS login
 public/api/cms-config.php
+# Gemini key for the PHP AI chat
+public/api/ai-config.php

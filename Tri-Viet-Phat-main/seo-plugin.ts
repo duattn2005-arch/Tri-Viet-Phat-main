@@ -8,6 +8,7 @@
 // SITE_URL (env) is the public domain used in canonical links and the sitemap.
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import type { Plugin } from 'vite';
 import { marked } from 'marked';
 import {
@@ -23,12 +24,13 @@ import {
   type SeoLookups,
 } from './src/seo/routes';
 import { headTagsHtml } from './src/seo/head';
-import { BRANDS, brandBySlug, brandOf } from './src/seo/brands';
+import { BRANDS, brandBySlug, brandFaq, brandOf, brandSubject, type Brand, type BrandFaq } from './src/seo/brands';
 import { demoteH1 } from './src/content/load';
 
 export const SITE_URL = (process.env.SITE_URL || process.env.VITE_SITE_URL || 'https://thietbiytegroup.com').replace(/\/$/, '');
 
-const CONTENT_DIR = path.resolve(__dirname, 'src/content');
+const ROOT_DIR = fileURLToPath(new URL('.', import.meta.url));
+const CONTENT_DIR = path.resolve(ROOT_DIR, 'src/content');
 const START = '<!--seo:start-->';
 const END = '<!--seo:end-->';
 const ROOT = '<div id="root"></div>';
@@ -36,6 +38,7 @@ const ROOT = '<div id="root"></div>';
 interface ProductEntry {
   order?: number;
   name: string;
+  model?: string;
   shortDesc: string;
   fullDesc?: string;
   image: string;
@@ -137,6 +140,38 @@ function productTitle(p: ProductEntry): string {
   return brand && !p.name.toLowerCase().includes(brand.name.toLowerCase()) ? `${p.name} ${brand.name}` : p.name;
 }
 
+/** Same comparison spec as BrandGuide in the app: throughput first, otherwise the first listed spec. */
+function keySpec(p: ProductEntry): string {
+  const specs = p.specs ?? [];
+  const spec = specs.find((s) => /tốc độ|công suất|test\/h|mẫu\/giờ/i.test(`${s.label} ${s.value}`)) ?? specs[0];
+  return spec ? `${spec.label}: ${spec.value}` : p.shortDesc;
+}
+
+function brandGroups<T extends ProductEntry>(items: T[]): Record<string, T[]> {
+  const groups: Record<string, T[]> = {};
+  for (const p of items) {
+    const label = PRODUCT_CATEGORY_LABELS[p.category] || p.categoryLabel || 'Sản phẩm';
+    (groups[label] ??= []).push(p);
+  }
+  return groups;
+}
+
+function brandFaqFor(brand: Brand, items: ProductEntry[], hotline: string): BrandFaq[] {
+  const byCategory = Object.fromEntries(
+    Object.entries(brandGroups(items)).map(([label, list]) => [label, list.map((p) => p.model || p.name)])
+  );
+  return brandFaq(brand, byCategory, hotline);
+}
+
+/** FAQPage structured data for a brand page (Google can quote these answers). */
+function faqLd(faq: BrandFaq[]): string {
+  return jsonScript({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  });
+}
+
 /** Plain-HTML content for one page, shown until the app loads (and read by crawlers). */
 function fallbackBody(route: Route, content: Content): string {
   const { products, news, company, lookups } = content;
@@ -178,7 +213,27 @@ function fallbackBody(route: Route, content: Content): string {
   } else if (route.brand) {
     const brand = brandBySlug(route.brand)!;
     const items = products.filter((p) => brandOf(p.brand)?.slug === brand.slug);
-    main = `<h1>${esc(brand.heading)}</h1><p>${esc(brand.intro)}</p><h2>Sản phẩm ${esc(brand.name)}</h2>${list(items.map(productItem))}`;
+    const groups = brandGroups(items);
+    const tables = Object.entries(groups)
+      .map(
+        ([label, list]) =>
+          `<h3>${esc(label)}</h3><table><tr><th>Model</th><th>Thông số nổi bật</th><th>Xuất xứ</th></tr>${list
+            .map(
+              (p) =>
+                `<tr><td>${link({ tab: 'san-pham', productId: p.id }, productTitle(p))}</td><td>${esc(keySpec(p))}</td><td>${esc(p.origin || '')}</td></tr>`
+            )
+            .join('')}</table>`
+      )
+      .join('');
+    const faq = brandFaqFor(brand, items, content.company.hotline)
+      .map((f) => `<h3>${esc(f.q)}</h3><p>${esc(f.a)}</p>`)
+      .join('');
+    main = [
+      `<h1>${esc(brand.heading)}</h1><p>${esc(brand.intro)}</p>`,
+      `<h2>Sản phẩm ${esc(brand.name)}</h2>${list(items.map(productItem))}`,
+      items.length ? `<h2>So sánh các dòng ${esc(brandSubject(brand))}</h2>${tables}` : '',
+      items.length ? `<h2>Câu hỏi thường gặp về ${esc(brand.name)}</h2>${faq}` : '',
+    ].join('\n');
   } else if (route.tab === 'san-pham') {
     const items = route.cat ? products.filter((p) => p.category === route.cat) : products;
     const heading = route.cat ? PRODUCT_CATEGORY_LABELS[route.cat] : 'Máy xét nghiệm và hóa chất xét nghiệm chính hãng';
@@ -271,7 +326,10 @@ export function seoPlugin(): Plugin {
       for (const route of routes) {
         const url = routePath(route);
         const body = after.replace(ROOT, `<div id="root">${fallbackBody(route, content)}</div>`);
-        const html = `${before}${START}\n    ${headTagsHtml(seoFor(route, lookups), SITE_URL)}\n    ${END}${body}`;
+        const brand = brandBySlug(route.brand);
+        const brandItems = brand ? products.filter((p) => brandOf(p.brand)?.slug === brand.slug) : [];
+        const extraLd = brand && brandItems.length ? `\n    ${faqLd(brandFaqFor(brand, brandItems, content.company.hotline))}` : '';
+        const html = `${before}${START}\n    ${headTagsHtml(seoFor(route, lookups), SITE_URL)}${extraLd}\n    ${END}${body}`;
         const file = url === '/' ? path.join(outDir, 'index.html') : path.join(outDir, `${url.slice(1)}.html`);
         fs.mkdirSync(path.dirname(file), { recursive: true });
         fs.writeFileSync(file, html);
@@ -293,6 +351,31 @@ export function seoPlugin(): Plugin {
         path.join(outDir, 'robots.txt'),
         `User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /api/\n\nSitemap: ${SITE_URL}/sitemap.xml\n`
       );
+
+      // Facts for the AI chat (api/chat.php): the current catalogue and company details, so answers
+      // follow what the CMS holds instead of a hand-written prompt
+      const knowledge = {
+        company: {
+          name: content.company.name,
+          hotline: content.company.hotline,
+          hotline2: content.company.hotline2 || undefined,
+          email: content.company.email,
+          address: content.company.address,
+          website: SITE_URL,
+        },
+        products: products.map((p) => ({
+          name: productTitle(p),
+          brand: brandOf(p.brand)?.name ?? p.brand,
+          category: PRODUCT_CATEGORY_LABELS[p.category] || p.categoryLabel,
+          origin: p.origin,
+          url: `${SITE_URL}${routePath({ tab: 'san-pham', productId: p.id })}`,
+          summary: p.shortDesc,
+          specs: (p.specs ?? []).slice(0, 15).map((s) => `${s.label}: ${s.value}`),
+        })),
+        brands: BRANDS.map((b) => ({ name: b.name, page: `${SITE_URL}/thuong-hieu/${b.slug}`, about: b.intro })),
+      };
+      fs.mkdirSync(path.join(outDir, 'api'), { recursive: true });
+      fs.writeFileSync(path.join(outDir, 'api', 'ai-knowledge.json'), JSON.stringify(knowledge));
     },
   };
 }

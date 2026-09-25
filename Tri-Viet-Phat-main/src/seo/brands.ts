@@ -77,3 +77,44 @@ export function brandOf(rawBrand: string | undefined): Brand | undefined {
 }
 
 export const brandBySlug = (slug: string | undefined) => BRANDS.find((b) => b.slug === slug);
+
+/** "Máy xét nghiệm Dirui chính hãng" → "máy xét nghiệm Dirui", for use inside a sentence (brand name kept). */
+export function brandSubject(brand: Brand): string {
+  const subject = brand.heading.replace(/ chính hãng$/, '');
+  return subject.charAt(0).toLowerCase() + subject.slice(1);
+}
+
+export interface BrandFaq {
+  q: string;
+  a: string;
+}
+
+/**
+ * Questions buyers type into Google ("mua máy xét nghiệm Dirui ở đâu", "giá máy Dirui"…), answered from
+ * the catalogue. Shown on the brand page and marked up as FAQPage. Answers only restate what the site
+ * already says (genuine goods with CO/CQ, installation and training, 12-month warranty, quotes by phone).
+ */
+export function brandFaq(brand: Brand, productsByCategory: Record<string, string[]>, hotline: string): BrandFaq[] {
+  const lines = Object.entries(productsByCategory)
+    .map(([category, models]) => `${category}: ${models.join(', ')}`)
+    .join('; ');
+  const machine = brandSubject(brand);
+  return [
+    {
+      q: `Mua ${machine} chính hãng ở đâu?`,
+      a: `Trí Việt Phát (Hoàng Mai, Hà Nội) phân phối ${machine} chính hãng, đủ CO/CQ, giao hàng và lắp đặt trên toàn quốc. Gọi hotline ${hotline} để được tư vấn cấu hình phù hợp.`,
+    },
+    {
+      q: `Trí Việt Phát có những sản phẩm ${brand.name} nào?`,
+      a: `${lines}. Mỗi sản phẩm có trang riêng với thông số kỹ thuật chi tiết.`,
+    },
+    {
+      q: `Giá ${machine} bao nhiêu?`,
+      a: `Giá phụ thuộc model, cấu hình và hóa chất đi kèm. Vui lòng gọi hotline ${hotline} hoặc gửi yêu cầu báo giá trên website để nhận báo giá và chính sách chiết khấu.`,
+    },
+    {
+      q: `Mua ${brand.name} tại Trí Việt Phát có được lắp đặt và bảo hành không?`,
+      a: `Có. Kỹ sư Trí Việt Phát lắp đặt tận nơi, chạy mẫu, hướng dẫn sử dụng và bảo hành 12 tháng; sau đó hỗ trợ bảo trì định kỳ và cung cấp hóa chất, vật tư.`,
+    },
+  ];
+}

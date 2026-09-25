@@ -83,7 +83,7 @@ export const AiChatBubble: React.FC<AiChatBubbleProps> = ({
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/chat', {
+      const response = await fetch('/api/chat.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

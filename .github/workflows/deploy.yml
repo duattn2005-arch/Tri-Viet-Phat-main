@@ -8,6 +8,7 @@
 #   TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_IDS    form notifications (chat ids comma-separated)
 #   ADMIN_USERNAME, ADMIN_PASSWORD           /admin login
 #   CMS_GITHUB_TOKEN                         fine-grained token, this repo only, Contents: read and write
+#   GEMINI_API_KEY                           AI chat (https://aistudio.google.com/apikey)
 name: Deploy to hosting
 
 on:
@@ -46,6 +47,7 @@ jobs:
           ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
           CMS_GITHUB_TOKEN: ${{ secrets.CMS_GITHUB_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           node -e '
             const fs = require("fs");
@@ -58,6 +60,8 @@ jobs:
               "<?php\nreturn [\n    \x27admin_username\x27 => " + php(process.env.ADMIN_USERNAME) +
               ",\n    \x27admin_password\x27 => " + php(process.env.ADMIN_PASSWORD) +
               ",\n    \x27github_token\x27 => " + php(process.env.CMS_GITHUB_TOKEN) + ",\n];\n");
+            fs.writeFileSync("public/api/ai-config.php",
+              "<?php\nreturn [\n    \x27gemini_api_key\x27 => " + php(process.env.GEMINI_API_KEY) + ",\n];\n");
           '
 
       - run: npm run build

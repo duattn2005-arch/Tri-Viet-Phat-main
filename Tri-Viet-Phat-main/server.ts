@@ -73,7 +73,7 @@ Thông tin công ty:
 - Tên: CÔNG TY TNHH THIẾT BỊ Y TẾ TRÍ VIỆT PHÁT
 - Giấy phép ĐKKD: 0105558779 do Sở KH&ĐT Hà Nội cấp
 - Trụ sở: Số 5, nhà P16 TT Trương Định, P. Tương Mai, Q. Hoàng Mai, Hà Nội
-- Hotline 24/7: 0984.567.890
+- Hotline 24/7: 0392.123.688
 - Điện thoại bàn: 0392.123.688
 - Email: infothietbiyte168@gmail.com
 - Website: www.thietbiytegroup.com
@@ -140,7 +140,7 @@ QUY TẮC ĐẶC BIỆT VỀ ĐỊNH DẠNG:
 - Luôn viết công thức hóa học và ion dạng tự nhiên, trực quan bằng ký tự Unicode: Na⁺, K⁺, Cl⁻, Ca²⁺, Li⁺, pH (hoặc K, Na, Cl, Ca, pH).
 - Dùng gạch đầu dòng dấu gạch ngang (- ) để liệt kê tính năng hoặc thông số kỹ thuật. In đậm tiêu đề mục bằng **tiêu đề:**.
 - Trả lời bằng tiếng Việt lịch sự, súc tích, chuyên nghiệp, nhiệt tình và có căn cứ khoa học kỹ thuật y sinh.
-- Khi khách hàng hỏi giá hoặc cần mua, giải thích ưu điểm và hướng dẫn gọi Hotline: 0984.567.890 để nhận báo giá chiết khấu đại lý tốt nhất.
+- Khi khách hàng hỏi giá hoặc cần mua, giải thích ưu điểm và hướng dẫn gọi Hotline: 0392.123.688 để nhận báo giá chiết khấu đại lý tốt nhất.
 `;
 
 function sanitizeMedicalText(text: string): string {
@@ -177,11 +177,11 @@ function getDomainFallbackReply(message: string): string {
   const lower = message.toLowerCase();
   
   if (lower.includes('giá') || lower.includes('báo giá') || lower.includes('chi phí') || lower.includes('bao nhiêu')) {
-    return 'Dạ để nhận bảng báo giá chi tiết và chính sách chiết khấu tốt nhất cho các dòng máy xét nghiệm hoặc hóa chất tiêu hao, Quý khách vui lòng để lại số điện thoại hoặc liên hệ trực tiếp **Hotline 24/7: 0984.567.890**. Đội ngũ chuyên viên kinh doanh Trí Việt Phát sẽ gửi báo giá kèm hồ sơ kỹ thuật trong vòng 15 phút!';
+    return 'Dạ để nhận bảng báo giá chi tiết và chính sách chiết khấu tốt nhất cho các dòng máy xét nghiệm hoặc hóa chất tiêu hao, Quý khách vui lòng để lại số điện thoại hoặc liên hệ trực tiếp **Hotline 24/7: 0392.123.688**. Đội ngũ chuyên viên kinh doanh Trí Việt Phát sẽ gửi báo giá kèm hồ sơ kỹ thuật trong vòng 15 phút!';
   }
   
   if (lower.includes('điện giải') || lower.includes('ac9803') || lower.includes('audicom') || lower.includes('ac-9803')) {
-    return 'Chi tiết cấu hình kỹ thuật **Máy xét nghiệm điện giải AC9803 (Audicom)**:\n\n**1. Thông số kỹ thuật:**\n- **Thông số đo:** K, Na, Cl, Ca, pH\n- **Thông số tính toán:** nCa, TCa\n- **Thời gian đo:** ≤ 90s (thời gian lấy mẫu và xả)\n- **Thể tích mẫu:** 160µl\n- **Nguyên lý đo:** Điện cực chọn lọc ion (ISE)\n- **Vị trí khay mẫu:** 26 vị trí mẫu tự động\n- **Kết nối máy quét:** Hỗ trợ súng quét mã vạch Barcode trực tiếp\n\n**2. Đặc điểm kỹ thuật:**\n- **Ống xét nghiệm ban đầu để lấy mẫu:** Máy xét nghiệm có thể sử dụng ống xét nghiệm ban đầu để lấy mẫu trực tiếp để đơn giản hoá quá trình lấy mẫu hoặc có thể chọn sử dụng cốc mẫu lấy mẫu để đáp ứng các quy định xét nghiệm khác nhau.\n- **Giao diện cho máy quét mã vạch:** Người dùng có thể định cấu hình súng quét theo yêu cầu, lấy thông tin mẫu trực tiếp, giúp giảm khối lượng công việc nhập thủ công.\n- **Nhiều vị trí mẫu:** Vị trí mẫu được tăng lên 26 vị trí, sử dụng phạm vi rộng.\n- **Tự động hóa:** Tự động rửa buồng đo và xả mẫu sau mỗi chu trình đo.\n\nQuý khách liên hệ **Hotline 24/7: 0984.567.890** để nhận ưu đãi giá và catalogue chi tiết!';
+    return 'Chi tiết cấu hình kỹ thuật **Máy xét nghiệm điện giải AC9803 (Audicom)**:\n\n**1. Thông số kỹ thuật:**\n- **Thông số đo:** K, Na, Cl, Ca, pH\n- **Thông số tính toán:** nCa, TCa\n- **Thời gian đo:** ≤ 90s (thời gian lấy mẫu và xả)\n- **Thể tích mẫu:** 160µl\n- **Nguyên lý đo:** Điện cực chọn lọc ion (ISE)\n- **Vị trí khay mẫu:** 26 vị trí mẫu tự động\n- **Kết nối máy quét:** Hỗ trợ súng quét mã vạch Barcode trực tiếp\n\n**2. Đặc điểm kỹ thuật:**\n- **Ống xét nghiệm ban đầu để lấy mẫu:** Máy xét nghiệm có thể sử dụng ống xét nghiệm ban đầu để lấy mẫu trực tiếp để đơn giản hoá quá trình lấy mẫu hoặc có thể chọn sử dụng cốc mẫu lấy mẫu để đáp ứng các quy định xét nghiệm khác nhau.\n- **Giao diện cho máy quét mã vạch:** Người dùng có thể định cấu hình súng quét theo yêu cầu, lấy thông tin mẫu trực tiếp, giúp giảm khối lượng công việc nhập thủ công.\n- **Nhiều vị trí mẫu:** Vị trí mẫu được tăng lên 26 vị trí, sử dụng phạm vi rộng.\n- **Tự động hóa:** Tự động rửa buồng đo và xả mẫu sau mỗi chu trình đo.\n\nQuý khách liên hệ **Hotline 24/7: 0392.123.688** để nhận ưu đãi giá và catalogue chi tiết!';
   }
   
   if (lower.includes('huyết học') || lower.includes('dewei') || lower.includes('hóa chất') || lower.includes('pha loãng') || lower.includes('ly giải')) {
@@ -213,10 +213,10 @@ function getDomainFallbackReply(message: string): string {
   }
   
   if (lower.includes('địa chỉ') || lower.includes('liên hệ') || lower.includes('hotline') || lower.includes('ở đâu') || lower.includes('công ty')) {
-    return '**CÔNG TY TNHH THIẾT BỊ Y TẾ TRÍ VIỆT PHÁT** (16+ năm phát triển):\n- **Trụ sở:** Số 5, nhà P16 TT Trương Định, Phường Tương Mai, Quận Hoàng Mai, Hà Nội.\n- **Hotline 24/7:** **0984.567.890** (Zalo / Call)\n- **Điện thoại:** 0392.123.688\n- **Email:** infothietbiyte168@gmail.com\n- **Website:** www.thietbiytegroup.com';
+    return '**CÔNG TY TNHH THIẾT BỊ Y TẾ TRÍ VIỆT PHÁT** (16+ năm phát triển):\n- **Trụ sở:** Số 5, nhà P16 TT Trương Định, Phường Tương Mai, Quận Hoàng Mai, Hà Nội.\n- **Hotline 24/7:** **0392.123.688** (Zalo / Call)\n- **Điện thoại:** 0392.123.688\n- **Email:** infothietbiyte168@gmail.com\n- **Website:** www.thietbiytegroup.com';
   }
   
-  return 'Xin kính chào Quý khách! **Trí Việt Phát** là đơn vị hơn 16 năm kinh nghiệm chuyên phân phối trang thiết bị y tế và hóa chất xét nghiệm chính hãng đạt chuẩn **ISO 13485 & CE**:\n- Máy xét nghiệm điện giải Audicom AC9803 (ISE, thời gian đo ≤ 90s, thể tích 160µl, 26 vị trí mẫu)\n- Hóa chất huyết học Dewei cho máy 3 & 5 thành phần bạch cầu\n- Máy xét nghiệm nước tiểu DIRUI H-1600 (300-500 test/h)\n- Máy miễn dịch hóa phát quang iStar 500\n- Máy đo HbA1c Quo-Test (4 phút, 4µL máu)\n- Máy đông máu OCG-102\n\nQuý khách đang quan tâm đến dòng thiết bị nào hoặc cần bảng thông số kỹ thuật chi tiết ạ? Vui lòng gọi **Hotline: 0984.567.890** để được tư vấn kỹ thuật ngay!';
+  return 'Xin kính chào Quý khách! **Trí Việt Phát** là đơn vị hơn 16 năm kinh nghiệm chuyên phân phối trang thiết bị y tế và hóa chất xét nghiệm chính hãng đạt chuẩn **ISO 13485 & CE**:\n- Máy xét nghiệm điện giải Audicom AC9803 (ISE, thời gian đo ≤ 90s, thể tích 160µl, 26 vị trí mẫu)\n- Hóa chất huyết học Dewei cho máy 3 & 5 thành phần bạch cầu\n- Máy xét nghiệm nước tiểu DIRUI H-1600 (300-500 test/h)\n- Máy miễn dịch hóa phát quang iStar 500\n- Máy đo HbA1c Quo-Test (4 phút, 4µL máu)\n- Máy đông máu OCG-102\n\nQuý khách đang quan tâm đến dòng thiết bị nào hoặc cần bảng thông số kỹ thuật chi tiết ạ? Vui lòng gọi **Hotline: 0392.123.688** để được tư vấn kỹ thuật ngay!';
 }
 
 // Health check endpoint
