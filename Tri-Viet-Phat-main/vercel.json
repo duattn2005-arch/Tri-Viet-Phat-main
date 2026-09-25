@@ -4070,22 +4070,22 @@
       "permanent": true
     },
     {
-      "source": "/tag/:slug*",
+      "source": "/tag/(.*)",
       "destination": "/tin-tuc",
       "permanent": true
     },
     {
-      "source": "/tu-khoa-san-pham/:slug*",
+      "source": "/tu-khoa-san-pham/(.*)",
       "destination": "/san-pham",
       "permanent": true
     },
     {
-      "source": "/danh-muc-san-pham/:slug*",
+      "source": "/danh-muc-san-pham/(.*)",
       "destination": "/san-pham",
       "permanent": true
     },
     {
-      "source": "/author/:slug*",
+      "source": "/author/(.*)",
       "destination": "/",
       "permanent": true
     },
@@ -4095,17 +4095,17 @@
       "permanent": true
     },
     {
-      "source": "/en/:path*",
+      "source": "/en/(.*)",
       "destination": "/",
       "permanent": true
     },
     {
-      "source": "/feed",
+      "source": "/feed(/?)",
       "destination": "/tin-tuc",
       "permanent": true
     },
     {
-      "source": "/wp-admin/:path*",
+      "source": "/wp-admin(.*)",
       "destination": "/admin/",
       "permanent": false
     },
