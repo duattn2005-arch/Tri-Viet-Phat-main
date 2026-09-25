@@ -2,13 +2,15 @@
 # including the commits the CMS (/admin) makes when content is published.
 #
 # Repository secrets (GitHub → Settings → Secrets and variables → Actions):
-#   FTP_SERVER, FTP_USERNAME, FTP_PASSWORD   hosting FTP account
-#   FTP_SERVER_DIR                           folder of the site on the FTP account, ending in "/"
+#   FTP_SERVER, FTP_USERNAME, FTP_PASSWORD   hosting FTP account; FTP_SERVER is the hosting server's own name
+#                                            (e.g. xxx.azdigihost.com), which its FTPS certificate is issued for
+#   FTP_SERVER_DIR (optional)                folder of the site on the FTP account, ending in "/"; default public_html/
 #   FTP_PROTOCOL (optional)                  "ftps" (default) or "ftp"
 #   TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_IDS    form notifications (chat ids comma-separated)
 #   ADMIN_USERNAME, ADMIN_PASSWORD           /admin login
 #   CMS_GITHUB_TOKEN                         fine-grained token, this repo only, Contents: read and write
 #   GEMINI_API_KEY                           AI chat (https://aistudio.google.com/apikey)
+# A config file whose secrets are missing is not uploaded, so one edited by hand on the hosting is kept.
 name: Deploy to hosting
 
 on:
@@ -53,14 +55,15 @@ jobs:
             const fs = require("fs");
             const php = (v) => "\x27" + String(v ?? "").replace(/\\/g, "\\\\").replace(/\x27/g, "\\\x27") + "\x27";
             const ids = (process.env.TELEGRAM_CHAT_IDS || "").split(",").map((s) => s.trim()).filter(Boolean);
-            fs.writeFileSync("public/api/telegram-config.php",
+            const e = process.env;
+            if (e.TELEGRAM_BOT_TOKEN && ids.length) fs.writeFileSync("public/api/telegram-config.php",
               "<?php\nreturn [\n    \x27bot_token\x27 => " + php(process.env.TELEGRAM_BOT_TOKEN) +
               ",\n    \x27chat_ids\x27 => [" + ids.map(php).join(", ") + "],\n];\n");
-            fs.writeFileSync("public/api/cms-config.php",
+            if (e.ADMIN_USERNAME && e.ADMIN_PASSWORD && e.CMS_GITHUB_TOKEN) fs.writeFileSync("public/api/cms-config.php",
               "<?php\nreturn [\n    \x27admin_username\x27 => " + php(process.env.ADMIN_USERNAME) +
               ",\n    \x27admin_password\x27 => " + php(process.env.ADMIN_PASSWORD) +
               ",\n    \x27github_token\x27 => " + php(process.env.CMS_GITHUB_TOKEN) + ",\n];\n");
-            fs.writeFileSync("public/api/ai-config.php",
+            if (e.GEMINI_API_KEY) fs.writeFileSync("public/api/ai-config.php",
               "<?php\nreturn [\n    \x27gemini_api_key\x27 => " + php(process.env.GEMINI_API_KEY) + ",\n];\n");
           '
 
@@ -77,4 +80,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ${{ secrets.FTP_PROTOCOL || 'ftps' }}
           local-dir: Tri-Viet-Phat-main/dist/
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          server-dir: ${{ secrets.FTP_SERVER_DIR || 'public_html/' }}
