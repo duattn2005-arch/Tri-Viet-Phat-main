@@ -260,7 +260,7 @@ function clean_reply(string $text): string
 $configFile = __DIR__ . '/ai-config.php';
 $config = is_file($configFile) ? require $configFile : [];
 $apiKey = trim((string)($config['gemini_api_key'] ?? ''));
-$models = array_values(array_filter((array)($config['models'] ?? ['gemini-flash-latest', 'gemini-flash-lite-latest'])));
+$models = array_slice(array_values(array_filter((array)($config['models'] ?? ['gemini-flash-lite-latest', 'gemini-3.8-flash']))), 0, 2);
 
 if ($apiKey === '') {
     reply(200, ['reply' => catalogue_reply($message, $knowledge, $hotline)]);
@@ -290,6 +290,16 @@ $system = "Bạn là \"Trợ lý AI Trí Việt Phát\", tư vấn viên kỹ th
     . "THƯƠNG HIỆU:\n" . json_encode($knowledge['brands'] ?? [], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n\n"
     . "CHÍNH SÁCH ĐANG GHI TRÊN WEBSITE: hàng chính hãng có CO/CQ; bảo hành 12 tháng; giao hàng, lắp đặt, hướng dẫn sử dụng trên toàn quốc; bảo trì định kỳ và cung cấp hóa chất, vật tư.\n\n"
     . "TRÍCH ĐOẠN TỪ WEBSITE LIÊN QUAN ĐẾN CÂU HỎI (bài viết, tài liệu, hướng dẫn, tuyển dụng…):\n" . $siteContext . "\n\n"
+    . "KỊCH BẢN TƯ VẤN:\n"
+    . "1. Xưng \"em\", gọi khách là \"Quý khách\" hoặc \"anh/chị\". Mở đầu ngắn gọn, đi thẳng vào câu hỏi.\n"
+    . "2. Khách hỏi chung chung (\"nên mua máy nào\", \"tư vấn máy xét nghiệm\"): hỏi lại 1–2 câu để hiểu nhu cầu — loại cơ sở (phòng khám, bệnh viện, trung tâm xét nghiệm), khoảng bao nhiêu mẫu mỗi ngày, cần làm xét nghiệm gì — rồi mới gợi ý.\n"
+    . "3. Khi gợi ý: chọn 1–3 model PHÙ HỢP trong danh mục, nêu lý do bằng thông số có thật (công suất, số thông số, v.v.), kèm link [tên máy](url).\n"
+    . "4. Khách hỏi về một model cụ thể: tóm tắt thông số chính của đúng model đó, kèm link.\n"
+    . "5. Khách hỏi kiến thức (ví dụ ý nghĩa một xét nghiệm, cách bảo quản hóa chất): trả lời theo trích đoạn bài viết của website và kèm link bài.\n"
+    . "6. Khách hỏi giá, muốn mua, muốn nhận báo giá hoặc catalogue: không nêu giá; mời để lại số điện thoại/tên cơ sở ngay trong khung chat hoặc gọi Hotline {$hotline} để kỹ sư gửi báo giá.\n"
+    . "7. Khách hỏi bảo hành, lắp đặt, giao hàng, CO/CQ: trả lời theo CHÍNH SÁCH ĐANG GHI TRÊN WEBSITE.\n"
+    . "8. Câu hỏi ngoài lĩnh vực thiết bị, hóa chất xét nghiệm và công ty: lịch sự từ chối và quay lại chủ đề.\n"
+    . "9. Kết thúc câu trả lời tư vấn bằng một câu mời hành động ngắn (để lại số điện thoại, gọi hotline, hoặc xem trang sản phẩm).\n\n"
     . "QUY TẮC:\n"
     . "- Trả lời bằng tiếng Việt, lịch sự, ngắn gọn (tối đa khoảng 150 từ), chuyên nghiệp.\n"
     . "- Chỉ dựa vào danh mục, chính sách và các trích đoạn ở trên. Khi dùng một trích đoạn, kèm link bài đó dạng [tên bài](url).\n"
@@ -313,7 +323,7 @@ $contents[] = ['role' => 'user', 'parts' => [['text' => $message]]];
 $payload = json_encode([
     'systemInstruction' => ['parts' => [['text' => $system]]],
     'contents' => $contents,
-    'generationConfig' => ['temperature' => 0.4, 'maxOutputTokens' => 700],
+    'generationConfig' => ['temperature' => 0.4, 'maxOutputTokens' => 2048],
 ], JSON_UNESCAPED_UNICODE);
 
 foreach ($models as $model) {
@@ -322,7 +332,7 @@ foreach ($models as $model) {
         CURLOPT_POST => true,
         CURLOPT_POSTFIELDS => $payload,
         CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_TIMEOUT => 25,
+        CURLOPT_TIMEOUT => 12, // two tries must fit in the host's 30 s PHP limit
         CURLOPT_HTTPHEADER => ['Content-Type: application/json', 'x-goog-api-key: ' . $apiKey],
     ]);
     $res = curl_exec($ch);

@@ -4,5 +4,5 @@
 return [
     'gemini_api_key' => '',
     // Tried in order; the "-latest" aliases follow Google's current Flash models
-    'models' => ['gemini-flash-latest', 'gemini-flash-lite-latest'],
+    'models' => ['gemini-flash-lite-latest', 'gemini-3.8-flash'],
 ];
