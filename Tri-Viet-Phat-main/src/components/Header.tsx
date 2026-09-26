@@ -150,7 +150,7 @@ export const Header: React.FC<HeaderProps> = ({
           {COMPANY_INFO.email}
         </a>
       </>,
-      <>{icon('verified')}Nhà phân phối chính thức DIRUI · Wondfo · EKF · Dewei · Chema · Convergent</>,
+      <>{icon('verified')}Đại lý phân phối DIRUI · Wondfo · EKF · Dewei · Chema · Convergent</>,
       <>{icon('science')}Hóa chất, thuốc thử {COMPANY_INFO.genuineReagents} chính hãng, đủ CO/CQ</>,
       <>{icon('engineering')}Kỹ sư y sinh hỗ trợ lắp đặt, bảo trì, sửa chữa tận nơi</>,
       <>{icon('local_shipping')}Giao hàng toàn quốc · {COMPANY_INFO.yearsOfExperience} năm kinh nghiệm</>,
