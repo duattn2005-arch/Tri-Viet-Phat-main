@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { COMPANY_INFO } from '../data/mockData';
 import { Product } from '../types';
 import { ProvinceSelect } from './ProvinceSelect';
 import { sendLead } from '../lib/sendLead';
@@ -140,7 +141,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                   <span className="material-symbols-outlined text-[16px] text-white">check_circle</span>
                   <span className="tracking-wide">LỢI ÍCH KHI MUA HÀNG THIẾT BỊ Y TẾ</span>
                 </div>
-                <div className="space-y-3 pt-1 text-[13.5px] text-[#111111]">
+                <div className="fx-stagger space-y-3 pt-1 text-[13.5px] text-[#111111]">
                   <div className="flex items-start gap-3">
                     <span className="text-[#e11d2a] material-symbols-outlined text-[19px] shrink-0 mt-0.5">person</span>
                     <span>Nhà cung cấp uy tín thiết bị y tế ở Việt Nam</span>
@@ -170,6 +171,10 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
               <h3 className="text-center font-bold text-[16px] mb-3.5 tracking-tight text-white">
                 Đăng ký nhận tư vấn
               </h3>
+              <p className="-mt-2 mb-3.5 text-center text-[12px] text-white/80 inline-flex w-full items-center justify-center gap-1">
+                <span className="material-symbols-outlined text-[15px] text-[#ffd166]">bolt</span>
+                Báo giá miễn phí, phản hồi trong 15 phút
+              </p>
 
               {isSubmitted ? (
                 <div className="p-4 bg-white/20 backdrop-blur-xs  text-center space-y-2 text-white">
@@ -241,10 +246,17 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                   <button
                     type="submit"
                     disabled={sending}
-                    className="w-full mt-2 bg-[#e11d2a] hover:bg-[#e11d2a] active:scale-[0.98] disabled:opacity-60 disabled:cursor-wait text-white font-bold text-[13px] py-2.5 px-4   transition-all cursor-pointer"
+                    className="fx-cta relative overflow-hidden w-full mt-2 bg-[#e11d2a] hover:brightness-110 active:scale-[0.98] disabled:opacity-60 disabled:cursor-wait text-white font-bold text-[13px] py-2.5 px-4   transition-all cursor-pointer"
                   >
-                    {sending ? 'ĐANG GỬI...' : 'GỬI YÊU CẦU'}
+                    {sending ? 'ĐANG GỬI...' : 'NHẬN BÁO GIÁ NGAY'}
                   </button>
+                  <a
+                    href={`tel:${COMPANY_INFO.hotline.replace(/\./g, '')}`}
+                    className="mt-1 flex w-full items-center justify-center gap-1.5 py-2 text-[13px] font-semibold text-white/90 hover:text-white"
+                  >
+                    <span className="material-symbols-outlined text-[18px] phone-shake">call</span>
+                    Hoặc gọi {COMPANY_INFO.hotline}
+                  </a>
                 </form>
               )}
             </div>

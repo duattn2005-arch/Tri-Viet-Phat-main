@@ -18,6 +18,7 @@ import { ProductDetailModal } from './components/ProductDetailModal';
 import { ConsultationModal } from './components/ConsultationModal';
 import { RepairServiceModal } from './components/RepairServiceModal';
 import { SearchModal } from './components/SearchModal';
+import { OfferPopup } from './components/OfferPopup';
 
 import { HomeScreen } from './components/screens/HomeScreen';
 import { AboutScreen } from './components/screens/AboutScreen';
@@ -226,6 +227,13 @@ export default function App() {
           onToggleAiChat={() => setIsAiChatOpen(!isAiChatOpen)}
           isAiChatOpen={isAiChatOpen}
           onNavigateContact={() => handleSelectTab('lien-he')}
+          onOpenConsultation={() => handleOpenConsultation()}
+        />
+
+        {/* One-per-visit "free quote" offer when the visitor is about to leave */}
+        <OfferPopup
+          blocked={!!selectedProduct || isConsultationOpen || isRepairServiceOpen || isSearchOpen || isAiChatOpen}
+          onAccept={() => handleOpenConsultation()}
         />
 
         {/* AI Assistant Chat Window */}

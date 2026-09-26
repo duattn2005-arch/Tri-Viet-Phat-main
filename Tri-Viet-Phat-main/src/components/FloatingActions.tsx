@@ -6,7 +6,10 @@ interface FloatingActionsProps {
   onToggleAiChat: () => void;
   isAiChatOpen: boolean;
   onNavigateContact?: () => void;
+  onOpenConsultation?: () => void;
 }
+
+const NUDGE_KEY = 'tvp-nudge-closed';
 
 const CHANNELS = [
   {
@@ -45,9 +48,32 @@ const ChannelIcon: React.FC<{ kind: (typeof CHANNELS)[number]['key'] }> = ({ kin
 const LABEL_CLASS =
   'pointer-events-none absolute right-full mr-3 whitespace-nowrap rounded-full bg-[#0a2540] px-3 py-1.5 text-[12.5px] font-semibold text-white';
 
-export const FloatingActions: React.FC<FloatingActionsProps> = ({ onToggleAiChat, isAiChatOpen }) => {
+export const FloatingActions: React.FC<FloatingActionsProps> = ({ onToggleAiChat, isAiChatOpen, onOpenConsultation }) => {
   const [open, setOpen] = useState(false);
+  const [nudge, setNudge] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+
+  // A small "get a quote" bubble pops out of the contact button after a few seconds (once per visit)
+  useEffect(() => {
+    let closed = false;
+    try {
+      closed = sessionStorage.getItem(NUDGE_KEY) === '1';
+    } catch {
+      /* storage unavailable: show the bubble */
+    }
+    if (closed) return;
+    const t = window.setTimeout(() => setNudge(true), 8000);
+    return () => window.clearTimeout(t);
+  }, []);
+
+  const closeNudge = () => {
+    setNudge(false);
+    try {
+      sessionStorage.setItem(NUDGE_KEY, '1');
+    } catch {
+      /* ignore */
+    }
+  };
 
   // Close the contact menu on outside click or Escape.
   useEffect(() => {
@@ -82,6 +108,42 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({ onToggleAiChat
 
       {/* One contact button that fans out into call / Zalo / Messenger */}
       <div className="relative">
+        <AnimatePresence>
+          {nudge && !open && !isAiChatOpen && (
+            <motion.div
+              className="absolute bottom-full right-0 mb-3 w-[250px] rounded-2xl bg-white p-3.5 pr-8 shadow-[0_18px_40px_-12px_rgba(10,37,64,0.45)] border border-[#e3ebf3] origin-bottom-right"
+              initial={{ opacity: 0, scale: 0.6, y: 12 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.8, y: 8 }}
+              transition={{ type: 'spring', stiffness: 380, damping: 24 }}
+            >
+              <button
+                type="button"
+                onClick={closeNudge}
+                aria-label="Ẩn lời nhắc"
+                className="absolute top-2 right-2 w-6 h-6 rounded-full text-[#777777] hover:bg-[#edf3f8] flex items-center justify-center cursor-pointer"
+              >
+                <span className="material-symbols-outlined text-[16px]">close</span>
+              </button>
+              <p className="text-[13.5px] font-bold text-[#0a2540] leading-snug">
+                <span className="inline-block origin-bottom animate-[phoneShake_2.4s_ease-in-out_infinite]">👋</span> Cần báo giá máy xét nghiệm?
+              </p>
+              <p className="mt-1 text-[12.5px] text-[#555555] leading-snug">Kỹ sư phản hồi trong 15 phút, tư vấn miễn phí.</p>
+              <button
+                type="button"
+                onClick={() => {
+                  closeNudge();
+                  onOpenConsultation?.();
+                }}
+                className="fx-cta relative overflow-hidden mt-2.5 w-full h-9 rounded-full bg-linear-to-r from-[#e11d2a] to-[#b3141f] text-white text-[12.5px] font-bold uppercase tracking-wide cursor-pointer"
+              >
+                Nhận báo giá ngay
+              </button>
+              <span className="absolute -bottom-1.5 right-5 w-3 h-3 rotate-45 bg-white border-r border-b border-[#e3ebf3]" aria-hidden="true" />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         <AnimatePresence>
           {open && (
             <motion.ul
@@ -123,7 +185,10 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({ onToggleAiChat
 
         <button
           type="button"
-          onClick={() => setOpen((v) => !v)}
+          onClick={() => {
+            setOpen((v) => !v);
+            if (nudge) closeNudge();
+          }}
           aria-label={open ? 'Đóng liên hệ' : 'Liên hệ tư vấn'}
           aria-expanded={open}
           aria-controls="contact-menu"

@@ -65,9 +65,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect, onR
         {product.name}
       </button>
       <div className="mt-1 text-[12px] sm:text-[13px] text-[#777777]">Xuất xứ: {originName(product)}</div>
-      <div className="mt-auto pt-2.5 inline-flex items-center justify-center gap-1 text-[14px] sm:text-[15px] font-bold text-[#e11d2a]">
-        <span className="material-symbols-outlined text-[17px]">call</span>
-        Liên hệ báo giá
+      <div className="mt-auto pt-3">
+        <button
+          type="button"
+          onClick={() => onRequestQuote(product.name)}
+          className="fx-cta relative overflow-hidden w-full h-9 sm:h-10 rounded-full bg-linear-to-r from-[#e11d2a] to-[#b3141f] text-white text-[12.5px] sm:text-[13.5px] font-bold uppercase tracking-wide inline-flex items-center justify-center gap-1.5 shadow-[0_8px_18px_-8px_rgba(225,29,42,0.7)] hover:brightness-110 active:scale-[0.97] transition-[filter,scale] cursor-pointer"
+        >
+          <span className="material-symbols-outlined text-[17px] phone-shake">request_quote</span>
+          Nhận báo giá
+        </button>
       </div>
     </div>
   </article>
