@@ -23,7 +23,7 @@ export const CORE_VALUES = [
   },
   {
     title: 'Hợp tác',
-    desc: 'Trí Việt Phát số 1 về máy móc thiết bị y tế và vật tư tiêu hao ngành y.',
+    desc: 'Trí Đức số 1 về máy móc thiết bị y tế và vật tư tiêu hao ngành y.',
     icon: 'handshake',
     color: 'bg-secondary',
   },
@@ -78,7 +78,7 @@ export const TESTIMONIALS: Testimonial[] = (testimonials.testimonials as Partial
 export const DOCUMENTS: DocumentItem[] = [
   {
     id: 'doc-1',
-    title: 'Catalog Tổng Hợp Thiết Bị Xét Nghiệm & Hóa Chất Trí Việt Phát 2025',
+    title: 'Catalog Tổng Hợp Thiết Bị Xét Nghiệm & Hóa Chất Trí Đức 2025',
     code: 'CAT-TVP-2025-VN',
     type: 'catalog',
     category: 'Catalog sản phẩm',
@@ -118,7 +118,7 @@ export const DOCUMENTS: DocumentItem[] = [
   },
   {
     id: 'doc-5',
-    title: 'Hồ sơ năng lực Công ty TNHH Thiết bị Y tế Trí Việt Phát',
+    title: 'Hồ sơ năng lực Công ty TNHH Thương mại Dịch vụ Trí Đức',
     code: 'PROFILE-TVP-2025',
     type: 'catalog',
     category: 'Hồ sơ doanh nghiệp',

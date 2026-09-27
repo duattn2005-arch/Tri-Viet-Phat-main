@@ -198,13 +198,13 @@ collections:
           - { name: categoriesTitle, label: 'Khối "Danh mục sản phẩm" — tiêu đề', widget: string }
           - { name: categoriesDesc, label: 'Khối "Danh mục sản phẩm" — mô tả', widget: text }
           - { name: featuredTitle, label: 'Tiêu đề "Sản phẩm nổi bật"', widget: string }
-          - { name: aboutImage2, label: 'Khối "Về Trí Việt Phát" — ảnh nhỏ', widget: image, hint: 'Ảnh lớn lấy từ Cài đặt chung → Thông tin công ty → Ảnh trang Giới thiệu' }
-          - { name: aboutBadge, label: 'Khối "Về Trí Việt Phát" — chữ dưới số năm', widget: string }
-          - { name: aboutEyebrow, label: 'Khối "Về Trí Việt Phát" — dòng nhỏ', widget: string }
-          - { name: aboutTitle, label: 'Khối "Về Trí Việt Phát" — tiêu đề', widget: string }
-          - { name: aboutText, label: 'Khối "Về Trí Việt Phát" — đoạn giới thiệu', widget: text }
+          - { name: aboutImage2, label: 'Khối "Về Trí Đức" — ảnh nhỏ', widget: image, hint: 'Ảnh lớn lấy từ Cài đặt chung → Thông tin công ty → Ảnh trang Giới thiệu' }
+          - { name: aboutBadge, label: 'Khối "Về Trí Đức" — chữ dưới số năm', widget: string }
+          - { name: aboutEyebrow, label: 'Khối "Về Trí Đức" — dòng nhỏ', widget: string }
+          - { name: aboutTitle, label: 'Khối "Về Trí Đức" — tiêu đề', widget: string }
+          - { name: aboutText, label: 'Khối "Về Trí Đức" — đoạn giới thiệu', widget: text }
           - name: capabilities
-            label: 'Khối "Về Trí Việt Phát" — các thế mạnh'
+            label: 'Khối "Về Trí Đức" — các thế mạnh'
             label_singular: thế mạnh
             widget: list
             summary: '{{fields.title}}'
@@ -334,12 +334,12 @@ collections:
         file: Tri-Viet-Phat-main/src/content/pages/seo.json
         fields:
           - { name: trang-chu, label: Trang chủ, widget: object, collapsed: true, fields: [{ name: title, label: 'Tiêu đề (tối đa ~60 ký tự, viết đầy đủ kể cả tên công ty)', widget: string }, { name: description, label: Mô tả (tối đa ~160 ký tự), widget: text }] }
-          - { name: gioi-thieu, label: Giới thiệu, widget: object, collapsed: true, fields: [{ name: title, label: 'Tiêu đề (web tự thêm " | Trí Việt Phát")', widget: string }, { name: description, label: Mô tả (tối đa ~160 ký tự), widget: text }] }
-          - { name: san-pham, label: Sản phẩm, widget: object, collapsed: true, fields: [{ name: title, label: 'Tiêu đề (web tự thêm " | Trí Việt Phát")', widget: string }, { name: description, label: Mô tả (tối đa ~160 ký tự), widget: text }] }
-          - { name: tai-lieu, label: Tài liệu, widget: object, collapsed: true, fields: [{ name: title, label: 'Tiêu đề (web tự thêm " | Trí Việt Phát")', widget: string }, { name: description, label: Mô tả (tối đa ~160 ký tự), widget: text }] }
-          - { name: tin-tuc, label: Tin tức, widget: object, collapsed: true, fields: [{ name: title, label: 'Tiêu đề (web tự thêm " | Trí Việt Phát")', widget: string }, { name: description, label: Mô tả (tối đa ~160 ký tự), widget: text }] }
-          - { name: tuyen-dung, label: Tuyển dụng, widget: object, collapsed: true, fields: [{ name: title, label: 'Tiêu đề (web tự thêm " | Trí Việt Phát")', widget: string }, { name: description, label: Mô tả (tối đa ~160 ký tự), widget: text }] }
-          - { name: lien-he, label: Liên hệ, widget: object, collapsed: true, fields: [{ name: title, label: 'Tiêu đề (web tự thêm " | Trí Việt Phát")', widget: string }, { name: description, label: Mô tả (tối đa ~160 ký tự), widget: text }] }
+          - { name: gioi-thieu, label: Giới thiệu, widget: object, collapsed: true, fields: [{ name: title, label: 'Tiêu đề (web tự thêm " | Trí Đức")', widget: string }, { name: description, label: Mô tả (tối đa ~160 ký tự), widget: text }] }
+          - { name: san-pham, label: Sản phẩm, widget: object, collapsed: true, fields: [{ name: title, label: 'Tiêu đề (web tự thêm " | Trí Đức")', widget: string }, { name: description, label: Mô tả (tối đa ~160 ký tự), widget: text }] }
+          - { name: tai-lieu, label: Tài liệu, widget: object, collapsed: true, fields: [{ name: title, label: 'Tiêu đề (web tự thêm " | Trí Đức")', widget: string }, { name: description, label: Mô tả (tối đa ~160 ký tự), widget: text }] }
+          - { name: tin-tuc, label: Tin tức, widget: object, collapsed: true, fields: [{ name: title, label: 'Tiêu đề (web tự thêm " | Trí Đức")', widget: string }, { name: description, label: Mô tả (tối đa ~160 ký tự), widget: text }] }
+          - { name: tuyen-dung, label: Tuyển dụng, widget: object, collapsed: true, fields: [{ name: title, label: 'Tiêu đề (web tự thêm " | Trí Đức")', widget: string }, { name: description, label: Mô tả (tối đa ~160 ký tự), widget: text }] }
+          - { name: lien-he, label: Liên hệ, widget: object, collapsed: true, fields: [{ name: title, label: 'Tiêu đề (web tự thêm " | Trí Đức")', widget: string }, { name: description, label: Mô tả (tối đa ~160 ký tự), widget: text }] }
 
   # ---------- Cài đặt chung ----------
   - name: settings

@@ -19,7 +19,7 @@ export const BRANDS: Brand[] = [
     pattern: /dirui/i,
     heading: 'Máy xét nghiệm Dirui chính hãng',
     intro:
-      'DIRUI (Dirui Industrial Co., Ltd., Trung Quốc) chuyên sản xuất thiết bị chẩn đoán in vitro. Trí Việt Phát phân phối chính hãng máy xét nghiệm sinh hóa Dirui, máy xét nghiệm nước tiểu Dirui và máy xét nghiệm huyết học Dirui, đủ CO/CQ, kèm hóa chất, lắp đặt, đào tạo và bảo hành tận nơi trên toàn quốc.',
+      'DIRUI (Dirui Industrial Co., Ltd., Trung Quốc) chuyên sản xuất thiết bị chẩn đoán in vitro. Trí Đức phân phối chính hãng máy xét nghiệm sinh hóa Dirui, máy xét nghiệm nước tiểu Dirui và máy xét nghiệm huyết học Dirui, đủ CO/CQ, kèm hóa chất, lắp đặt, đào tạo và bảo hành tận nơi trên toàn quốc.',
   },
   {
     slug: 'dewei',
@@ -27,7 +27,7 @@ export const BRANDS: Brand[] = [
     pattern: /dewei/i,
     heading: 'Hóa chất xét nghiệm Dewei chính hãng',
     intro:
-      'Hóa chất huyết học Dewei (Dewei Medical, Trung Quốc) dùng cho máy phân tích huyết học, sẵn kho tại Hà Nội. Trí Việt Phát cung cấp đầy đủ danh mục dung dịch pha loãng, ly giải và rửa, giao nhanh toàn quốc.',
+      'Hóa chất huyết học Dewei (Dewei Medical, Trung Quốc) dùng cho máy phân tích huyết học, sẵn kho tại Hà Nội. Trí Đức cung cấp đầy đủ danh mục dung dịch pha loãng, ly giải và rửa, giao nhanh toàn quốc.',
   },
   {
     slug: 'dfi',
@@ -35,7 +35,7 @@ export const BRANDS: Brand[] = [
     pattern: /\bdfi\b/i,
     heading: 'Máy xét nghiệm nước tiểu DFI chính hãng',
     intro:
-      'Máy xét nghiệm nước tiểu DUS của DFI Co., Ltd. (Hàn Quốc) cho phòng khám và bệnh viện. Trí Việt Phát phân phối chính hãng, cung cấp que thử, lắp đặt và bảo hành tận nơi.',
+      'Máy xét nghiệm nước tiểu DUS của DFI Co., Ltd. (Hàn Quốc) cho phòng khám và bệnh viện. Trí Đức phân phối chính hãng, cung cấp que thử, lắp đặt và bảo hành tận nơi.',
   },
   {
     slug: 'audicom',
@@ -43,7 +43,7 @@ export const BRANDS: Brand[] = [
     pattern: /audicom/i,
     heading: 'Máy xét nghiệm điện giải Audicom',
     intro:
-      'Máy xét nghiệm điện giải Audicom (Jiangsu Audicom Medical Technology, Trung Quốc) đo Na, K, Cl, Ca, Li nhanh và chính xác. Trí Việt Phát phân phối chính hãng, kèm hóa chất và bảo trì định kỳ.',
+      'Máy xét nghiệm điện giải Audicom (Jiangsu Audicom Medical Technology, Trung Quốc) đo Na, K, Cl, Ca, Li nhanh và chính xác. Trí Đức phân phối chính hãng, kèm hóa chất và bảo trì định kỳ.',
   },
   {
     slug: 'ekf',
@@ -51,7 +51,7 @@ export const BRANDS: Brand[] = [
     pattern: /ekf/i,
     heading: 'Máy xét nghiệm HbA1c EKF chính hãng',
     intro:
-      'Máy xét nghiệm HbA1c của EKF Diagnostics (Đức) cho kết quả nhanh, phù hợp phòng khám và khoa nội tiết. Trí Việt Phát phân phối chính hãng, lắp đặt và hướng dẫn sử dụng tận nơi.',
+      'Máy xét nghiệm HbA1c của EKF Diagnostics (Đức) cho kết quả nhanh, phù hợp phòng khám và khoa nội tiết. Trí Đức phân phối chính hãng, lắp đặt và hướng dẫn sử dụng tận nơi.',
   },
   {
     slug: 'yhlo',
@@ -59,7 +59,7 @@ export const BRANDS: Brand[] = [
     pattern: /yhlo/i,
     heading: 'Máy xét nghiệm miễn dịch YHLO',
     intro:
-      'Máy xét nghiệm miễn dịch hóa phát quang YHLO (Shenzhen YHLO Biotech, Trung Quốc) cho bệnh viện và trung tâm xét nghiệm. Trí Việt Phát cung cấp máy, hóa chất và dịch vụ kỹ thuật chính hãng.',
+      'Máy xét nghiệm miễn dịch hóa phát quang YHLO (Shenzhen YHLO Biotech, Trung Quốc) cho bệnh viện và trung tâm xét nghiệm. Trí Đức cung cấp máy, hóa chất và dịch vụ kỹ thuật chính hãng.',
   },
   {
     slug: 'wondfo',
@@ -67,7 +67,7 @@ export const BRANDS: Brand[] = [
     pattern: /wondfo/i,
     heading: 'Máy phân tích đông máu Wondfo',
     intro:
-      'Máy phân tích đông máu Wondfo (Wondfo Biotech, Trung Quốc) cho các xét nghiệm PT, APTT, TT, FIB. Trí Việt Phát phân phối chính hãng, kèm hóa chất, lắp đặt và bảo hành.',
+      'Máy phân tích đông máu Wondfo (Wondfo Biotech, Trung Quốc) cho các xét nghiệm PT, APTT, TT, FIB. Trí Đức phân phối chính hãng, kèm hóa chất, lắp đặt và bảo hành.',
   },
 ];
 
@@ -129,10 +129,10 @@ export function brandFaq(brand: Brand, productsByCategory: Record<string, string
   return [
     {
       q: `Mua ${machine} chính hãng ở đâu?`,
-      a: `Trí Việt Phát (Hoàng Mai, Hà Nội) phân phối ${machine} chính hãng, đủ CO/CQ, giao hàng và lắp đặt trên toàn quốc. Gọi hotline ${hotline} để được tư vấn cấu hình phù hợp.`,
+      a: `Trí Đức (Hoàng Mai, Hà Nội) phân phối ${machine} chính hãng, đủ CO/CQ, giao hàng và lắp đặt trên toàn quốc. Gọi hotline ${hotline} để được tư vấn cấu hình phù hợp.`,
     },
     {
-      q: `Trí Việt Phát có những sản phẩm ${brand.name} nào?`,
+      q: `Trí Đức có những sản phẩm ${brand.name} nào?`,
       a: `${lines}. Mỗi sản phẩm có trang riêng với thông số kỹ thuật chi tiết.`,
     },
     {
@@ -140,8 +140,8 @@ export function brandFaq(brand: Brand, productsByCategory: Record<string, string
       a: `Giá phụ thuộc model, cấu hình và hóa chất đi kèm. Vui lòng gọi hotline ${hotline} hoặc gửi yêu cầu báo giá trên website để nhận báo giá và chính sách chiết khấu.`,
     },
     {
-      q: `Mua ${brand.name} tại Trí Việt Phát có được lắp đặt và bảo hành không?`,
-      a: `Có. Kỹ sư Trí Việt Phát lắp đặt tận nơi, chạy mẫu, hướng dẫn sử dụng và bảo hành 12 tháng; sau đó hỗ trợ bảo trì định kỳ và cung cấp hóa chất, vật tư.`,
+      q: `Mua ${brand.name} tại Trí Đức có được lắp đặt và bảo hành không?`,
+      a: `Có. Kỹ sư Trí Đức lắp đặt tận nơi, chạy mẫu, hướng dẫn sử dụng và bảo hành 12 tháng; sau đó hỗ trợ bảo trì định kỳ và cung cấp hóa chất, vật tư.`,
     },
   ];
 }

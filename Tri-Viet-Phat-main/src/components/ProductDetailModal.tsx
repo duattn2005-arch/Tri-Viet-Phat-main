@@ -337,7 +337,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
               </div>
             )}
 
-            {/* 3. Tiêu chuẩn chất lượng & Cam kết Trí Việt Phát */}
+            {/* 3. Tiêu chuẩn chất lượng & Cam kết Trí Đức */}
             {product.certifications && product.certifications.length > 0 && (
               <div className="pt-4 border-t border-[#f2f2f2] flex flex-wrap items-center justify-between gap-4">
                 <div className="flex items-center gap-3">

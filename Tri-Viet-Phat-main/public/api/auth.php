@@ -41,7 +41,7 @@ function form(string $error = ''): void
     page(<<<HTML
 <form method="post" action="/api/auth.php">
   <h1>Quản trị nội dung</h1>
-  <p>Trí Việt Phát — đăng nhập để chỉnh sửa nội dung website.</p>
+  <p>Trí Đức — đăng nhập để chỉnh sửa nội dung website.</p>
   <input type="text" name="username" placeholder="Tên đăng nhập" autocomplete="username" autofocus required />
   <input type="password" name="password" placeholder="Mật khẩu" autocomplete="current-password" required />
   {$err}

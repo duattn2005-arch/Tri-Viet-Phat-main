@@ -133,7 +133,7 @@ const EmptyState: React.FC<{ title: string; message: string }> = ({ title, messa
 export const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({
   testimonials,
   eyebrow,
-  title = 'Khách hàng nói về Trí Việt Phát',
+  title = 'Khách hàng nói về Trí Đức',
   subtitle = 'Chia sẻ từ các bệnh viện, trung tâm y tế và phòng khám đã sử dụng thiết bị và dịch vụ của chúng tôi.',
   mode = 'production',
   autoRotateMs = 5500,

@@ -90,7 +90,7 @@ export const SIDEBAR_CATEGORIES = [
 
 export const SIDEBAR_WEBSITE_LINKS = [
   { name: 'Thiết bị y tế tiêu hao', link: '/' },
-  { name: 'Thiết bị y tế trí việt phát', link: '/' },
+  { name: 'Thiết bị y tế trí đức', link: '/' },
   { name: 'Thiết bị y tế trí đức', link: '/' },
   { name: 'Hóa chất xét nghiệm y tế', link: '/san-pham/hoa-chat-xet-nghiem' },
   { name: 'Máy xét nghiệm y tế', link: '/san-pham' },

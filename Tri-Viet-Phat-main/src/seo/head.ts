@@ -31,7 +31,7 @@ function jsonLd(meta: SeoMeta, siteUrl: string): Record<string, unknown>[] {
       url,
       ...(meta.published ? { datePublished: meta.published } : {}),
       author: { '@type': 'Organization', name: SITE_NAME, url: siteUrl },
-      publisher: { '@type': 'Organization', name: SITE_NAME, logo: absolute(siteUrl, '/tri-viet-phat1.jpg') },
+      publisher: { '@type': 'Organization', name: SITE_NAME, logo: absolute(siteUrl, '/logo-tri-duc.png') },
     });
   }
   // Products are not marked up as schema.org/Product: without a price (offers) Google reports them as invalid.

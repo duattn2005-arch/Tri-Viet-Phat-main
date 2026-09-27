@@ -129,7 +129,7 @@ export const CareersScreen: React.FC = () => {
                       <div>
                         <div className="font-bold text-[14px]">Đã nhận hồ sơ ứng tuyển thành công!</div>
                         <div className="text-[13px]">
-                          Ban Nhân sự Trí Việt Phát sẽ liên hệ với bạn trong thời gian sớm nhất qua số điện thoại {candidatePhone}.
+                          Ban Nhân sự Trí Đức sẽ liên hệ với bạn trong thời gian sớm nhất qua số điện thoại {candidatePhone}.
                         </div>
                       </div>
                     </div>
@@ -255,7 +255,7 @@ export const CareersScreen: React.FC = () => {
           /* Jobs list — plain rows, aligned to the page grid */
           <div>
             <p className="max-w-2xl text-[15px] text-[#555555] leading-relaxed">
-              Gia nhập đội ngũ kỹ sư và kinh doanh thiết bị y tế của Trí Việt Phát. Hiện có{' '}
+              Gia nhập đội ngũ kỹ sư và kinh doanh thiết bị y tế của Trí Đức. Hiện có{' '}
               <strong className="text-[#111111]">{REAL_JOBS.length} vị trí</strong> đang tuyển.
             </p>
 

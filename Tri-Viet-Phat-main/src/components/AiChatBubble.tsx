@@ -18,7 +18,7 @@ const INITIAL_MESSAGES: ChatMessage[] = [
   {
     id: 'welcome-1',
     sender: 'assistant',
-    text: `Kính chào Quý khách! Tôi là **Trợ lý AI Trí Việt Phát** - chuyên gia tư vấn kỹ thuật y sinh và trang thiết bị xét nghiệm y khoa.\n\nTôi có thể hỗ trợ Quý khách giải đáp:\n- Thông số kỹ thuật các dòng máy xét nghiệm (sinh hóa, huyết học, nước tiểu, điện giải, miễn dịch, đông máu...)\n- Bộ hóa chất xét nghiệm Dewei chính hãng\n- Quy trình bảo hành, hiệu chuẩn thiết bị\n- Báo giá và giải pháp tối ưu cho phòng khám & bệnh viện`,
+    text: `Kính chào Quý khách! Tôi là **Trợ lý AI Trí Đức** - chuyên gia tư vấn kỹ thuật y sinh và trang thiết bị xét nghiệm y khoa.\n\nTôi có thể hỗ trợ Quý khách giải đáp:\n- Thông số kỹ thuật các dòng máy xét nghiệm (sinh hóa, huyết học, nước tiểu, điện giải, miễn dịch, đông máu...)\n- Bộ hóa chất xét nghiệm Dewei chính hãng\n- Quy trình bảo hành, hiệu chuẩn thiết bị\n- Báo giá và giải pháp tối ưu cho phòng khám & bệnh viện`,
     timestamp: 'Vừa xong',
   },
 ];
@@ -290,7 +290,7 @@ export const AiChatBubble: React.FC<AiChatBubbleProps> = ({
         <div
           className="fixed bottom-6 right-4 sm:right-6 z-50 w-[94vw] sm:w-[440px] md:w-[450px] h-[600px] max-h-[88vh] bg-white  shadow-[0_20px_60px_rgba(0,0,0,0.25)] border border-[#e5e5e5]/80 flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200"
           role="dialog"
-          aria-label="Cửa sổ Trợ lý AI & Liên hệ Trí Việt Phát"
+          aria-label="Cửa sổ Trợ lý AI & Liên hệ Trí Đức"
         >
           {/* Chat Header */}
           <div className="bg-linear-to-r from-[#0a2540] to-[#0a2540] px-4 sm:px-5 py-3.5 text-white flex items-center justify-between  shrink-0">
@@ -302,7 +302,7 @@ export const AiChatBubble: React.FC<AiChatBubbleProps> = ({
               <div>
                 <div className="flex items-center gap-1.5">
                   <h3 className="text-[14.5px] font-bold leading-tight tracking-wide">
-                    Trợ Lý AI Trí Việt Phát
+                    Trợ Lý AI Trí Đức
                   </h3>
                   <span className="material-symbols-outlined text-[15px] text-[#ffffff]" title="Đã chứng thực">
                     verified

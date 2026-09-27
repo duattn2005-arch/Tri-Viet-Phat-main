@@ -321,7 +321,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                     </h2>
                   </div>
                   <span className="text-[12px] text-[#777777]">
-                    Được chứng thực kỹ thuật bởi Trí Việt Phát
+                    Được chứng thực kỹ thuật bởi Trí Đức
                   </span>
                 </div>
 
@@ -768,7 +768,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#777777]">Đơn vị phát hành:</span>
-                  <span className="font-semibold text-[#111111]">Công ty TNHH Thiết bị Y tế Trí Việt Phát</span>
+                  <span className="font-semibold text-[#111111]">Công ty TNHH Thương mại Dịch vụ Trí Đức</span>
                 </div>
               </div>
 

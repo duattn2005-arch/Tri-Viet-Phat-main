@@ -216,16 +216,16 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="max-w-[1760px] mx-auto px-4 sm:px-8 xl:px-12 flex items-center justify-between gap-4 lg:gap-8 h-16 sm:h-20 lg:h-[84px]">
         <a
           {...navLink({ tab: 'trang-chu' }, () => handleNavClick('trang-chu'))}
-          aria-label="Trí Việt Phát – Trang chủ"
+          aria-label="Trí Đức – Trang chủ"
           className="group flex items-center gap-2.5 sm:gap-3 text-left cursor-pointer shrink-0"
         >
           <img
-            alt="Logo Trí Việt Phát"
+            alt="Logo Trí Đức"
             className="h-8 sm:h-11 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
             src={COMPANY_INFO.logoUrl}
           />
           <span className="flex flex-col leading-tight">
-            <span className="text-[16px] sm:text-[19px] font-bold text-[#0a2540] tracking-tight">Trí Việt Phát</span>
+            <span className="text-[16px] sm:text-[19px] font-bold text-[#0a2540] tracking-tight">Trí Đức</span>
             <span className="text-[11px] sm:text-[12px] font-medium uppercase tracking-[0.12em] text-[#0a94dc]">
               Thiết bị y tế
             </span>

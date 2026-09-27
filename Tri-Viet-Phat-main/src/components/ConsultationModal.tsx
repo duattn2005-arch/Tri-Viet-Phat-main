@@ -93,7 +93,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, on
             <span className="material-symbols-outlined text-[44px] text-[#111111]">check_circle</span>
             <h3 className="mt-3 text-[20px] font-bold text-[#111111]">Đã gửi yêu cầu</h3>
             <p className="mt-2 text-[14px] text-[#555555] max-w-sm mx-auto leading-relaxed">
-              Kỹ sư Trí Việt Phát sẽ liên hệ qua số <strong className="text-[#111111]">{phone}</strong> để gửi báo giá.
+              Kỹ sư Trí Đức sẽ liên hệ qua số <strong className="text-[#111111]">{phone}</strong> để gửi báo giá.
             </p>
           </div>
         ) : (

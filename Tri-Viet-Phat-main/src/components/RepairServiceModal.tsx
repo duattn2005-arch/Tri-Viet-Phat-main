@@ -109,7 +109,7 @@ export const RepairServiceModal: React.FC<RepairServiceModalProps> = ({ isOpen, 
                 Đăng ký dịch vụ sửa chữa thiết bị y tế
               </h3>
               <p className="text-[13px] text-[#555555] mt-1 [text-wrap:balance]">
-                Kỹ sư y sinh của Trí Việt Phát sẽ liên hệ và có mặt xử lý sự cố trong thời gian sớm nhất.
+                Kỹ sư y sinh của Trí Đức sẽ liên hệ và có mặt xử lý sự cố trong thời gian sớm nhất.
               </p>
             </div>
 

@@ -69,7 +69,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenConsultation }) 
         if (Math.abs(dx) > 50) go(active + (dx < 0 ? 1 : -1));
       }}
       aria-roledescription="carousel"
-      aria-label="Giới thiệu Trí Việt Phát"
+      aria-label="Giới thiệu Trí Đức"
     >
       {/* Images: all mounted so they are preloaded; the active one fades in and slowly zooms out */}
       <motion.div className="absolute inset-0" style={{ y: imageY }}>

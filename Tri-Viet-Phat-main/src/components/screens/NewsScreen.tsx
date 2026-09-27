@@ -380,7 +380,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                       <div className="flex items-center justify-between pt-4 border-t border-[#f2f2f2]">
                         <span className="text-[12.5px] text-[#777777] flex items-center gap-1">
                           <span className="material-symbols-outlined text-[16px]">verified</span>
-                          <span>Biên tập bởi Trí Việt Phát</span>
+                          <span>Biên tập bởi Trí Đức</span>
                         </span>
 
                         <button
@@ -608,7 +608,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                       </h4>
                     </div>
                     <p className="text-[12.5px] text-white/80 leading-relaxed mb-3">
-                      Nhận thông tin cập nhật văn bản pháp quy, cẩm nang phòng Lab và báo giá thiết bị Trí Việt Phát mới nhất.
+                      Nhận thông tin cập nhật văn bản pháp quy, cẩm nang phòng Lab và báo giá thiết bị Trí Đức mới nhất.
                     </p>
                   </div>
 

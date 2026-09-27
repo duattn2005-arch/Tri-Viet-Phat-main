@@ -168,7 +168,7 @@ export const MaskText: React.FC<{ text: string; delay?: number }> = ({ text, del
  */
 export const ParallaxImage: React.FC<{ src: string; alt?: string; className?: string; strength?: number }> = ({
   src,
-  alt = 'Phòng xét nghiệm y khoa – Trí Việt Phát',
+  alt = 'Phòng xét nghiệm y khoa – Trí Đức',
   className = '',
   strength = 14,
 }) => {

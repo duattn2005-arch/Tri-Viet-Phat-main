@@ -3,7 +3,7 @@
   "downloadsDesc": "Tải về tài liệu thông số kỹ thuật, hồ sơ thiết bị y tế và bảng hướng dẫn vận hành chuẩn ISO",
   "downloads": [
     {
-      "title": "Catalog Tổng hợp Thiết bị Xét nghiệm & Vật tư Y tế Trí Việt Phát 2025",
+      "title": "Catalog Tổng hợp Thiết bị Xét nghiệm & Vật tư Y tế Trí Đức 2025",
       "code": "CAT-TVP-2025",
       "fileSize": "4.8 MB",
       "pages": 48,
@@ -52,7 +52,7 @@
     },
     {
       "title": "Kiểm định & Bàn giao",
-      "desc": "Chạy mẫu nghiệm thu QC, lập biên bản kiểm chuẩn và dán tem bảo hành kỹ thuật Trí Việt Phát."
+      "desc": "Chạy mẫu nghiệm thu QC, lập biên bản kiểm chuẩn và dán tem bảo hành kỹ thuật Trí Đức."
     }
   ],
   "faqTitle": "Câu hỏi thường gặp về Bảo trì & Sử dụng Thiết bị Y tế",
@@ -62,12 +62,12 @@
       "a": "Đối với các dòng máy xét nghiệm huyết học và sinh hóa tự động, khuyến nghị bảo dưỡng kiểm chuẩn kỹ thuật chuyên sâu tối thiểu 3 - 6 tháng/lần. Hàng ngày, kỹ thuật viên cần chạy chương trình rửa ống và kiểm tra QC trước ca làm việc."
     },
     {
-      "q": "Thời gian kỹ sư Trí Việt Phát có mặt khi thiết bị gặp sự cố khẩn cấp?",
-      "a": "Tại khu vực Hà Nội và các tỉnh lân cận, đội ngũ kỹ sư chuyên môn của Trí Việt Phát cam kết tiếp nhận và có mặt xử lý trực tiếp trong vòng 2 - 4 giờ làm việc. Đối với các tỉnh xa, chúng tôi hỗ trợ chẩn đoán từ xa 24/7 và điều phối kỹ sư trong 12h."
+      "q": "Thời gian kỹ sư Trí Đức có mặt khi thiết bị gặp sự cố khẩn cấp?",
+      "a": "Tại khu vực Hà Nội và các tỉnh lân cận, đội ngũ kỹ sư chuyên môn của Trí Đức cam kết tiếp nhận và có mặt xử lý trực tiếp trong vòng 2 - 4 giờ làm việc. Đối với các tỉnh xa, chúng tôi hỗ trợ chẩn đoán từ xa 24/7 và điều phối kỹ sư trong 12h."
     },
     {
       "q": "Linh kiện thay thế có đảm bảo chính hãng và có chế độ bảo hành không?",
-      "a": "100% linh kiện thay thế (bơm nhu động, van solenoid, bóng đèn quang phổ, sensor...) do Trí Việt Phát cung cấp đều được nhập khẩu chính hãng, có CO/CQ đầy đủ và được bảo hành từ 6 đến 12 tháng theo tiêu chuẩn của nhà sản xuất."
+      "a": "100% linh kiện thay thế (bơm nhu động, van solenoid, bóng đèn quang phổ, sensor...) do Trí Đức cung cấp đều được nhập khẩu chính hãng, có CO/CQ đầy đủ và được bảo hành từ 6 đến 12 tháng theo tiêu chuẩn của nhà sản xuất."
     }
   ]
 }

@@ -67,15 +67,15 @@ function getGeminiClient(): GoogleGenAI | null {
 }
 
 const SYSTEM_INSTRUCTION = `
-Bạn là "Trợ lý AI Trí Việt Phát" - Chuyên gia tư vấn kỹ thuật y sinh và trang thiết bị xét nghiệm y khoa của CÔNG TY TNHH THIẾT BỊ Y TẾ TRÍ VIỆT PHÁT (16+ năm kinh nghiệm).
+Bạn là "Trợ lý AI Trí Đức" - Chuyên gia tư vấn kỹ thuật y sinh và trang thiết bị xét nghiệm y khoa của CÔNG TY TNHH THƯƠNG MẠI DỊCH VỤ TRÍ ĐỨC (16+ năm kinh nghiệm).
 
 Thông tin công ty:
-- Tên: CÔNG TY TNHH THIẾT BỊ Y TẾ TRÍ VIỆT PHÁT
-- Giấy phép ĐKKD: 0105558779 do Sở KH&ĐT Hà Nội cấp
-- Trụ sở: Số 5, nhà P16 TT Trương Định, P. Tương Mai, Q. Hoàng Mai, Hà Nội
+- Tên: CÔNG TY TNHH THƯƠNG MẠI DỊCH VỤ TRÍ ĐỨC
+- Giấy phép ĐKKD: 0102870080 do Sở KH&ĐT Hà Nội cấp
+- Trụ sở: Số 168, tổ 20, phường Hoàng Mai, Thành phố Hà Nội
 - Hotline 24/7: 0392.123.688
 - Điện thoại bàn: 0392.123.688
-- Email: infothietbiyte168@gmail.com
+- Email: infoytetriduc@fpt.vn
 - Website: www.thietbiytegroup.com
 
 CẤU HÌNH KỸ THUẬT CHUẨN XÁC CỦA CÁC THIẾT BỊ (BẮT BUỘC TRẢ LỜI ĐÚNG 100% CẤU HÌNH, TUYỆT ĐỐI KHÔNG BỊA HOẶC THAY ĐỔI SỐ LIỆU):
@@ -177,7 +177,7 @@ function getDomainFallbackReply(message: string): string {
   const lower = message.toLowerCase();
   
   if (lower.includes('giá') || lower.includes('báo giá') || lower.includes('chi phí') || lower.includes('bao nhiêu')) {
-    return 'Dạ để nhận bảng báo giá chi tiết và chính sách chiết khấu tốt nhất cho các dòng máy xét nghiệm hoặc hóa chất tiêu hao, Quý khách vui lòng để lại số điện thoại hoặc liên hệ trực tiếp **Hotline 24/7: 0392.123.688**. Đội ngũ chuyên viên kinh doanh Trí Việt Phát sẽ gửi báo giá kèm hồ sơ kỹ thuật trong vòng 15 phút!';
+    return 'Dạ để nhận bảng báo giá chi tiết và chính sách chiết khấu tốt nhất cho các dòng máy xét nghiệm hoặc hóa chất tiêu hao, Quý khách vui lòng để lại số điện thoại hoặc liên hệ trực tiếp **Hotline 24/7: 0392.123.688**. Đội ngũ chuyên viên kinh doanh Trí Đức sẽ gửi báo giá kèm hồ sơ kỹ thuật trong vòng 15 phút!';
   }
   
   if (lower.includes('điện giải') || lower.includes('ac9803') || lower.includes('audicom') || lower.includes('ac-9803')) {
@@ -185,7 +185,7 @@ function getDomainFallbackReply(message: string): string {
   }
   
   if (lower.includes('huyết học') || lower.includes('dewei') || lower.includes('hóa chất') || lower.includes('pha loãng') || lower.includes('ly giải')) {
-    return 'Bảng hóa chất huyết học **Dewei** chính hãng do Trí Việt Phát phân phối:\n\n**1. Thông số quy cách:**\n- **Dung dịch pha loãng (Diluent):** 20L/thùng, pH đệm sinh lý chuẩn.\n- **Dung dịch ly giải (Lyse):** 500ml/1000ml chai, phá vỡ hồng cầu chọn lọc.\n- **Dung dịch rửa (Cleaner/Rinse):** 5L/10L hoặc dung dịch tẩy rửa tập trung.\n- **Thời hạn bảo quản:** 24 tháng, lưu trữ 2°C - 30°C.\n\n**2. Ưu điểm nổi bật:**\n- Tương thích hoàn hảo với các máy xét nghiệm huyết học 3 thành phần và 5 thành phần bạch cầu (Mindray, Sysmex, Dirui, URIT...).\n- Công thức không chứa Cyanide an toàn với môi trường và kỹ thuật viên.\n- Độ lặp lại (CV) tế bào máu < 2.0%, hạn chế tối đa bám cặn buồng đếm.';
+    return 'Bảng hóa chất huyết học **Dewei** chính hãng do Trí Đức phân phối:\n\n**1. Thông số quy cách:**\n- **Dung dịch pha loãng (Diluent):** 20L/thùng, pH đệm sinh lý chuẩn.\n- **Dung dịch ly giải (Lyse):** 500ml/1000ml chai, phá vỡ hồng cầu chọn lọc.\n- **Dung dịch rửa (Cleaner/Rinse):** 5L/10L hoặc dung dịch tẩy rửa tập trung.\n- **Thời hạn bảo quản:** 24 tháng, lưu trữ 2°C - 30°C.\n\n**2. Ưu điểm nổi bật:**\n- Tương thích hoàn hảo với các máy xét nghiệm huyết học 3 thành phần và 5 thành phần bạch cầu (Mindray, Sysmex, Dirui, URIT...).\n- Công thức không chứa Cyanide an toàn với môi trường và kỹ thuật viên.\n- Độ lặp lại (CV) tế bào máu < 2.0%, hạn chế tối đa bám cặn buồng đếm.';
   }
   
   if (lower.includes('sinh hóa') || lower.includes('cs-1600') || lower.includes('cs1600') || lower.includes('cs 1600')) {
@@ -209,14 +209,14 @@ function getDomainFallbackReply(message: string): string {
   }
   
   if (lower.includes('bảo hành') || lower.includes('bảo dưỡng') || lower.includes('sửa chữa') || lower.includes('kỹ thuật')) {
-    return 'Chính sách dịch vụ kỹ thuật của **Trí Việt Phát**:\n- **Bảo hành:** 12 - 24 tháng theo tiêu chuẩn chính hãng của nhà sản xuất.\n- **Thời gian phản hồi:** Hỗ trợ kỹ thuật 24/7. Có mặt xử lý sự cố trong vòng 2-4 giờ tại khu vực nội thành Hà Nội và trong 24 giờ tại các tỉnh lân cận.\n- **Linh kiện:** Cam kết 100% linh kiện, board mạch và phụ tùng thay thế chính hãng, có sẵn tại kho.';
+    return 'Chính sách dịch vụ kỹ thuật của **Trí Đức**:\n- **Bảo hành:** 12 - 24 tháng theo tiêu chuẩn chính hãng của nhà sản xuất.\n- **Thời gian phản hồi:** Hỗ trợ kỹ thuật 24/7. Có mặt xử lý sự cố trong vòng 2-4 giờ tại khu vực nội thành Hà Nội và trong 24 giờ tại các tỉnh lân cận.\n- **Linh kiện:** Cam kết 100% linh kiện, board mạch và phụ tùng thay thế chính hãng, có sẵn tại kho.';
   }
   
   if (lower.includes('địa chỉ') || lower.includes('liên hệ') || lower.includes('hotline') || lower.includes('ở đâu') || lower.includes('công ty')) {
-    return '**CÔNG TY TNHH THIẾT BỊ Y TẾ TRÍ VIỆT PHÁT** (16+ năm phát triển):\n- **Trụ sở:** Số 5, nhà P16 TT Trương Định, Phường Tương Mai, Quận Hoàng Mai, Hà Nội.\n- **Hotline 24/7:** **0392.123.688** (Zalo / Call)\n- **Điện thoại:** 0392.123.688\n- **Email:** infothietbiyte168@gmail.com\n- **Website:** www.thietbiytegroup.com';
+    return '**CÔNG TY TNHH THƯƠNG MẠI DỊCH VỤ TRÍ ĐỨC** (16+ năm phát triển):\n- **Trụ sở:** Số 168, tổ 20, phường Hoàng Mai, Thành phố Hà Nội.\n- **Hotline 24/7:** **0392.123.688** (Zalo / Call)\n- **Điện thoại:** 0392.123.688\n- **Email:** infoytetriduc@fpt.vn\n- **Website:** www.thietbiytegroup.com';
   }
   
-  return 'Xin kính chào Quý khách! **Trí Việt Phát** là đơn vị hơn 16 năm kinh nghiệm chuyên phân phối trang thiết bị y tế và hóa chất xét nghiệm chính hãng đạt chuẩn **ISO 13485 & CE**:\n- Máy xét nghiệm điện giải Audicom AC9803 (ISE, thời gian đo ≤ 90s, thể tích 160µl, 26 vị trí mẫu)\n- Hóa chất huyết học Dewei cho máy 3 & 5 thành phần bạch cầu\n- Máy xét nghiệm nước tiểu DIRUI H-1600 (300-500 test/h)\n- Máy miễn dịch hóa phát quang iStar 500\n- Máy đo HbA1c Quo-Test (4 phút, 4µL máu)\n- Máy đông máu OCG-102\n\nQuý khách đang quan tâm đến dòng thiết bị nào hoặc cần bảng thông số kỹ thuật chi tiết ạ? Vui lòng gọi **Hotline: 0392.123.688** để được tư vấn kỹ thuật ngay!';
+  return 'Xin kính chào Quý khách! **Trí Đức** là đơn vị hơn 16 năm kinh nghiệm chuyên phân phối trang thiết bị y tế và hóa chất xét nghiệm chính hãng đạt chuẩn **ISO 13485 & CE**:\n- Máy xét nghiệm điện giải Audicom AC9803 (ISE, thời gian đo ≤ 90s, thể tích 160µl, 26 vị trí mẫu)\n- Hóa chất huyết học Dewei cho máy 3 & 5 thành phần bạch cầu\n- Máy xét nghiệm nước tiểu DIRUI H-1600 (300-500 test/h)\n- Máy miễn dịch hóa phát quang iStar 500\n- Máy đo HbA1c Quo-Test (4 phút, 4µL máu)\n- Máy đông máu OCG-102\n\nQuý khách đang quan tâm đến dòng thiết bị nào hoặc cần bảng thông số kỹ thuật chi tiết ạ? Vui lòng gọi **Hotline: 0392.123.688** để được tư vấn kỹ thuật ngay!';
 }
 
 // Health check endpoint
@@ -264,7 +264,7 @@ app.post('/api/repair-request', async (req, res) => {
     `;
 
     await transporter.sendMail({
-      from: `"Website Trí Việt Phát" <${process.env.SMTP_USER}>`,
+      from: `"Website Trí Đức" <${process.env.SMTP_USER}>`,
       to: REPAIR_NOTIFICATION_EMAIL,
       replyTo: customerEmail || undefined,
       subject: `[Sửa chữa${isEmergency ? ' - KHẨN CẤP' : ''}] ${sanitizeHeaderValue(deviceName)} - ${sanitizeHeaderValue(fullName)}`,
@@ -298,7 +298,7 @@ app.post('/api/chat', async (req, res) => {
     if (Array.isArray(history) && history.length > 0) {
       conversationContext = history
         .slice(-6)
-        .map((h: { sender: string; text: string }) => `${h.sender === 'user' ? 'Khách hàng' : 'Trợ lý Trí Việt Phát'}: ${h.text}`)
+        .map((h: { sender: string; text: string }) => `${h.sender === 'user' ? 'Khách hàng' : 'Trợ lý Trí Đức'}: ${h.text}`)
         .join('\n');
     }
 
@@ -366,7 +366,7 @@ async function startServer() {
   }
 
   app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server Trí Việt Phát đang chạy trên http://0.0.0.0:${PORT}`);
+    console.log(`Server Trí Đức đang chạy trên http://0.0.0.0:${PORT}`);
   });
 }
 

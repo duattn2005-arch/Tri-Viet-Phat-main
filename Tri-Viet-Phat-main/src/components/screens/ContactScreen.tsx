@@ -102,7 +102,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
                     <span>Gửi yêu cầu liên hệ thành công!</span>
                   </div>
                   <p className="text-[13.5px]">
-                    Cảm ơn bạn <strong>{fullName}</strong>. Đội ngũ chuyên viên tư vấn Trí Việt Phát sẽ liên hệ lại qua số điện thoại <strong>{phone}</strong> trong thời gian sớm nhất.
+                    Cảm ơn bạn <strong>{fullName}</strong>. Đội ngũ chuyên viên tư vấn Trí Đức sẽ liên hệ lại qua số điện thoại <strong>{phone}</strong> trong thời gian sớm nhất.
                   </p>
                 </div>
               ) : (
@@ -190,10 +190,10 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
 
               <div>
                 <h3 className="text-[19px] font-bold text-[#111111] leading-snug mb-1.5">
-                  Công ty thiết bị y tế Trí Việt Phát
+                  Công ty thiết bị y tế Trí Đức
                 </h3>
                 <p className="text-[13px] text-[#777777] leading-relaxed">
-                  Công ty cung cấp thiết bị y tế dịch vụ Trí Việt Phát được thành lập theo Quyết định số <strong className="text-[#111111]">0105558779</strong> của Sở kế hoạch đầu tư thành phố Hà Nội
+                  Công ty cung cấp thiết bị y tế dịch vụ Trí Đức được thành lập theo Quyết định số <strong className="text-[#111111]">0102870080</strong> của Sở kế hoạch đầu tư thành phố Hà Nội
                 </p>
               </div>
 
@@ -216,8 +216,8 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
                   </div>
                   <div>
                     <span className="text-[#777777] text-[12px] block font-semibold">Email:</span>
-                    <a href="mailto:infothietbiyte168@gmail.com" className="font-bold text-[#111111] fx-link">
-                      infothietbiyte168@gmail.com
+                    <a href="mailto:infoytetriduc@fpt.vn" className="font-bold text-[#111111] fx-link">
+                      infoytetriduc@fpt.vn
                     </a>
                   </div>
                 </div>
@@ -229,7 +229,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
                   <div>
                     <span className="text-[#777777] text-[12px] block font-semibold">Văn phòng giao dịch:</span>
                     <span className="text-[#111111] font-medium leading-relaxed text-[13px]">
-                      Số 5, nhà P16 TT Trương Định, phường Tương Mai, Quận Hoàng Mai, Thành phố Hà Nội, Việt Nam
+                      Số 168, tổ 20, phường Hoàng Mai, Thành phố Hà Nội, Việt Nam
                     </span>
                   </div>
                 </div>
@@ -241,7 +241,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
                   <div>
                     <span className="text-[#777777] text-[12px] block font-semibold">Trụ sở công ty:</span>
                     <span className="text-[#111111] font-medium leading-relaxed text-[13px]">
-                      Số 5, nhà P16 TT Trương Định, phường Tương Mai, Quận Hoàng Mai, Thành phố Hà Nội, Việt Nam
+                      Số 168, tổ 20, phường Hoàng Mai, Thành phố Hà Nội, Việt Nam
                     </span>
                   </div>
                 </div>
@@ -255,7 +255,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
           <div className="p-3.5 bg-[#f3f7fb] border-b border-[#e5e5e5] flex items-center justify-between">
             <div className="flex items-center gap-2 text-[13.5px] font-bold text-[#111111]">
               <span className="material-symbols-outlined text-[#777777] text-[18px]">map</span>
-              <span>Bản đồ chỉ đường - Trụ sở Công ty Thiết Bị Y Tế Trí Việt Phát</span>
+              <span>Bản đồ chỉ đường - Trụ sở Công ty Thiết Bị Y Tế Trí Đức</span>
             </div>
             <a
               href="https://maps.google.com/?q=168+Hoàng+Mai,+Hoàng+Văn+Thụ,+Hoàng+Mai,+Hà+Nội"
@@ -270,7 +270,7 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
 
           <div className="w-full h-[320px] sm:h-[360px]">
             <iframe
-              title="Bản đồ chỉ đường Trí Việt Phát"
+              title="Bản đồ chỉ đường Trí Đức"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7450.086767292439!2d105.85339900000001!3d20.990897999999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac1346790a47%3A0x6083b6d5d743c626!2zMTY4IMSQLiBIb8OgbmcgTWFpLCBIb8OgbmcgVsSDbiBUaOG7pSwgSG_DoG5nIE1haSwgSMOgIE7hu5lpLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2sus!4v1715012797261!5m2!1svi!2sus"
               width="100%"
               height="100%"

@@ -48,10 +48,10 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
               </span>
               <span className="text-[#777777]">Email:</span>
               <a
-                href="mailto:infothietbiyte168@gmail.com"
+                href="mailto:infoytetriduc@fpt.vn"
                 className="text-[#111111] font-medium fx-link text-[12px] truncate"
               >
-                infothietbiyte168@gmail.com
+                infoytetriduc@fpt.vn
               </a>
             </div>
           </div>

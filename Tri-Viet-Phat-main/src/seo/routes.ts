@@ -4,7 +4,7 @@ import type { PageTab } from '../types';
 import { brandBySlug, BRANDS, productDisplayName, productKeySpec } from './brands';
 import seoPages from '../content/pages/seo.json';
 
-export const SITE_NAME = 'Trí Việt Phát';
+export const SITE_NAME = 'Trí Đức';
 export const DEFAULT_IMAGE = '/images/hero-lab-analyzers.jpg';
 const DEFAULT_DESCRIPTION =
   'Phân phối chính hãng máy xét nghiệm Dirui (sinh hóa, nước tiểu, huyết học), hóa chất xét nghiệm Dewei, máy điện giải, HbA1c. Lắp đặt, bảo hành toàn quốc.';
@@ -118,7 +118,7 @@ function isoDate(date: string): string | undefined {
   return m ? `${m[3]}-${m[2].padStart(2, '0')}-${m[1].padStart(2, '0')}` : undefined;
 }
 
-// Edited in the CMS: "Nội dung các trang" → "SEO". The home title is used as written; the others get " | Trí Việt Phát".
+// Edited in the CMS: "Nội dung các trang" → "SEO". The home title is used as written; the others get " | Trí Đức".
 const PAGES = Object.fromEntries(
   (Object.entries(seoPages) as [PageTab, { title: string; description: string }][]).map(([tab, page]) => [
     tab,

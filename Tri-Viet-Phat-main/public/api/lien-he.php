@@ -169,7 +169,7 @@ function sendEmail(array $to, string $from, string $subject, array $rows, string
         'MIME-Version: 1.0',
         'Content-Type: text/html; charset=UTF-8',
         'Content-Transfer-Encoding: base64',
-        'From: =?UTF-8?B?' . base64_encode('Website Trí Việt Phát') . '?= <' . $from . '>',
+        'From: =?UTF-8?B?' . base64_encode('Website Trí Đức') . '?= <' . $from . '>',
     ];
     if ($replyTo !== '' && filter_var($replyTo, FILTER_VALIDATE_EMAIL)) {
         $headers[] = 'Reply-To: ' . $replyTo;

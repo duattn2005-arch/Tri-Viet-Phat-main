@@ -95,7 +95,7 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({ onToggleAiChat
       <button
         type="button"
         onClick={onToggleAiChat}
-        aria-label={isAiChatOpen ? 'Đóng trợ lý AI' : 'Mở trợ lý AI Trí Việt Phát'}
+        aria-label={isAiChatOpen ? 'Đóng trợ lý AI' : 'Mở trợ lý AI Trí Đức'}
         className="group relative w-12 h-12 rounded-full bg-linear-to-br from-[#0a94dc] to-[#0a2540] text-white flex items-center justify-center shadow-[0_10px_24px_-8px_rgba(10,148,220,0.8)] hover:scale-110 transition-transform duration-300 cursor-pointer"
       >
         <span className="material-symbols-outlined text-[22px]">{isAiChatOpen ? 'close' : 'smart_toy'}</span>

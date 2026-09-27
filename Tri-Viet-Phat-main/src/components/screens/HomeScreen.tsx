@@ -141,7 +141,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
       {/* 2. Key facts — photo-backed navy band, heading + glass counter cards */}
       <section className="fx-spotlight relative w-full overflow-hidden bg-[#0a2540] text-white">
-        <ParallaxImage src={HOME_PAGE.factsImage} alt="Kỹ sư Trí Việt Phát trong phòng thí nghiệm" className="opacity-25" />
+        <ParallaxImage src={HOME_PAGE.factsImage} alt="Kỹ sư Trí Đức trong phòng thí nghiệm" className="opacity-25" />
         <div className="absolute inset-0 bg-linear-to-br from-[#0a2540]/95 via-[#0a2540]/85 to-[#0b3a66]/80" aria-hidden="true" />
         <AmbientGlow />
         <div className="relative max-w-[1320px] mx-auto px-4 sm:px-8 py-14 sm:py-20">

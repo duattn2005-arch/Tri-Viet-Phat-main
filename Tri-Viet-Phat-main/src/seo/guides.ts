@@ -33,7 +33,7 @@ export const CATEGORY_GUIDES: Record<string, CategoryGuide> = {
     faq: [
       {
         q: 'Phòng khám nên chọn máy xét nghiệm nào?',
-        a: 'Tùy số mẫu mỗi ngày và danh mục xét nghiệm. Nhiều phòng khám bắt đầu với máy sinh hóa, máy huyết học và máy nước tiểu, sau đó bổ sung máy điện giải, HbA1c hoặc miễn dịch khi nhu cầu tăng. Kỹ sư Trí Việt Phát tư vấn cấu hình theo số mẫu thực tế của cơ sở.',
+        a: 'Tùy số mẫu mỗi ngày và danh mục xét nghiệm. Nhiều phòng khám bắt đầu với máy sinh hóa, máy huyết học và máy nước tiểu, sau đó bổ sung máy điện giải, HbA1c hoặc miễn dịch khi nhu cầu tăng. Kỹ sư Trí Đức tư vấn cấu hình theo số mẫu thực tế của cơ sở.',
       },
       {
         q: 'Máy xét nghiệm tự động khác bán tự động thế nào?',
@@ -99,7 +99,7 @@ export function categoryFaq(label: string, models: string[], hotline: string): B
   const subject = label.charAt(0).toLowerCase() + label.slice(1);
   return [
     {
-      q: `Trí Việt Phát có những ${subject} nào?`,
+      q: `Trí Đức có những ${subject} nào?`,
       a: `${models.join(', ')}. Mỗi sản phẩm có trang riêng với thông số kỹ thuật chi tiết.`,
     },
     {

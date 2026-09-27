@@ -182,11 +182,11 @@ function catalogue_reply(string $message, array $knowledge, string $hotline): st
     }
     if (count($matches) > 1) {
         $lines = array_map(fn($p) => "- **{$p['name']}** – {$p['url']}", array_slice($matches, 0, 8));
-        return "Trí Việt Phát đang phân phối các sản phẩm phù hợp:\n" . implode("\n", $lines)
+        return "Trí Đức đang phân phối các sản phẩm phù hợp:\n" . implode("\n", $lines)
             . "\n\nQuý khách cần tư vấn model nào, vui lòng gọi **Hotline {$hotline}** ạ.";
     }
     if (preg_match('/giá|chi phí|bao nhiêu tiền|bao nhiêu triệu/u', $q)) {
-        return "Để nhận báo giá chi tiết và chiết khấu tốt nhất, Quý khách vui lòng gọi **Hotline {$hotline}** hoặc để lại số điện thoại ở mục Liên hệ, kỹ sư Trí Việt Phát sẽ gọi lại ngay ạ.";
+        return "Để nhận báo giá chi tiết và chiết khấu tốt nhất, Quý khách vui lòng gọi **Hotline {$hotline}** hoặc để lại số điện thoại ở mục Liên hệ, kỹ sư Trí Đức sẽ gọi lại ngay ạ.";
     }
     // Anything else the website covers (news, guides, documents…): quote the best passage and link the pages
     $passages = search_site($message, 4);
@@ -197,12 +197,12 @@ function catalogue_reply(string $message, array $knowledge, string $hotline): st
         foreach ($passages as $p) {
             $links[$p['u']] = "- [{$p['t']}]({$p['u']})";
         }
-        return "Theo bài **{$best['t']}** trên website Trí Việt Phát:\n\n> {$excerpt}…\n\n**Xem thêm:**\n"
+        return "Theo bài **{$best['t']}** trên website Trí Đức:\n\n> {$excerpt}…\n\n**Xem thêm:**\n"
             . implode("\n", array_slice(array_values($links), 0, 3))
             . "\n\nCần tư vấn cụ thể, Quý khách gọi **Hotline {$hotline}** ạ.";
     }
     if (preg_match('/^(xin )?(chào|chao|hello|hi|alo)\b|^(xin chào|chào bạn|chào em|chào shop)/u', trim($q))) {
-        return "Xin chào Quý khách! **Trí Việt Phát** phân phối chính hãng máy xét nghiệm Dirui (sinh hóa, nước tiểu, huyết học), máy điện giải, HbA1c, miễn dịch, đông máu và hóa chất xét nghiệm.\n\n"
+        return "Xin chào Quý khách! **Trí Đức** phân phối chính hãng máy xét nghiệm Dirui (sinh hóa, nước tiểu, huyết học), máy điện giải, HbA1c, miễn dịch, đông máu và hóa chất xét nghiệm.\n\n"
             . "Quý khách cho biết model hoặc loại máy đang quan tâm (ví dụ: *máy sinh hóa CS-T240*, *máy nước tiểu H-500*) để được tư vấn chi tiết ạ.";
     }
     return "Dạ, câu hỏi này em chưa có thông tin chính xác để trả lời. Để được kỹ sư tư vấn đúng nhất, Quý khách vui lòng gọi **Hotline {$hotline}** hoặc để lại số điện thoại ở mục Liên hệ, bên em sẽ gọi lại ngay ạ.\n\n"
@@ -240,36 +240,36 @@ function intent_reply(string $q, array $knowledge, string $hotline): ?string
     $is = fn(string $pattern) => (bool)preg_match('/' . $pattern . '/u', $q);
 
     if ($is('bảo hành|bao hanh|bảo trì|bảo dưỡng|sửa chữa|sua chua|hỏng|lỗi máy|kỹ thuật viên|kỹ sư')) {
-        return "**Bảo hành & bảo trì tại Trí Việt Phát:**\n"
+        return "**Bảo hành & bảo trì tại Trí Đức:**\n"
             . "- Máy chính hãng được **bảo hành 12 tháng**.\n"
             . "- Kỹ sư lắp đặt tận nơi, chạy mẫu, hướng dẫn sử dụng; sau bảo hành vẫn hỗ trợ bảo trì định kỳ và sửa chữa.\n"
             . "- Cần sửa máy: gọi **Hotline {$hotline}** hoặc gửi yêu cầu tại {$site}/lien-he, kỹ sư sẽ liên hệ lại ngay.";
     }
     if ($is('địa chỉ|dia chi|ở đâu|văn phòng|trụ sở|showroom|liên hệ|lien he|số điện thoại|sđt|hotline|email|zalo')) {
-        return "**Thông tin liên hệ Trí Việt Phát:**\n"
+        return "**Thông tin liên hệ Trí Đức:**\n"
             . "- Địa chỉ: " . ($c['address'] ?? '') . "\n"
             . "- Hotline: **{$hotline}**\n"
             . "- Email: " . ($c['email'] ?? '') . "\n"
             . "- Website: {$site}";
     }
     if ($is('giao hàng|vận chuyển|ship|tỉnh|toàn quốc|lắp đặt|lap dat|cài đặt|đào tạo|hướng dẫn sử dụng')) {
-        return "Trí Việt Phát **giao hàng và lắp đặt trên toàn quốc**. Kỹ sư lắp đặt tận nơi, chạy mẫu kiểm tra và hướng dẫn kỹ thuật viên sử dụng máy.\n\n"
+        return "Trí Đức **giao hàng và lắp đặt trên toàn quốc**. Kỹ sư lắp đặt tận nơi, chạy mẫu kiểm tra và hướng dẫn kỹ thuật viên sử dụng máy.\n\n"
             . "Quý khách cho biết địa điểm và model cần lắp, hoặc gọi **Hotline {$hotline}** để được sắp lịch ạ.";
     }
     if ($is('co\/cq|co cq|chính hãng|chinh hang|nguồn gốc|xuất xứ|giấy tờ|chứng nhận')) {
-        return "Toàn bộ máy và hóa chất Trí Việt Phát cung cấp là **hàng chính hãng, có đầy đủ CO/CQ**. Xuất xứ của từng model ghi trong trang sản phẩm.\n\n"
+        return "Toàn bộ máy và hóa chất Trí Đức cung cấp là **hàng chính hãng, có đầy đủ CO/CQ**. Xuất xứ của từng model ghi trong trang sản phẩm.\n\n"
             . "Quý khách cần bộ hồ sơ kỹ thuật cho model nào, vui lòng gọi **Hotline {$hotline}** ạ.";
     }
     if ($is('bao nhiêu (máy|sản phẩm|loại|dòng|model|thiết bị)|có (những|các) (máy|sản phẩm|loại|dòng)|danh sách (máy|sản phẩm)|bán (những )?(máy|sản phẩm) (gì|nào)')) {
         return catalogue_summary($knowledge) . "\n\nXem toàn bộ tại {$site}/san-pham. Quý khách quan tâm loại máy nào để em tư vấn chi tiết ạ?";
     }
     if ($is('tuyển dụng|tuyen dung|việc làm|ứng tuyển|nộp hồ sơ|cv')) {
-        return "Các vị trí đang tuyển của Trí Việt Phát có tại {$site}/tuyen-dung. Quý khách có thể nộp hồ sơ trực tuyến ngay trên trang đó ạ.";
+        return "Các vị trí đang tuyển của Trí Đức có tại {$site}/tuyen-dung. Quý khách có thể nộp hồ sơ trực tuyến ngay trên trang đó ạ.";
     }
     if ($is('hóa chất|hoa chat|thuốc thử|thuoc thu|que thử|vật tư')) {
         $chem = array_filter($knowledge['products'] ?? [], fn($p) => has(mb_strtolower((string)($p['category'] ?? '')), 'hóa chất'));
         $lines = array_map(fn($p) => "- **{$p['name']}** – {$p['url']}", array_slice(array_values($chem), 0, 5));
-        return "Trí Việt Phát cung cấp hóa chất, thuốc thử và vật tư xét nghiệm chính hãng, sẵn kho tại Hà Nội"
+        return "Trí Đức cung cấp hóa chất, thuốc thử và vật tư xét nghiệm chính hãng, sẵn kho tại Hà Nội"
             . ($lines ? ":\n" . implode("\n", $lines) : '.')
             . "\n\nQuý khách cho biết đang dùng máy nào để được tư vấn hóa chất tương thích, hoặc gọi **Hotline {$hotline}** ạ.";
     }
@@ -310,7 +310,7 @@ if ($siteContext === '') {
 
 $catalogueSummary = catalogue_summary($knowledge);
 
-$system = "Bạn là \"Trợ lý AI Trí Việt Phát\", tư vấn viên kỹ thuật của " . ($company['name'] ?? 'Trí Việt Phát')
+$system = "Bạn là \"Trợ lý AI Trí Đức\", tư vấn viên kỹ thuật của " . ($company['name'] ?? 'Trí Đức')
     . ", nhà phân phối thiết bị và hóa chất xét nghiệm y khoa tại Hà Nội.\n\n"
     . "THÔNG TIN CÔNG TY (chỉ dùng đúng các thông tin này):\n" . json_encode($company, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n\n"
     . "TỔNG QUAN DANH MỤC (dùng để trả lời các câu hỏi đếm, liệt kê):\n" . $catalogueSummary . "\n\n"
@@ -331,12 +331,12 @@ $system = "Bạn là \"Trợ lý AI Trí Việt Phát\", tư vấn viên kỹ th
     . "8. Câu hỏi ngoài lĩnh vực thiết bị, hóa chất xét nghiệm và công ty: lịch sự từ chối và quay lại chủ đề.\n"
     . "9. Kết thúc câu trả lời tư vấn bằng một câu mời hành động ngắn (để lại số điện thoại, gọi hotline, hoặc xem trang sản phẩm).\n\n"
     . "HAI LOẠI KIẾN THỨC:\n"
-    . "A. THÔNG TIN RIÊNG CỦA TRÍ VIỆT PHÁT (sản phẩm đang bán, model, thông số, hãng, xuất xứ, giá, tồn kho, chính sách bảo hành/giao hàng, thông tin liên hệ): CHỈ dùng dữ liệu ở trên. Không có trong dữ liệu thì nói cần kỹ sư xác nhận và mời gọi hotline; TUYỆT ĐỐI không bịa thông số, giá, chứng nhận hay chính sách.\n"
+    . "A. THÔNG TIN RIÊNG CỦA TRÍ ĐỨC (sản phẩm đang bán, model, thông số, hãng, xuất xứ, giá, tồn kho, chính sách bảo hành/giao hàng, thông tin liên hệ): CHỈ dùng dữ liệu ở trên. Không có trong dữ liệu thì nói cần kỹ sư xác nhận và mời gọi hotline; TUYỆT ĐỐI không bịa thông số, giá, chứng nhận hay chính sách.\n"
     . "B. KIẾN THỨC CHUYÊN MÔN CHUNG (ý nghĩa các xét nghiệm, chỉ số và khoảng tham chiếu thường dùng, bệnh học, nguyên lý các loại máy xét nghiệm, nội kiểm/ngoại kiểm QC, hiệu chuẩn, ISO 15189, vận hành phòng xét nghiệm, bảo quản mẫu và hóa chất, an toàn sinh học, quy định ngành y tế Việt Nam…): được dùng hiểu biết chuyên môn của bạn và tìm kiếm Google để trả lời đầy đủ, chính xác như một kỹ sư/chuyên viên xét nghiệm giàu kinh nghiệm. Nếu website có bài liên quan (trích đoạn ở trên) thì ưu tiên và kèm link bài.\n\n"
     . "QUY TẮC:\n"
     . "- Trả lời bằng tiếng Việt, lịch sự, chuyên nghiệp; câu hỏi đơn giản trả lời ngắn (khoảng 100–150 từ), câu hỏi chuyên môn có thể dài hơn (tối đa khoảng 300 từ), trình bày có ý rõ ràng.\n"
     . "- Khi dùng một trích đoạn website, kèm link bài đó dạng [tên bài](url). Khi nói về một sản phẩm đang bán, kèm link sản phẩm.\n"
-    . "- Khi tìm kiếm Google: KHÔNG nêu tên, website hay giá của các công ty/cửa hàng bán thiết bị y tế khác; khi khách cần mua, luôn hướng về sản phẩm và hotline của Trí Việt Phát.\n"
+    . "- Khi tìm kiếm Google: KHÔNG nêu tên, website hay giá của các công ty/cửa hàng bán thiết bị y tế khác; khi khách cần mua, luôn hướng về sản phẩm và hotline của Trí Đức.\n"
     . "- Không báo giá cụ thể. Khi khách hỏi giá hoặc muốn mua, mời để lại số điện thoại hoặc gọi Hotline {$hotline}.\n"
     . "- Với câu hỏi về kết quả xét nghiệm hay bệnh của một người cụ thể: được giải thích ý nghĩa chung của chỉ số, nhưng không chẩn đoán, không kê thuốc và luôn khuyên trao đổi với bác sĩ.\n"
     . "- Chỉ từ chối các câu hỏi hoàn toàn ngoài lĩnh vực y tế, xét nghiệm và thiết bị (thể thao, giải trí…).\n"

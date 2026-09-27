@@ -24,7 +24,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onOpenConsultation }) 
           <div className="lg:col-span-6  overflow-hidden card-3d p-2 bg-white">
             <img
               src={COMPANY_INFO.aboutImage}
-              alt="Đội ngũ chuyên gia Trí Việt Phát"
+              alt="Đội ngũ chuyên gia Trí Đức"
               className="w-full h-[320px] sm:h-[360px] object-cover rounded-[10px]"
             />
           </div>

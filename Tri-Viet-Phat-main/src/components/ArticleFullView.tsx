@@ -71,7 +71,7 @@ export const ArticleFullView: React.FC<ArticleFullViewProps> = ({
               <span>•</span>
               <span className="text-[#059669] font-semibold flex items-center gap-1">
                 <span className="material-symbols-outlined text-[16px]">verified</span>
-                <span>Trí Việt Phát</span>
+                <span>Trí Đức</span>
               </span>
             </div>
           </div>
