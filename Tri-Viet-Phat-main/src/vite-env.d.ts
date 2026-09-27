@@ -9,6 +9,8 @@ declare module 'virtual:news-index' {
     image: string;
     excerpt: string;
     categorySlug?: string;
+    seoTitle?: string;
+    seoDescription?: string;
   }[];
   export default index;
 }

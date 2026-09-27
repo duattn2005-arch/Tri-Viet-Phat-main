@@ -19,14 +19,19 @@ interface NewsEntry {
   image: string;
   excerpt: string;
   categorySlug?: string;
+  status?: string;
+  seoTitle?: string;
+  seoDescription?: string;
 }
 
 function buildIndex() {
   return fs
     .readdirSync(NEWS_DIR)
     .filter((f) => f.endsWith('.json'))
-    .map((f) => {
-      const e = JSON.parse(fs.readFileSync(path.join(NEWS_DIR, f), 'utf-8')) as NewsEntry;
+    .map((f) => ({ f, e: JSON.parse(fs.readFileSync(path.join(NEWS_DIR, f), 'utf-8')) as NewsEntry }))
+    // Drafts ("Bản nháp" in the admin) stay off the site
+    .filter(({ e }) => e.status !== 'Pending')
+    .map(({ f, e }) => {
       return {
         id: f.replace(/\.json$/, ''),
         order: e.order ?? 0,
@@ -36,6 +41,8 @@ function buildIndex() {
         // Cards show three lines at most, so a short excerpt keeps the index light
         excerpt: e.excerpt.length > 220 ? `${e.excerpt.slice(0, 220).replace(/\s+\S*$/, '')}…` : e.excerpt,
         categorySlug: e.categorySlug,
+        ...(e.seoTitle ? { seoTitle: e.seoTitle } : {}),
+        ...(e.seoDescription ? { seoDescription: e.seoDescription } : {}),
       };
     })
     .sort((a, b) => a.order - b.order);

@@ -77,7 +77,9 @@ function readFolder<T>(folder: string): (T & { id: string })[] {
   return fs
     .readdirSync(dir)
     .filter((f) => f.endsWith('.json'))
-    .map((f) => ({ ...(JSON.parse(fs.readFileSync(path.join(dir, f), 'utf-8')) as T), id: f.replace(/\.json$/, '') }));
+    .map((f) => ({ ...(JSON.parse(fs.readFileSync(path.join(dir, f), 'utf-8')) as T & { status?: string }), id: f.replace(/\.json$/, '') }))
+    // Drafts ("Bản nháp" in the admin) get no page, sitemap entry or AI answer
+    .filter((e) => e.status !== 'Pending');
 }
 
 function loadContent() {

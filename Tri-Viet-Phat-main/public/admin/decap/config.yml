@@ -47,6 +47,7 @@ collections:
     fields:
       - { name: name, label: Tên sản phẩm, widget: string }
       - { name: order, label: Thứ tự hiển thị, widget: number, value_type: int, default: 0, hint: Số nhỏ hiện trước. }
+      - { name: status, label: Trạng thái, widget: select, required: false, default: Published, options: [{ label: Đã xuất bản, value: Published }, { label: 'Bản nháp (ẩn khỏi website)', value: Pending }] }
       - name: category
         label: Danh mục
         widget: select
@@ -90,7 +91,10 @@ collections:
           - { name: desc, label: Mô tả, widget: text }
       - { name: benefits, label: Lợi ích, label_singular: lợi ích, widget: list, required: false, field: { name: item, label: Lợi ích, widget: string } }
       - { name: certifications, label: Chứng nhận, label_singular: chứng nhận, widget: list, required: false, field: { name: item, label: Chứng nhận, widget: string } }
-      - { name: detailHtml, label: Bài giới thiệu chi tiết, widget: html, required: false, hint: Nếu có, nội dung này thay cho phần đặc điểm kỹ thuật. }
+      - { name: detailHtml, label: Bài giới thiệu chi tiết, widget: html, required: false, hint: 'Nếu có, nội dung này thay cho phần đặc điểm kỹ thuật.' }
+      - { name: seoKeyphrase, label: SEO — cụm từ khóa chính, widget: string, required: false, hint: 'Cụm từ khách hay gõ trên Google, ví dụ: máy xét nghiệm sinh hóa' }
+      - { name: seoTitle, label: SEO — tiêu đề trên Google, widget: string, required: false, hint: 'Bỏ trống thì dùng tiêu đề. Tối đa khoảng 60 ký tự.' }
+      - { name: seoDescription, label: SEO — mô tả trên Google, widget: text, required: false, hint: 'Bỏ trống thì dùng tóm tắt. Khoảng 120–160 ký tự.' }
 
   # ---------- Tin tức ----------
   - name: news
@@ -107,6 +111,7 @@ collections:
     fields:
       - { name: title, label: Tiêu đề, widget: string }
       - { name: order, label: Thứ tự hiển thị, widget: number, value_type: int, default: 0, hint: Số nhỏ hiện trước. Bài mới để 0 sẽ nằm trên cùng. }
+      - { name: status, label: Trạng thái, widget: select, required: false, default: Published, options: [{ label: Đã xuất bản, value: Published }, { label: 'Bản nháp (ẩn khỏi website)', value: Pending }] }
       - { name: date, label: Ngày đăng, widget: string, pattern: ['^\d{2}/\d{2}/\d{4}$', 'Nhập theo dạng ngày/tháng/năm, ví dụ 25/09/2026'] }
       - name: categorySlug
         label: Danh mục
@@ -118,6 +123,9 @@ collections:
       - { name: image, label: Ảnh đại diện, widget: image }
       - { name: excerpt, label: Tóm tắt, widget: text }
       - { name: content, label: Nội dung, widget: html }
+      - { name: seoKeyphrase, label: SEO — cụm từ khóa chính, widget: string, required: false, hint: 'Cụm từ khách hay gõ trên Google, ví dụ: máy xét nghiệm sinh hóa' }
+      - { name: seoTitle, label: SEO — tiêu đề trên Google, widget: string, required: false, hint: 'Bỏ trống thì dùng tiêu đề. Tối đa khoảng 60 ký tự.' }
+      - { name: seoDescription, label: SEO — mô tả trên Google, widget: text, required: false, hint: 'Bỏ trống thì dùng tóm tắt. Khoảng 120–160 ký tự.' }
 
   # ---------- Tài liệu ----------
   - name: documents
@@ -134,6 +142,7 @@ collections:
     fields:
       - { name: title, label: Tiêu đề, widget: string }
       - { name: order, label: Thứ tự hiển thị, widget: number, value_type: int, default: 0, hint: Số nhỏ hiện trước. }
+      - { name: status, label: Trạng thái, widget: select, required: false, default: Published, options: [{ label: Đã xuất bản, value: Published }, { label: 'Bản nháp (ẩn khỏi website)', value: Pending }] }
       - { name: date, label: Ngày đăng, widget: string, pattern: ['^\d{2}/\d{2}/\d{4}$', 'Nhập theo dạng ngày/tháng/năm, ví dụ 25/09/2026'] }
       - { name: image, label: Ảnh đại diện, widget: image }
       - { name: excerpt, label: Tóm tắt, widget: text }
@@ -154,6 +163,7 @@ collections:
     fields:
       - { name: title, label: Vị trí tuyển dụng, widget: string }
       - { name: order, label: Thứ tự hiển thị, widget: number, value_type: int, default: 0, hint: Số nhỏ hiện trước. }
+      - { name: status, label: Trạng thái, widget: select, required: false, default: Published, options: [{ label: Đã xuất bản, value: Published }, { label: 'Bản nháp (ẩn khỏi website)', value: Pending }] }
       - { name: date, label: Ngày đăng, widget: string, pattern: ['^\d{2}/\d{2}/\d{4}$', 'Nhập theo dạng ngày/tháng/năm, ví dụ 25/09/2026'] }
       - { name: quantity, label: Số lượng, widget: string, hint: 'Ví dụ: 02 người' }
       - { name: location, label: Nơi làm việc, widget: string, hint: 'Ví dụ: Hà Nội' }
@@ -176,7 +186,7 @@ collections:
             widget: list
             summary: '{{fields.title}}'
             fields:
-              - { name: image, label: Ảnh (ngang, rộng tối thiểu 1600px), widget: image }
+              - { name: image, label: 'Ảnh (ngang, rộng tối thiểu 1600px)', widget: image }
               - { name: alt, label: Mô tả ảnh (cho Google), widget: string }
               - { name: eyebrow, label: Dòng nhỏ phía trên, widget: string }
               - { name: title, label: Tiêu đề lớn, widget: string }

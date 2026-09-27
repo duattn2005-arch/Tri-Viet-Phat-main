@@ -13,3 +13,6 @@ public/api/telegram-config.php
 public/api/cms-config.php
 # Gemini key for the PHP AI chat
 public/api/ai-config.php
+# Form submissions stored by the PHP endpoints (only ever on the hosting)
+td-data/
+public/api/td-data/

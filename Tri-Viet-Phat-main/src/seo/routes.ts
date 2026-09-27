@@ -91,11 +91,21 @@ export interface SeoMeta {
 }
 
 export interface SeoLookups {
-  article?: (id: string) => { title: string; excerpt: string; image: string; date: string } | undefined;
+  article?: (id: string) => { title: string; excerpt: string; image: string; date: string; seoTitle?: string; seoDescription?: string } | undefined;
   product?: (
     id: string
   ) =>
-    | { name: string; shortDesc: string; image: string; brand?: string; categoryLabel?: string; origin?: string; specs?: { label: string; value: string }[] }
+    | {
+        name: string;
+        shortDesc: string;
+        image: string;
+        brand?: string;
+        categoryLabel?: string;
+        origin?: string;
+        specs?: { label: string; value: string }[];
+        seoTitle?: string;
+        seoDescription?: string;
+      }
     | undefined;
 }
 
@@ -141,9 +151,10 @@ function seoCore(route: Route, lookups: SeoLookups): SeoMeta {
       const origin = p.origin ? ` (${p.origin})` : '';
       const spec = productKeySpec(p.specs);
       const description = `${title}${spec ? ` – ${spec}` : ''}. Chính hãng${origin}, CO/CQ, bảo hành 12 tháng, lắp đặt tận nơi. Hotline ${HOTLINE}.`;
+      // A title/description written in the admin's SEO box is used as written
       return {
-        title: withBrand(title),
-        description: clip(description, 160),
+        title: p.seoTitle?.trim() ? clip(p.seoTitle, 70) : withBrand(title),
+        description: clip(p.seoDescription?.trim() || description, 160),
         path,
         image: p.image || DEFAULT_IMAGE,
         type: 'product',
@@ -155,8 +166,8 @@ function seoCore(route: Route, lookups: SeoLookups): SeoMeta {
     const a = lookups.article?.(route.articleId);
     if (a) {
       return {
-        title: withBrand(a.title),
-        description: clip(a.excerpt, 160),
+        title: a.seoTitle?.trim() ? clip(a.seoTitle, 70) : withBrand(a.title),
+        description: clip(a.seoDescription?.trim() || a.excerpt, 160),
         path,
         image: a.image || DEFAULT_IMAGE,
         type: 'article',

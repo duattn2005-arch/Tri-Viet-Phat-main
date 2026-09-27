@@ -7,7 +7,7 @@ DirectorySlash Off
 DirectoryIndex index.html
 RewriteEngine On
 
-# Serve admin/config.yml (Decap CMS) with a YAML content type
+# Serve admin/decap/config.yml (Decap CMS) with a YAML content type
 AddType text/yaml .yml .yaml
 
 # Secrets written at deploy time (readable by PHP only) and the FTP deploy's sync state
@@ -30,8 +30,11 @@ RewriteCond %{HTTPS} !=on
 RewriteCond %{HTTP:X-Forwarded-Proto} !=https
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
-# /admin -> /admin/ (Decap CMS)
+# /admin -> /admin/ (the admin)
 RewriteRule ^admin$ /admin/ [R=301,L]
+
+# /admin/decap -> /admin/decap/ (the previous editor, Decap CMS)
+RewriteRule ^admin/decap$ /admin/decap/ [R=301,L]
 
 # /admin/sao-luu -> backup & export page (like WordPress's All-in-One WP Migration)
 RewriteRule ^admin/sao-luu/?$ /api/sao-luu.php [L,QSA]

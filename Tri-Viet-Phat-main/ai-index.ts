@@ -115,5 +115,6 @@ export function readJsonFolder<T>(dir: string): (T & { id: string })[] {
   return fs
     .readdirSync(dir)
     .filter((f) => f.endsWith('.json'))
-    .map((f) => ({ ...(JSON.parse(fs.readFileSync(path.join(dir, f), 'utf-8')) as T), id: f.replace(/\.json$/, '') }));
+    .map((f) => ({ ...(JSON.parse(fs.readFileSync(path.join(dir, f), 'utf-8')) as T & { status?: string }), id: f.replace(/\.json$/, '') }))
+    .filter((e) => e.status !== 'Pending');
 }

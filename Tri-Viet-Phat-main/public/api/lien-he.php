@@ -5,7 +5,10 @@
  * Chạy trên hosting PHP (cPanel/DirectAdmin...). Bot token và chat ID đặt trong
  * telegram-config.php cùng thư mục (copy từ telegram-config.example.php) —
  * file đó không được commit lên git. Địa chỉ nhận email nằm trong email-config.php.
+ * Mỗi yêu cầu cũng được lưu lại (td-common.php) để xem ở mục "Liên hệ" trong trang quản trị /admin.
  */
+
+require __DIR__ . '/td-common.php';
 
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 header('Content-Type: application/json; charset=utf-8');
@@ -112,6 +115,17 @@ $hits[] = $now;
 @file_put_contents($rateFile, json_encode(array_values($hits)));
 
 $page = mb_substr(trim((string)($data['page'] ?? '')), 0, 300);
+
+// Kept for the admin inbox, so a request is never lost even if Telegram and email both fail
+$stored = td_leads_add([
+    'kind' => $kind,
+    'title' => trim(preg_replace('/^[^\p{L}]+/u', '', $titles[$kind])),
+    'name' => $name,
+    'phone' => $phone,
+    'contact' => $contact,
+    'fields' => $rows,
+    'page' => $page,
+]);
 $text = '<b>' . $titles[$kind] . "</b>\n\n" . implode("\n", $lines)
     . "\n\n🕒 " . date('H:i d/m/Y')
     . ($page !== '' ? "\n🔗 " . htmlspecialchars($page, ENT_QUOTES, 'UTF-8') : '');
@@ -189,7 +203,7 @@ if ($mailTo) {
     $sent = sendEmail($mailTo, $mailFrom, $subject, $rows, $page, $contact) || $sent;
 }
 
-if (!$sent) {
+if (!$sent && !$stored) {
     reply(502, ['error' => 'Không gửi được yêu cầu. Vui lòng thử lại hoặc gọi hotline.']);
 }
 reply(200, ['ok' => true]);

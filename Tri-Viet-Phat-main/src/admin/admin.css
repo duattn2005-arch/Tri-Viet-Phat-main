@@ -1,0 +1,354 @@
+@import "tailwindcss";
+
+/* The look of the WordPress admin: dark side menu, grey page, white boxes, blue buttons. */
+:root {
+  --wp-bar: #1d2327;
+  --wp-menu: #1d2327;
+  --wp-sub: #2c3338;
+  --wp-blue: #2271b1;
+  --wp-blue-dark: #135e96;
+  --wp-hover: #72aee6;
+  --wp-red: #d63638;
+  --wp-green: #00a32a;
+  --wp-yellow: #dba617;
+  --wp-bg: #f0f0f1;
+  --wp-border: #c3c4c7;
+  --wp-line: #dcdcde;
+  --wp-text: #1d2327;
+  --wp-muted: #646970;
+}
+
+/* Page defaults, in the base layer so that Tailwind classes on an element win */
+@layer base {
+html,
+body {
+  margin: 0;
+  background: var(--wp-bg);
+  color: var(--wp-text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+a {
+  color: var(--wp-blue);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+a:hover {
+  color: var(--wp-blue-dark);
+}
+
+h1,
+h2,
+h3 {
+  color: var(--wp-text);
+}
+}
+
+/* Admin components; utilities (Tailwind classes) still override them */
+@layer components {
+/* ---- Buttons ---------------------------------------------------------------------------------- */
+.wp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 30px;
+  padding: 0 10px;
+  border: 1px solid var(--wp-blue);
+  border-radius: 3px;
+  background: #f6f7f7;
+  color: var(--wp-blue);
+  font-size: 13px;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+}
+.wp-btn:hover {
+  background: #f0f0f1;
+  border-color: var(--wp-blue-dark);
+  color: var(--wp-blue-dark);
+}
+.wp-btn:focus-visible {
+  outline: 2px solid transparent;
+  box-shadow: 0 0 0 1px #fff, 0 0 0 3px var(--wp-blue);
+}
+.wp-btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.wp-btn-primary {
+  background: var(--wp-blue);
+  border-color: var(--wp-blue);
+  color: #fff;
+}
+.wp-btn-primary:hover {
+  background: var(--wp-blue-dark);
+  border-color: var(--wp-blue-dark);
+  color: #fff;
+}
+.wp-btn-danger {
+  border-color: var(--wp-red);
+  color: var(--wp-red);
+}
+.wp-btn-danger:hover {
+  background: var(--wp-red);
+  border-color: var(--wp-red);
+  color: #fff;
+}
+.wp-btn-sm {
+  min-height: 26px;
+  padding: 0 8px;
+  font-size: 12px;
+}
+.wp-btn-lg {
+  min-height: 36px;
+  padding: 0 14px;
+  font-size: 14px;
+}
+.wp-link {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--wp-blue);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+  font-size: inherit;
+}
+.wp-link:hover {
+  color: var(--wp-blue-dark);
+}
+.wp-link-danger {
+  color: #b32d2e;
+}
+.wp-link-danger:hover {
+  color: #8a2424;
+}
+
+/* ---- Form controls ------------------------------------------------------------------------------ */
+.wp-input {
+  width: 100%;
+  min-height: 32px;
+  padding: 4px 8px;
+  border: 1px solid #8c8f94;
+  border-radius: 4px;
+  background: #fff;
+  color: var(--wp-text);
+  font-size: 14px;
+  line-height: 1.5;
+  box-shadow: none;
+}
+.wp-input:focus {
+  border-color: var(--wp-blue);
+  box-shadow: 0 0 0 1px var(--wp-blue);
+  outline: 2px solid transparent;
+}
+.wp-input.is-invalid {
+  border-color: var(--wp-red);
+}
+select.wp-input {
+  padding-right: 24px;
+}
+textarea.wp-input {
+  resize: vertical;
+}
+.wp-label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+.wp-hint {
+  margin: 4px 0 0;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--wp-muted);
+}
+
+/* ---- Boxes (metaboxes, panels) ---------------------------------------------------------------- */
+.wp-box {
+  background: #fff;
+  border: 1px solid var(--wp-border);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+.wp-box-head {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--wp-line);
+}
+.wp-box-head h2 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ---- Notices ------------------------------------------------------------------------------------ */
+.wp-notice {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 8px 12px;
+  background: #fff;
+  border: 1px solid var(--wp-border);
+  border-left: 4px solid var(--wp-green);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+.wp-notice.is-error {
+  border-left-color: var(--wp-red);
+}
+.wp-notice.is-info {
+  border-left-color: #72aee6;
+}
+.wp-notice.is-warning {
+  border-left-color: var(--wp-yellow);
+}
+
+/* ---- List tables -------------------------------------------------------------------------------- */
+.wp-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid var(--wp-border);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+.wp-table th {
+  text-align: left;
+  font-weight: 400;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--wp-border);
+  color: var(--wp-text);
+}
+.wp-table tfoot th {
+  border-top: 1px solid var(--wp-border);
+  border-bottom: 0;
+}
+.wp-table td {
+  padding: 8px 10px;
+  vertical-align: top;
+}
+.wp-table tbody tr:nth-child(odd) {
+  background: #f6f7f7;
+}
+.wp-table tbody tr:hover .row-actions {
+  visibility: visible;
+}
+.row-actions {
+  visibility: hidden;
+  margin-top: 4px;
+  font-size: 13px;
+  color: #a7aaad;
+}
+@media (max-width: 782px) {
+  .row-actions {
+    visibility: visible;
+  }
+}
+.wp-table .check {
+  width: 34px;
+}
+
+/* ---- Menu --------------------------------------------------------------------------------------- */
+.wp-menu a {
+  text-decoration: none;
+}
+
+/* ---- Spinner, modal ----------------------------------------------------------------------------- */
+@keyframes wp-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.wp-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #c3c4c7;
+  border-top-color: var(--wp-blue);
+  border-radius: 50%;
+  animation: wp-spin 0.8s linear infinite;
+  vertical-align: middle;
+}
+
+.wp-checker {
+  background-color: #fff;
+  background-image: linear-gradient(45deg, #f0f0f1 25%, transparent 25%), linear-gradient(-45deg, #f0f0f1 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #f0f0f1 75%), linear-gradient(-45deg, transparent 75%, #f0f0f1 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+}
+
+/* ---- Article preview (what the body looks like on the website) --------------------------------- */
+.td-prose {
+  font-size: 15px;
+  line-height: 1.75;
+  color: #333;
+}
+.td-prose h2,
+.td-prose h3,
+.td-prose h4 {
+  margin: 1.4em 0 0.5em;
+  line-height: 1.3;
+  color: #111;
+}
+.td-prose h2 {
+  font-size: 1.45em;
+}
+.td-prose h3 {
+  font-size: 1.2em;
+}
+.td-prose p {
+  margin: 0 0 1em;
+}
+.td-prose ul,
+.td-prose ol {
+  margin: 0 0 1em;
+  padding-left: 1.5em;
+}
+.td-prose ul {
+  list-style: disc;
+}
+.td-prose ol {
+  list-style: decimal;
+}
+.td-prose img {
+  max-width: 100%;
+  height: auto;
+  margin: 1em auto;
+  display: block;
+}
+.td-prose table {
+  border-collapse: collapse;
+  margin: 1em 0;
+  width: 100%;
+}
+.td-prose td,
+.td-prose th {
+  border: 1px solid #dcdcde;
+  padding: 6px 10px;
+}
+.td-prose blockquote {
+  margin: 1em 0;
+  padding-left: 1em;
+  border-left: 4px solid #c3c4c7;
+  color: #555;
+}
+.td-prose a {
+  color: #0a94dc;
+}
+
+/* ---- TinyMCE inside the WordPress-style frame ------------------------------------------------- */
+.td-editor .tox-tinymce {
+  border: 1px solid var(--wp-line);
+  border-radius: 0;
+}
+.td-editor .tox .tox-menubar,
+.td-editor .tox .tox-toolbar-overlord,
+.td-editor .tox .tox-toolbar__primary {
+  background: #f6f7f7;
+}
+.td-editor .tox .tox-statusbar {
+  border-top-color: var(--wp-line);
+}
+}

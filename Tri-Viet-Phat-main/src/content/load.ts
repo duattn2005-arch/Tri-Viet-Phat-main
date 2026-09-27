@@ -5,12 +5,16 @@ import { marked } from 'marked';
  * Folder collections store one JSON file per entry; the file name is the entry id.
  */
 
-type Ordered = { order?: number };
+type Ordered = { order?: number; status?: string };
 
-/** Turns an import.meta.glob result into a list sorted by the `order` field, id taken from the file name. */
+/** A draft saved in the admin ("Bản nháp") is kept off the website until it is published. */
+export const isPublished = (entry: { status?: string }) => entry.status !== 'Pending';
+
+/** Turns an import.meta.glob result into a list sorted by the `order` field, id taken from the file name; drafts are left out. */
 export function fromFolder<T extends Ordered>(modules: Record<string, T>): (T & { id: string })[] {
   return Object.entries(modules)
     .map(([file, entry]) => ({ ...entry, id: file.split('/').pop()!.replace(/\.json$/, '') }))
+    .filter(isPublished)
     .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 }
 

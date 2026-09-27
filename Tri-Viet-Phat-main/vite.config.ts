@@ -5,15 +5,25 @@ import { fileURLToPath } from 'node:url';
 import {defineConfig} from 'vite';
 import {seoPlugin, SITE_URL} from './seo-plugin';
 import {newsIndexPlugin} from './news-index-plugin';
+import {adminSchemaPlugin} from './admin-schema-plugin';
 
 const ROOT_DIR = fileURLToPath(new URL('.', import.meta.url));
 
 export default defineConfig(() => {
   return {
-    plugins: [react(), tailwindcss(), newsIndexPlugin(), seoPlugin()],
+    plugins: [react(), tailwindcss(), newsIndexPlugin(), seoPlugin(), adminSchemaPlugin()],
     // Canonical/Open Graph URLs use the same domain at runtime as the build-time sitemap
     define: {
       'import.meta.env.VITE_SITE_URL': JSON.stringify(SITE_URL),
+    },
+    // Two pages: the website, and the WordPress-style admin at /admin/ (src/admin/)
+    build: {
+      rollupOptions: {
+        input: {
+          main: path.resolve(ROOT_DIR, 'index.html'),
+          admin: path.resolve(ROOT_DIR, 'admin/index.html'),
+        },
+      },
     },
     resolve: {
       alias: {

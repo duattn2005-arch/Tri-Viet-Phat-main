@@ -13,6 +13,9 @@ export interface SiteArticle {
   plainText: string;
   category?: string;
   categorySlug?: string;
+  /** Written in the admin's SEO box; the title and excerpt are used when empty. */
+  seoTitle?: string;
+  seoDescription?: string;
 }
 
 export interface JobItem {

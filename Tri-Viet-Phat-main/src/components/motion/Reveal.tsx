@@ -87,7 +87,7 @@ export const WipeImage: React.FC<React.ImgHTMLAttributes<HTMLImageElement> & { w
         transition={{ duration: 1.1, ease: EASE }}
       >
         <motion.img
-          {...(img as React.ComponentProps<typeof motion.img>)}
+          {...(img as unknown as React.ComponentProps<typeof motion.img>)}
           className={className}
           initial={{ scale: 1.15 }}
           animate={inView ? { scale: 1 } : undefined}
