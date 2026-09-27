@@ -111,13 +111,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab, onSelectBrand, onOp
           {/* Company */}
           <div className="lg:col-span-4">
             <div className="inline-flex items-center gap-3 rounded-xl bg-white px-4 py-3">
-              <img src={COMPANY_INFO.logoUrl} alt="Logo Trí Đức" className="h-10 w-auto object-contain" />
-              <span className="leading-tight">
-                <span className="block text-[16px] font-bold text-[#0a2540]">Trí Đức</span>
-                <span className="block text-[11px] font-semibold uppercase tracking-[0.12em] text-[#0a94dc]">
-                  Thiết bị y tế
-                </span>
-              </span>
+              <img src={COMPANY_INFO.logoUrl} alt="Logo Trí Đức" className="h-14 w-auto object-contain" />
             </div>
             <p className="mt-5 text-[13px] font-bold uppercase tracking-wide text-white leading-snug">{COMPANY_INFO.name}</p>
             <ul className="mt-4 space-y-3 leading-relaxed">

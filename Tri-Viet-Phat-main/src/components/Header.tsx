@@ -221,15 +221,9 @@ export const Header: React.FC<HeaderProps> = ({
         >
           <img
             alt="Logo Trí Đức"
-            className="h-8 sm:h-11 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+            className="h-11 sm:h-14 lg:h-16 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
             src={COMPANY_INFO.logoUrl}
           />
-          <span className="flex flex-col leading-tight">
-            <span className="text-[16px] sm:text-[19px] font-bold text-[#0a2540] tracking-tight">Trí Đức</span>
-            <span className="text-[11px] sm:text-[12px] font-medium uppercase tracking-[0.12em] text-[#0a94dc]">
-              Thiết bị y tế
-            </span>
-          </span>
         </a>
 
         {/* Search (desktop): opens the search dialog */}
