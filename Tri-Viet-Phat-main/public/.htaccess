@@ -33,6 +33,9 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 # /admin -> /admin/ (Decap CMS)
 RewriteRule ^admin$ /admin/ [R=301,L]
 
+# /admin/sao-luu -> backup & export page (like WordPress's All-in-One WP Migration)
+RewriteRule ^admin/sao-luu/?$ /api/sao-luu.php [L,QSA]
+
 # BEGIN old WordPress URLs
 # Generated from the old site's sitemaps: every old URL goes to the matching new page (301).
 RewriteRule ^en/lets\-learn\-about\-the\-testing\-machines\-in\-the\-laboratory/?$ /tin-tuc [R=301,L,NE]
