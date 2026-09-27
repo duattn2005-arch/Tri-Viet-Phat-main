@@ -39,13 +39,13 @@ const CONSULTATION_QUICK_CHIPS = HOME_PAGE.quickChips;
 const FACTS = HOME_PAGE.facts;
 
 const CATEGORY_WORDS = [
-  { label: 'Huyết học', cat: 'may-xet-nghiem-huyet-hoc' },
-  { label: 'Sinh hóa', cat: 'may-xet-nghiem-sinh-hoa' },
-  { label: 'Nước tiểu', cat: 'may-xet-nghiem-nuoc-tieu' },
-  { label: 'Điện giải', cat: 'may-xet-nghiem-dien-giai' },
-  { label: 'Miễn dịch', cat: 'may-xet-nghiem-mien-dich' },
-  { label: 'Đông máu', cat: 'may-phan-tich-dong-mau' },
-  { label: 'Hóa chất IVD', cat: 'hoa-chat-xet-nghiem' },
+  { label: 'Huyết học', cat: 'may-xet-nghiem-huyet-hoc', icon: 'bloodtype' },
+  { label: 'Sinh hóa', cat: 'may-xet-nghiem-sinh-hoa', icon: 'science' },
+  { label: 'Nước tiểu', cat: 'may-xet-nghiem-nuoc-tieu', icon: 'water_drop' },
+  { label: 'Điện giải', cat: 'may-xet-nghiem-dien-giai', icon: 'bolt' },
+  { label: 'Miễn dịch', cat: 'may-xet-nghiem-mien-dich', icon: 'shield' },
+  { label: 'Đông máu', cat: 'may-phan-tich-dong-mau', icon: 'healing' },
+  { label: 'Hóa chất IVD', cat: 'hoa-chat-xet-nghiem', icon: 'biotech' },
 ];
 
 const CAPABILITIES = HOME_PAGE.capabilities;
@@ -135,7 +135,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   }, [featuredCategory]);
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full" data-no-auto-reveal>
       {/* 1. Hero */}
       <HeroSection onOpenConsultation={onOpenConsultation} />
 
@@ -248,26 +248,34 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         </div>
       </section>
 
-      {/* Category word band on black — static, each word links to its product category */}
-      <section className="fx-spotlight fx-sweep relative overflow-hidden w-full py-8 sm:py-10 bg-linear-to-r from-[#0a2540] via-[#0b3a66] to-[#0a2540]">
-        <RevealGroup className="max-w-[1320px] mx-auto px-4 sm:px-8 flex flex-wrap items-center justify-center gap-x-6 lg:gap-x-5 gap-y-3">
-          {CATEGORY_WORDS.map((item, idx) => (
-            <RevealItem key={item.cat} className="flex items-center gap-6 lg:gap-5">
-              <button
-                type="button"
-                onClick={() => onNavigateTab('san-pham', item.cat)}
-                className={`text-[18px] sm:text-[22px] lg:text-[24px] font-bold uppercase leading-none tracking-tight whitespace-nowrap transition-colors duration-300 hover:text-[#e11d2a] cursor-pointer ${
-                  idx % 2 ? 'text-white/35' : 'text-white'
-                }`}
-              >
-                {item.label}
-              </button>
-              {idx < CATEGORY_WORDS.length - 1 && (
-                <span className="hidden sm:block w-1.5 h-1.5 rounded-full bg-[#e11d2a] shrink-0" aria-hidden="true" />
-              )}
-            </RevealItem>
-          ))}
-        </RevealGroup>
+      {/* Category chips: an endless slow slide (pauses on hover), each chip opens its product category */}
+      <section className="fx-sweep relative overflow-hidden w-full py-6 sm:py-7 bg-linear-to-r from-[#0a2540] via-[#0b3a66] to-[#0a2540]">
+        <Reveal className="chip-marquee group relative z-10 overflow-hidden">
+          <div className="marquee-track flex w-max group-hover:[animation-play-state:paused] group-focus-within:[animation-play-state:paused]">
+            {[0, 1].map((copy) => (
+              <ul key={copy} className="flex shrink-0 items-center" aria-hidden={copy === 1 || undefined}>
+                {CATEGORY_WORDS.map((item) => (
+                  <li key={item.cat} className="flex items-center">
+                    <button
+                      type="button"
+                      tabIndex={copy === 1 ? -1 : undefined}
+                      onClick={() => onNavigateTab('san-pham', item.cat)}
+                      className="group/chip relative inline-flex items-center gap-2.5 h-11 sm:h-12 pl-2 pr-5 rounded-full border border-white/15 bg-white/[0.06] text-[15px] sm:text-[17px] font-semibold text-white whitespace-nowrap backdrop-blur-sm transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:border-transparent hover:bg-linear-to-r hover:from-[#0a94dc] hover:to-[#e11d2a] hover:shadow-[0_12px_28px_-10px_rgba(225,29,42,0.7)] cursor-pointer"
+                    >
+                      <span className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/10 inline-flex items-center justify-center transition-transform duration-500 group-hover/chip:rotate-[-12deg] group-hover/chip:scale-110 group-hover/chip:bg-white/20">
+                        <span className="material-symbols-outlined text-[19px] sm:text-[21px] text-[#5cc4ff] group-hover/chip:text-white transition-colors">
+                          {item.icon}
+                        </span>
+                      </span>
+                      {item.label}
+                    </button>
+                    <span className="mx-4 sm:mx-6 text-[#e11d2a] text-[14px]" aria-hidden="true">✦</span>
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </div>
+        </Reveal>
       </section>
 
       {/* 5. About & technical capability — layered photos on the left, numbered capabilities on the right */}

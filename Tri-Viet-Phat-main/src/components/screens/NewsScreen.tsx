@@ -340,7 +340,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                   <div className="grid grid-cols-1 md:grid-cols-12">
                     <div
                       onClick={() => handleSelect(featuredArticle)}
-                      className="md:col-span-6 relative h-64 md:h-full min-h-[260px] overflow-hidden bg-[#edf3f8] cursor-pointer"
+                      className="md:col-span-6 relative fx-shine h-64 md:h-full min-h-[260px] overflow-hidden bg-[#edf3f8] cursor-pointer"
                     >
                       <img
                         src={featuredArticle.image}
@@ -424,7 +424,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                           {/* Thumbnail */}
                           <div
                             onClick={() => handleSelect(art)}
-                            className="relative h-48 sm:h-52 w-full overflow-hidden bg-[#edf3f8] cursor-pointer"
+                            className="relative fx-shine h-48 sm:h-52 w-full overflow-hidden bg-[#edf3f8] cursor-pointer"
                           >
                             <img
                               src={art.image}
@@ -538,7 +538,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
                         onClick={() => handleSelect(art)}
                         className="flex gap-3.5 p-3  border border-[#f2f2f2] hover:border-[#0a2540]/40 hover:bg-[#f3f7fb] transition-all cursor-pointer group"
                       >
-                        <div className="w-24 h-20 shrink-0  overflow-hidden bg-[#edf3f8] border border-[#e5e5e5]">
+                        <div className="relative fx-shine w-24 h-20 shrink-0 overflow-hidden rounded-lg bg-[#edf3f8] border border-[#e5e5e5]">
                           <img
                             src={art.image}
                             alt={art.title}

@@ -33,7 +33,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onOpenConsultation }) 
               <span className="text-[12px] font-bold text-[#111111] inline-block">
                 {ABOUT_PAGE.storyTag}
               </span>
-              <h2 className="text-[22px] font-bold text-[#111111]">
+              <h2 className="fx-text-flow text-[22px] sm:text-[26px] font-bold leading-tight">
                 {ABOUT_PAGE.storyTitle}
               </h2>
               {ABOUT_PAGE.storyText
@@ -78,7 +78,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({ onOpenConsultation }) 
         {/* Business Activities */}
         <div className="bg-white p-5 sm:p-6  card-3d space-y-4">
           <div className="border-b border-[#f2f2f2] pb-3">
-            <h3 className="text-[20px] font-bold text-[#111111]">
+            <h3 className="fx-text-flow text-[20px] sm:text-[22px] font-bold">
               {ABOUT_PAGE.areasTitle}
             </h3>
             <p className="text-[13px] text-[#555555]">

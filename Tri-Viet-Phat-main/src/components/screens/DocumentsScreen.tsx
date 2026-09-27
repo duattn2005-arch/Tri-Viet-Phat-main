@@ -338,7 +338,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                             {/* Card Image */}
                             <div
                               onClick={() => handleSelect(doc)}
-                              className="relative h-48 sm:h-52 w-full overflow-hidden bg-[#edf3f8] cursor-pointer"
+                              className="relative fx-shine h-48 sm:h-52 w-full overflow-hidden bg-[#edf3f8] cursor-pointer"
                             >
                               <img
                                 src={doc.image}
@@ -461,7 +461,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                           onClick={() => handleSelect(doc)}
                           className="flex gap-3.5 p-3  border border-[#f2f2f2] hover:border-[#0a2540]/40 hover:bg-[#f3f7fb] transition-all cursor-pointer group"
                         >
-                          <div className="w-24 h-20 shrink-0  overflow-hidden bg-[#edf3f8] border border-[#e5e5e5]">
+                          <div className="relative fx-shine w-24 h-20 shrink-0 overflow-hidden rounded-lg bg-[#edf3f8] border border-[#e5e5e5]">
                             <img
                               src={doc.image}
                               alt={doc.title}

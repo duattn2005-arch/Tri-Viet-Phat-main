@@ -18,6 +18,8 @@ import { ProductDetailModal } from './components/ProductDetailModal';
 import { ConsultationModal } from './components/ConsultationModal';
 import { RepairServiceModal } from './components/RepairServiceModal';
 import { SearchModal } from './components/SearchModal';
+import { ScrollProgress } from './components/motion/ScrollProgress';
+import { useScrollReveal } from './lib/useScrollReveal';
 
 import { HomeScreen } from './components/screens/HomeScreen';
 import { AboutScreen } from './components/screens/AboutScreen';
@@ -54,6 +56,9 @@ export default function App() {
   const [isRepairServiceOpen, setIsRepairServiceOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isAiChatOpen, setIsAiChatOpen] = useState(false);
+
+  // Cards, headings and article images fade in as they scroll into view on every page
+  useScrollReveal();
 
   // Feed the pointer position to any `.fx-spotlight` section under the cursor (CSS draws the light).
   useEffect(() => {
@@ -139,6 +144,8 @@ export default function App() {
   return (
     <MotionConfig reducedMotion="user">
       <div className="min-h-screen flex flex-col bg-white text-[#111111] font-sans antialiased selection:bg-[#e5e5e5] selection:text-[#111111] overflow-x-hidden w-full max-w-full">
+        <ScrollProgress />
+
         {/* Top Header */}
         <Header
           currentTab={currentTab}

@@ -55,8 +55,8 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
 
       <div className="max-w-[1320px] mx-auto px-4 sm:px-8 py-6 sm:py-8 space-y-6">
         {/* Slogan */}
-        <div className="text-center max-w-3xl mx-auto">
-          <p className="text-[15px] sm:text-[16.5px] text-[#111111] font-medium leading-relaxed italic">
+        <div className="reveal-text text-center max-w-3xl mx-auto">
+          <p className="fx-text-flow text-[15px] sm:text-[16.5px] font-semibold leading-relaxed italic">
             {CONTACT_PAGE.slogan}
           </p>
         </div>

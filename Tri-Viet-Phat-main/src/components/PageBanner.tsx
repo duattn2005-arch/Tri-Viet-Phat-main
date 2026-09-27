@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import { AmbientGlow, MaskText, ParallaxImage } from './motion/Reveal';
 
 interface PageBannerProps {
@@ -61,12 +62,22 @@ export const PageBanner: React.FC<PageBannerProps> = ({
           <MaskText key={title} text={title} />
         </h1>
         {subtitle && (
-          <p className="mt-1.5 max-w-2xl text-[13px] sm:text-[14px] text-white/70 leading-relaxed">{subtitle}</p>
+          <p
+            key={subtitle}
+            className="reveal-text mt-1.5 max-w-2xl text-[13px] sm:text-[14px] text-white/70 leading-relaxed"
+            style={{ '--d': '0.35s' } as React.CSSProperties}
+          >
+            {subtitle}
+          </p>
         )}
 
         {/* Brand accent bar: logo blue into red */}
-        <span
-          className="mt-3 block h-[2px] w-12 bg-linear-to-r from-[#0a94dc] to-[#e11d2a]"
+        <motion.span
+          key={title}
+          className="mt-3 block h-[2px] w-12 origin-left bg-linear-to-r from-[#0a94dc] to-[#e11d2a]"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           aria-hidden="true"
         />
       </div>

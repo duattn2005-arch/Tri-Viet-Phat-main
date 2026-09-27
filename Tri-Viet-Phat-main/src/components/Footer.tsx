@@ -107,7 +107,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab, onSelectBrand, onOp
       </div>
 
       <div className="relative max-w-[1320px] mx-auto px-4 sm:px-8 pt-12 pb-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+        <div className="reveal-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
           {/* Company */}
           <div className="lg:col-span-4">
             <div className="inline-flex items-center gap-3 rounded-xl bg-white px-4 py-3">
