@@ -3,6 +3,7 @@ import { motion, useScroll, useSpring } from 'motion/react';
 import { PageTab } from '../types';
 import { COMPANY_INFO } from '../data/mockData';
 import { navLink } from '../seo/navLink';
+import { FacebookLogo, ZaloLogo } from './SocialIcons';
 
 interface HeaderProps {
   currentTab: PageTab;
@@ -191,22 +192,43 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
           </div>
 
-          <div className="flex items-center gap-4 shrink-0 pl-4">
+          {/* Quick contact: Facebook / Zalo logos, then a pulsing call button */}
+          <div className="flex items-center gap-2 sm:gap-2.5 shrink-0 pl-3 sm:pl-4">
             <a
               href={COMPANY_INFO.facebookUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
+              aria-label="Facebook Trí Đức"
+              title="Facebook"
+              className="block rounded-full transition-transform duration-300 hover:-translate-y-0.5 hover:scale-110"
             >
-              Facebook
+              <FacebookLogo className="block w-6 h-6 sm:w-7 sm:h-7" />
             </a>
             <a
               href={COMPANY_INFO.zaloUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
+              aria-label="Chat Zalo với Trí Đức"
+              title="Zalo"
+              className="block rounded-lg transition-transform duration-300 hover:-translate-y-0.5 hover:scale-110"
             >
-              Zalo
+              <ZaloLogo className="block w-6 h-6 sm:w-7 sm:h-7" />
+            </a>
+            <a
+              href={hotlineHref(COMPANY_INFO.hotline)}
+              aria-label={`Gọi hotline ${COMPANY_INFO.hotline}`}
+              title="Gọi ngay"
+              className="fx-cta relative overflow-hidden inline-flex items-center gap-1.5 h-6 sm:h-7 p-0.5 md:pr-3 rounded-full bg-linear-to-r from-[#e11d2a] to-[#b3141f] text-white text-[12.5px] font-bold hover:brightness-110 transition-[filter]"
+            >
+              <span className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-white text-[#e11d2a] flex items-center justify-center shrink-0">
+                <span
+                  className="material-symbols-outlined text-[14px] sm:text-[16px] phone-shake"
+                  style={{ fontVariationSettings: "'FILL' 1" }}
+                >
+                  call
+                </span>
+              </span>
+              <span className="hidden md:inline tabular-nums tracking-wide">{COMPANY_INFO.hotline}</span>
             </a>
           </div>
         </div>
