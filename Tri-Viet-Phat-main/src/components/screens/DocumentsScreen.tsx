@@ -26,6 +26,26 @@ const DOCUMENT_CATEGORIES: CategoryOption[] = [
   { key: 'huong-dan-bao-tri', label: 'Hướng dẫn bảo trì sửa chữa', icon: 'build' },
 ];
 
+type DocKind = 'video-huong-dan' | 'huong-dan-bao-tri' | 'tai-lieu-san-pham';
+
+// Documents have no category field: video guides and maintenance manuals are told apart by their
+// id or title, and everything else is a product document.
+function docKind(doc: SiteArticle): DocKind {
+  const title = doc.title.toLowerCase();
+  if (doc.id.includes('video') || title.includes('video')) return 'video-huong-dan';
+  if (doc.id.includes('bao-tri') || title.includes('bảo trì')) return 'huong-dan-bao-tri';
+  return 'tai-lieu-san-pham';
+}
+
+// Older category slugs still used in links
+const CATEGORY_ALIASES: Record<string, DocKind> = {
+  'video-huong-dan-su-dung-may': 'video-huong-dan',
+  'tai-lieu-huong-dan-bao-tri-sua-chua': 'huong-dan-bao-tri',
+};
+
+const DOC_COUNTS: Record<string, number> = { all: REAL_DOCUMENTS.length };
+for (const doc of REAL_DOCUMENTS) DOC_COUNTS[docKind(doc)] = (DOC_COUNTS[docKind(doc)] ?? 0) + 1;
+
 const FALLBACK_THUMBNAIL =
   'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&q=80';
 
@@ -82,18 +102,10 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
     let list = REAL_DOCUMENTS;
 
     if (selectedCategory && selectedCategory !== 'all') {
-      list = list.filter((doc) => {
-        if (selectedCategory === 'video-huong-dan' || selectedCategory === 'video-huong-dan-su-dung-may') {
-          return doc.id.includes('video') || doc.title.toLowerCase().includes('video');
-        }
-        if (selectedCategory === 'tai-lieu-san-pham') {
-          return doc.id.includes('tai-lieu-thiet-bi') || doc.title.toLowerCase().includes('thiết bị y tế');
-        }
-        if (selectedCategory === 'huong-dan-bao-tri' || selectedCategory === 'tai-lieu-huong-dan-bao-tri-sua-chua') {
-          return doc.id.includes('bao-tri') || doc.title.toLowerCase().includes('bảo trì');
-        }
-        return true;
-      });
+      const kind = CATEGORY_ALIASES[selectedCategory] ?? selectedCategory;
+      if (DOCUMENT_CATEGORIES.some((cat) => cat.key === kind)) {
+        list = list.filter((doc) => docKind(doc) === kind);
+      }
     }
 
     if (searchQuery.trim()) {
@@ -147,8 +159,9 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
     }
   };
 
-  const getDocBadge = (docId: string) => {
-    if (docId.includes('video')) {
+  const getDocBadge = (doc: SiteArticle) => {
+    const kind = docKind(doc);
+    if (kind === 'video-huong-dan') {
       return {
         label: 'Video hướng dẫn HD',
         icon: 'play_circle',
@@ -157,7 +170,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
         type: 'Video',
       };
     }
-    if (docId.includes('bao-tri')) {
+    if (kind === 'huong-dan-bao-tri') {
       return {
         label: 'Cẩm nang bảo trì',
         icon: 'build_circle',
@@ -238,10 +251,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                       className="w-full appearance-none pl-3.5 pr-10 py-3  border border-[#d4d4d4] bg-[#f3f7fb] text-[13.5px] font-bold text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#0a2540] cursor-pointer"
                     >
                       {DOCUMENT_CATEGORIES.map((cat) => {
-                        const count =
-                          cat.key === 'all'
-                            ? REAL_DOCUMENTS.length
-                            : 1;
+                        const count = DOC_COUNTS[cat.key] ?? 0;
                         return (
                           <option key={cat.key} value={cat.key}>
                             {cat.label} ({count})
@@ -257,10 +267,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                   <div className="hidden sm:flex flex-wrap items-center gap-2">
                     {DOCUMENT_CATEGORIES.map((cat) => {
                       const isActive = selectedCategory === cat.key;
-                      const count =
-                        cat.key === 'all'
-                          ? REAL_DOCUMENTS.length
-                          : 1;
+                      const count = DOC_COUNTS[cat.key] ?? 0;
 
                       return (
                         <button
@@ -328,7 +335,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
                 {filteredDocs.length > 0 ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
                     {filteredDocs.map((doc) => {
-                      const badge = getDocBadge(doc.id);
+                      const badge = getDocBadge(doc);
                       return (
                         <div
                           key={doc.id}
@@ -454,7 +461,7 @@ export const DocumentsScreen: React.FC<DocumentsScreenProps> = ({
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {otherDocs.map((doc) => {
-                      const badge = getDocBadge(doc.id);
+                      const badge = getDocBadge(doc);
                       return (
                         <div
                           key={doc.id}
