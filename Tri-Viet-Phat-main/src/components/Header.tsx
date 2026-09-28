@@ -218,17 +218,14 @@ export const Header: React.FC<HeaderProps> = ({
               href={hotlineHref(COMPANY_INFO.hotline)}
               aria-label={`Gọi hotline ${COMPANY_INFO.hotline}`}
               title="Gọi ngay"
-              className="fx-cta relative overflow-hidden inline-flex items-center gap-1.5 h-6 sm:h-7 p-0.5 md:pr-3 rounded-full bg-linear-to-r from-[#e11d2a] to-[#b3141f] text-white text-[12.5px] font-bold hover:brightness-110 transition-[filter]"
+              className="fx-cta relative overflow-hidden w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-linear-to-br from-[#e11d2a] to-[#b3141f] text-white flex items-center justify-center transition-transform duration-300 hover:-translate-y-0.5 hover:scale-110"
             >
-              <span className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-white text-[#e11d2a] flex items-center justify-center shrink-0">
-                <span
-                  className="material-symbols-outlined text-[14px] sm:text-[16px] phone-shake"
-                  style={{ fontVariationSettings: "'FILL' 1" }}
-                >
-                  call
-                </span>
+              <span
+                className="material-symbols-outlined text-[15px] sm:text-[17px] phone-shake"
+                style={{ fontVariationSettings: "'FILL' 1" }}
+              >
+                call
               </span>
-              <span className="hidden md:inline tabular-nums tracking-wide">{COMPANY_INFO.hotline}</span>
             </a>
           </div>
         </div>
