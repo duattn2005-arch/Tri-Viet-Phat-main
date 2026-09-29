@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { PageBanner } from '../PageBanner';
 import { CONTACT_PAGE } from '../../content/pages';
 import { sendLead } from '../../lib/sendLead';
+import { COMPANY_INFO } from '../../data/mockData';
 
 interface ContactScreenProps {
   onOpenConsultation?: () => void;
@@ -204,8 +205,8 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ onOpenRepairServic
                   </div>
                   <div>
                     <span className="text-[#777777] text-[12px] block font-semibold">Hotline tư vấn 24/7:</span>
-                    <a href="tel:0392123688" className="font-bold text-[#111111] text-[15px] fx-link">
-                      0392.123.688
+                    <a href={`tel:${COMPANY_INFO.hotline.replace(/\./g, '')}`} className="font-bold text-[#111111] text-[15px] fx-link">
+                      {COMPANY_INFO.hotline}
                     </a>
                   </div>
                 </div>

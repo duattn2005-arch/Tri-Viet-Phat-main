@@ -8,7 +8,7 @@ export const SITE_NAME = 'Trí Đức';
 export const DEFAULT_IMAGE = '/images/hero-lab-analyzers.jpg';
 const DEFAULT_DESCRIPTION =
   'Phân phối chính hãng máy xét nghiệm Dirui (sinh hóa, nước tiểu, huyết học), hóa chất xét nghiệm Dewei, máy điện giải, HbA1c. Lắp đặt, bảo hành toàn quốc.';
-export const HOTLINE = '0392.123.688';
+export const HOTLINE = '0979.593.888';
 
 export interface Route {
   tab: PageTab;

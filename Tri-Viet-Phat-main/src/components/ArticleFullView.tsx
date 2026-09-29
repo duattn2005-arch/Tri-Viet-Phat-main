@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { SiteArticle, loadNewsHtml } from '../data/realSiteContent';
 import { SiteSidebar } from './SiteSidebar';
+import { COMPANY_INFO } from '../data/mockData';
 
 interface ArticleFullViewProps {
   article: SiteArticle;
@@ -144,10 +145,10 @@ export const ArticleFullView: React.FC<ArticleFullViewProps> = ({
               <span className="font-semibold text-[#111111]">Cần tư vấn thiết bị?</span>
               <span>Liên hệ hotline:</span>
               <a
-                href="tel:0392123688"
+                href={`tel:${COMPANY_INFO.hotline.replace(/\./g, '')}`}
                 className="text-[#111111] font-bold fx-link text-[15px]"
               >
-                0392.123.688
+                {COMPANY_INFO.hotline}
               </a>
             </div>
 

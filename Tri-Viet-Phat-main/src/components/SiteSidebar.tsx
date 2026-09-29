@@ -5,6 +5,7 @@ import {
   SIDEBAR_WEBSITE_LINKS,
   SiteArticle,
 } from '../data/realSiteContent';
+import { COMPANY_INFO } from '../data/mockData';
 
 interface SiteSidebarProps {
   onSelectArticle?: (article: SiteArticle) => void;
@@ -36,10 +37,10 @@ export const SiteSidebar: React.FC<SiteSidebarProps> = ({
               </span>
               <span className="text-[#777777]">Hotline:</span>
               <a
-                href="tel:0392123688"
+                href={`tel:${COMPANY_INFO.hotline.replace(/\./g, '')}`}
                 className="font-bold text-[#111111] fx-link"
               >
-                0392.123.688
+                {COMPANY_INFO.hotline}
               </a>
             </div>
             <div className="flex items-center gap-2.5">
