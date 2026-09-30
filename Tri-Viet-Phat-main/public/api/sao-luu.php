@@ -43,7 +43,7 @@ function page(string $title, string $body, int $status = 200): void
 <!doctype html><html lang="vi"><head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="robots" content="noindex" />
 <title>{$t} · Trí Đức</title>
-<link rel="icon" type="image/png" href="/favicon-tri-duc.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
 <style>
   :root { --navy: #0a2540; --blue: #0a94dc; --red: #e11d2a; --line: #e3ebf3; --muted: #5b6b7c; }
   * { box-sizing: border-box; }
