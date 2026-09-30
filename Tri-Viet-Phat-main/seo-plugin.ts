@@ -46,6 +46,11 @@ const CONTENT_DIR = path.resolve(ROOT_DIR, 'src/content');
 const START = '<!--seo:start-->';
 const END = '<!--seo:end-->';
 const ROOT = '<div id="root"></div>';
+// The old WordPress URLs' 301 redirects in public/.htaccess carry their Google rankings to the new pages,
+// and are kept for good; the build fails if the block goes missing or loses rules
+const OLD_URLS_BEGIN = '# BEGIN old WordPress URLs';
+const OLD_URLS_END = '# END old WordPress URLs';
+const MIN_OLD_URL_REDIRECTS = 415;
 
 interface ProductEntry {
   order?: number;
@@ -386,6 +391,16 @@ export function seoPlugin(): Plugin {
         path.join(outDir, 'robots.txt'),
         `User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /api/\n\nSitemap: ${SITE_URL}/sitemap.xml\n`
       );
+
+      const htaccess = fs.readFileSync(path.join(outDir, '.htaccess'), 'utf-8');
+      const oldUrls = htaccess.split(OLD_URLS_BEGIN)[1]?.split(OLD_URLS_END)[0] ?? '';
+      const redirects = oldUrls.split('\n').filter((line) => line.startsWith('RewriteRule ')).length;
+      if (redirects < MIN_OLD_URL_REDIRECTS) {
+        throw new Error(
+          `seo-plugin: public/.htaccess has ${redirects} old WordPress URL redirects, expected at least ${MIN_OLD_URL_REDIRECTS}. ` +
+            'They keep the old pages\' Google rankings; restore them instead of lowering MIN_OLD_URL_REDIRECTS.'
+        );
+      }
 
       // Facts for the AI chat (api/chat.php): the current catalogue and company details, so answers
       // follow what the CMS holds instead of a hand-written prompt

@@ -41,6 +41,8 @@ RewriteRule ^admin/sao-luu/?$ /api/sao-luu.php [L,QSA]
 
 # BEGIN old WordPress URLs
 # Generated from the old site's sitemaps: every old URL goes to the matching new page (301).
+# KEEP PERMANENTLY: these redirects carry the old pages' Google rankings to the new URLs.
+# Never delete or shorten this block; the build (seo-plugin.ts) fails if rules go missing.
 RewriteRule ^en/lets\-learn\-about\-the\-testing\-machines\-in\-the\-laboratory/?$ /tin-tuc [R=301,L,NE]
 RewriteRule ^en/auto\-chemistry\-analyzer/?$ /san-pham/may-xet-nghiem-sinh-hoa [R=301,L,NE]
 RewriteRule ^en/745\-2/?$ /tin-tuc [R=301,L,NE]
