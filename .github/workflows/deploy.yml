@@ -1,5 +1,10 @@
-# Builds the site and uploads it to the thietbiytegroup.com hosting over FTP on every push to main,
-# including the commits the CMS (/admin) makes when content is published.
+# Builds the site and uploads it to the thietbiytegroup.com hosting over FTP.
+#
+# TURNED OFF (2026-10-01): the site is moving to WordPress (Tri-Viet-Phat-main/wordpress/), and an automatic
+# upload would overwrite it. It now runs only by hand: GitHub → Actions → "Deploy to hosting" → Run workflow.
+# To deploy the static site on every push to main again (including CMS /admin commits), restore under `on:`:
+#   push:
+#     branches: [main]
 #
 # Repository secrets (GitHub → Settings → Secrets and variables → Actions):
 #   FTP_USERNAME, FTP_PASSWORD               hosting FTP account whose root is the site folder (deploy@thietbiytegroup.com)
@@ -14,8 +19,6 @@
 name: Deploy to hosting
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 concurrency:
