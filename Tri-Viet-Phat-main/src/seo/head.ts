@@ -1,6 +1,7 @@
 // Renders the per-page <head> tags: as an HTML string at build time (seo-plugin.ts) and by updating the
 // live DOM when the visitor navigates inside the app (App.tsx). Both produce the same set of tags.
 import { SITE_NAME, type SeoMeta } from './routes';
+import { staticUrl } from '../wp';
 
 function absolute(siteUrl: string, pathOrUrl: string): string {
   return /^https?:\/\//.test(pathOrUrl) ? pathOrUrl : `${siteUrl.replace(/\/$/, '')}${pathOrUrl}`;
@@ -31,7 +32,7 @@ function jsonLd(meta: SeoMeta, siteUrl: string): Record<string, unknown>[] {
       url,
       ...(meta.published ? { datePublished: meta.published } : {}),
       author: { '@type': 'Organization', name: SITE_NAME, url: siteUrl },
-      publisher: { '@type': 'Organization', name: SITE_NAME, logo: absolute(siteUrl, '/logo-tri-duc.png') },
+      publisher: { '@type': 'Organization', name: SITE_NAME, logo: absolute(siteUrl, staticUrl('/logo-tri-duc.png')) },
     });
   }
   // Products are not marked up as schema.org/Product: without a price (offers) Google reports them as invalid.

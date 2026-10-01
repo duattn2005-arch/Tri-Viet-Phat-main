@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* The WordPress theme's PHP (wordpress/) is not markup of the app */
+@source not "../wordpress";
 
 @theme {
   --font-sans: 'Quicksand', system-ui, -apple-system, sans-serif;

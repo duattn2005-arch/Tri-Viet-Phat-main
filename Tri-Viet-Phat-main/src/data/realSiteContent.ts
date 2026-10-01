@@ -1,5 +1,6 @@
-import { fromFolder, renderRich, toPlainText } from '../content/load';
+import { demoteH1, fromFolder, renderRich, toPlainText } from '../content/load';
 import newsIndex from 'virtual:news-index';
+import { WP, type WpEntry } from '../wp';
 
 export interface SiteArticle {
   id: string;
@@ -48,31 +49,56 @@ function toSiteArticles<T extends ArticleEntry>(modules: Record<string, T>) {
   });
 }
 
+/** Documents and jobs from WordPress (src/wp.ts): the body is already HTML. */
+function fromWordPress(entries: WpEntry[]) {
+  return entries.map(({ contentHtml, ...entry }) => {
+    const html = demoteH1(contentHtml);
+    return { ...entry, url: '', contentHtml: html, plainText: toPlainText(html) };
+  });
+}
+
 // Editable in the CMS (/admin): news, documents and job openings.
 // News lists come from a small build-time index; each body is a separate chunk loaded on demand
 // (contentHtml stays '' until then, and search covers title + excerpt).
-export const REAL_NEWS_ARTICLES: SiteArticle[] = newsIndex.map(({ order: _order, ...entry }) => ({
-  ...entry,
-  url: '',
-  contentHtml: '',
-  plainText: entry.excerpt,
-}));
+export const REAL_NEWS_ARTICLES: SiteArticle[] = (import.meta.env.MODE === 'wp' ? WP!.news : newsIndex).map(
+  ({ order: _order, ...entry }: { order?: number } & Omit<SiteArticle, 'url' | 'contentHtml' | 'plainText'>) => ({
+    ...entry,
+    url: '',
+    contentHtml: '',
+    plainText: entry.excerpt,
+  })
+);
 
-const newsBodies = import.meta.glob<ArticleEntry>('../content/news/*.json', { import: 'default' });
+const newsBodies: Record<string, () => Promise<ArticleEntry>> =
+  import.meta.env.MODE === 'wp' ? {} : import.meta.glob<ArticleEntry>('../content/news/*.json', { import: 'default' });
 
 /** Rendered HTML body of a news article, or '' if it does not exist. */
 export async function loadNewsHtml(id: string): Promise<string> {
+  if (import.meta.env.MODE === 'wp') {
+    // WordPress: the article the visitor landed on comes with the page, any other one from the theme's endpoint
+    if (WP!.article?.id === id) return demoteH1(WP!.article.html);
+    const res = await fetch(`${WP!.endpoints.news}${encodeURIComponent(id)}`).catch(() => null);
+    const data = res?.ok ? await res.json().catch(() => null) : null;
+    return data?.html ? demoteH1(data.html) : '';
+  }
   const load = newsBodies[`../content/news/${id}.json`];
   return load ? renderRich((await load()).content) : '';
 }
 
-export const REAL_DOCUMENTS: SiteArticle[] = toSiteArticles(
-  import.meta.glob<ArticleEntry>('../content/documents/*.json', { eager: true, import: 'default' })
-);
+export const REAL_DOCUMENTS: SiteArticle[] =
+  import.meta.env.MODE === 'wp'
+    ? fromWordPress(WP!.documents)
+    : toSiteArticles(import.meta.glob<ArticleEntry>('../content/documents/*.json', { eager: true, import: 'default' }));
 
-export const REAL_JOBS: JobItem[] = toSiteArticles(
-  import.meta.glob<ArticleEntry & Pick<JobItem, 'quantity' | 'location'>>('../content/jobs/*.json', { eager: true, import: 'default' })
-);
+export const REAL_JOBS: JobItem[] =
+  import.meta.env.MODE === 'wp'
+    ? (fromWordPress(WP!.jobs) as JobItem[])
+    : toSiteArticles(
+        import.meta.glob<ArticleEntry & Pick<JobItem, 'quantity' | 'location'>>('../content/jobs/*.json', {
+          eager: true,
+          import: 'default',
+        })
+      );
 
 export const SIDEBAR_CATEGORIES = [
   { name: 'Bán thiết bị y tế Hà Nội', link: '/tin-tuc' },

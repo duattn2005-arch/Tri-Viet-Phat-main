@@ -29,7 +29,9 @@ if ($message === '' || mb_strlen($message) > 1000) {
     reply(400, ['error' => 'Nội dung tin nhắn không hợp lệ.']);
 }
 
-$knowledge = json_decode((string)@file_get_contents(__DIR__ . '/ai-knowledge.json'), true) ?: ['company' => [], 'products' => [], 'brands' => []];
+// In the WordPress theme (wordpress/ in the project) the knowledge, search index and settings come from td_api_config()
+$knowledge = (function_exists('td_api_config') ? td_api_config('ai-knowledge') : json_decode((string)@file_get_contents(__DIR__ . '/ai-knowledge.json'), true))
+    ?: ['company' => [], 'products' => [], 'brands' => []];
 $company = $knowledge['company'] ?? [];
 $hotline = $company['hotline'] ?? '';
 
@@ -77,7 +79,7 @@ function search_site(string $question, int $limit = 5): array
 {
     static $index = null;
     if ($index === null) {
-        $index = json_decode((string)@file_get_contents(__DIR__ . '/ai-docs.json'), true) ?: ['n' => 0];
+        $index = (function_exists('td_api_config') ? td_api_config('ai-docs') : json_decode((string)@file_get_contents(__DIR__ . '/ai-docs.json'), true)) ?: ['n' => 0];
     }
     if (empty($index['n'])) {
         return [];
@@ -284,7 +286,7 @@ function clean_reply(string $text): string
 }
 
 $configFile = __DIR__ . '/ai-config.php';
-$config = is_file($configFile) ? require $configFile : [];
+$config = function_exists('td_api_config') ? td_api_config('ai') : (is_file($configFile) ? require $configFile : []);
 $apiKey = trim((string)($config['gemini_api_key'] ?? ''));
 $models = array_slice(array_values(array_filter((array)($config['models'] ?? ['gemini-flash-lite-latest', 'gemini-3.8-flash', 'gemini-2.5-flash-lite']))), 0, 3);
 

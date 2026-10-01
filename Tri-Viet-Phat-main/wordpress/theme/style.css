@@ -1,0 +1,14 @@
+/*
+Theme Name: Trí Đức
+Theme URI: https://thietbiytegroup.com
+Author: Công ty TNHH Thương mại Dịch vụ Trí Đức
+Description: Giao diện website Thiết Bị Y Tế Trí Đức (máy xét nghiệm, hóa chất xét nghiệm). Tin tức, sản phẩm, tài liệu, tuyển dụng và nội dung các trang được quản lý trong WP Admin; SEO, sơ đồ trang, form liên hệ (Telegram, email) và trợ lý AI có sẵn trong giao diện. Cài đặt ở thư mục gốc của tên miền.
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 7.1
+Requires PHP: 7.4
+License: Proprietary
+Text Domain: tri-duc
+*/
+
+/* The site's styles are in app/assets (built from the React app); this file only names the theme. */

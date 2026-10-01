@@ -1,9 +1,16 @@
 import { Product, Partner, DocumentItem, JobOpening, Testimonial } from '../types';
-import { fromFolder, renderRich } from '../content/load';
-import company from '../content/settings/company.json';
-import about from '../content/settings/about.json';
-import partners from '../content/settings/partners.json';
-import testimonials from '../content/settings/testimonials.json';
+import { demoteH1, fromFolder, renderRich } from '../content/load';
+import companyJson from '../content/settings/company.json';
+import aboutJson from '../content/settings/about.json';
+import partnersJson from '../content/settings/partners.json';
+import testimonialsJson from '../content/settings/testimonials.json';
+import { WP } from '../wp';
+
+// In the WordPress theme these come from WP Admin → "Trí Đức" (src/wp.ts)
+const company: typeof companyJson = import.meta.env.MODE === 'wp' ? WP!.settings.company : companyJson;
+const about: typeof aboutJson = import.meta.env.MODE === 'wp' ? WP!.settings.about : aboutJson;
+const partners: typeof partnersJson = import.meta.env.MODE === 'wp' ? WP!.settings.partners : partnersJson;
+const testimonials: typeof testimonialsJson = import.meta.env.MODE === 'wp' ? WP!.settings.testimonials : testimonialsJson;
 
 // Editable in the CMS (/admin): company info, business areas, partners, testimonials, products.
 export const COMPANY_INFO = company;
@@ -46,16 +53,20 @@ export const PRODUCT_CATEGORY_LABELS: Record<string, string> = {
 
 type ProductEntry = Omit<Product, 'id' | 'categoryLabel' | 'alt'> & { order?: number; categoryLabel?: string; alt?: string };
 
-export const PRODUCTS: Product[] = fromFolder(
-  import.meta.glob<ProductEntry>('../content/products/*.json', { eager: true, import: 'default' })
-).map((p) => ({
+// In the WordPress theme the products are the "Sản phẩm" posts, whose detail text is already HTML
+const productEntries: (ProductEntry & { id: string })[] =
+  import.meta.env.MODE === 'wp'
+    ? WP!.products
+    : fromFolder(import.meta.glob<ProductEntry>('../content/products/*.json', { eager: true, import: 'default' }));
+
+export const PRODUCTS: Product[] = productEntries.map((p) => ({
   ...p,
   categoryLabel: PRODUCT_CATEGORY_LABELS[p.category] ?? p.categoryLabel ?? '',
   alt: p.alt || p.name,
   specs: p.specs ?? [],
   features: p.features ?? [],
   certifications: p.certifications ?? [],
-  detailHtml: p.detailHtml ? renderRich(p.detailHtml) : undefined,
+  detailHtml: p.detailHtml ? (import.meta.env.MODE === 'wp' ? demoteH1(p.detailHtml) : renderRich(p.detailHtml)) : undefined,
 }));
 
 export const PARTNERS: Partner[] = partners.partners;

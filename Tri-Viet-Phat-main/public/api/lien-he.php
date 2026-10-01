@@ -25,14 +25,15 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     reply(405, ['error' => 'Phương thức không được hỗ trợ.']);
 }
 
-// Each request goes to Telegram (telegram-config.php) and/or email (email-config.php); at least one is needed
+// Each request goes to Telegram (telegram-config.php) and/or email (email-config.php); at least one is needed.
+// In the WordPress theme (wordpress/ in the project) the settings come from WP Admin through td_api_config().
 $tgFile = __DIR__ . '/telegram-config.php';
-$tgConfig = is_file($tgFile) ? require $tgFile : [];
+$tgConfig = function_exists('td_api_config') ? td_api_config('telegram') : (is_file($tgFile) ? require $tgFile : []);
 $botToken = trim((string)($tgConfig['bot_token'] ?? ''));
 $chatIds = $botToken === '' ? [] : array_filter(array_map('trim', (array)($tgConfig['chat_ids'] ?? [])));
 
 $mailFile = __DIR__ . '/email-config.php';
-$mailConfig = is_file($mailFile) ? require $mailFile : [];
+$mailConfig = function_exists('td_api_config') ? td_api_config('email') : (is_file($mailFile) ? require $mailFile : []);
 $mailTo = array_filter(
     array_map('trim', (array)($mailConfig['to'] ?? [])),
     fn($a) => filter_var($a, FILTER_VALIDATE_EMAIL)

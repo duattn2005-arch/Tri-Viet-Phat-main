@@ -1,6 +1,8 @@
 // Sends a form submission to public/api/lien-he.php on the hosting, which forwards it to Telegram.
-// VITE_LEAD_ENDPOINT overrides the URL, e.g. when the site is served from a sub-folder.
-const LEAD_ENDPOINT = import.meta.env.VITE_LEAD_ENDPOINT || '/api/lien-he.php';
+// VITE_LEAD_ENDPOINT overrides the URL, e.g. when the site is served from a sub-folder; the WordPress theme sets its own (src/wp.ts).
+import { WP } from '../wp';
+
+const LEAD_ENDPOINT = WP?.endpoints.lead || import.meta.env.VITE_LEAD_ENDPOINT || '/api/lien-he.php';
 
 export type LeadKind =
   | 'lien-he'

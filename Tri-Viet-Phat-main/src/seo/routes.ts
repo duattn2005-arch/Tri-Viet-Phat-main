@@ -2,11 +2,15 @@
 // the browser (App.tsx) and at build time (seo-plugin.ts, which writes sitemap.xml and per-page HTML).
 import type { PageTab } from '../types';
 import { brandBySlug, BRANDS, productDisplayName, productKeySpec } from './brands';
-import seoPages from '../content/pages/seo.json';
+import seoJson from '../content/pages/seo.json';
+import { WP, staticUrl } from '../wp';
+
+// In the WordPress theme the page titles are edited in WP Admin (src/wp.ts)
+const seoPages: typeof seoJson = WP?.pages.seo ?? seoJson;
 
 export const SITE_NAME = 'Trí Đức';
-export const DEFAULT_IMAGE = '/images/hero-lab-analyzers.jpg';
-const DEFAULT_DESCRIPTION =
+export const DEFAULT_IMAGE = staticUrl('/images/hero-lab-analyzers.jpg');
+export const DEFAULT_DESCRIPTION =
   'Phân phối chính hãng máy xét nghiệm Dirui (sinh hóa, nước tiểu, huyết học), hóa chất xét nghiệm Dewei, máy điện giải, HbA1c. Lắp đặt, bảo hành toàn quốc.';
 export const HOTLINE = '0979.593.888';
 
@@ -207,7 +211,7 @@ function seoCore(route: Route, lookups: SeoLookups): SeoMeta {
   return { ...page, path, image: DEFAULT_IMAGE, type: 'website' };
 }
 
-const TAB_LABELS: Record<PageTab, string> = {
+export const TAB_LABELS: Record<PageTab, string> = {
   'trang-chu': 'Trang chủ',
   'gioi-thieu': 'Giới thiệu',
   'san-pham': 'Sản phẩm',

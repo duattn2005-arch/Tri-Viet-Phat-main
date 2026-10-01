@@ -1,6 +1,8 @@
 node_modules/
 build/
 dist/
+# npm run build:wp (the zips land in wordpress/dist/)
+wordpress/.build/
 coverage/
 .DS_Store
 *.log

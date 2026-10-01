@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { COMPANY_INFO } from '../data/mockData';
+import { WP } from '../wp';
 
 interface ChatMessage {
   id: string;
@@ -83,7 +84,7 @@ export const AiChatBubble: React.FC<AiChatBubbleProps> = ({
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/chat.php', {
+      const response = await fetch(WP?.endpoints.chat || '/api/chat.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
