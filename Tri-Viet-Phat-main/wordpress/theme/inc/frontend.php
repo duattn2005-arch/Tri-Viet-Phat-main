@@ -13,11 +13,17 @@ defined('ABSPATH') || exit;
 function td_request_path(): string
 {
     $uri = (string) parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
-    $home = rtrim((string) parse_url(home_url('/'), PHP_URL_PATH), '/');
+    $home = rtrim((string) parse_url((string) get_option('home'), PHP_URL_PATH), '/');
     if ($home !== '' && strpos($uri, $home) === 0) {
         $uri = substr($uri, strlen($home));
     }
     return trim(rawurldecode($uri), '/');
+}
+
+/** An address on the site from its own home address (Polylang points home_url('/') at the current language). */
+function td_home_url(string $path): string
+{
+    return untrailingslashit((string) get_option('home')) . $path;
 }
 
 function td_is_get(): bool
@@ -163,7 +169,7 @@ function td_route_request(): void
         }
     }
     if ($target !== null) {
-        wp_redirect(home_url($target), 301, 'Tri Duc');
+        wp_redirect(td_home_url($target), 301, 'Tri Duc');
         exit;
     }
 
@@ -189,7 +195,7 @@ function td_route_request(): void
         $requested = '/' . $path . (substr((string) parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH), -1) === '/' && $path !== '' ? '/' : '');
         if ($requested !== $canonical) {
             $query = (string) parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_QUERY);
-            wp_redirect(home_url($canonical) . ($query !== '' ? '?' . $query : ''), 301, 'Tri Duc');
+            wp_redirect(td_home_url($canonical) . ($query !== '' ? '?' . $query : ''), 301, 'Tri Duc');
             exit;
         }
     }
@@ -216,6 +222,7 @@ function td_render_page(?array $route): void
 {
     $status = $route ? 200 : 404;
     $route = $route ?: ['tab' => 'trang-chu'];
+    td_isolate_page();
     status_header($status);
     header('Content-Type: text/html; charset=UTF-8');
     if ($status === 404) {

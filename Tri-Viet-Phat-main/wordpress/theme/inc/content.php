@@ -11,7 +11,7 @@
 defined('ABSPATH') || exit;
 
 /** Post types whose changes reach the website's data. */
-const TD_CONTENT_TYPES = ['post', 'td_product', 'td_document', 'td_job'];
+const TD_CONTENT_TYPES = ['post', 'td_product', 'product', 'td_document', 'td_job'];
 
 function td_type_labels(string $plural, string $singular): array
 {
@@ -44,12 +44,15 @@ add_action('init', function () {
         'rewrite' => false,
         'query_var' => false,
     ];
-    register_post_type('td_product', $common + [
-        'labels' => td_type_labels('Sản phẩm', 'sản phẩm'),
-        'menu_icon' => 'dashicons-products',
-        'menu_position' => 5,
-        'supports' => ['title', 'editor', 'excerpt', 'thumbnail', 'page-attributes', 'revisions'],
-    ]);
+    // With WooCommerce the products are its products (inc/compat.php)
+    if (td_product_type() === 'td_product') {
+        register_post_type('td_product', $common + [
+            'labels' => td_type_labels('Sản phẩm', 'sản phẩm'),
+            'menu_icon' => 'dashicons-products',
+            'menu_position' => 5,
+            'supports' => ['title', 'editor', 'excerpt', 'thumbnail', 'page-attributes', 'revisions'],
+        ]);
+    }
     register_post_type('td_document', $common + [
         'labels' => td_type_labels('Tài liệu', 'tài liệu'),
         'menu_icon' => 'dashicons-media-document',
@@ -80,14 +83,15 @@ add_action('init', function () {
 /** The website's address of a published post, or null for content without its own page. */
 function td_post_url(WP_Post $post): ?string
 {
-    if ($post->post_status !== 'publish' || $post->post_name === '') {
+    if ($post->post_status !== 'publish' || $post->post_name === '' || !td_is_default_language($post)) {
         return null;
     }
     switch ($post->post_type) {
         case 'post':
             return home_url('/tin-tuc/bai-viet/' . $post->post_name);
         case 'td_product':
-            return home_url('/san-pham/chi-tiet/' . $post->post_name);
+        case 'product':
+            return home_url('/san-pham/chi-tiet/' . td_product_id($post));
         case 'td_document':
             return home_url('/tai-lieu');
         case 'td_job':

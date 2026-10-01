@@ -23,6 +23,18 @@ Chạy `npm run build:wp` (trong thư mục `Tri-Viet-Phat-main/`) sẽ tạo ra
 5. Nhập xong: tắt và xóa plugin "Trí Đức – Nhập dữ liệu" (nội dung vẫn còn).
 6. **Trí Đức → Kết nối & mã theo dõi**: điền Telegram bot token, Chat ID, email nhận yêu cầu, Gemini API key (lấy lại các giá trị đang dùng ở GitHub → Settings → Secrets). Thiếu Telegram/email thì yêu cầu của khách vẫn được lưu ở mục **Khách liên hệ**.
 
+## Dùng trên WordPress đang có (triducmedical.com: WooCommerce, Polylang, Yoast)
+
+Theme tự nhận ra các plugin này và giữ nguyên cách quản trị cũ:
+
+- **Sản phẩm** là sản phẩm WooCommerce (menu Products). Plugin nhập ghép 28 sản phẩm của website vào đúng sản phẩm WooCommerce cùng mã máy (ví dụ `may-dien-giai-ac9803` ↔ AC9803), thay phần mô tả bằng mô tả chuẩn của website và thêm thông số. Mô tả cũ được lưu trong trường ẩn `_td_old_content`. Địa chỉ sản phẩm giữ như thietbiytegroup.com: `/san-pham/chi-tiet/ac9803`.
+- **Polylang**: website chỉ hiện bản tiếng Việt; link `/en/...` chuyển về trang tiếng Việt tương ứng.
+- **Yoast SEO**: tiêu đề và mô tả nhập trong hộp Yoast được dùng. Sơ đồ trang là `/sitemap_index.xml` của Yoast (có thêm `/td-sitemap.xml` gồm các trang của website).
+- Link cũ (`/ten-bai-viet/`, `/san-pham/ten-san-pham/`, `/danh-muc-san-pham/...`) tự chuyển hướng 301 sang địa chỉ mới.
+- Menu "Quản lý slide", "Tuyển dụng" của theme cũ (AIO) sẽ ẩn khi đổi theme. Ảnh bìa trang chủ sửa ở **Trí Đức → Trang chủ**, tin tuyển dụng ở menu **Tuyển dụng** mới.
+
+Cách làm an toàn: **nhân bản** website cũ sang tên miền thử (cPanel → WordPress Manager → triducmedical.com → **Clone**), cài theme và plugin lên bản nhân bản, kiểm tra xong mới làm trên web thật.
+
 ## Quản lý nội dung trong WP Admin
 
 - **Bài viết** = Tin tức. Chọn danh mục *Kiến thức sức khỏe*, *Tin y tế* hoặc *Tin nội bộ*, đặt ảnh đại diện, viết tóm tắt. Ô "SEO trên Google" ở cuối trang soạn bài.

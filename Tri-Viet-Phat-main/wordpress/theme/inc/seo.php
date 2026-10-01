@@ -91,7 +91,15 @@ function td_parse_route(string $path): ?array
         return ['tab' => $tab];
     }
     if ($tab === 'san-pham' && $parts[1] === 'chi-tiet' && $n === 3) {
-        return td_product($parts[2]) ? ['tab' => $tab, 'productId' => $parts[2]] : null;
+        if (td_product($parts[2])) {
+            return ['tab' => $tab, 'productId' => $parts[2]];
+        }
+        foreach (td_products() as $p) {
+            if (($p['slug'] ?? '') === $parts[2]) {
+                return ['tab' => $tab, 'productId' => $p['id']];
+            }
+        }
+        return null;
     }
     if ($tab === 'tin-tuc' && $parts[1] === 'bai-viet' && $n === 3) {
         return td_news_post($parts[2]) ? ['tab' => $tab, 'articleId' => $parts[2]] : null;

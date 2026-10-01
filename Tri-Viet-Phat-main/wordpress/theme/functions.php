@@ -4,6 +4,7 @@
  *
  * The pages are the website's React app (app/, built by wordpress/build.ts from the main project); this PHP
  * side gives it WordPress content and does what the static hosting did at build time:
+ *   inc/compat.php    an existing site's WooCommerce products, Polylang languages and Yoast SEO
  *   inc/content.php   post types (Sản phẩm, Tài liệu, Tuyển dụng, Khách liên hệ), news categories, the site's URLs
  *   inc/data.php      the content handed to the app (window.__TD__, see src/wp.ts in the project)
  *   inc/seo.php       per-page title, meta tags, structured data and the plain-HTML copy crawlers read
@@ -19,6 +20,7 @@ defined('ABSPATH') || exit;
 define('TD_DIR', __DIR__);
 define('TD_VERSION', (string) wp_get_theme(get_template())->get('Version'));
 
+require TD_DIR . '/inc/compat.php';
 require TD_DIR . '/inc/content.php';
 require TD_DIR . '/inc/data.php';
 require TD_DIR . '/inc/seo.php';

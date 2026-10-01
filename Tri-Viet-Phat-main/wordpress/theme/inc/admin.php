@@ -12,9 +12,10 @@ defined('ABSPATH') || exit;
 // Editor boxes
 
 add_action('add_meta_boxes', function () {
-    add_meta_box('td_product', 'Thông tin sản phẩm', 'td_product_box', 'td_product', 'normal', 'high');
+    add_meta_box('td_product', 'Thông tin sản phẩm trên website', 'td_product_box', td_product_type(), 'normal', 'high');
     add_meta_box('td_job', 'Thông tin tuyển dụng', 'td_job_box', 'td_job', 'normal', 'high');
-    foreach (['post', 'td_product', 'td_document'] as $type) {
+    // With Yoast SEO its own box is used (inc/compat.php)
+    foreach (td_has_yoast() ? [] : ['post', 'td_product', 'td_document'] as $type) {
         add_meta_box('td_seo', 'SEO trên Google', 'td_seo_box', $type, 'normal', 'default');
     }
     add_meta_box('td_lead', 'Nội dung yêu cầu', 'td_lead_box', 'td_lead', 'normal', 'high');
@@ -85,13 +86,17 @@ function td_product_box(WP_Post $post): void
         return is_array($v) ? $v : [];
     };
     echo '<div class="td-box">';
-    echo '<p><label for="td_category">Danh mục</label><select id="td_category" name="td[category]"><option value="">— Chọn danh mục —</option>';
+    $woo = $post->post_type === 'product';
+    echo '<p><label for="td_category">Danh mục trên website</label><select id="td_category" name="td[category]"><option value="">'
+        . ($woo ? '— Theo danh mục sản phẩm (' . esc_html(td_category_labels('san-pham')[td_product_category($post)] ?? '') . ') —' : '— Chọn danh mục —') . '</option>';
     foreach (td_category_labels('san-pham') as $value => $label) {
         echo '<option value="' . esc_attr($value) . '"' . selected($meta('category'), $value, false) . '>' . esc_html($label) . '</option>';
     }
     echo '</select></p>';
-    echo '<p class="description">Mô tả ngắn của sản phẩm là ô <strong>Tóm tắt</strong> (Excerpt); ảnh sản phẩm là <strong>Ảnh đại diện</strong>; '
-        . 'ô soạn thảo chính là bài giới thiệu chi tiết (có thì thay cho phần đặc điểm kỹ thuật). Ô <strong>Thứ tự</strong> (Thuộc tính) quyết định vị trí: số nhỏ hiện trước.</p>';
+    echo '<p class="description">' . ($woo
+        ? 'Tên, ảnh, mô tả (ô soạn thảo chính) và mô tả ngắn lấy từ sản phẩm WooCommerce này. Các ô dưới đây là phần thông số website hiển thị thêm.'
+        : 'Mô tả ngắn của sản phẩm là ô <strong>Tóm tắt</strong> (Excerpt); ảnh sản phẩm là <strong>Ảnh đại diện</strong>; '
+            . 'ô soạn thảo chính là bài giới thiệu chi tiết (có thì thay cho phần đặc điểm kỹ thuật). Ô <strong>Thứ tự</strong> (Thuộc tính) quyết định vị trí: số nhỏ hiện trước.') . '</p>';
     foreach (td_product_text_fields() as $field => $label) {
         td_input("td[$field]", $label, (string) $meta($field));
     }
@@ -134,7 +139,7 @@ add_action('save_post', function ($post_id, $post) {
         return sanitize_textarea_field((string) ($in[$key] ?? ''));
     };
     $fields = [];
-    if ($post->post_type === 'td_product') {
+    if ($post->post_type === td_product_type()) {
         foreach (array_merge(['category', 'fullDesc'], array_keys(td_product_text_fields())) as $key) {
             $fields[$key] = $text($key);
         }
@@ -148,7 +153,7 @@ add_action('save_post', function ($post_id, $post) {
         $fields['quantity'] = $text('quantity');
         $fields['location'] = $text('location');
     }
-    if (in_array($post->post_type, ['post', 'td_product', 'td_document'], true)) {
+    if (!td_has_yoast() && in_array($post->post_type, ['post', 'td_product', 'td_document'], true)) {
         $fields['seoTitle'] = $text('seoTitle');
         $fields['seoDescription'] = $text('seoDescription');
     }
@@ -616,7 +621,7 @@ add_action('admin_notices', function () {
     if (!$screen || !in_array($screen->id, ['dashboard', 'toplevel_page_tri-duc', 'themes'], true) || !current_user_can('manage_options')) {
         return;
     }
-    $counts = wp_count_posts('td_product');
+    $counts = wp_count_posts(td_product_type());
     if (($counts->publish ?? 0) + ($counts->draft ?? 0) > 0) {
         return;
     }

@@ -152,10 +152,10 @@ function td_meta(WP_Post $post, string $field)
     return get_post_meta($post->ID, '_td_' . $field, true);
 }
 
-/** seoTitle / seoDescription when written in the editor's SEO box. */
+/** seoTitle / seoDescription when written in the editor's SEO box (or in Yoast's, inc/compat.php). */
 function td_seo_fields(WP_Post $post): array
 {
-    $out = [];
+    $out = td_yoast_fields($post);
     foreach (['seoTitle', 'seoDescription'] as $field) {
         $value = trim((string) td_meta($post, $field));
         if ($value !== '') {
@@ -167,7 +167,7 @@ function td_seo_fields(WP_Post $post): array
 
 function td_query(string $type, array $args = []): array
 {
-    $query = new WP_Query($args + [
+    $query = new WP_Query($args + td_lang_args($type) + [
         'post_type' => $type,
         'post_status' => 'publish',
         'posts_per_page' => -1,
@@ -222,7 +222,7 @@ function td_news_post(string $slug): ?WP_Post
         return null;
     }
     if (!array_key_exists($slug, $found)) {
-        $posts = get_posts(['name' => $slug, 'post_type' => 'post', 'post_status' => 'publish', 'posts_per_page' => 1]);
+        $posts = get_posts(['name' => $slug, 'post_type' => 'post', 'post_status' => 'publish', 'posts_per_page' => 1] + td_lang_args('post'));
         $found[$slug] = $posts[0] ?? null;
     }
     return $found[$slug];
@@ -266,12 +266,13 @@ function td_product_text_fields(): array
 function td_build_products(): array
 {
     $products = [];
-    foreach (td_query('td_product') as $post) {
+    foreach (td_query(td_product_type()) as $post) {
         $item = [
-            'id' => $post->post_name,
+            'id' => td_product_id($post),
+            'slug' => $post->post_name,
             'order' => (int) $post->menu_order,
             'name' => $post->post_title,
-            'category' => (string) td_meta($post, 'category'),
+            'category' => td_product_category($post),
             'image' => td_image($post, 'full'),
             'shortDesc' => td_plain($post->post_excerpt),
             'fullDesc' => (string) td_meta($post, 'fullDesc'),
