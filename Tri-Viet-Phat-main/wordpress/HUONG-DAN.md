@@ -42,7 +42,7 @@ Sửa xong bấm Cập nhật là website đổi ngay, không cần build lại.
 
 ## Khi chuyển thietbiytegroup.com sang WordPress
 
-GitHub Actions (`.github/workflows/deploy.yml`) đang tải website tĩnh lên hosting mỗi khi có thay đổi trên GitHub. **Phải tắt workflow này trước** (GitHub → Actions → "Deploy to hosting" → Disable workflow). Nếu không, lần đẩy code tiếp theo sẽ ghi đè lên WordPress.
+Workflow "Deploy to hosting" (`.github/workflows/deploy.yml`) **đã tắt tự động chạy** từ 01/10/2026: đẩy code lên GitHub không còn tải website tĩnh lên hosting, nên không ghi đè WordPress. Đừng bấm "Run workflow" bằng tay khi WordPress đã nằm trên hosting, vì sẽ ghi đè lên nó.
 
 ## Cập nhật theme sau này
 
